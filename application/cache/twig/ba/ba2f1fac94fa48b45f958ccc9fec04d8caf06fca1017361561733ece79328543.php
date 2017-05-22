@@ -37,10 +37,10 @@ class __TwigTemplate_00f303e0d6d24b82a14dd9af21fdbf612b377bf55ea94109fa1bc5356e7
 \t        <span class=\"icon-bar\"></span>
 \t        <span class=\"icon-bar\"></span>
 \t      </button>
-\t      <div class=\"thumb\">
-\t\t\t\t<a href=\"#\"><img src=\"application/assets/images/logo.jpg\" class=\"pull-left img-responsive \" alt=\"logo\"></a>
+\t      <div class=\"thumb pull-left\">
+\t\t\t\t<a href=\"#\"><img src=\"application/assets/images/logo.png\" class=\"pull-left\" alt=\"logo\"></a>
 \t\t\t</div>
-\t\t\t<a href=\"#\" class=\"navbar-brand\">Una gauchada</a>
+\t\t\t<a href=\"#\" class=\"navbar-brand pull-right\">Una gauchada</a>
 \t    </div>
 \t    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">
 \t      \t<ul class=\"nav navbar-nav navbar-right \">
@@ -107,10 +107,10 @@ class __TwigTemplate_00f303e0d6d24b82a14dd9af21fdbf612b377bf55ea94109fa1bc5356e7
 \t        <span class=\"icon-bar\"></span>
 \t        <span class=\"icon-bar\"></span>
 \t      </button>
-\t      <div class=\"thumb\">
-\t\t\t\t<a href=\"#\"><img src=\"application/assets/images/logo.jpg\" class=\"pull-left img-responsive \" alt=\"logo\"></a>
+\t      <div class=\"thumb pull-left\">
+\t\t\t\t<a href=\"#\"><img src=\"application/assets/images/logo.png\" class=\"pull-left\" alt=\"logo\"></a>
 \t\t\t</div>
-\t\t\t<a href=\"#\" class=\"navbar-brand\">Una gauchada</a>
+\t\t\t<a href=\"#\" class=\"navbar-brand pull-right\">Una gauchada</a>
 \t    </div>
 \t    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">
 \t      \t<ul class=\"nav navbar-nav navbar-right \">
@@ -134,6 +134,6 @@ class __TwigTemplate_00f303e0d6d24b82a14dd9af21fdbf612b377bf55ea94109fa1bc5356e7
 \t\t\t</p>
 \t\t</div>
 \t</div>
-{% endblock %}", "index.twig", "/home/cristian/Escritorio/catedra/application/views/index.twig");
+{% endblock %}", "index.twig", "/var/www/html/Una-gauchada/application/views/index.twig");
     }
 }

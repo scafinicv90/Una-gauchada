@@ -37,9 +37,7 @@ class __TwigTemplate_4a90c8adb95333e669be37ac4e3b44fd4d4997deabb5e1cd59e94ce2a17
         echo twig_escape_filter($this->env, (isset($context["path"]) ? $context["path"] : null), "html", null, true);
         echo "
 
-    <script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>
-
-";
+<script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>";
     }
 
     public function getTemplateName()
@@ -82,8 +80,6 @@ class __TwigTemplate_4a90c8adb95333e669be37ac4e3b44fd4d4997deabb5e1cd59e94ce2a17
     <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}/assets/styles/css/layout.css\">
 {{  path }}
 
-    <script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>
-
-", "head.twig", "/home/cristian/Escritorio/catedra/application/views/head.twig");
+<script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>", "head.twig", "/var/www/html/Una-gauchada/application/views/head.twig");
     }
 }

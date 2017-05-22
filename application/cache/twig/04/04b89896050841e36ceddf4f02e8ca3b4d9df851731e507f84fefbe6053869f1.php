@@ -121,6 +121,6 @@ class __TwigTemplate_bb94ee089befcfa68a3478130a231914e38d4e240fa2de537af4d067b7a
 \t\t\t</div>
 \t\t</div>
 \t</div>
-</div>", "loginModel.twig", "/home/cristian/Escritorio/catedra/application/views/loginModel.twig");
+</div>", "loginModel.twig", "/var/www/html/Una-gauchada/application/views/loginModel.twig");
     }
 }

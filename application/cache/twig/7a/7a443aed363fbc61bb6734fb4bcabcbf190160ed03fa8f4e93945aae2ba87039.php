@@ -37,10 +37,10 @@ class __TwigTemplate_d68d84c8acdf55cf51df83292cf38b756719b837dc7c8c033dc3d70815c
 \t        <span class=\"icon-bar\"></span>
 \t        <span class=\"icon-bar\"></span>
 \t      </button>
-\t      <div class=\"thumb\">
-\t\t\t\t<a href=\"#\"><img src=\"http://localhost/catedra/application/assets/images/logo.jpg\" class=\"pull-left img-responsive \" alt=\"logo\"></a>
+\t      <div class=\"thumb pull-left\">
+\t\t\t\t<a href=\"#\"><img src=\"http://localhost/catedra/application/assets/images/logo.png\" class=\"pull-left \" alt=\"logo\"></a>
 \t\t\t</div>
-\t\t\t<a href=\"#\" class=\"navbar-brand\">Una gauchada</a>
+\t\t\t<a href=\"#\" class=\"navbar-brand pull-right\">Una gauchada</a>
 \t    </div>
 \t    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">
 \t      \t<ul class=\"nav navbar-nav navbar-right \">
@@ -100,10 +100,10 @@ class __TwigTemplate_d68d84c8acdf55cf51df83292cf38b756719b837dc7c8c033dc3d70815c
 \t        <span class=\"icon-bar\"></span>
 \t        <span class=\"icon-bar\"></span>
 \t      </button>
-\t      <div class=\"thumb\">
-\t\t\t\t<a href=\"#\"><img src=\"http://localhost/catedra/application/assets/images/logo.jpg\" class=\"pull-left img-responsive \" alt=\"logo\"></a>
+\t      <div class=\"thumb pull-left\">
+\t\t\t\t<a href=\"#\"><img src=\"http://localhost/catedra/application/assets/images/logo.png\" class=\"pull-left \" alt=\"logo\"></a>
 \t\t\t</div>
-\t\t\t<a href=\"#\" class=\"navbar-brand\">Una gauchada</a>
+\t\t\t<a href=\"#\" class=\"navbar-brand pull-right\">Una gauchada</a>
 \t    </div>
 \t    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">
 \t      \t<ul class=\"nav navbar-nav navbar-right \">
@@ -118,6 +118,6 @@ class __TwigTemplate_d68d84c8acdf55cf51df83292cf38b756719b837dc7c8c033dc3d70815c
 {% block content %}
 \t{% include 'sectionPrincipal.twig' %}
 
-{% endblock %}", "indexLog.twig", "/home/cristian/Escritorio/catedra/application/views/indexLog.twig");
+{% endblock %}", "indexLog.twig", "/var/www/html/Una-gauchada/application/views/indexLog.twig");
     }
 }

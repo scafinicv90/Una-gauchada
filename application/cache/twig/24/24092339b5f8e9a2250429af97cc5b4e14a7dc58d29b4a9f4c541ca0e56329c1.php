@@ -61,7 +61,7 @@ class __TwigTemplate_6014daaf7d6626644c2f1f5392ffaf31e815e53f12a044c623972779a7c
 \t\t\t<!-- begin post -->
 \t\t\t<section class=\"posts col-md-9\">
 \t\t\t\t<article class=\"post clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.jpg\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">primer gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">24 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 1</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
@@ -73,7 +73,7 @@ class __TwigTemplate_6014daaf7d6626644c2f1f5392ffaf31e815e53f12a044c623972779a7c
 \t             \t</div>
 \t            </article>
 \t            <article class=\"post  clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.jpg\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">Segunda Gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">23 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 6</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
@@ -85,7 +85,7 @@ class __TwigTemplate_6014daaf7d6626644c2f1f5392ffaf31e815e53f12a044c623972779a7c
 \t             \t</div>
 \t            </article>
 \t            <article class=\"post clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.jpg\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">Tercer gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">22 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 7</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
@@ -165,7 +165,7 @@ class __TwigTemplate_6014daaf7d6626644c2f1f5392ffaf31e815e53f12a044c623972779a7c
 \t\t\t<!-- begin post -->
 \t\t\t<section class=\"posts col-md-9\">
 \t\t\t\t<article class=\"post clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.jpg\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">primer gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">24 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 1</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
@@ -177,7 +177,7 @@ class __TwigTemplate_6014daaf7d6626644c2f1f5392ffaf31e815e53f12a044c623972779a7c
 \t             \t</div>
 \t            </article>
 \t            <article class=\"post  clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.jpg\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">Segunda Gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">23 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 6</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
@@ -189,7 +189,7 @@ class __TwigTemplate_6014daaf7d6626644c2f1f5392ffaf31e815e53f12a044c623972779a7c
 \t             \t</div>
 \t            </article>
 \t            <article class=\"post clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.jpg\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">Tercer gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">22 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 7</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
@@ -201,6 +201,6 @@ class __TwigTemplate_6014daaf7d6626644c2f1f5392ffaf31e815e53f12a044c623972779a7c
 \t             \t</div>
 \t            </article>
 \t\t</section>
-\t</div>", "sectionPrincipal.twig", "/home/cristian/Escritorio/catedra/application/views/sectionPrincipal.twig");
+\t</div>", "sectionPrincipal.twig", "/var/www/html/Una-gauchada/application/views/sectionPrincipal.twig");
     }
 }
