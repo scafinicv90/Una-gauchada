@@ -1,0 +1,60 @@
+/* body{
+	background-color:#E51515;
+}
+article{
+	
+} */
+.navbar{
+	background-color: #89C1EB
+}
+.menuLog{
+	padding-top: 1em;
+	height: 500px;
+	background-color: #D2D1D1;
+}
+.footer-cont{
+	padding-bottom: 1.5em;
+	background-color: #0E5CD5;
+}
+.footer-cont p {
+	margin-top: 0.5em;
+}
+.footer-cont a{
+	color: #332020;
+}
+.footer-cont ul{
+	margin-top: 0.5em;
+}
+
+.thumb{
+	width:20%;
+}
+/* aside */
+.busqueda{
+		background-color: #0E5CD5;
+
+}
+/*  POST */
+
+.main{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.post{
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #999;
+	background-color: #2C83E6;
+}
+.post .post-title a{
+	color: #333;
+}
+
+.post .thumb {
+	margin-right: 10px;
+	width: 40%;
+	
+}
+.post .thumb img{
+	width: 100%;
+}

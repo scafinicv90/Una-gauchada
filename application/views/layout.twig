@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+{% include 'head.twig' %}
+{% block head %}
+{% endblock %}
+
+</head>
+
+<body>
+    <header >
+        {% include 'loginModel.twig' %}
+        {% block header %}
+        {% endblock %}
+    </header>
+    <section class="main container">
+        {% block content %}
+
+        {% endblock %}
+    </section>
+
+    <footer >
+    <div class="container-fluid footer-cont">
+        <div class="container">
+            {% include 'footer.twig' %}
+        </div>
+    </div>
+    </footer>
+
+</body>
+
+</html>

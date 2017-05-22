@@ -1,0 +1,40 @@
+
+{% extends 'layout.twig' %}
+
+{% block header %}
+	<nav class="navbar navbar-inverse">
+	  	<div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <div class="thumb">
+				<a href="#"><img src="application/assets/images/logo.jpg" class="pull-left img-responsive " alt="logo"></a>
+			</div>
+			<a href="#" class="navbar-brand">Una gauchada</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      	<ul class="nav navbar-nav navbar-right ">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+			</ul>
+	    </div>
+	  	</div>
+	</nav>
+{% endblock %}
+
+
+{% block content %}
+	<div class="container menuLog">
+		<div class="jumbotron">
+			<h1 class="display-3">Una gauchada!</h1>
+			<p class="lead">tu sitio para pedir o realizar una gauchada. si vos podes hacerlo nosotros tambien</p>
+			<hr class="my-4">
+			<p class="lead">
+				<a class="btn btn-primary btn-lg" href="#" role="button">Registrate</a>
+			</p>
+		</div>
+	</div>
+{% endblock %}
