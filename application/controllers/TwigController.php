@@ -10,6 +10,7 @@
         $this->load->library('twig');
         $this->twig->getTwig()->addExtension(new Twig_Extension_Debug());
         return $this->twig;
+
     }
 
 

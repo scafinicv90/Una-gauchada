@@ -32,10 +32,6 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
         // line 13
         echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
         echo "/assets/styles/css/layout.css\">
-";
-        // line 14
-        echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
-        echo "
 
 <script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>";
     }
@@ -52,7 +48,7 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
 
     public function getDebugInfo()
     {
-        return array (  37 => 14,  33 => 13,  19 => 1,);
+        return array (  33 => 13,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -78,7 +74,6 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
     <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>
     <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>
     <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}/assets/styles/css/layout.css\">
-{{  path }}
 
 <script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>", "head.twig", "C:\\xampp\\htdocs\\Una-gauchada\\application\\views\\head.twig");
     }

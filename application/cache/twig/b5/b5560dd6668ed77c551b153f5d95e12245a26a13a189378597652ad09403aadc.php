@@ -37,7 +37,7 @@ class __TwigTemplate_a5059196f0289867ea8450e63a7fbb5fda5333dfc14d7e1a06e371e4e5a
     <header >
         ";
         // line 14
-        $this->loadTemplate("loginModel.twig", "layout.twig", 14)->display($context);
+        $this->loadTemplate("loginModal.twig", "layout.twig", 14)->display($context);
         // line 15
         echo "        ";
         $this->displayBlock('header', $context, $blocks);
@@ -125,7 +125,7 @@ class __TwigTemplate_a5059196f0289867ea8450e63a7fbb5fda5333dfc14d7e1a06e371e4e5a
 
 <body>
     <header >
-        {% include 'loginModel.twig' %}
+        {% include 'loginModal.twig' %}
         {% block header %}
         {% endblock %}
     </header>
