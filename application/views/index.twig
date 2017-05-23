@@ -1,6 +1,8 @@
 
 {% extends 'layout.twig' %}
 
+
+
 {% block header %}
 	<nav class="navbar navbar-inverse">
 	  	<div class="container">
@@ -11,7 +13,7 @@
 	        <span class="icon-bar"></span>
 	      </button>
 	      <div class="thumb pull-left">
-				<a href="#"><img src="application/assets/images/logo.png" class="pull-left" alt="logo"></a>
+				<a href="#"><img src="{{path}}/assets/images/logo.png" class="pull-left" alt="logo"></a>
 			</div>
 			<a href="#" class="navbar-brand pull-right">Una gauchada</a>
 	    </div>
@@ -19,6 +21,11 @@
 	      	<ul class="nav navbar-nav navbar-right ">
 				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
 				<li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+
+				{% if info is not null  %}
+				<div class="alert alert-success" role="alert">  Sesion cerrada correctametne</div>
+				{% endif %}
+
 			</ul>
 	    </div>
 	  	</div>
@@ -27,6 +34,7 @@
 
 
 {% block content %}
+
 	<div class="container menuLog">
 		<div class="jumbotron">
 			<h1 class="display-3">Una gauchada!</h1>

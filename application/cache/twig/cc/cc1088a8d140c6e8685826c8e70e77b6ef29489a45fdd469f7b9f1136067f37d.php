@@ -37,7 +37,7 @@ class __TwigTemplate_a2edd508a504e6e8fedb5db3a7a189c5b390783bdaae96faaf68e596f9e
     <header >
         ";
         // line 14
-        $this->loadTemplate("loginModel.twig", "layout.twig", 14)->display($context);
+        $this->loadTemplate("loginModal.twig", "layout.twig", 14)->display($context);
         // line 15
         echo "        ";
         $this->displayBlock('header', $context, $blocks);
@@ -125,7 +125,7 @@ class __TwigTemplate_a2edd508a504e6e8fedb5db3a7a189c5b390783bdaae96faaf68e596f9e
 
 <body>
     <header >
-        {% include 'loginModel.twig' %}
+        {% include 'loginModal.twig' %}
         {% block header %}
         {% endblock %}
     </header>
@@ -146,6 +146,6 @@ class __TwigTemplate_a2edd508a504e6e8fedb5db3a7a189c5b390783bdaae96faaf68e596f9e
 </body>
 
 </html>
-", "layout.twig", "/home/cristian/Escritorio/catedra/application/views/layout.twig");
+", "layout.twig", "/var/www/html/Una-gauchada/application/views/layout.twig");
     }
 }

@@ -1,0 +1,73 @@
+{% extends 'layout.twig' %}
+{% block header %}
+
+	<nav class="navbar navbar-inverse">
+	  	<div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <div class="thumb pull-left">
+				<a href="#"><img src="{{path}}/assets/images/logo.png" class="pull-left" alt="logo"></a>
+			</div>
+			<a href="#" class="navbar-brand pull-right">Una gauchada</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      	<ul class="nav navbar-nav navbar-right ">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
+				<li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+
+				{% if info is not null  %}
+				<div class="alert alert-success" role="alert">  Sesion cerrada correctametne</div>
+				{% endif %}
+
+			</ul>
+	    </div>
+	  	</div>
+	</nav>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-6">
+	</div>
+	<div class="col-md-6">
+			{% if datos_error is defined %}
+				<div class="alert alert-warning" role="alert"> {{ datos_error}}</div>
+
+			{% endif %}
+				<form class="form-horizontal" method="POST" action="?/login/check/">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+				<div class="col-sm-10 col-md-4">
+					<input type="text" class="form-control" id="inputEmail3" name="email" placeholder="Email">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+				<div class="col-sm-10 col-md-4">
+					<input type="password" class="form-control" id="inputPassword3" name="password" placeholder="Password">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit"class="btn btn-default">Entrar</button>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> Recordar
+						</label>
+					</div>
+				</div>
+			</div>
+			</form>
+	</div>
+</div>
+
+ {% endblock %}
