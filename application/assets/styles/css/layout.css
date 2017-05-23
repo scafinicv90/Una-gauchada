@@ -1,20 +1,18 @@
-/* body{
-	background-color:#E51515;
+body{
+	background-color:#365d89; /* color de fondo  principal*/
 }
-article{
-	
-} */
+
 .navbar{
-	background-color: #89C1EB
+	background-color: #4883bf; /* color del nav header */
 }
 .menuLog{
 	padding-top: 1em;
 	height: 500px;
-	background-color: #D2D1D1;
+	background-color: #D2D1D1; /* color del modal login */
 }
 .footer-cont{
 	padding-bottom: 1.5em;
-	background-color: #0E5CD5;
+	background-color: #4883bf; /* color del footer */
 }
 .footer-cont p {
 	margin-top: 0.5em;
@@ -29,10 +27,13 @@ article{
 .thumb{
 	width:10%;
 }
+.thumb img {
+	background-color: #FFFFFF; /* color del fondo del logo  */
+}
 
 /* aside */
 .busqueda{
-		background-color: #0E5CD5;
+		background-color: #0E5CD5; /* color del aside */
 
 }
 /*  POST */
@@ -45,15 +46,14 @@ article{
 	padding-bottom: 20px;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #999;
-	background-color: #2C83E6;
 }
 .post .post-title a{
 	color: #333;
 }
 
 .post .thumb {
-	margin-right: 10px;
-	width: 40%;
+	margin-right: 15px;
+	width: 20%;
 	
 }
 .post .thumb img{
