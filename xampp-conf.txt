@@ -1,0 +1,21 @@
+esto va en el archivo c:/xampp/apache/conf/extra/httpd-xampp
+
+
+
+    Alias /Una-gauchada "C:/xampp/htdocs/Una-gauchada/"
+    <Directory "C:/xampp/htdocs/Una-gauchada">
+        AllowOverride AuthConfig
+        Require all granted 
+        ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var
+    </Directory>	
+
+
+
+CAMBIARLO POR:
+
+
+<LocationMatch "^/(?i:(?:xampp|security|licenses|phpmyadmin|webalizer|server-status|server-info|Una-gauchada))">
+    # Require local
+    Require all granted
+ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var
+</LocationMatch>
