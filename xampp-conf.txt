@@ -1,0 +1,8 @@
+
+    Alias /Una-gauchada "C:/xampp/htdocs/Una-gauchada/"
+    <Directory "C:/xampp/htdocs/Una-gauchada">
+        AllowOverride AuthConfig
+        Require all granted 
+        ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var
+    </Directory>	
+
