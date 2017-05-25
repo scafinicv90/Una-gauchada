@@ -1,61 +1,78 @@
-body{
-	background-color:#365d89; /* color de fondo  principal*/
+body {
+    background-color: #365d89;
+    /* color de fondo  principal*/
 }
 
-.navbar{
-	background-color: #4883bf; /* color del nav header */
+.navbar {
+    background-color: #4883bf;
+    /* color del nav header */
 }
-.menuLog{
-	padding-top: 1em;
-	height: 500px;
-	background-color: #D2D1D1; /* color del modal login */
+
+.menuLog {
+    padding-top: 1em;
+    height: 500px;
+    background-color: #D2D1D1;
+    /* color del modal login */
 }
-.footer-cont{
-	padding-bottom: 1.5em;
-	background-color: #4883bf; /* color del footer */
+
+.footer-cont {
+    padding-bottom: 1.5em;
+    background-color: #4883bf;
+    /* color del footer */
 }
+
 .footer-cont p {
-	margin-top: 0.5em;
-}
-.footer-cont a{
-	color: #332020;
-}
-.footer-cont ul{
-	margin-top: 0.5em;
+    margin-top: 0.5em;
 }
 
-.thumb{
-	width:10%;
+.footer-cont a {
+    color: #332020;
 }
+
+.footer-cont ul {
+    margin-top: 0.5em;
+}
+
+.thumb {
+    width: 0%;
+}
+
 .thumb img {
-	background-color: #FFFFFF; /* color del fondo del logo  */
+    background-color: #FFFFFF;
+    /* color del fondo del logo  */
 }
+
 
 /* aside */
-.busqueda{
-		background-color: #0E5CD5; /* color del aside */
 
+.busqueda {
+    background-color: #0E5CD5;
+    /* color del aside */
 }
+
+
 /*  POST */
 
-.main{
-	margin-top: 10px;
-	margin-bottom: 10px;
+.main {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
-.post{
-	padding-bottom: 20px;
-	margin-bottom: 20px;
-	border-bottom: 1px solid #999;
+
+.post {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #999;
 }
-.post .post-title a{
-	color: #333;
+
+.post .post-title a {
+    color: #333;
 }
 
 .post .thumb {
-	margin-right: 15px;
-	width: 20%;
-	
+    margin-right: 15px;
+    width: 20%;
 }
-.post .thumb img{
-	width: 100%;
+
+.post .thumb img {
+    width: 100%;
 }

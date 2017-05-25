@@ -11,8 +11,10 @@ class Home extends CI_Controller
             'cache' => '../cache',
         ];
         $this->load->library('twig');
+        $this->load->library('session');
         $this->twig->getTwig()->addExtension(new Twig_Extension_Debug());
         $this->twig->addGlobal('path', 'http://localhost/Una-gauchada/application/');
+        $this->twig->addGlobal('url', 'http://localhost/Una-gauchada/');
         $this->twig->addGlobal('hay_usuario', $this->session->userdata('login'));
 
     }
@@ -24,15 +26,14 @@ class Home extends CI_Controller
             return 0;
         } else {
             $this->twig->display('index');
-
             return 0;
         }
 
     }
-    public function backend()
-    {
-        $this->twig->display('indexLog');
-        return 0;
-    }
+    /*public function backend()
+{
+$this->twig->display('indexLog');
+return 0;
+}*/
 
 }
