@@ -25,39 +25,21 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 6
+    // line 5
     public function block_header($context, array $blocks = array())
     {
-        // line 7
-        echo "\t<nav class=\"navbar navbar-inverse\">
-\t  \t<div class=\"container\">
-\t    <div class=\"navbar-header\">
-\t      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">
-\t        <span class=\"icon-bar\"></span>
-\t        <span class=\"icon-bar\"></span>
-\t        <span class=\"icon-bar\"></span>
-\t      </button>
-\t      <div class=\"thumb pull-left\">
-\t\t\t\t<a href=\"#\"><img src=\"";
-        // line 16
-        echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
-        echo "/assets/images/logo.png\" class=\"pull-left\" alt=\"logo\"></a>
-\t\t\t</div>
-\t\t\t<a href=\"#\" class=\"navbar-brand pull-right\">Una gauchada</a>
-\t    </div>
-\t    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">
-\t      \t<ul class=\"nav navbar-nav navbar-right \">
-\t\t\t\t<li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> Registrate</a></li>
+        // line 6
+        echo "\t\t\t\t<li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> Registrate</a></li>
 \t\t\t\t<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\"><span class=\"glyphicon glyphicon-log-in\"></span> Entrar</a></li>
 
 \t\t\t\t";
-        // line 25
+        // line 9
         if ( !(null === ($context["info"] ?? null))) {
-            // line 26
+            // line 10
             echo "\t\t\t\t<div class=\"alert alert-success\" role=\"alert\">  Sesion cerrada correctametne</div>
 \t\t\t\t";
         }
-        // line 28
+        // line 12
         echo "
 \t\t\t</ul>
 \t    </div>
@@ -66,10 +48,10 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
 ";
     }
 
-    // line 36
+    // line 20
     public function block_content($context, array $blocks = array())
     {
-        // line 37
+        // line 21
         echo "
 \t<div class=\"container menuLog\">
 \t\t<div class=\"jumbotron\">
@@ -96,7 +78,7 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
 
     public function getDebugInfo()
     {
-        return array (  73 => 37,  70 => 36,  61 => 28,  57 => 26,  55 => 25,  43 => 16,  32 => 7,  29 => 6,  11 => 2,);
+        return array (  55 => 21,  52 => 20,  43 => 12,  39 => 10,  37 => 9,  32 => 6,  29 => 5,  11 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -113,23 +95,7 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
 {% extends 'layout.twig' %}
 
 
-
 {% block header %}
-\t<nav class=\"navbar navbar-inverse\">
-\t  \t<div class=\"container\">
-\t    <div class=\"navbar-header\">
-\t      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">
-\t        <span class=\"icon-bar\"></span>
-\t        <span class=\"icon-bar\"></span>
-\t        <span class=\"icon-bar\"></span>
-\t      </button>
-\t      <div class=\"thumb pull-left\">
-\t\t\t\t<a href=\"#\"><img src=\"{{path}}/assets/images/logo.png\" class=\"pull-left\" alt=\"logo\"></a>
-\t\t\t</div>
-\t\t\t<a href=\"#\" class=\"navbar-brand pull-right\">Una gauchada</a>
-\t    </div>
-\t    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">
-\t      \t<ul class=\"nav navbar-nav navbar-right \">
 \t\t\t\t<li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> Registrate</a></li>
 \t\t\t\t<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\"><span class=\"glyphicon glyphicon-log-in\"></span> Entrar</a></li>
 

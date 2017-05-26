@@ -40,23 +40,26 @@ class __TwigTemplate_a5059196f0289867ea8450e63a7fbb5fda5333dfc14d7e1a06e371e4e5a
         $this->loadTemplate("loginModal.twig", "layout.twig", 14)->display($context);
         // line 15
         echo "        ";
+        $this->loadTemplate("header.twig", "layout.twig", 15)->display($context);
+        // line 16
+        echo "        ";
         $this->displayBlock('header', $context, $blocks);
-        // line 17
+        // line 18
         echo "    </header>
     <section class=\"main container\">
         ";
-        // line 19
+        // line 20
         $this->displayBlock('content', $context, $blocks);
-        // line 22
+        // line 23
         echo "    </section>
 
     <footer >
     <div class=\"container-fluid footer-cont\">
         <div class=\"container\">
             ";
-        // line 27
-        $this->loadTemplate("footer.twig", "layout.twig", 27)->display($context);
         // line 28
+        $this->loadTemplate("footer.twig", "layout.twig", 28)->display($context);
+        // line 29
         echo "        </div>
     </div>
     </footer>
@@ -72,17 +75,17 @@ class __TwigTemplate_a5059196f0289867ea8450e63a7fbb5fda5333dfc14d7e1a06e371e4e5a
     {
     }
 
-    // line 15
+    // line 16
     public function block_header($context, array $blocks = array())
     {
-        // line 16
+        // line 17
         echo "        ";
     }
 
-    // line 19
+    // line 20
     public function block_content($context, array $blocks = array())
     {
-        // line 20
+        // line 21
         echo "
         ";
     }
@@ -99,7 +102,7 @@ class __TwigTemplate_a5059196f0289867ea8450e63a7fbb5fda5333dfc14d7e1a06e371e4e5a
 
     public function getDebugInfo()
     {
-        return array (  86 => 20,  83 => 19,  79 => 16,  76 => 15,  71 => 7,  60 => 28,  58 => 27,  51 => 22,  49 => 19,  45 => 17,  42 => 15,  40 => 14,  33 => 9,  31 => 7,  29 => 6,  22 => 1,);
+        return array (  89 => 21,  86 => 20,  82 => 17,  79 => 16,  74 => 7,  63 => 29,  61 => 28,  54 => 23,  52 => 20,  48 => 18,  45 => 16,  42 => 15,  40 => 14,  33 => 9,  31 => 7,  29 => 6,  22 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -126,6 +129,7 @@ class __TwigTemplate_a5059196f0289867ea8450e63a7fbb5fda5333dfc14d7e1a06e371e4e5a
 <body>
     <header >
         {% include 'loginModal.twig' %}
+        {% include 'header.twig' %}
         {% block header %}
         {% endblock %}
     </header>
