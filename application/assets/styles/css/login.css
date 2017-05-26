@@ -1,0 +1,11 @@
+.loginBox{
+	padding: 1em;
+	height: 500px;
+	border-right: solid 1px;
+	border-bottom: solid 1px;
+}
+.loginForm {
+    background-color: #A1CFFF;
+    padding: 1em;
+    border: solid 1px;
+}

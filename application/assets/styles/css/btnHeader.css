@@ -1,0 +1,8 @@
+
+.btn-header a{
+    color: #332020;
+}
+.btn-header:hover a {
+	color: white;
+}
+.navbar-nav > li > .btn-link{ color: #332020; }

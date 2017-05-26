@@ -61,7 +61,10 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t\t\t<!-- begin post -->
 \t\t\t<section class=\"posts col-md-9\">
 \t\t\t\t<article class=\"post clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"";
+        // line 46
+        echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
+        echo "assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">primer gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">24 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 1</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
@@ -73,7 +76,10 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t             \t</div>
 \t            </article>
 \t            <article class=\"post  clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"";
+        // line 58
+        echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
+        echo "assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">Segunda Gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">23 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 6</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
@@ -85,7 +91,10 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t             \t</div>
 \t            </article>
 \t            <article class=\"post clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"";
+        // line 70
+        echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
+        echo "assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">Tercer gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">22 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 7</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
@@ -105,9 +114,14 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
         return "sectionPrincipal.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  19 => 1,);
+        return array (  96 => 70,  81 => 58,  66 => 46,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -165,7 +179,7 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t\t\t<!-- begin post -->
 \t\t\t<section class=\"posts col-md-9\">
 \t\t\t\t<article class=\"post clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"{{ path }}assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">primer gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">24 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 1</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
@@ -177,7 +191,7 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t             \t</div>
 \t            </article>
 \t            <article class=\"post  clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"{{ path }}assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">Segunda Gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">23 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 6</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
@@ -189,7 +203,7 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t             \t</div>
 \t            </article>
 \t            <article class=\"post clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"http://localhost/catedra/application/assets/images/logo.png\" alt=\"favor\"></a>
+\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"{{ path }}assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">Tercer gauchada</a></h2>
 \t             \t<p><span class=\"post-fecha\">22 de abril de 2016</span> por <span  class=\"post-autor\"><a href=\"#\">Usuario 7</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">

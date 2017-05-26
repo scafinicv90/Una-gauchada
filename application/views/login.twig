@@ -1,19 +1,9 @@
 {% extends 'layout.twig' %}
-{% block header %}
+{% block head %}
+        <link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/login.css">
 
-	<nav class="navbar navbar-inverse">
-	  	<div class="container">
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <div class="thumb pull-left">
-				<a href="#"><img src="{{path}}/assets/images/logo.png" class="pull-left" alt="logo"></a>
-			</div>
-			<a href="#" class="navbar-brand pull-right">Una gauchada</a>
-	    </div>
+{% endblock %}
+{% block header %}
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      	<ul class="nav navbar-nav navbar-right ">
 				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
@@ -33,40 +23,174 @@
 
 <div class="row">
 	<div class="col-md-6">
+		<h3>Una gauchada te ayuda a encontrar a la persona indicada para esos trabajos que no podes realizar.</h3>
+	<img src="{{ path }}assets/images/logo.png" alt="">
 	</div>
-	<div class="col-md-6">
-			{% if datos_error is defined %}
-				<div class="alert alert-warning" role="alert"> {{ datos_error}}</div>
+	<div class="col-md-6 loginBox">
+			<h4>Iniciar sesion</h4>
+	 <div class="loginForm">
+			{% if  noExiste  is defined %}
+				<div class="alert alert-warning" role="alert"> {{ noExiste }}</div>
 
-			{% endif %}
-				<form class="form-horizontal" method="POST" action="?/login/check/">
-			<div class="form-group">
-				<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-				<div class="col-sm-10 col-md-4">
-					<input type="text" class="form-control" id="inputEmail3" name="email" placeholder="Email">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-				<div class="col-sm-10 col-md-4">
-					<input type="password" class="form-control" id="inputPassword3" name="password" placeholder="Password">
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit"class="btn btn-default">Entrar</button>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> Recordar
-						</label>
+				<form  data-toggle="validator" role="form" class="form-horizontal" method="POST" id="login" action= '?/login/check' >
+					<div class="form-group has-feedback">
+						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+						<div class=" col-sm-10 col-md-4 input-group">
+							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-pattern-error="coloque un email valido" placeholder="Email" data-error="completa este campo" required >
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    					<div class="help-block with-errors"></div>
+						</div>
 					</div>
-				</div>
-			</div>
-			</form>
+
+
+	
+
+					<div class="form-group has-feedback">
+						<label for="inputPassword" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-10 col-md-4 input-group">
+							<input type="password" pattern="[a-z0-9A-Z]{6,12}$" data-pattern-error="minimo de 6 y maximo 12" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    					<div class="help-block with-errors"></div>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit"class="btn btn-default">Entrar</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"> Recordar
+								</label>
+							</div>
+						</div>
+					</div>
+				</form>
+			{% elseif passwordIncorrecta is defined %}
+				<form  data-toggle="validator" role="form" class="form-horizontal" method="POST" id="login" action= '?/login/check' >
+					<div class="form-group has-feedback">
+						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+						<div class=" col-sm-10 col-md-4 input-group">
+							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-pattern-error="coloque un email valido" placeholder="Email" data-error="completa este campo" value="{{ email }}" required >
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    					<div class="help-block with-errors"></div>
+						</div>
+					</div>
+	
+					{{ passwordIncorrecta }}
+					<div class="form-group has-feedback">
+						<label for="inputPassword" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-10 col-md-4 input-group">
+							<input type="password" pattern="[a-z0-9A-Z]{6,12}$" data-pattern-error="minimo de 6 y maximo 12" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    					<div class="help-block with-errors"></div>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit"class="btn btn-default">Entrar</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"> Recordar
+								</label>
+							</div>
+						</div>
+					</div>
+
+				</form>
+
+			{% elseif limpio == true %}
+				<form  data-toggle="validator" role="form" class="form-horizontal" method="POST" id="login" action= '?/login/check' >
+					<div class="form-group has-feedback">
+						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+						<div class=" col-sm-10 col-md-4 input-group">
+							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-pattern-error="coloque un email valido" placeholder="Email" data-error="completa este campo" required >
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    					<div class="help-block with-errors"></div>
+						</div>
+					</div>
+	
+
+					<div class="form-group has-feedback">
+						<label for="inputPassword" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-10 col-md-4 input-group">
+							<input type="password" pattern="[a-z0-9A-Z]{6,12}$" data-pattern-error="minimo de 6 y maximo 12" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    					<div class="help-block with-errors"></div>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit"class="btn btn-default">Entrar</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"> Recordar
+								</label>
+							</div>
+						</div>
+					</div>
+
+				</form>
+				{% else %}
+					<form  data-toggle="validator" role="form" class="form-horizontal" method="POST" id="login" action= '?/login/check' >
+
+					{{ emailMensaje }}
+					<div class="form-group has-feedback">
+						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+						<div class=" col-sm-10 col-md-4 input-group">
+							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-pattern-error="coloque un email valido" placeholder="Email" data-error="completa este campo" value="{{ email }}" required >
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    					<div class="help-block with-errors"></div>
+						</div>
+					</div>
+	
+					 <p>{{ passwordMensaje }}</p>
+					<div class="form-group has-feedback">
+						<label for="inputPassword" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-10 col-md-4 input-group">
+							<input type="password" pattern="[a-z0-9A-Z]{6,12}$" data-pattern-error="minimo de 6 y maximo 12" class="form-control" id="inputPassword" name="password" placeholder="Password" value="{{ password }}" required>
+						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    					<div class="help-block with-errors"></div>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit"class="btn btn-default">Entrar</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"> Recordar
+								</label>
+							</div>
+						</div>
+					</div>
+					
+				</form>
+				{% endif %}
+				<p> No tenes cuenta ? <a href="#">Registrate</a> es gratis.</p>
+
+	</div>
 	</div>
 </div>
 

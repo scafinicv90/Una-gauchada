@@ -48,7 +48,12 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 \t    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">
 \t      \t<ul class=\"nav navbar-nav navbar-right \">
 \t\t\t\t<li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> Usuario</a></li>
+<<<<<<< HEAD
 \t\t\t\t\t<li><a href=\"?/login/logout/\" data-toggle=\"\" data-target=\"\"><span class=\"glyphicon glyphicon-log-in\"></span>Salir</a></li>
+=======
+\t\t\t\t\t<li><a href=\"index.php?c=login&m=logout
+\" data-toggle=\"\" data-target=\"\"><span class=\"glyphicon glyphicon-log-in\"></span>Salir</a></li>
+>>>>>>> b7a0d377ce6d090fbe70aef88ff317b1763a2efc
 \t\t\t</ul>
 \t    </div>
 \t  \t</div>
@@ -56,13 +61,13 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 ";
     }
 
-    // line 27
+    // line 28
     public function block_content($context, array $blocks = array())
     {
-        // line 28
-        echo "\t";
-        $this->loadTemplate("sectionPrincipal.twig", "indexLog.twig", 28)->display($context);
         // line 29
+        echo "\t";
+        $this->loadTemplate("sectionPrincipal.twig", "indexLog.twig", 29)->display($context);
+        // line 30
         echo "
 ";
     }
@@ -79,7 +84,11 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 
     public function getDebugInfo()
     {
+<<<<<<< HEAD
         return array (  66 => 29,  63 => 28,  60 => 27,  43 => 13,  32 => 4,  29 => 3,  11 => 1,);
+=======
+        return array (  67 => 30,  64 => 29,  61 => 28,  43 => 13,  32 => 4,  29 => 3,  11 => 1,);
+>>>>>>> b7a0d377ce6d090fbe70aef88ff317b1763a2efc
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -111,7 +120,12 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 \t    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">
 \t      \t<ul class=\"nav navbar-nav navbar-right \">
 \t\t\t\t<li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> Usuario</a></li>
+<<<<<<< HEAD
 \t\t\t\t\t<li><a href=\"?/login/logout/\" data-toggle=\"\" data-target=\"\"><span class=\"glyphicon glyphicon-log-in\"></span>Salir</a></li>
+=======
+\t\t\t\t\t<li><a href=\"index.php?c=login&m=logout
+\" data-toggle=\"\" data-target=\"\"><span class=\"glyphicon glyphicon-log-in\"></span>Salir</a></li>
+>>>>>>> b7a0d377ce6d090fbe70aef88ff317b1763a2efc
 \t\t\t</ul>
 \t    </div>
 \t  \t</div>

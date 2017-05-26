@@ -28,10 +28,21 @@ class __TwigTemplate_4a90c8adb95333e669be37ac4e3b44fd4d4997deabb5e1cd59e94ce2a17
     <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">
     <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>
     <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>
+    <!--  -->
+
+
+
+    <!--  -->
     <link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        // line 13
+        // line 18
         echo twig_escape_filter($this->env, (isset($context["path"]) ? $context["path"] : null), "html", null, true);
-        echo "/assets/styles/css/layout.css\">
+        echo "assets/styles/css/layout.css\">
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"";
+        // line 19
+        echo twig_escape_filter($this->env, (isset($context["path"]) ? $context["path"] : null), "html", null, true);
+        echo "assets/styles/css/btnHeader.css\">
+
+
 
 <script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>";
     }
@@ -48,7 +59,7 @@ class __TwigTemplate_4a90c8adb95333e669be37ac4e3b44fd4d4997deabb5e1cd59e94ce2a17
 
     public function getDebugInfo()
     {
-        return array (  33 => 13,  19 => 1,);
+        return array (  42 => 19,  38 => 18,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -73,7 +84,15 @@ class __TwigTemplate_4a90c8adb95333e669be37ac4e3b44fd4d4997deabb5e1cd59e94ce2a17
     <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">
     <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>
     <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}/assets/styles/css/layout.css\">
+    <!--  -->
+
+
+
+    <!--  -->
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}assets/styles/css/layout.css\">
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}assets/styles/css/btnHeader.css\">
+
+
 
 <script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>", "head.twig", "/var/www/html/Una-gauchada/application/views/head.twig");
     }
