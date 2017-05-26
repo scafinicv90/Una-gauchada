@@ -1,0 +1,29 @@
+{% extends 'layout.twig' %}
+
+{% block header %}
+	<nav class="navbar navbar-inverse">
+	  	<div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <div class="thumb pull-left">
+				<a href="#"><img src="{{ path }}/assets/images/logo.png" class="pull-left " alt="logo"></a>
+			</div>
+			<a href="#" class="navbar-brand pull-right">Una gauchada</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      	<ul class="nav navbar-nav navbar-right ">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Usuario</a></li>
+					<li><a href="?/login/logout/" data-toggle="" data-target=""><span class="glyphicon glyphicon-log-in"></span>Salir</a></li>
+			</ul>
+	    </div>
+	  	</div>
+	</nav>
+{% endblock %}
+
+{% block content %}
+	{% include 'sectionCrearFavor.twig' %}
+{% endblock %}

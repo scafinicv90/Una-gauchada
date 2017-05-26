@@ -1,0 +1,43 @@
+<form action="CrearFavor.php" method="POST">
+
+<div class="form-group">
+  <label for="inputTitulo" class="col-2 col-form-label">Titulo</label>
+  <div class="col-10">
+    <input class="form-control" type="text"  id="inputTitulo" name="titulo" required>
+  </div>
+</div>
+<div class="form-group">
+  <label for="inputCiudad" class="col-2 col-form-label">Ciudad</label>
+  <div class="col-10">
+    <input class="form-control" type="text" id="inputCiudad" name="ciudad" required>
+  </div>
+</div>
+<div class="form-group">
+  <label for="inputProv" class="col-2 col-form-label">Provincia</label>
+  <div class="col-10">
+    <input class="form-control" type="text" id="inputProv" name="provincia">
+  </div>
+</div>
+<div class="form-group">
+    <label for="inputDesc">Descripcion</label>
+    <textarea class="form-control" id="inputDesc" rows="10"></textarea>
+</div>
+<div class="form-group">
+  <label for="inputFecha" class="col-2 col-form-label">Fecha limite</label>
+  <div class="col-10">
+    <input class="form-control" type="date" id="inputFecha" name="fecha" required>
+  </div>
+</div>
+  <div class="form-group">
+    <label for="Categoria">Categoria</label>
+    <select multiple class="form-control" id="Categoria">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+
+<input type="submit"  value="Agregar">
+</form>
