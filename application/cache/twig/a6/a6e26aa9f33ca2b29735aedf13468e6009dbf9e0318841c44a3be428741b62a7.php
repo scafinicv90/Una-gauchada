@@ -16,45 +16,38 @@ class __TwigTemplate_845b4ac9dc8a88f5bf92260bfbaefd64b565f470488421a8535a8db1afd
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "
-<nav class=\"navbar navbar-default\" role=\"navigation\">
+        echo "<nav class=\"navbar navbar-inverse\">
 \t  \t<div class=\"container\">
-\t\t    <div class=\"navbar-header\">
-\t\t      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navegaciong24\" aria-expanded=\"false\">
-\t\t        <span class=\"sr-only\">Desplegar / Ocultar menu</span>
-\t\t        <span class=\"icon-bar\"></span>
-\t\t        <span class=\"icon-bar\"></span>
-\t\t        <span class=\"icon-bar\"></span>
-\t\t      </button>
-\t\t      <a class=\"navbar-brand\" href=\"#\">Una Gauchada</a>
+\t    <div class=\"navbar-header\">
+\t      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#myNavbar\" aria-expanded=\"false\">
+\t        <span class=\"icon-bar\"></span>
+\t        <span class=\"icon-bar\"></span>
+\t        <span class=\"icon-bar\"></span>
+\t      </button>
+\t      <div class=\"thumb pull-left\">
+\t\t\t\t<a href=\"?home/\"><img src=\"";
+        // line 10
+        echo twig_escape_filter($this->env, (isset($context["path"]) ? $context["path"] : null), "html", null, true);
+        echo "assets/images/logo.png\" class=\"pull-left\" alt=\"logo\"></a>
 \t\t\t</div>
+\t\t\t<a href=\"?home/\" class=\"navbar-brand pull-right\">Una gauchada</a>
+\t    </div>
+\t    ";
+        // line 15
+        echo "\t     <div class=\"collapse navbar-collapse \" id=\"myNavbar\" >
+\t      \t<ul class=\"nav navbar-nav navbar-right dropdown\">
+\t      \t\t";
+        // line 17
+        if (((isset($context["tipo"]) ? $context["tipo"] : null) == 1)) {
+            // line 18
+            echo "\t\t\t\t";
+            // line 19
+            echo "\t\t\t\t<li><button class=\"btn btn-link bdropdown-toggle btn-header\" type=\"button\" id=\"\" data-toggle=\"\"><a href=\"#\">Estadisticas</a></button></li>
+\t\t\t\t<li><button class=\"btn btn-link bdropdown-toggle btn-header\" type=\"button\" id=\"\" data-toggle=\"\"><a href=\"#\">Another case</a></button></li>
+\t\t\t\t<li><button class=\"btn btn-link bdropdown-toggle btn-header\" type=\"button\" id=\"\" data-toggle=\"\"><a href=\"#\">Another case2</a></button></li>
 
-\t\t    <!-- inicia menu -->
-\t\t    <div class=\"collapse navbar-collapse\" id=\"navegaciong24\">
-\t\t      <ul class=\"nav navbar-nav\">
-\t\t        <li class=\"active\"><a href=\"#\">link <span class=\"sr-only\">(current)</span></a></li>
-\t\t        <li><a href=\"#\">Link</a></li>
-\t\t        <li class=\"dropdown\">
-\t\t          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>
-\t\t          <ul class=\"dropdown-menu\">
-\t\t            <li><a href=\"#\">Action</a></li>
-\t\t            <li><a href=\"#\">Another action</a></li>
-\t\t            <li><a href=\"#\">Something else here</a></li>
-\t\t            <li role=\"separator\" class=\"divider\"></li>
-\t\t            <li><a href=\"#\">Separated link</a></li>
-\t\t            <li role=\"separator\" class=\"divider\"></li>
-\t\t            <li><a href=\"#\">One more separated link</a></li>
-\t\t          </ul>
-\t\t        </li>
-\t\t      </ul>
-
-\t\t      <ul class=\"nav navbar-nav navbar-right\">
-\t\t        <li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> Sign Up</a></li>
-\t\t        <li><a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>
-\t\t      </ul>
-\t\t    </div><!-- /.navbar-collapse -->
-\t\t</div><!-- /.container -->
-\t</nav>";
+\t      \t\t";
+        }
     }
 
     public function getTemplateName()
@@ -62,9 +55,14 @@ class __TwigTemplate_845b4ac9dc8a88f5bf92260bfbaefd64b565f470488421a8535a8db1afd
         return "header.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  19 => 1,);
+        return array (  45 => 19,  43 => 18,  41 => 17,  37 => 15,  30 => 10,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -77,44 +75,28 @@ class __TwigTemplate_845b4ac9dc8a88f5bf92260bfbaefd64b565f470488421a8535a8db1afd
 
     public function getSourceContext()
     {
-        return new Twig_Source("
-<nav class=\"navbar navbar-default\" role=\"navigation\">
+        return new Twig_Source("<nav class=\"navbar navbar-inverse\">
 \t  \t<div class=\"container\">
-\t\t    <div class=\"navbar-header\">
-\t\t      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navegaciong24\" aria-expanded=\"false\">
-\t\t        <span class=\"sr-only\">Desplegar / Ocultar menu</span>
-\t\t        <span class=\"icon-bar\"></span>
-\t\t        <span class=\"icon-bar\"></span>
-\t\t        <span class=\"icon-bar\"></span>
-\t\t      </button>
-\t\t      <a class=\"navbar-brand\" href=\"#\">Una Gauchada</a>
+\t    <div class=\"navbar-header\">
+\t      <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#myNavbar\" aria-expanded=\"false\">
+\t        <span class=\"icon-bar\"></span>
+\t        <span class=\"icon-bar\"></span>
+\t        <span class=\"icon-bar\"></span>
+\t      </button>
+\t      <div class=\"thumb pull-left\">
+\t\t\t\t<a href=\"?home/\"><img src=\"{{path}}assets/images/logo.png\" class=\"pull-left\" alt=\"logo\"></a>
 \t\t\t</div>
+\t\t\t<a href=\"?home/\" class=\"navbar-brand pull-right\">Una gauchada</a>
+\t    </div>
+\t    {# logo end #}
+\t     <div class=\"collapse navbar-collapse \" id=\"myNavbar\" >
+\t      \t<ul class=\"nav navbar-nav navbar-right dropdown\">
+\t      \t\t{% if tipo == 1  %}
+\t\t\t\t{#  opciones del administrador #}
+\t\t\t\t<li><button class=\"btn btn-link bdropdown-toggle btn-header\" type=\"button\" id=\"\" data-toggle=\"\"><a href=\"#\">Estadisticas</a></button></li>
+\t\t\t\t<li><button class=\"btn btn-link bdropdown-toggle btn-header\" type=\"button\" id=\"\" data-toggle=\"\"><a href=\"#\">Another case</a></button></li>
+\t\t\t\t<li><button class=\"btn btn-link bdropdown-toggle btn-header\" type=\"button\" id=\"\" data-toggle=\"\"><a href=\"#\">Another case2</a></button></li>
 
-\t\t    <!-- inicia menu -->
-\t\t    <div class=\"collapse navbar-collapse\" id=\"navegaciong24\">
-\t\t      <ul class=\"nav navbar-nav\">
-\t\t        <li class=\"active\"><a href=\"#\">link <span class=\"sr-only\">(current)</span></a></li>
-\t\t        <li><a href=\"#\">Link</a></li>
-\t\t        <li class=\"dropdown\">
-\t\t          <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>
-\t\t          <ul class=\"dropdown-menu\">
-\t\t            <li><a href=\"#\">Action</a></li>
-\t\t            <li><a href=\"#\">Another action</a></li>
-\t\t            <li><a href=\"#\">Something else here</a></li>
-\t\t            <li role=\"separator\" class=\"divider\"></li>
-\t\t            <li><a href=\"#\">Separated link</a></li>
-\t\t            <li role=\"separator\" class=\"divider\"></li>
-\t\t            <li><a href=\"#\">One more separated link</a></li>
-\t\t          </ul>
-\t\t        </li>
-\t\t      </ul>
-
-\t\t      <ul class=\"nav navbar-nav navbar-right\">
-\t\t        <li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> Sign Up</a></li>
-\t\t        <li><a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>
-\t\t      </ul>
-\t\t    </div><!-- /.navbar-collapse -->
-\t\t</div><!-- /.container -->
-\t</nav>", "header.twig", "/home/cristian/Escritorio/catedra/application/views/header.twig");
+\t      \t\t{% endif %}", "header.twig", "/var/www/html/Una-gauchada/application/views/header.twig");
     }
 }

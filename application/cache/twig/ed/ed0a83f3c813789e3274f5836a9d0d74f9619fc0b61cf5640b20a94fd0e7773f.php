@@ -25,19 +25,27 @@ class __TwigTemplate_0cd31433f4353ecef2d167d59a0ec47e9f40a58a2bbed4a3169d695310e
 \t\t\t</div>
 \t\t\t<div class=\"modal-body\">
 
-\t\t\t\t<form class=\"form-horizontal\" method=\"POST\" action=\"?/login/check/\">
-\t\t\t\t\t<div class=\"form-group\">
-\t\t\t\t\t\t<label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Email</label>
-\t\t\t\t\t\t<div class=\"col-sm-10 col-md-4\">
-\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"inputEmail3\" name=\"email\" placeholder=\"Email\">
+\t\t\t\t<form  data-toggle=\"validator\" role=\"form\" class=\"form-horizontal\" method=\"POST\" id=\"login\" action= '?/login/check' >
+\t\t\t\t\t<div class=\"form-group has-feedback\">
+\t\t\t\t\t\t<label for=\"inputEmail\" class=\"col-sm-2 control-label\">Email</label>
+\t\t\t\t\t\t<div class=\" col-sm-10 col-md-4 input-group\">
+\t\t\t\t\t\t\t<input type=\"email\" class=\"form-control\" id=\"inputEmail\" name=\"email\" pattern=\"[a-z0-9A-Z]+@[a-z0-9.-]+\\.[a-z]{2,4}\$\" data-pattern-error=\"coloque un email valido\" placeholder=\"Email\" data-error=\"completa este campo\" required >\t\t\t\t\t\t
+\t\t\t\t\t\t<span class=\"glyphicon form-control-feedback\" aria-hidden=\"true\"></span>
+    \t\t\t\t\t<div class=\"help-block with-errors\"></div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
-\t\t\t\t\t<div class=\"form-group\">
-\t\t\t\t\t\t<label for=\"inputPassword3\" class=\"col-sm-2 control-label\">Password</label>
-\t\t\t\t\t\t<div class=\"col-sm-10 col-md-4\">
-\t\t\t\t\t\t\t<input type=\"password\" class=\"form-control\" id=\"inputPassword3\" name=\"password\" placeholder=\"Password\">
+\t
+
+\t\t\t\t\t<div class=\"form-group has-feedback\">
+\t\t\t\t\t\t<label for=\"inputPassword\" class=\"col-sm-2 control-label\">Password</label>
+\t\t\t\t\t\t<div class=\"col-sm-10 col-md-4 input-group\">
+\t\t\t\t\t\t\t<input type=\"password\" pattern=\"[a-z0-9A-Z]{6,12}\$\" data-pattern-error=\"minimo de 6 y maximo 12\" class=\"form-control\" id=\"inputPassword\" name=\"password\" placeholder=\"Password\" required>
+\t\t\t\t\t\t<span class=\"glyphicon form-control-feedback\" aria-hidden=\"true\"></span>
+    \t\t\t\t\t<div class=\"help-block with-errors\"></div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
+
+
 \t\t\t\t\t<div class=\"form-group\">
 \t\t\t\t\t\t<div class=\"col-sm-offset-2 col-sm-10\">
 \t\t\t\t\t\t\t<button type=\"submit\"class=\"btn btn-default\">Entrar</button>
@@ -52,6 +60,7 @@ class __TwigTemplate_0cd31433f4353ecef2d167d59a0ec47e9f40a58a2bbed4a3169d695310e
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
+\t\t\t\t\t
 \t\t\t\t</form>
 
 \t\t\t</div>
@@ -91,19 +100,27 @@ class __TwigTemplate_0cd31433f4353ecef2d167d59a0ec47e9f40a58a2bbed4a3169d695310e
 \t\t\t</div>
 \t\t\t<div class=\"modal-body\">
 
-\t\t\t\t<form class=\"form-horizontal\" method=\"POST\" action=\"?/login/check/\">
-\t\t\t\t\t<div class=\"form-group\">
-\t\t\t\t\t\t<label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Email</label>
-\t\t\t\t\t\t<div class=\"col-sm-10 col-md-4\">
-\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"inputEmail3\" name=\"email\" placeholder=\"Email\">
+\t\t\t\t<form  data-toggle=\"validator\" role=\"form\" class=\"form-horizontal\" method=\"POST\" id=\"login\" action= '?/login/check' >
+\t\t\t\t\t<div class=\"form-group has-feedback\">
+\t\t\t\t\t\t<label for=\"inputEmail\" class=\"col-sm-2 control-label\">Email</label>
+\t\t\t\t\t\t<div class=\" col-sm-10 col-md-4 input-group\">
+\t\t\t\t\t\t\t<input type=\"email\" class=\"form-control\" id=\"inputEmail\" name=\"email\" pattern=\"[a-z0-9A-Z]+@[a-z0-9.-]+\\.[a-z]{2,4}\$\" data-pattern-error=\"coloque un email valido\" placeholder=\"Email\" data-error=\"completa este campo\" required >\t\t\t\t\t\t
+\t\t\t\t\t\t<span class=\"glyphicon form-control-feedback\" aria-hidden=\"true\"></span>
+    \t\t\t\t\t<div class=\"help-block with-errors\"></div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
-\t\t\t\t\t<div class=\"form-group\">
-\t\t\t\t\t\t<label for=\"inputPassword3\" class=\"col-sm-2 control-label\">Password</label>
-\t\t\t\t\t\t<div class=\"col-sm-10 col-md-4\">
-\t\t\t\t\t\t\t<input type=\"password\" class=\"form-control\" id=\"inputPassword3\" name=\"password\" placeholder=\"Password\">
+\t
+
+\t\t\t\t\t<div class=\"form-group has-feedback\">
+\t\t\t\t\t\t<label for=\"inputPassword\" class=\"col-sm-2 control-label\">Password</label>
+\t\t\t\t\t\t<div class=\"col-sm-10 col-md-4 input-group\">
+\t\t\t\t\t\t\t<input type=\"password\" pattern=\"[a-z0-9A-Z]{6,12}\$\" data-pattern-error=\"minimo de 6 y maximo 12\" class=\"form-control\" id=\"inputPassword\" name=\"password\" placeholder=\"Password\" required>
+\t\t\t\t\t\t<span class=\"glyphicon form-control-feedback\" aria-hidden=\"true\"></span>
+    \t\t\t\t\t<div class=\"help-block with-errors\"></div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
+
+
 \t\t\t\t\t<div class=\"form-group\">
 \t\t\t\t\t\t<div class=\"col-sm-offset-2 col-sm-10\">
 \t\t\t\t\t\t\t<button type=\"submit\"class=\"btn btn-default\">Entrar</button>
@@ -118,6 +135,7 @@ class __TwigTemplate_0cd31433f4353ecef2d167d59a0ec47e9f40a58a2bbed4a3169d695310e
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
+\t\t\t\t\t
 \t\t\t\t</form>
 
 \t\t\t</div>

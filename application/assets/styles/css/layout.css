@@ -2,6 +2,10 @@ body {
     background-color: #365d89;
     /* color de fondo  principal*/
 }
+a,a:hover{
+        text-decoration: none;
+
+}
 
 .navbar {
     background-color: #4883bf;
@@ -34,10 +38,11 @@ body {
 }
 
 .thumb {
-    width: 0%;
+    width: 20%;
 }
 
 .thumb img {
+    width: 100%;
     background-color: #FFFFFF;
     /* color del fondo del logo  */
 }

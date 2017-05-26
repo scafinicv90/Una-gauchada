@@ -22,9 +22,11 @@ class Home extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('login')) {
-            $this->twig->display('indexLog');
+            /*  $this->session->userdata()); tiene la sesion y se la mando a la vista*/
+            $this->twig->display('indexLog',$this->session->userdata()); 
             return 0;
         } else {
+
             $this->twig->display('index');
             return 0;
         }
