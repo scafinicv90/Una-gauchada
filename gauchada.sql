@@ -37,8 +37,6 @@ CREATE TABLE `categoria` (
 
 INSERT INTO `categoria` (`id`, `nombre`) VALUES
 (1, 'transporte');
-(2, 'Limpieza');
-(3, 'Reparacion');
 
 -- --------------------------------------------------------
 

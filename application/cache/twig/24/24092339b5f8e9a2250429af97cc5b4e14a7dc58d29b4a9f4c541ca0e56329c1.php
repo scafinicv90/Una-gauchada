@@ -23,7 +23,7 @@ class __TwigTemplate_6014daaf7d6626644c2f1f5392ffaf31e815e53f12a044c623972779a7c
 \t\t\t\t<ol class=\"breadcrumb\">
 \t\t\t\t\t<li><a href=\"#\">inicio</a></li>
 \t\t\t\t\t<li><a href=\"#\">categoria</a></li>
-\t\t\t\t\t<li><a href=\"#\">favor</a></li>
+\t\t\t\t\t<li><a href=\"?/crearFavor/crear\">favor</a></li>
 \t\t\t\t</ol>
 \t\t\t</div>
 \t\t\t<!-- end breadcrum -->
@@ -141,7 +141,7 @@ class __TwigTemplate_6014daaf7d6626644c2f1f5392ffaf31e815e53f12a044c623972779a7c
 \t\t\t\t<ol class=\"breadcrumb\">
 \t\t\t\t\t<li><a href=\"#\">inicio</a></li>
 \t\t\t\t\t<li><a href=\"#\">categoria</a></li>
-\t\t\t\t\t<li><a href=\"#\">favor</a></li>
+\t\t\t\t\t<li><a href=\"?/crearFavor/crear\">favor</a></li>
 \t\t\t\t</ol>
 \t\t\t</div>
 \t\t\t<!-- end breadcrum -->
