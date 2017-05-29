@@ -22,8 +22,8 @@ class Home extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('login')) {
-            /*  $this->session->userdata()); tiene la sesion y se la mando a la vista*/
-            $this->twig->display('backend',$this->session->userdata()); 
+            $data=array('usuario' => $this->session->userdata());
+            $this->twig->display('backend',$data); 
             return 0;
         } else {
 

@@ -3,21 +3,7 @@
         <link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/login.css">
 
 {% endblock %}
-{% block header %}
-	    <div class="collapse navbar-collapse" id="myNavbar">
-	      	<ul class="nav navbar-nav navbar-right ">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
-				<li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
 
-				{% if info is not null  %}
-				<div class="alert alert-success" role="alert">  Sesion cerrada correctametne</div>
-				{% endif %}
-
-			</ul>
-	    </div>
-	  	</div>
-	</nav>
-{% endblock %}
 
 {% block content %}
 
