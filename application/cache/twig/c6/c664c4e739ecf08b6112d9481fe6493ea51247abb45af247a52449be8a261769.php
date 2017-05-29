@@ -38,7 +38,7 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 \t\t\t\t\t<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"menut\">
 \t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Ver perfil</a></li>
 \t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Crear gauchada</a></li>
-\t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Comprar creditos</a></li>
+\t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"?/comprarCredito/mostrarFormulario/\">Comprar creditos</a></li>
 \t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Configuracion</a></li>
 \t\t\t\t      <li role=\"presentation\" class=\"divider\"></li>
 \t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Sobre nosotros</a></li>
@@ -98,7 +98,7 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 \t\t\t\t\t<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"menut\">
 \t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Ver perfil</a></li>
 \t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Crear gauchada</a></li>
-\t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Comprar creditos</a></li>
+\t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"?/comprarCredito/mostrarFormulario/\">Comprar creditos</a></li>
 \t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Configuracion</a></li>
 \t\t\t\t      <li role=\"presentation\" class=\"divider\"></li>
 \t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Sobre nosotros</a></li>
