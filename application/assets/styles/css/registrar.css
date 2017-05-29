@@ -1,0 +1,30 @@
+.form-control {
+	height: 45px;
+	font-size: 20px;
+}
+
+.input-group {
+	width: 30%;
+}
+
+.input-nombre {
+	float: left;
+}
+
+.h3-formulario {
+	font-weight: bold;
+	font-family: "Calibri Light";
+	font-size: 40px;
+}
+
+.input-dia {
+	float: left;
+}
+
+.input-mes {
+	float: left;
+}
+
+.fecha {
+	width: 10%;
+}

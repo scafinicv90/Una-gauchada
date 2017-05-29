@@ -21,7 +21,7 @@ class __TwigTemplate_699bf86d9c333d940c5d5c78a8c7f5412bbbaa8790c89d234ee640a8b89
 \t\t<p>G24</p>
 \t</div>
 \t<div class=\"col-xs-6\"><ul class=\"list-inline text-right\">
-\t\t<li><a href=\"\" title=\"\">Inicio</a></li>
+\t\t<li><a href=\"?/login/logout/\" title=\"\">Inicio</a></li>
 \t\t<li><a href=\"\" title=\"\">ventas</a></li>
 \t\t<li><a href=\"\" title=\"contacto\">contacto</a></li>
 \t\t</ul>
@@ -56,7 +56,7 @@ class __TwigTemplate_699bf86d9c333d940c5d5c78a8c7f5412bbbaa8790c89d234ee640a8b89
 \t\t<p>G24</p>
 \t</div>
 \t<div class=\"col-xs-6\"><ul class=\"list-inline text-right\">
-\t\t<li><a href=\"\" title=\"\">Inicio</a></li>
+\t\t<li><a href=\"?/login/logout/\" title=\"\">Inicio</a></li>
 \t\t<li><a href=\"\" title=\"\">ventas</a></li>
 \t\t<li><a href=\"\" title=\"contacto\">contacto</a></li>
 \t\t</ul>
