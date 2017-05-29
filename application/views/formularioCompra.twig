@@ -1,0 +1,29 @@
+{% extends 'indexLog.twig' %}
+
+{% block content %}
+	<div class="container menuLog">
+		<h3 class="h3-formulario">Formulario de compra</h3>
+		<hr>
+		<form>
+			<div class="form-group has-feedback">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Cantidad de créditos" maxlength="3" name="cantidad" id="cantidad">
+				</div>
+			</div>
+			<div class="form-group has-feedback">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Número de tarjeta" maxlength="10" name="numeroTarteta" id="numeroTarjeta">
+				</div>
+			</div>
+			<div class="form-group has-feedback">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Clave" maxlength="4" name="clave" id="clave">
+				</div>
+			</div>
+		</form>
+		<p class="lead">
+			<a class="btn btn-primary btn-lg" href="#" role="button">Confirmar</a>
+			<a class="btn btn-primary btn-lg" href="?/home/" role="button">Cancelar</a>
+		</p>
+	</div>
+{% endblock %}
