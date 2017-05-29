@@ -1,8 +1,5 @@
 <?php
 
-/**
-* 
-*/
 class ComprarCredito extends CI_Controller
 {
 
@@ -18,14 +15,15 @@ class ComprarCredito extends CI_Controller
 
 	public function index() {
         if ($this->session->userdata('login')){
-            $user = $this->session->get_userdata();
-            $this->twig->display('indexLog', $user);
+            $data=array('usuario' => $this->session->userdata());
+            $this->twig->display('backend', $data);
         } else {
             $this->twig->display('index');
         }
     }
 
     public function mostrarFormulario() {
-    	$this->twig->display('formularioCompra');
+        $data=array('usuario' => $this->session->userdata());
+    	$this->twig->display('formularioCompra',$data);
     }
 }
