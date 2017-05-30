@@ -23,13 +23,44 @@ class CrearFavor extends CI_Controller
     public function crear()
     {
         if ($this->session->userdata('login')) {
-            $query = $this->loginModel->buscarCategoria();
+            $query        = $this->loginModel->buscarCategoria();
             $categoriasBD = $query->result();
-            $categorias = json_decode(json_encode($categoriasBD), true);
-            $data= array('datos' => $categorias);
-            $this->twig->display('formfavor', $data);
+            $categorias   = json_decode(json_encode($categoriasBD), true);
+            $dataCat      = array('datos' => $categorias);
+            $user         = $this->session->get_userdata();
+            $todo         = array(
+                'usuario'   => $user,
+                'categoria' => $dataCat,
+            );
+            $this->twig->display('formfavor', $todo);
         } else {
-            $this->twig->display('index');
+            $this->twig->display('indexLog');
         }
+    }
+
+    public function agregar()
+    {
+        $titulo      = $this->input->post('titulo');
+        $ciudad      = $this->input->post('ciudad');
+        $provincia   = $this->input->post('provincia');
+        $descripcion = $this->input->post('descripcion');
+        $fecha       = $this->input->post('fecha');
+        $categoria   = $this->input->post('categoria');
+        $user        = $this->input->post('email');
+
+        $query   = $this->loginModel->buscarUsuario($user);
+        $usuario = $query->result();
+
+        $mandar = array('titulo' => $titulo,
+            'ciudad'                 => $ciudad,
+            'provincia'              => $provincia,
+            'fec_lim'                => $fecha,
+            'descripcion'            => $descripcion,
+            'id_usuario'             => $usuario[0]->id_usuario);
+        $this->loginModel->agregarFavor($mandar);
+
+        $this->loginModel->agregarFC($categoria);
+
+        $this->twig->display('indexLog');
     }
 }

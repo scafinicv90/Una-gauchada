@@ -3,7 +3,7 @@
 {% block header %}
 
 				<li>
-					<button class="btn btn-link bdropdown-toggle btn-header" type="button" id="menut" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{ nombre }} <span class="caret"></span></button>
+					<button class="btn btn-link bdropdown-toggle btn-header" type="button" id="menut" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{ usuario['nombre'] }} <span class="caret"></span></button>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="menut">
 				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ver perfil</a></li>
 				      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Crear gauchada</a></li>
@@ -22,6 +22,8 @@
 {% endblock %}
 
 {% block content %}
+
 	{% include 'sectionPrincipal.twig' %}
+
 
 {% endblock %}

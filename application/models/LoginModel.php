@@ -22,10 +22,37 @@ class LoginModel extends CI_Model
         }
 
     }
+    public function agregarUsuario($emailUser)
+    {
+        $this->db->insert('usuario', $emailUser);
+
+    }
     public function buscarCategoria()
     {
         $query = $this->db->get('categoria');
         return ($query);
     }
+    public function agregarFavor($gauchada)
+    {
+        $this->db->insert('favor', $gauchada);
 
+    }
+    public function agregarFC($categoria)
+    {
+        $query = $this->db->insert_id();
+        foreach ($categoria as $cat) {
+            $this->db->set('id_favor', $query);
+            $this->db->set('id_categoria', $cat);
+            $this->db->insert('favor_categoria');
+        }
+
+    }
+    public function buscarFavores()
+    {
+        $query = $this->db->get('favor');
+        /* para el dia que lo tenga que ordenar, esto es un ejemplo
+        $this->db->order_by('title', 'DESC');
+        $this->db->order_by('name', 'ASC');*/
+        return ($query);
+    }
 }

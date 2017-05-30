@@ -1,0 +1,56 @@
+<?php
+class Registrar extends CI_Controller
+{
+    public function __construct()
+    {
+
+        parent::__construct();
+        $config = [
+            'debug' => true,
+            'paths' => ['../views/', VIEWPATH],
+            'cache' => '../cache',
+        ];
+        $this->load->library('twig');
+        $this->twig->getTwig()->addExtension(new Twig_Extension_Debug());
+        $this->twig->addGlobal('path', 'http://localhost/Una-gauchada/application/');
+
+        $this->load->helper('form');
+        $this->load->helper('html');
+        $this->load->helper('url');
+        $this->load->library('session');
+        $this->load->model('loginModel');
+    }
+    public function paso()
+    {
+
+        $this->twig->display('formRegistrarse');
+    }
+    public function registra()
+    {
+        $nombre   = $this->input->post('nombre');
+        $email    = $this->input->post('email');
+        $password = $this->input->post('password');
+        $tel      = $this->input->post('tel');
+        $apellido = $this->input->post('apellido');
+        $fec_nac  = $this->input->post('fecha');
+
+        $query = $this->loginModel->buscarUsuario($email);
+
+        if ($query) {
+            $error['existe'] = 'Ya existe un usuario con ese mail';
+            $this->twig->display('formRegistrarse', $error);
+        } else {
+            $reg = array(
+                'nombre'   => $nombre,
+                'email'    => $email,
+                'password' => $password,
+                'tel'      => $tel,
+                'fec_nac'  => $fec_nac,
+                'apellido' => $apellido,
+                'tipo'     => 0);
+            $this->loginModel->agregarUsuario($reg);
+            $this->twig->display('indexLog');
+        }
+
+    }
+}

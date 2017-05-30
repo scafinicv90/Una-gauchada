@@ -33,7 +33,7 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 \t\t\t\t<li>
 \t\t\t\t\t<button class=\"btn btn-link bdropdown-toggle btn-header\" type=\"button\" id=\"menut\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-user\"></span> ";
         // line 6
-        echo twig_escape_filter($this->env, ($context["nombre"] ?? null), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["usuario"] ?? null), "nombre", array(), "array"), "html", null, true);
         echo " <span class=\"caret\"></span></button>
 \t\t\t\t\t<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"menut\">
 \t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Ver perfil</a></li>
@@ -57,10 +57,13 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
     public function block_content($context, array $blocks = array())
     {
         // line 25
-        echo "\t";
-        $this->loadTemplate("sectionPrincipal.twig", "indexLog.twig", 25)->display($context);
-        // line 26
         echo "
+\t";
+        // line 26
+        $this->loadTemplate("sectionPrincipal.twig", "indexLog.twig", 26)->display($context);
+        // line 27
+        echo "
+
 ";
     }
 
@@ -76,7 +79,7 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 
     public function getDebugInfo()
     {
-        return array (  63 => 26,  60 => 25,  57 => 24,  36 => 6,  32 => 4,  29 => 3,  11 => 1,);
+        return array (  65 => 27,  63 => 26,  60 => 25,  57 => 24,  36 => 6,  32 => 4,  29 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -94,7 +97,7 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 {% block header %}
 
 \t\t\t\t<li>
-\t\t\t\t\t<button class=\"btn btn-link bdropdown-toggle btn-header\" type=\"button\" id=\"menut\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-user\"></span> {{ nombre }} <span class=\"caret\"></span></button>
+\t\t\t\t\t<button class=\"btn btn-link bdropdown-toggle btn-header\" type=\"button\" id=\"menut\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-user\"></span> {{ usuario['nombre'] }} <span class=\"caret\"></span></button>
 \t\t\t\t\t<ul class=\"dropdown-menu\" role=\"menu\" aria-labelledby=\"menut\">
 \t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Ver perfil</a></li>
 \t\t\t\t      <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Crear gauchada</a></li>
@@ -113,7 +116,9 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 {% endblock %}
 
 {% block content %}
+
 \t{% include 'sectionPrincipal.twig' %}
+
 
 {% endblock %}", "indexLog.twig", "C:\\xampp\\htdocs\\Una-gauchada\\application\\views\\indexLog.twig");
     }

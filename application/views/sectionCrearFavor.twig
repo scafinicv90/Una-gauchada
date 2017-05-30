@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-8">
-      
-<form action="CrearFavor.php" method="POST">
+        
+<form action="?/CrearFavor/agregar" method="POST">
 
   <div class="form-group">
     <label for="inputTitulo" class="col-2 col-form-label">Titulo</label>
@@ -23,7 +23,7 @@
   </div>
   <div class="form-group">
     <label for="inputDesc">Descripcion</label>
-    <textarea class="form-control" id="inputDesc" rows="10"></textarea>
+    <textarea class="form-control" id="inputDesc" rows="10" name="descripcion" required></textarea>
   </div>
   <div class="form-group">
     <label for="inputFecha" class="col-2 col-form-label">Fecha limite</label>
@@ -31,21 +31,29 @@
       <input class="form-control" type="date" id="inputFecha" name="fecha" required>
     </div>
   </div>
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label for="Categoria">Categoria</label>
     <select class="form-control" multiple="multiple" id="Categoria">
-        {% for categoria in datos %}
+       {#  {% for categoria in datos %}
         <option hidden="true">{{categoria['id']}}</option>
         <option>{{categoria['nombre']}}</option>
-  {% endfor %}
+  {% endfor %} #}
     </select>
-  </div>
+  </div> -->
  {#  {{ datos[0]['id']}}
   {% for categoria in datos %}
       <p>{{categoria['id']}}</p>
   {% endfor %} #}
-
-
+    <div class="check">
+    <label for="Categoria">Categoria</label> <br/>
+    {% for datosCat in categoria %}
+    {% for categoria in datosCat %}
+        <label class="checkbox-inline"><input type="checkbox" name="categoria[]" value="{{categoria['id']}}">{{categoria['nombre']}}</label>
+  {% endfor %}
+  {% endfor %}
+  </div>
+  <input type="hidden" name="email" value="{{usuario['email']}}">
+  <!--  no se bien como hacer lo de la sesion asique mando el email y lo busco desde ahi -->
   <input type="submit"  value="Agregar">
 </form>
     </div>

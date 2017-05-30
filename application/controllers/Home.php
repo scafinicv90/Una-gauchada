@@ -17,13 +17,34 @@ class Home extends CI_Controller
         $this->twig->addGlobal('url', 'http://localhost/Una-gauchada/');
         $this->twig->addGlobal('hay_usuario', $this->session->userdata('login'));
 
+        $this->load->helper('form');
+        $this->load->helper('html');
+        $this->load->helper('url');
+        $this->load->library('session');
+        $this->load->model('loginModel');
+
     }
 
     public function index()
     {
         if ($this->session->userdata('login')) {
             /*  $this->session->userdata()); tiene la sesion y se la mando a la vista*/
-            $this->twig->display('indexLog',$this->session->userdata()); 
+
+            $cons         = $this->loginModel->buscarFavores();
+            $favoresBD    = $cons->result();
+            $favores      = json_decode(json_encode($favoresBD), true);
+            $dataFavor    = array('datosFavor' => $favores);
+            $query        = $this->loginModel->buscarCategoria();
+            $categoriasBD = $query->result();
+            $categorias   = json_decode(json_encode($categoriasBD), true);
+            $dataCat      = array('datosCat' => $categorias);
+            $user         = $this->session->userdata();
+            $todo         = array(
+                'favor'     => $dataFavor,
+                'categoria' => $dataCat,
+                'usuario'   => $user);
+
+            $this->twig->display('indexLog', $todo);
             return 0;
         } else {
 

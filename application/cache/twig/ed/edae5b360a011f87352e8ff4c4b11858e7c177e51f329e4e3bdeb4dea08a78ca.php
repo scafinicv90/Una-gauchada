@@ -59,7 +59,7 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
 \t\t\t<p class=\"lead\">tu sitio para pedir o realizar una gauchada. si vos podes hacerlo nosotros tambien</p>
 \t\t\t<hr class=\"my-4\">
 \t\t\t<p class=\"lead\">
-\t\t\t\t<a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Registrate</a>
+\t\t\t\t<a class=\"btn btn-primary btn-lg\" href=\"?/registrar/paso\" role=\"button\">Registrate</a>
 \t\t\t</p>
 \t\t</div>
 \t</div>
@@ -118,7 +118,7 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
 \t\t\t<p class=\"lead\">tu sitio para pedir o realizar una gauchada. si vos podes hacerlo nosotros tambien</p>
 \t\t\t<hr class=\"my-4\">
 \t\t\t<p class=\"lead\">
-\t\t\t\t<a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Registrate</a>
+\t\t\t\t<a class=\"btn btn-primary btn-lg\" href=\"?/registrar/paso\" role=\"button\">Registrate</a>
 \t\t\t</p>
 \t\t</div>
 \t</div>
