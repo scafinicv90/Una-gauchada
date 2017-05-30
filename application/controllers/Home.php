@@ -5,17 +5,17 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $config = [
-            'debug' => true,
-            'paths' => ['../views/', VIEWPATH],
-            'cache' => '../cache',
-        ];
-        $this->load->library('twig');
-        $this->load->library('session');
-        $this->twig->getTwig()->addExtension(new Twig_Extension_Debug());
-        $this->twig->addGlobal('path', 'http://localhost/Una-gauchada/application/');
-        $this->twig->addGlobal('url', 'http://localhost/Una-gauchada/');
-        $this->twig->addGlobal('hay_usuario', $this->session->userdata('login'));
+        // $config = [
+        //     'debug' => true,
+        //     'paths' => ['../views/', VIEWPATH],
+        //     'cache' => '../cache',
+        // ];
+        // $this->load->library('twig');
+        // $this->load->library('session');
+        // $this->twig->getTwig()->addExtension(new Twig_Extension_Debug());
+        // $this->twig->addGlobal('path', 'http://localhost/Una-gauchada/application/');
+        // $this->twig->addGlobal('url', 'http://localhost/Una-gauchada/');
+        // $this->twig->addGlobal('hay_usuario', $this->session->userdata('login'));
 
         $this->load->helper('form');
         $this->load->helper('html');
@@ -38,11 +38,10 @@ class Home extends CI_Controller
             $categoriasBD = $query->result();
             $categorias   = json_decode(json_encode($categoriasBD), true);
             $dataCat      = array('datosCat' => $categorias);
-            $user         = $this->session->userdata();
             $todo         = array(
                 'favor'     => $dataFavor,
                 'categoria' => $dataCat,
-                'usuario'   => $user);
+                'usuario'   => $this->session->userdata());
 
             $this->twig->display('indexLog', $todo);
             return 0;
@@ -53,10 +52,5 @@ class Home extends CI_Controller
         }
 
     }
-    /*public function backend()
-{
-$this->twig->display('indexLog');
-return 0;
-}*/
 
 }

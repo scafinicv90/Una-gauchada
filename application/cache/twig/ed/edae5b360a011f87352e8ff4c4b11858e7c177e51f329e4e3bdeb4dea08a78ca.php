@@ -29,23 +29,7 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
     public function block_header($context, array $blocks = array())
     {
         // line 6
-        echo "\t\t\t\t<li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> Registrate</a></li>
-\t\t\t\t<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\"><span class=\"glyphicon glyphicon-log-in\"></span> Entrar</a></li>
-
-\t\t\t\t";
-        // line 9
-        if ( !(null === ($context["info"] ?? null))) {
-            // line 10
-            echo "\t\t\t\t<div class=\"alert alert-success\" role=\"alert\">  Sesion cerrada correctametne</div>
-\t\t\t\t";
-        }
-        // line 12
-        echo "
-\t\t\t</ul>
-\t    </div>
-\t  \t</div>
-\t</nav>
-";
+        echo "\t\t\t\t";
     }
 
     // line 20
@@ -56,10 +40,14 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
 \t<div class=\"container menuLog\">
 \t\t<div class=\"jumbotron\">
 \t\t\t<h1 class=\"display-3\">Una gauchada!</h1>
-\t\t\t<p class=\"lead\">tu sitio para pedir o realizar una gauchada. si vos podes hacerlo nosotros tambien</p>
+\t\t\t<p class=\"lead\">Tu sitio para pedir o realizar una gauchada. Si vos podes hacerlo, nosotros también.</p>
 \t\t\t<hr class=\"my-4\">
 \t\t\t<p class=\"lead\">
-\t\t\t\t<a class=\"btn btn-primary btn-lg\" href=\"?/registrar/paso\" role=\"button\">Registrate</a>
+
+\t\t\t\t<a class=\"btn btn-primary btn-lg\" href=\"";
+        // line 29
+        echo twig_escape_filter($this->env, ($context["dirpath"] ?? null), "html", null, true);
+        echo "registrar/register/\" role=\"button\">Registrate</a>
 \t\t\t</p>
 \t\t</div>
 \t</div>
@@ -78,7 +66,7 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
 
     public function getDebugInfo()
     {
-        return array (  55 => 21,  52 => 20,  43 => 12,  39 => 10,  37 => 9,  32 => 6,  29 => 5,  11 => 2,);
+        return array (  49 => 29,  39 => 21,  36 => 20,  32 => 6,  29 => 5,  11 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -96,7 +84,7 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
 
 
 {% block header %}
-\t\t\t\t<li><a href=\"#\"><span class=\"glyphicon glyphicon-user\"></span> Registrate</a></li>
+\t\t\t\t{#<li><a href=\"?/registrar/mostrarFormulario/\" class=\"registrate\"><span class=\"glyphicon glyphicon-user\"></span> Registrate</a></li>
 \t\t\t\t<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\"><span class=\"glyphicon glyphicon-log-in\"></span> Entrar</a></li>
 
 \t\t\t\t{% if info is not null  %}
@@ -106,7 +94,7 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
 \t\t\t</ul>
 \t    </div>
 \t  \t</div>
-\t</nav>
+\t</nav> #}
 {% endblock %}
 
 
@@ -115,10 +103,11 @@ class __TwigTemplate_3cf4da0e836ec3afe4efb3c3b4203f10aeada0486cba9ccaed9bac70ec1
 \t<div class=\"container menuLog\">
 \t\t<div class=\"jumbotron\">
 \t\t\t<h1 class=\"display-3\">Una gauchada!</h1>
-\t\t\t<p class=\"lead\">tu sitio para pedir o realizar una gauchada. si vos podes hacerlo nosotros tambien</p>
+\t\t\t<p class=\"lead\">Tu sitio para pedir o realizar una gauchada. Si vos podes hacerlo, nosotros también.</p>
 \t\t\t<hr class=\"my-4\">
 \t\t\t<p class=\"lead\">
-\t\t\t\t<a class=\"btn btn-primary btn-lg\" href=\"?/registrar/paso\" role=\"button\">Registrate</a>
+
+\t\t\t\t<a class=\"btn btn-primary btn-lg\" href=\"{{ dirpath }}registrar/register/\" role=\"button\">Registrate</a>
 \t\t\t</p>
 \t\t</div>
 \t</div>

@@ -78,6 +78,26 @@ class CI_Controller {
 		$this->load =& load_class('Loader', 'core');
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
+/*mi configuracion de twig*/
+        $config = [
+            'debug' => true,
+            'paths' => ['../views/', VIEWPATH],
+            'cache' => '../cache',
+        ];
+        $this->load->library('twig');
+        $this->load->library('session');// para probar la dejo aca
+        $this->twig->getTwig()->addExtension(new Twig_Extension_Debug());
+        $this->twig->addGlobal('path', 'http://localhost/Una-gauchada/application/');
+        $this->twig->addGlobal('dirpath', 'http://localhost/Una-gauchada/index.php/');
+        // $this->twig->addGlobal('url', 'http://localhost/Una-gauchada/');
+        // $this->twig->addGlobal('hay_usuario', $this->session->userdata('login'));
+        // $this->twig->addGlobal('es_admin', $this->session->userdata('tipo'));
+        // $this->twig->addGlobal('nombre', $this->session->userdata('nombre'));
+
+
+
+/*fin de mi configuracion*/
+
 	}
 
 	// --------------------------------------------------------------------

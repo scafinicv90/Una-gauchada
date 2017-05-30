@@ -1,0 +1,34 @@
+.form-control { // cuidado con esto asi tocas todos los form-control  si te fijas tambien me tocas los form control del backend lo que 
+	//la pagina principal cuando te logueas. la idea es lo eu vos vayas a tocar con css le pongas otra clase. que solo vos utilices 
+	height: 45px;
+	font-size: 20px;
+}
+
+.input-group {
+	width: 30%;
+}
+
+.input-nombre {
+	float: left;
+}
+
+.h3-formulario {
+	font-weight: bold;
+	font-family: "Calibri Light";
+	font-size: 40px;
+}
+
+.input-dia {
+	float: left;
+}
+
+.input-mes {
+	float: left;
+}
+
+.fecha {
+	width: 10%;
+}
+.menuLog{
+	padding-left: 10px;
+}

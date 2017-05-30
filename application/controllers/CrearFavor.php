@@ -5,21 +5,21 @@ class CrearFavor extends CI_Controller
     {
 
         parent::__construct();
-        $config = [
-            'debug' => true,
-            'paths' => ['../views/', VIEWPATH],
-            'cache' => '../cache',
-        ];
-        $this->load->library('twig');
-        $this->twig->getTwig()->addExtension(new Twig_Extension_Debug());
-        $this->twig->addGlobal('path', 'http://localhost/Una-gauchada/application/');
 
-        $this->load->helper('form');
-        $this->load->helper('html');
-        $this->load->helper('url');
         $this->load->library('session');
         $this->load->model('loginModel');
     }
+
+    public function index()
+    {
+        if ($this->logueado()) {
+            $data = array('usuario' => $this->session->userdata());
+            $this->twig->display('backend', $data);
+        } else {
+            $this->twig->display('index');
+        }
+    }
+
     public function crear()
     {
         if ($this->session->userdata('login')) {
@@ -27,12 +27,12 @@ class CrearFavor extends CI_Controller
             $categoriasBD = $query->result();
             $categorias   = json_decode(json_encode($categoriasBD), true);
             $dataCat      = array('datos' => $categorias);
-            $user         = $this->session->get_userdata();
             $todo         = array(
-                'usuario'   => $user,
+                'usuario'   => $this->session->get_userdata(),
                 'categoria' => $dataCat,
             );
             $this->twig->display('formfavor', $todo);
+
         } else {
             $this->twig->display('indexLog');
         }

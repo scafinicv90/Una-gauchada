@@ -1,7 +1,14 @@
+<div class="migas-de-pan">
+        <ol class="breadcrumb">
+          <li><a href="{{ dirpath }}home/">Inicio</a></li>
+          <li><a href="#">Crear Gauchada</a></li>
+        </ol>
+      </div>
+      <!-- end breadcrum -->
 <div class="row">
     <div class="col-md-8">
         
-<form action="?/CrearFavor/agregar" method="POST">
+<form action="{{ dirpath }}CrearFavor/agregar/" method="POST">
 
   <div class="form-group">
     <label for="inputTitulo" class="col-2 col-form-label">Titulo</label>
