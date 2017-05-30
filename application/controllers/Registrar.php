@@ -17,7 +17,7 @@ class Registrar extends CI_Controller
         $this->load->model('loginModel');
     }
 
-    public function mostrarFormulario() {
+    public function register() {
     	$this->twig->display('registrar');
     }
 }

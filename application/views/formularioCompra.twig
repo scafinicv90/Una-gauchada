@@ -1,6 +1,13 @@
 {% extends 'backend.twig' %}
 
 {% block content %}
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+				<li><a href="{{ dirpath }}home/">inicio</a></li>
+				<li><a href="#">Compra Credito</a></li>
+		</ol>
+	</div>
+	<!-- end breadcrum -->
 	<div class="container menuLog">
 		<h3 class="h3-formulario">Formulario de compra</h3>
 		<hr>
@@ -23,7 +30,7 @@
 		</form>
 		<p class="lead">
 			<a class="btn btn-primary btn-lg" href="#" role="button">Confirmar</a>
-			<a class="btn btn-danger btn-lg" href="?/home/" role="button">Cancelar</a>
+			<a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Cancelar</a>
 		</p>
 	</div>
 {% endblock %}

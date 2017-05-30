@@ -34,6 +34,7 @@ class Login extends CI_Controller
 
     public function check()
     {
+
         if ($this->logueado()) {
             $this->index();
             return 0;
