@@ -81,8 +81,12 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
         foreach ($context['_seq'] as $context["_key"] => $context["favor"]) {
             // line 48
             echo "\t\t\t\t<article class=\"post clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"";
+\t             \t<a href=\"";
             // line 49
+            echo twig_escape_filter($this->env, ($context["dirpath"] ?? null), "html", null, true);
+            echo "favor/ver/";
+            echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "id", array(), "array"), "html", null, true);
+            echo "\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"";
             echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
             echo "assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">";
@@ -105,7 +109,7 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t             \t</p>
 \t             \t<div class=\"contenedor-botones\">
 \t             \t\t<a href=\"#\" class=\"btn btn-primary \">Leer mas </a>
-\t             \t\t<a href=\"#\" class=\"btn btn-success\">comentarios <span class=\"badge\">20</span></a>
+\t             \t\t<a href=\"#\" class=\"btn btn-success\">Comentarios <span class=\"badge\">20</span></a>
 \t             \t</div>
 \t            </article>
 \t        ";
@@ -130,7 +134,7 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 
     public function getDebugInfo()
     {
-        return array (  117 => 62,  103 => 54,  98 => 52,  94 => 51,  90 => 50,  86 => 49,  83 => 48,  79 => 47,  59 => 29,  50 => 27,  46 => 26,  19 => 1,);
+        return array (  121 => 62,  107 => 54,  102 => 52,  98 => 51,  94 => 50,  86 => 49,  83 => 48,  79 => 47,  59 => 29,  50 => 27,  46 => 26,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -191,7 +195,7 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t\t\t<section class=\"posts col-md-9\">
 \t\t\t{% for favor in favores %}
 \t\t\t\t<article class=\"post clearfix\">
-\t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"{{ path }}assets/images/logo.png\" alt=\"favor\"></a>
+\t             \t<a href=\"{{ dirpath }}favor/ver/{{favor['id']}}\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"{{ path }}assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">{{favor['titulo']}}</a></h2>
 \t             \t<p>Fecha limite: <span class=\"post-fecha\">{{favor['fec_lim']}}</span>
 \t             \tPublicado por: <span  class=\"post-autor\"><a href=\"#\">{{ usuarios[favor['id_usuario']]['nombre'] }}</a></span></p>
@@ -200,7 +204,7 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t             \t</p>
 \t             \t<div class=\"contenedor-botones\">
 \t             \t\t<a href=\"#\" class=\"btn btn-primary \">Leer mas </a>
-\t             \t\t<a href=\"#\" class=\"btn btn-success\">comentarios <span class=\"badge\">20</span></a>
+\t             \t\t<a href=\"#\" class=\"btn btn-success\">Comentarios <span class=\"badge\">20</span></a>
 \t             \t</div>
 \t            </article>
 \t        {% endfor %}

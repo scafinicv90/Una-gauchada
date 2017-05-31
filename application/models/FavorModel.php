@@ -9,6 +9,44 @@ class FavorModel extends CI_Model
     {
         parent::__construct();
         $this->load->database();
+
+    }
+    public function obtenerFavor($id)
+    {
+        $query = $this->db->where('id', $id);
+        $query = $this->db->get('favor');
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+        return ($query);
+    }
+    public function obtenerComentarios($id_comentarios)
+    {
+        foreach ($id_comentarios as $key => $value) {
+            $query = $this->db->where('id_comentario', $value['comentario_id']);
+            $query = $this->db->get('comentario');
+            var_dump($query->result());
+        };
+        die();
+        $query = $this->db->where('favor_id', $id_favor);
+        $query = $this->db->get('favor_comentario');
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
+    public function preObtenerComentarios($id_favor, $id_usuario)
+    {
+        $query = $this->db->where('favor_id', $id_favor);
+        $query = $this->db->get('favor_comentario');
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
     }
 
     public function buscarCategoria()

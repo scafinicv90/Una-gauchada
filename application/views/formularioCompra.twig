@@ -1,4 +1,8 @@
-{% extends 'backend.twig' %}
+{% extends 'layout.twig' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/registrar.css">
+{% endblock %}
 
 {% block content %}
 	<div class="migas-de-pan">
@@ -12,19 +16,20 @@
 		<h3 class="h3-formulario">Formulario de compra</h3>
 		<hr>
 		<form>
+			<label class="input-group datos-formulario">Ingresa los datos de la tarjeta:</label>
 			<div class="form-group has-feedback">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Cantidad de créditos" maxlength="3" name="cantidad" id="cantidad">
+				<div class="input-group input-texto">
+					<input type="text" class="form-control texto" placeholder="Cantidad de créditos" maxlength="3" name="cantidad" id="cantidad" required>
 				</div>
 			</div>
 			<div class="form-group has-feedback">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Número de tarjeta" maxlength="10" name="numeroTarteta" id="numeroTarjeta">
+				<div class="input-group input-texto">
+					<input type="text" class="form-control texto" placeholder="Número de tarjeta" maxlength="10" name="numeroTarteta" id="numeroTarjeta" required>
 				</div>
 			</div>
 			<div class="form-group has-feedback">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Clave" maxlength="4" name="clave" id="clave">
+				<div class="input-group input-texto">
+					<input type="text" class="form-control texto" placeholder="Clave" maxlength="4" name="clave" id="clave" required>
 				</div>
 			</div>
 		</form>
