@@ -11,14 +11,29 @@ class Login extends CI_Controller
         $this->load->helper('url');
         $this->load->library('session');
 
-        $this->load->model('loginModel');
+        $this->load->model('usuarioModel');
+        $this->load->model('favorModel');
     }
 
     public function index()
     {
 
         if ($this->logueado()) {
-            $data = array('usuario' => $this->session->userdata());
+            $cons         = $this->favorModel->buscarFavores();
+            $favoresBD    = $cons->result();
+            $favores      = json_decode(json_encode($favoresBD), true);
+            $query        = $this->favorModel->buscarCategoria();
+            $categoriasBD = $query->result();
+            $categorias   = json_decode(json_encode($categoriasBD), true);
+
+            $query        = $this->usuarioModel->obtenerUsuarios();
+            $usuarios   = json_decode(json_encode($query->result()), true);
+
+            $data         = array(
+                'usuarios' => $usuarios,
+                'favores'     => $favores,
+                'categorias' => $categorias,
+                'usuario'   => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
             $this->twig->display('index');
@@ -54,7 +69,7 @@ class Login extends CI_Controller
                 /* Se realiza un llamado a una funcion del model para obtener la consulta,
                 solo con el email es suficiente para conseguir los datos del usuario ya que
                 este campo es unico y no puede repetirse */
-                $query = $this->loginModel->buscarUsuario($entry['email']); // La consulta retorna un objeto de tipo query lo cual tiene sus propias funciones o metodos
+                $query = $this->usuarioModel->buscarUsuario($entry['email']); // La consulta retorna un objeto de tipo query lo cual tiene sus propias funciones o metodos
                 if ($query) {
                     /* Obtengo la tupla correspondiente al email del usuario en cuestion (como el email no puede repetirse, la consulta solo retorna una sola tupla) */
                     $usuario = $query->result(); // result() es una funcion del objeto query que devuelve un arreglo de tuplas (en este caso devuelve una sola tupla)
@@ -70,7 +85,22 @@ class Login extends CI_Controller
                             'login'            => true,
                         );
                         $this->session->set_userdata($user);
-                        $data = array('usuario' => $this->session->userdata());
+                        // traer favores de bd
+                        $cons         = $this->favorModel->buscarFavores();
+                        $favoresBD    = $cons->result();
+                        $favores      = json_decode(json_encode($favoresBD), true);
+                        $query        = $this->favorModel->buscarCategoria();
+                        $categoriasBD = $query->result();
+                        $categorias   = json_decode(json_encode($categoriasBD), true);
+
+                        $query        = $this->usuarioModel->obtenerUsuarios();
+                        $usuarios   = json_decode(json_encode($query->result()), true);
+
+                        $data         = array(
+                            'usuarios' => $usuarios,
+                            'favores'     => $favores,
+                            'categorias' => $categorias,
+                            'usuario'   => $this->session->userdata());
                         $this->twig->display('backend', $data);
                         return 0;
                     } else {
@@ -108,7 +138,7 @@ class Login extends CI_Controller
             $usuario_data = array('login' => false);
             $this->session->set_userdata($usuario_data);
             $data = array('usuario' => $this->session->userdata(),
-                'info'                  => "sesion cerrada correctametne");
+                'info'              => "sesion cerrada correctametne");
             $this->twig->display('index', $data);
             return 0;
         }

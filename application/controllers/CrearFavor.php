@@ -7,13 +7,29 @@ class CrearFavor extends CI_Controller
         parent::__construct();
 
         $this->load->library('session');
-        $this->load->model('loginModel');
+        $this->load->model('usuarioModel');
+        $this->load->model('favorModel');
     }
 
     public function index()
     {
-        if ($this->logueado()) {
-            $data = array('usuario' => $this->session->userdata());
+        if ($this->session->userdata('login')) {
+            // traer favores de bd
+            $cons         = $this->favorModel->buscarFavores();
+            $favoresBD    = $cons->result();
+            $favores      = json_decode(json_encode($favoresBD), true);
+            $query        = $this->favorModel->buscarCategoria();
+            $categoriasBD = $query->result();
+            $categorias   = json_decode(json_encode($categoriasBD), true);
+
+            $query        = $this->usuarioModel->obtenerUsuarios();
+            $usuarios   = json_decode(json_encode($query->result()), true);
+
+            $data         = array(
+                'usuarios' => $usuarios,
+                'favores'     => $favores,
+                'categorias' => $categorias,
+                'usuario'   => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
             $this->twig->display('index');
@@ -23,7 +39,7 @@ class CrearFavor extends CI_Controller
     public function crear()
     {
         if ($this->session->userdata('login')) {
-            $query        = $this->loginModel->buscarCategoria();
+            $query        = $this->favorModel->buscarCategoria();
             $categoriasBD = $query->result();
             $categorias   = json_decode(json_encode($categoriasBD), true);
             $dataCat      = array('datos' => $categorias);
@@ -34,7 +50,7 @@ class CrearFavor extends CI_Controller
             $this->twig->display('formfavor', $todo);
 
         } else {
-            $this->twig->display('indexLog');
+            $this->index();
         }
     }
 
@@ -48,7 +64,7 @@ class CrearFavor extends CI_Controller
         $categoria   = $this->input->post('categoria');
         $user        = $this->input->post('email');
 
-        $query   = $this->loginModel->buscarUsuario($user);
+        $query   = $this->usuarioModel->buscarUsuario($user);
         $usuario = $query->result();
 
         $mandar = array('titulo' => $titulo,
@@ -57,10 +73,10 @@ class CrearFavor extends CI_Controller
             'fec_lim'                => $fecha,
             'descripcion'            => $descripcion,
             'id_usuario'             => $usuario[0]->id_usuario);
-        $this->loginModel->agregarFavor($mandar);
+        $this->usuarioModel->agregarFavor($mandar);
 
-        $this->loginModel->agregarFC($categoria);
+        $this->usuarioModel->agregarFC($categoria);
 
-        $this->twig->display('indexLog');
+        $this->twig->display('favorAgregado');
     }
 }

@@ -10,12 +10,27 @@ class ComprarCredito extends CI_Controller
         $this->load->helper('html');
         $this->load->helper('url');
         $this->load->library('session');
-        $this->load->model('loginModel');
+        $this->load->model('usuarioModel');
+        $this->load->model('favorModel');
 	}
 
 	public function index() {
         if ($this->session->userdata('login')){
-            $data=array('usuario' => $this->session->userdata());
+            $cons         = $this->favorModel->buscarFavores();
+            $favoresBD    = $cons->result();
+            $favores      = json_decode(json_encode($favoresBD), true);
+            $query        = $this->favorModel->buscarCategoria();
+            $categoriasBD = $query->result();
+            $categorias   = json_decode(json_encode($categoriasBD), true);
+
+            $query        = $this->usuarioModel->obtenerUsuarios();
+            $usuarios   = json_decode(json_encode($query->result()), true);
+
+            $data         = array(
+                'usuarios' => $usuarios,
+                'favores'     => $favores,
+                'categorias' => $categorias,
+                'usuario'   => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
             $this->twig->display('index');

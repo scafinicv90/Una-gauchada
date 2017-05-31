@@ -12,7 +12,8 @@ class Registrar extends CI_Controller
         $this->load->helper('html');
         $this->load->helper('url');
         $this->load->library('session');
-        $this->load->model('loginModel');
+        $this->load->model('usuarioModel');
+        $this->load->model('favorModel');
     }
     public function paso()
     {
@@ -23,7 +24,7 @@ class Registrar extends CI_Controller
     {
         $this->twig->display('registrar');
     }
-}
+
 function registra()
 {
     $nombre   = $this->input->post('nombre');
@@ -33,7 +34,7 @@ function registra()
     $apellido = $this->input->post('apellido');
     $fec_nac  = $this->input->post('fecha');
 
-    $query = $this->loginModel->buscarUsuario($email);
+    $query = $this->usuarioModel->buscarUsuario($email);
 
     if ($query) {
         $error['existe'] = 'Ya existe un usuario con ese mail';
@@ -47,8 +48,8 @@ function registra()
             'fec_nac'  => $fec_nac,
             'apellido' => $apellido,
             'tipo'     => 0);
-        $this->loginModel->agregarUsuario($reg);
-        $this->twig->display('indexLog');
+        $this->usuarioModel->agregarUsuario($reg);
+        $this->twig->display('backend');
     }
 
 }

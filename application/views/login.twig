@@ -28,9 +28,6 @@
 						</div>
 					</div>
 
-
-	
-
 					<div class="form-group has-feedback">
 						<label for="inputPassword" class="col-sm-2 control-label">Password</label>
 						<div class="col-sm-10 col-md-4 input-group">
@@ -46,7 +43,7 @@
 							<button type="submit"class="btn btn-default">Entrar</button>
 						</div>
 					</div>
-					<div class="form-group">
+					{# <div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
 								<label>
@@ -54,10 +51,10 @@
 								</label>
 							</div>
 						</div>
-					</div>
+					</div> #}
 				</form>
 			{% elseif passwordIncorrecta is defined %}
-				<form  data-toggle="validator" role="form" class="form-horizontal" method="POST" id="login" action= '?/login/check' >
+				<form  data-toggle="validator" role="form" class="form-horizontal" method="POST" id="login" action= '{{ dirpath }}login/check' >
 					<div class="form-group has-feedback">
 						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 						<div class=" col-sm-10 col-md-4 input-group">
@@ -83,7 +80,7 @@
 							<button type="submit"class="btn btn-default">Entrar</button>
 						</div>
 					</div>
-					<div class="form-group">
+					{# <div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
 								<label>
@@ -91,12 +88,12 @@
 								</label>
 							</div>
 						</div>
-					</div>
+					</div> #}
 
 				</form>
 
 			{% elseif limpio == true %}
-				<form  data-toggle="validator" role="form" class="form-horizontal" method="POST" id="login" action= '?/login/check' >
+				<form  data-toggle="validator" role="form" class="form-horizontal" method="POST" id="login" action= '{{ dirpath }}login/check' >
 					<div class="form-group has-feedback">
 						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 						<div class=" col-sm-10 col-md-4 input-group">
@@ -122,7 +119,7 @@
 							<button type="submit"class="btn btn-default">Entrar</button>
 						</div>
 					</div>
-					<div class="form-group">
+					{# <div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
 								<label>
@@ -130,11 +127,11 @@
 								</label>
 							</div>
 						</div>
-					</div>
+					</div> #}
 
 				</form>
 				{% else %}
-					<form  data-toggle="validator" role="form" class="form-horizontal" method="POST" id="login" action= '?/login/check' >
+					<form  data-toggle="validator" role="form" class="form-horizontal" method="POST" id="login" action= '{{dirpath}}login/check' >
 
 					{{ emailMensaje }}
 					<div class="form-group has-feedback">
@@ -145,7 +142,7 @@
     					<div class="help-block with-errors"></div>
 						</div>
 					</div>
-	
+
 					 <p>{{ passwordMensaje }}</p>
 					<div class="form-group has-feedback">
 						<label for="inputPassword" class="col-sm-2 control-label">Password</label>
@@ -162,7 +159,7 @@
 							<button type="submit"class="btn btn-default">Entrar</button>
 						</div>
 					</div>
-					<div class="form-group">
+					{# <div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
 								<label>
@@ -170,8 +167,8 @@
 								</label>
 							</div>
 						</div>
-					</div>
-					
+					</div> #}
+
 				</form>
 				{% endif %}
 				<p> No tenes cuenta ? <a href="{{ dirpath }}registrar/register/">Registrate</a> es gratis.</p>

@@ -20,7 +20,7 @@
 {% block content %}
 {{existe}}
 
-<form action="?/Registrar/registra" method="POST">
+<form action="{{ dirpath}}Registrar/registra" method="POST">
 
   <div class="form-group">
     <label for="inputTitulo" class="col-2 col-form-label">Nombre</label>
@@ -47,7 +47,7 @@
     </div>
   </div>
   <div class="form-group">
-  <label for="inputAp">apellido</label>
+    <label for="inputAp">apellido</label>
     <div class="col-10">
       <input class="form-control" type="text" id="inputAp" name="apellido">
     </div>
@@ -58,6 +58,6 @@
       <input class="form-control" type="date" id="inputFecha" name="fecha" required>
     </div>
   </div>
-<input type="submit"  value="Agregar">
+  <input type="submit"  value="Agregar">
 </form>
   {% endblock %}

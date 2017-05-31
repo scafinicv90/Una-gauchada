@@ -3,13 +3,14 @@
 
 			<div class="migas-de-pan">
 				<ol class="breadcrumb">
-					<li><a href="#">Inicio</a></li>
+					<li>Inicio</li>
 				</ol>
 			</div>
 			<!-- end breadcrum -->
 			<!--  aside de busqueda -->
 			<div class="busqueda col-md-3">
-				<h2>Busqueda</h2>
+				<div class="display">
+					<h2>Busqueda</h2>
 			    <form class="navbar-form navbar-left" role="search">
 			  		<div class="form-group">
 			    		<input type="text" class="form-control" placeholder="Search">
@@ -22,11 +23,8 @@
 					<a href="#" class="list-group-item ">
 					<h4 class="list-group-item-heading">Categoria</h4>
     				<select class="form-control"  id="Categoria">
-        			{% for datosCat in categoria %}
-        			{% for categoria in datosCat %}
-        			<option hidden="true">{{categoria['id']}}</option>
+        			{% for categoria in categorias %}
         			<option>{{categoria['nombre']}}</option>
-  					{% endfor %}
   					{% endfor %}
   					</select>
 					</a>
@@ -42,28 +40,24 @@
 						<a href="#"><p class="list-group-item-text">Villa elisa</p></a>
 					</a>
 				</div>
+				</div>
 			</div>
 			<!-- begin post -->
 			<section class="posts col-md-9">
-			
-			{% for datosFavor in favor %}
-			{% for favor in datosFavor %}
-        
-  
+			{% for favor in favores %}
 				<article class="post clearfix">
 	             	<a href="#" class="thumb pull-left"><img class="img-thumbnail" src="{{ path }}assets/images/logo.png" alt="favor"></a>
 	             	<h2 class="post-title"><a href="#">{{favor['titulo']}}</a></h2>
-	             	<p>Fecha limite: <span class="post-fecha">{{favor['fec_lim']}}</span> 
-	             	Publicado por: <span  class="post-autor"><a href="#">{{favor['id_usuario']}}</a></span></p>
+	             	<p>Fecha limite: <span class="post-fecha">{{favor['fec_lim']}}</span>
+	             	Publicado por: <span  class="post-autor"><a href="#">{{ usuarios[favor['id_usuario']]['nombre'] }}</a></span></p>
 	             	<p class="post-contenido text-justify">
 	                          {{favor['descripcion']}}
-	             	</p> 
+	             	</p>
 	             	<div class="contenedor-botones">
 	             		<a href="#" class="btn btn-primary ">Leer mas </a>
 	             		<a href="#" class="btn btn-success">comentarios <span class="badge">20</span></a>
 	             	</div>
 	            </article>
-	            {% endfor %}
-	            {% endfor %}
-	            </section>
+	        {% endfor %}
+	        </section>
 	</div>
