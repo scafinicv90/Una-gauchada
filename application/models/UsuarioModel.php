@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class LoginModel extends CI_Model
+class UsuarioModel extends CI_Model
 {
 
     public function __construct()
@@ -11,6 +11,15 @@ class LoginModel extends CI_Model
         $this->load->database();
     }
 
+    public function obtenerUsuarios()
+    {
+        $query = $this->db->get('usuario');
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
     public function buscarUsuario($emailUser)
     {
         $this->db->where('email', $emailUser);
@@ -22,10 +31,10 @@ class LoginModel extends CI_Model
         }
 
     }
-    public function buscarCategoria()
+    public function agregarUsuario($emailUser)
     {
-        $query = $this->db->get('categoria');
-        return ($query);
+        $this->db->insert('usuario', $emailUser);
+
     }
 
 }

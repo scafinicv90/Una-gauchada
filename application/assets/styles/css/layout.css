@@ -1,14 +1,20 @@
 body {
-    background-color: #365d89;
+    background-color: #D0D0D0;
     /* color de fondo  principal*/
+    font-family: 'Roboto', sans-serif;
+
 }
+
+
 a,a:hover{
         text-decoration: none;
 
 }
-
+.navbar-header > .titulo {
+    color: black;
+}
 .navbar {
-    background-color: #4883bf;
+    background-color: #F4912F;
     /* color del nav header */
 }
 
@@ -21,7 +27,7 @@ a,a:hover{
 
 .footer-cont {
     padding-bottom: 1.5em;
-    background-color: #4883bf;
+    background-color: #F4912F;
     /* color del footer */
 }
 
@@ -51,19 +57,29 @@ a,a:hover{
 /* aside */
 
 .busqueda {
-    background-color: #0E5CD5;
-    /* color del aside */
+    background-color: white;
+     /* color del aside */
+}
+
+.busqueda > .display{
+    display: none;
 }
 
 
 /*  POST */
+section{
 
+}
+.posts{
+    background-color: white;
+}
 .main {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .post {
+    /* background-color: #9A9A9A; */
     padding-bottom: 20px;
     margin-bottom: 20px;
     border-bottom: 1px solid #999;

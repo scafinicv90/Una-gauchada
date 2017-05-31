@@ -1,0 +1,63 @@
+
+{% extends 'layout.twig' %}
+
+
+{% block header %}
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+
+        {% if info is not null  %}
+        <div class="alert alert-success" role="alert">  Sesion cerrada correctametne</div>
+        {% endif %}
+
+      </ul>
+      </div>
+      </div>
+  </nav>
+{% endblock %}
+
+
+{% block content %}
+{{existe}}
+
+<form action="{{ dirpath}}Registrar/registra" method="POST">
+
+  <div class="form-group">
+    <label for="inputTitulo" class="col-2 col-form-label">Nombre</label>
+    <div class="col-10">
+      <input class="form-control" type="text"  id="inputTitulo" name="nombre" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputCiudad" class="col-2 col-form-label">Email</label>
+    <div class="col-10">
+      <input class="form-control" type="email" id="inputCiudad" name="email" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputProv" class="col-2 col-form-label">Password</label>
+    <div class="col-10">
+      <input class="form-control" type="password" id="inputProv" name="password">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputTel">tel</label>
+    <div class="col-10">
+      <input class="form-control" type="text" id="inputTel" name="tel">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAp">apellido</label>
+    <div class="col-10">
+      <input class="form-control" type="text" id="inputAp" name="apellido">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputFecha" class="col-2 col-form-label">Fecha limite</label>
+    <div class="col-10">
+      <input class="form-control" type="date" id="inputFecha" name="fecha" required>
+    </div>
+  </div>
+  <input type="submit"  value="Agregar">
+</form>
+  {% endblock %}

@@ -3,15 +3,14 @@
 
 			<div class="migas-de-pan">
 				<ol class="breadcrumb">
-					<li><a href="#">Inicio</a></li>
-					<li><a href="#">Categoria</a></li>
-					<li><a href="?/crearFavor/crear">Favor</a></li>
+					<li>Inicio</li>
 				</ol>
 			</div>
 			<!-- end breadcrum -->
 			<!--  aside de busqueda -->
 			<div class="busqueda col-md-3">
-				<h2>Búsqueda</h2>
+				<div class="display">
+					<h2>Busqueda</h2>
 			    <form class="navbar-form navbar-left" role="search">
 			  		<div class="form-group">
 			    		<input type="text" class="form-control" placeholder="Search">
@@ -22,10 +21,12 @@
 				<h2>Filtrado por</h2>
 				<div class="list-group">
 					<a href="#" class="list-group-item ">
-						<h4 class="list-group-item-heading">Categoria</h4>
-						<a href="#"><p class="list-group-item-text">Transporte</p></a>
-						<a href="#"><p class="list-group-item-text">Cuidado</p></a>
-						<a href="#"><p class="list-group-item-text">Mano de obra</p></a>
+					<h4 class="list-group-item-heading">Categoria</h4>
+    				<select class="form-control"  id="Categoria">
+        			{% for categoria in categorias %}
+        			<option>{{categoria['nombre']}}</option>
+  					{% endfor %}
+  					</select>
 					</a>
 					<a href="#" class="list-group-item">
 						<h4 class="list-group-item-heading">Tiempo</h4>
@@ -39,44 +40,24 @@
 						<a href="#"><p class="list-group-item-text">Villa elisa</p></a>
 					</a>
 				</div>
+				</div>
 			</div>
 			<!-- begin post -->
 			<section class="posts col-md-9">
+			{% for favor in favores %}
 				<article class="post clearfix">
 	             	<a href="#" class="thumb pull-left"><img class="img-thumbnail" src="{{ path }}assets/images/logo.png" alt="favor"></a>
-	             	<h2 class="post-title"><a href="#">Primer gauchada</a></h2>
-	             	<p><span class="post-fecha">24 de abril de 2016</span> por <span  class="post-autor"><a href="#">Usuario 1</a></span></p>
+	             	<h2 class="post-title"><a href="#">{{favor['titulo']}}</a></h2>
+	             	<p>Fecha limite: <span class="post-fecha">{{favor['fec_lim']}}</span>
+	             	Publicado por: <span  class="post-autor"><a href="#">{{ usuarios[favor['id_usuario']]['nombre'] }}</a></span></p>
 	             	<p class="post-contenido text-justify">
-	                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum inventore beatae, <a href="	"></a>expedita tenetur doloremque consequatur aliquid voluptates magnam labore accusamus, recusandae ipsam architecto eos ex. Voluptate deleniti ipsa doloribus.
-	             	</p> 
+	                          {{favor['descripcion']}}
+	             	</p>
 	             	<div class="contenedor-botones">
 	             		<a href="#" class="btn btn-primary ">Leer mas </a>
 	             		<a href="#" class="btn btn-success">Comentarios <span class="badge">20</span></a>
 	             	</div>
 	            </article>
-	            <article class="post  clearfix">
-	             	<a href="#" class="thumb pull-left"><img class="img-thumbnail" src="{{ path }}assets/images/logo.png" alt="favor"></a>
-	             	<h2 class="post-title"><a href="#">Segunda gauchada</a></h2>
-	             	<p><span class="post-fecha">23 de abril de 2016</span> por <span  class="post-autor"><a href="#">Usuario 6</a></span></p>
-	             	<p class="post-contenido text-justify">
-	                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum inventore beatae, <a href="	"></a>expedita tenetur doloremque consequatur aliquid voluptates magnam labore accusamus, recusandae ipsam architecto eos ex. Voluptate deleniti ipsa doloribus.
-	             	</p> 
-	             	<div class="contenedor-botones">
-	             		<a href="#" class="btn btn-primary ">Leer mas </a>
-	             		<a href="#" class="btn btn-success">Comentarios <span class="badge">20</span></a>
-	             	</div>
-	            </article>
-	            <article class="post clearfix">
-	             	<a href="#" class="thumb pull-left"><img class="img-thumbnail" src="{{ path }}assets/images/logo.png" alt="favor"></a>
-	             	<h2 class="post-title"><a href="#">Tercer gauchada</a></h2>
-	             	<p><span class="post-fecha">22 de abril de 2016</span> por <span  class="post-autor"><a href="#">Usuario 7</a></span></p>
-	             	<p class="post-contenido text-justify">
-	                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum inventore beatae, <a href="	"></a>expedita tenetur doloremque consequatur aliquid voluptates magnam labore accusamus, recusandae ipsam architecto eos ex. Voluptate deleniti ipsa doloribus.
-	             	</p> 
-	             	<div class="contenedor-botones">
-	             		<a href="#" class="btn btn-primary ">Leer mas </a>
-	             		<a href="#" class="btn btn-success">Comentarios <span class="badge">20</span></a>
-	             	</div>
-	            </article>
-		</section>
+	        {% endfor %}
+	        </section>
 	</div>

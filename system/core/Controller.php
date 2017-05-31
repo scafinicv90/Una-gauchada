@@ -88,6 +88,7 @@ class CI_Controller {
         $this->load->library('session');// para probar la dejo aca
         $this->twig->getTwig()->addExtension(new Twig_Extension_Debug());
         $this->twig->addGlobal('path', 'http://localhost/Una-gauchada/application/');
+        $this->twig->addGlobal('dirpath', 'http://localhost/Una-gauchada/index.php/');
         // $this->twig->addGlobal('url', 'http://localhost/Una-gauchada/');
         // $this->twig->addGlobal('hay_usuario', $this->session->userdata('login'));
         // $this->twig->addGlobal('es_admin', $this->session->userdata('tipo'));

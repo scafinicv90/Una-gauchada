@@ -2,21 +2,6 @@
 {% extends 'layout.twig' %}
 
 
-{% block header %}
-				{#<li><a href="?/registrar/mostrarFormulario/" class="registrate"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
-				<li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
-
-				{% if info is not null  %}
-				<div class="alert alert-success" role="alert">  Sesion cerrada correctametne</div>
-				{% endif %}
-
-			</ul>
-	    </div>
-	  	</div>
-	</nav> #}
-{% endblock %}
-
-
 {% block content %}
 
 	<div class="container menuLog">
@@ -25,7 +10,8 @@
 			<p class="lead">Tu sitio para pedir o realizar una gauchada. Si vos podes hacerlo, nosotros también.</p>
 			<hr class="my-4">
 			<p class="lead">
-				<a class="btn btn-primary btn-lg" href="?/registrar/mostrarFormulario/" role="button">Registrate</a>
+
+				<a class="btn btn-primary btn-lg" href="{{ dirpath }}registrar/register/" role="button">Registrate</a>
 			</p>
 		</div>
 	</div>
