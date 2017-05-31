@@ -21,7 +21,10 @@ class __TwigTemplate_699bf86d9c333d940c5d5c78a8c7f5412bbbaa8790c89d234ee640a8b89
 \t\t<p>G24</p>
 \t</div>
 \t<div class=\"col-xs-6\"><ul class=\"list-inline text-right\">
-\t\t<li><a href=\"?/home/\" title=\"\">Inicio</a></li>
+\t\t<li><a href=\"";
+        // line 6
+        echo twig_escape_filter($this->env, ($context["dirpath"] ?? null), "html", null, true);
+        echo "home/\" title=\"\">Inicio</a></li>
 \t\t<li><a href=\"\" title=\"\">Ventas</a></li>
 \t\t<li><a href=\"\" title=\"contacto\">Contacto</a></li>
 \t\t</ul>
@@ -36,9 +39,14 @@ class __TwigTemplate_699bf86d9c333d940c5d5c78a8c7f5412bbbaa8790c89d234ee640a8b89
         return "footer.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  19 => 1,);
+        return array (  26 => 6,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -56,7 +64,7 @@ class __TwigTemplate_699bf86d9c333d940c5d5c78a8c7f5412bbbaa8790c89d234ee640a8b89
 \t\t<p>G24</p>
 \t</div>
 \t<div class=\"col-xs-6\"><ul class=\"list-inline text-right\">
-\t\t<li><a href=\"?/home/\" title=\"\">Inicio</a></li>
+\t\t<li><a href=\"{{ dirpath }}home/\" title=\"\">Inicio</a></li>
 \t\t<li><a href=\"\" title=\"\">Ventas</a></li>
 \t\t<li><a href=\"\" title=\"contacto\">Contacto</a></li>
 \t\t</ul>

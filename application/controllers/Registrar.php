@@ -24,33 +24,33 @@ class Registrar extends CI_Controller
     {
         $this->twig->display('registrar');
     }
+    public function registra()
+    {
+        $nombre   = $this->input->post('nombre');
+        $email    = $this->input->post('email');
+        $password = $this->input->post('password');
+        $tel      = $this->input->post('tel');
+        $apellido = $this->input->post('apellido');
+        $fec_nac  = $this->input->post('fecha');
 
-function registra()
-{
-    $nombre   = $this->input->post('nombre');
-    $email    = $this->input->post('email');
-    $password = $this->input->post('password');
-    $tel      = $this->input->post('tel');
-    $apellido = $this->input->post('apellido');
-    $fec_nac  = $this->input->post('fecha');
+        $query = $this->loginModel->buscarUsuario($email);
 
-    $query = $this->usuarioModel->buscarUsuario($email);
+        if ($query) {
+            $error['existe'] = 'Ya existe un usuario con ese mail';
+            $this->twig->display('formRegistrarse', $error);
+        } else {
+            $reg = array(
+                'nombre'   => $nombre,
+                'email'    => $email,
+                'password' => $password,
+                'tel'      => $tel,
+                'fec_nac'  => $fec_nac,
+                'apellido' => $apellido,
+                'credito'  => 2,
+                'tipo'     => 0);
+            $this->loginModel->agregarUsuario($reg);
+            $this->twig->display('indexLog');
+        }
 
-    if ($query) {
-        $error['existe'] = 'Ya existe un usuario con ese mail';
-        $this->twig->display('formRegistrarse', $error);
-    } else {
-        $reg = array(
-            'nombre'   => $nombre,
-            'email'    => $email,
-            'password' => $password,
-            'tel'      => $tel,
-            'fec_nac'  => $fec_nac,
-            'apellido' => $apellido,
-            'tipo'     => 0);
-        $this->usuarioModel->agregarUsuario($reg);
-        $this->twig->display('backend');
     }
-
-}
 }

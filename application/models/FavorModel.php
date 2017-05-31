@@ -5,14 +5,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class FavorModel extends CI_Model
 {
 
-	function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
         $this->load->database();
-	}
+
+    }
     public function obtenerFavor($id)
     {
-        $query=$this->db->where('id', $id);
+        $query = $this->db->where('id', $id);
         $query = $this->db->get('favor');
         if ($query->num_rows() > 0) {
             return ($query);
@@ -21,6 +22,7 @@ class FavorModel extends CI_Model
         }
         return ($query);
     }
+
     // public function obtenerComentarios($id_comentarios)
     // {
     //     $array = array();
@@ -50,7 +52,7 @@ class FavorModel extends CI_Model
         }
     }
 
-	public function buscarCategoria()
+    public function buscarCategoria()
     {
         $query = $this->db->get('categoria');
         return ($query);
@@ -58,6 +60,13 @@ class FavorModel extends CI_Model
     public function agregarFavor($gauchada)
     {
         $this->db->insert('favor', $gauchada);
+
+    }
+    public function restarCredito($email)
+    {
+        $this->db->set('credito', 'credito-1', false);
+        $this->db->where('email', $email);
+        $this->db->update('usuario');
 
     }
     public function agregarFC($categoria)
@@ -78,6 +87,5 @@ class FavorModel extends CI_Model
         $this->db->order_by('name', 'ASC');*/
         return ($query);
     }
-
 
 }

@@ -27,14 +27,14 @@ class Home extends CI_Controller
             $categoriasBD = $query->result();
             $categorias   = json_decode(json_encode($categoriasBD), true);
 
-            $query        = $this->usuarioModel->obtenerUsuarios();
-            $usuarios   = json_decode(json_encode($query->result()), true);
+            $query    = $this->usuarioModel->obtenerUsuarios();
+            $usuarios = json_decode(json_encode($query->result()), true);
 
-            $data         = array(
-                'usuarios' => $usuarios,
-                'favores'     => $favores,
+            $data = array(
+                'usuarios'   => $usuarios,
+                'favores'    => $favores,
                 'categorias' => $categorias,
-                'usuario'   => $this->session->userdata());
+                'usuario'    => $this->session->userdata());
             $this->twig->display('backend', $data);
             return 0;
         } else {

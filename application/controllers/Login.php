@@ -19,6 +19,7 @@ class Login extends CI_Controller
     {
 
         if ($this->logueado()) {
+
             $cons         = $this->favorModel->buscarFavores();
             $favoresBD    = $cons->result();
             $favores      = json_decode(json_encode($favoresBD), true);
@@ -26,14 +27,14 @@ class Login extends CI_Controller
             $categoriasBD = $query->result();
             $categorias   = json_decode(json_encode($categoriasBD), true);
 
-            $query        = $this->usuarioModel->obtenerUsuarios();
-            $usuarios   = json_decode(json_encode($query->result()), true);
+            $query    = $this->usuarioModel->obtenerUsuarios();
+            $usuarios = json_decode(json_encode($query->result()), true);
 
-            $data         = array(
-                'usuarios' => $usuarios,
-                'favores'     => $favores,
+            $data = array(
+                'usuarios'   => $usuarios,
+                'favores'    => $favores,
                 'categorias' => $categorias,
-                'usuario'   => $this->session->userdata());
+                'usuario'    => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
             $this->twig->display('index');
@@ -93,14 +94,14 @@ class Login extends CI_Controller
                         $categoriasBD = $query->result();
                         $categorias   = json_decode(json_encode($categoriasBD), true);
 
-                        $query        = $this->usuarioModel->obtenerUsuarios();
-                        $usuarios   = json_decode(json_encode($query->result()), true);
+                        $query    = $this->usuarioModel->obtenerUsuarios();
+                        $usuarios = json_decode(json_encode($query->result()), true);
 
-                        $data         = array(
-                            'usuarios' => $usuarios,
-                            'favores'     => $favores,
+                        $data = array(
+                            'usuarios'   => $usuarios,
+                            'favores'    => $favores,
                             'categorias' => $categorias,
-                            'usuario'   => $this->session->userdata());
+                            'usuario'    => $this->session->userdata());
                         $this->twig->display('backend', $data);
                         return 0;
                     } else {
@@ -138,7 +139,7 @@ class Login extends CI_Controller
             $usuario_data = array('login' => false);
             $this->session->set_userdata($usuario_data);
             $data = array('usuario' => $this->session->userdata(),
-                'info'              => "sesion cerrada correctametne");
+                'info'                  => "sesion cerrada correctametne");
             $this->twig->display('index', $data);
             return 0;
         }
