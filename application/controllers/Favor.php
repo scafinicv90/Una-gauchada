@@ -27,24 +27,29 @@ class Favor extends CI_Controller
 			$cons         = $this->favorModel->buscarFavores();
             $favoresBD    = $cons->result();
             $favores      = json_decode(json_encode($favoresBD), true);
+
             $query        = $this->favorModel->buscarCategoria();
             $categoriasBD = $query->result();
             $categorias   = json_decode(json_encode($categoriasBD), true);
 
             $query		  = $this->favorModel->obtenerFavor($id);
-            $favor   = json_decode(json_encode($query->result()), true);
+            $favor   	  = json_decode(json_encode($query->result()), true);
 
             $query		  = $this->favorModel->preObtenerComentarios($id,$favor[0]['id_usuario']);
-            $id_comentarios   = json_decode(json_encode($query->result()), true);
-            $query		  = $this->favorModel->obtenerComentarios($id_comentarios);
-            $comentarios   = json_decode(json_encode($query->result()), true);
+            $query =$query->result();
+            // $id_comentarios   = json_decode(json_encode($query->result()), true);
+            // var_dump($id_comentarios);die();
+            // $query		  = $this->favorModel->obtenerComentarios($id_comentarios);
+
+            // $comentarios   = json_decode(json_encode($query), true);
+            // var_dump($comentarios);
             // $query        = $this->usuarioModel->obtenerUsuarios();
             // $usuarios   = json_decode(json_encode($query->result()), true);
 
             $data         = array(
                 
                 'favor'     => $favor,
-                'comentarios' => $comentarios);
+                'comentarios' => $query);
 		$this->twig->display('verFavor', $data);
 	}
 }
