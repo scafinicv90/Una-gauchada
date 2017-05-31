@@ -18,8 +18,19 @@ class Login extends CI_Controller
     {
 
         if ($this->logueado()) {
-            $data = array('usuario' => $this->session->userdata());
-            $this->twig->display('backend', $data);
+            $cons         = $this->loginModel->buscarFavores();
+            $favoresBD    = $cons->result();
+            $favores      = json_decode(json_encode($favoresBD), true);
+            $dataFavor    = array('datosFavor' => $favores);
+            $query        = $this->loginModel->buscarCategoria();
+            $categoriasBD = $query->result();
+            $categorias   = json_decode(json_encode($categoriasBD), true);
+            $dataCat      = array('datosCat' => $categorias);
+            $todo         = array(
+                'favor'     => $dataFavor,
+                'categoria' => $dataCat,
+                'usuario'   => $this->session->userdata());
+            $this->twig->display('backend', $todo);
         } else {
             $this->twig->display('index');
         }

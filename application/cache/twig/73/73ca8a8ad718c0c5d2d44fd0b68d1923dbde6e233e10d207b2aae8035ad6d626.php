@@ -21,9 +21,7 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 
 \t\t\t<div class=\"migas-de-pan\">
 \t\t\t\t<ol class=\"breadcrumb\">
-\t\t\t\t\t<li><a href=\"#\">inicio</a></li>
-\t\t\t\t\t<li><a href=\"#\">categoria</a></li>
-\t\t\t\t\t<li><a href=\"?/crearFavor/crear\">favor</a></li>
+\t\t\t\t\t<li><a href=\"#\">Inicio</a></li>
 \t\t\t\t</ol>
 \t\t\t</div>
 \t\t\t<!-- end breadcrum -->
@@ -43,21 +41,21 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t\t\t\t\t<h4 class=\"list-group-item-heading\">Categoria</h4>
     \t\t\t\t<select class=\"form-control\"  id=\"Categoria\">
         \t\t\t";
-        // line 27
+        // line 25
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["categoria"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["datosCat"]) {
-            // line 28
+            // line 26
             echo "        \t\t\t";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable($context["datosCat"]);
             foreach ($context['_seq'] as $context["_key"] => $context["categoria"]) {
-                // line 29
+                // line 27
                 echo "        \t\t\t<option hidden=\"true\">";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["categoria"], "id", array(), "array"), "html", null, true);
                 echo "</option>
         \t\t\t<option>";
-                // line 30
+                // line 28
                 echo twig_escape_filter($this->env, $this->getAttribute($context["categoria"], "nombre", array(), "array"), "html", null, true);
                 echo "</option>
   \t\t\t\t\t";
@@ -65,13 +63,13 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['categoria'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 32
+            // line 30
             echo "  \t\t\t\t\t";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['datosCat'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 33
+        // line 31
         echo "  \t\t\t\t\t</select>
 \t\t\t\t\t</a>
 \t\t\t\t\t<a href=\"#\" class=\"list-group-item\">
@@ -91,38 +89,38 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t\t\t<section class=\"posts col-md-9\">
 \t\t\t
 \t\t\t";
-        // line 51
+        // line 49
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["favor"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["datosFavor"]) {
-            // line 52
+            // line 50
             echo "\t\t\t";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable($context["datosFavor"]);
             foreach ($context['_seq'] as $context["_key"] => $context["favor"]) {
-                // line 53
+                // line 51
                 echo "        
   
 \t\t\t\t<article class=\"post clearfix\">
 \t             \t<a href=\"#\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"";
-                // line 56
+                // line 54
                 echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
                 echo "assets/images/logo.png\" alt=\"favor\"></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">";
-                // line 57
+                // line 55
                 echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "titulo", array(), "array"), "html", null, true);
                 echo "</a></h2>
 \t             \t<p>Fecha limite: <span class=\"post-fecha\">";
-                // line 58
+                // line 56
                 echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "fec_lim", array(), "array"), "html", null, true);
                 echo "</span> 
 \t             \tPublicado por: <span  class=\"post-autor\"><a href=\"#\">";
-                // line 59
+                // line 57
                 echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "id_usuario", array(), "array"), "html", null, true);
                 echo "</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
 \t                          ";
-                // line 61
+                // line 59
                 echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "descripcion", array(), "array"), "html", null, true);
                 echo "
 \t             \t</p> 
@@ -136,13 +134,13 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['favor'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 69
+            // line 67
             echo "\t            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['datosFavor'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 70
+        // line 68
         echo "\t            </section>
 \t</div>";
     }
@@ -159,7 +157,7 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 
     public function getDebugInfo()
     {
-        return array (  146 => 70,  140 => 69,  126 => 61,  121 => 59,  117 => 58,  113 => 57,  109 => 56,  104 => 53,  99 => 52,  95 => 51,  75 => 33,  69 => 32,  61 => 30,  56 => 29,  51 => 28,  47 => 27,  19 => 1,);
+        return array (  144 => 68,  138 => 67,  124 => 59,  119 => 57,  115 => 56,  111 => 55,  107 => 54,  102 => 51,  97 => 50,  93 => 49,  73 => 31,  67 => 30,  59 => 28,  54 => 27,  49 => 26,  45 => 25,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -177,9 +175,7 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 
 \t\t\t<div class=\"migas-de-pan\">
 \t\t\t\t<ol class=\"breadcrumb\">
-\t\t\t\t\t<li><a href=\"#\">inicio</a></li>
-\t\t\t\t\t<li><a href=\"#\">categoria</a></li>
-\t\t\t\t\t<li><a href=\"?/crearFavor/crear\">favor</a></li>
+\t\t\t\t\t<li><a href=\"#\">Inicio</a></li>
 \t\t\t\t</ol>
 \t\t\t</div>
 \t\t\t<!-- end breadcrum -->

@@ -34,7 +34,7 @@ class CrearFavor extends CI_Controller
             $this->twig->display('formfavor', $todo);
 
         } else {
-            $this->twig->display('indexLog');
+            $this->twig->display('backend');
         }
     }
 
@@ -61,6 +61,6 @@ class CrearFavor extends CI_Controller
 
         $this->loginModel->agregarFC($categoria);
 
-        $this->twig->display('indexLog');
+        $this->twig->display('backend');
     }
 }

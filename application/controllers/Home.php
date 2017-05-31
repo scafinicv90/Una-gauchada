@@ -43,7 +43,7 @@ class Home extends CI_Controller
                 'categoria' => $dataCat,
                 'usuario'   => $this->session->userdata());
 
-            $this->twig->display('indexLog', $todo);
+            $this->twig->display('backend', $todo);
             return 0;
         } else {
 
