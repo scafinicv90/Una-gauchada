@@ -1,67 +1,78 @@
 <div class="migas-de-pan">
-        <ol class="breadcrumb">
-          <li><a href="{{ dirpath }}home/">Inicio</a></li>
-          <li><a href="#">Crear Gauchada</a></li>
-        </ol>
-      </div>
-      <!-- end breadcrum -->
-<div class="row">
-    <div class="col-md-8">
-        
-<form action="{{ dirpath }}CrearFavor/agregar/" method="POST">
+  <ol class="breadcrumb">
+    <li><a href="{{ dirpath }}home/">Inicio</a></li>
+    <li>Crear Gauchada</li>
+  </ol>
+</div>
+<!-- end breadcrum -->
 
-  <div class="form-group">
-    <label for="inputTitulo" class="col-2 col-form-label">Titulo</label>
-    <div class="col-10">
-      <input class="form-control" type="text"  id="inputTitulo" name="titulo" required>
-    </div>
+
+      {% if  errores  is defined %}
+      <div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">Error en la publicacion del favor</h3>
   </div>
-  <div class="form-group">
-    <label for="inputCiudad" class="col-2 col-form-label">Ciudad</label>
-    <div class="col-10">
-      <input class="form-control" type="text" id="inputCiudad" name="ciudad" required>
-    </div>
+  <div class="panel-body">
+    
+ {{errores['creditos']}}
   </div>
-  <div class="form-group">
-    <label for="inputProv" class="col-2 col-form-label">Provincia</label>
-    <div class="col-10">
-      <input class="form-control" type="text" id="inputProv" name="provincia">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputDesc">Descripcion</label>
-    <textarea class="form-control" id="inputDesc" rows="10" name="descripcion" required></textarea>
-  </div>
-  <div class="form-group">
-    <label for="inputFecha" class="col-2 col-form-label">Fecha limite</label>
-    <div class="col-10">
-      <input class="form-control" type="date" id="inputFecha" name="fecha" required>
-    </div>
-  </div>
-  <!-- <div class="form-group">
-    <label for="Categoria">Categoria</label>
-    <select class="form-control" multiple="multiple" id="Categoria">
-       {#  {% for categoria in datos %}
-        <option hidden="true">{{categoria['id']}}</option>
-        <option>{{categoria['nombre']}}</option>
-  {% endfor %} #}
-    </select>
-  </div> -->
- {#  {{ datos[0]['id']}}
-  {% for categoria in datos %}
-      <p>{{categoria['id']}}</p>
-  {% endfor %} #}
+</div>
+{% endif %}
+<div class="row">
+  <div class="col-md-8">
+
+    <form action="{{ dirpath }}CrearFavor/agregar/" method="POST">
+
+      <div class="form-group">
+        <label for="inputTitulo" class="col-2 col-form-label">Titulo</label>
+        <div class="col-10">
+          <input class="form-control" type="text"  id="inputTitulo" name="titulo" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputCiudad" class="col-2 col-form-label">Ciudad</label>
+        <div class="col-10">
+          <input class="form-control" type="text" id="inputCiudad" pattern="[A-Za-z]" name="ciudad" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputProv" class="col-2 col-form-label">Provincia</label>
+        <div class="col-10">
+          <input class="form-control" type="text" id="inputProv" pattern="[A-Za-z]" name="provincia" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDesc">Descripcion</label>
+        <textarea class="form-control" id="inputDesc" rows="10" name="descripcion" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="inputFecha" class="col-2 col-form-label">Fecha limite</label>
+        <div class="col-10">
+          <input class="form-control" type="date" id="inputFecha" name="fecha" required>
+        </div>
+      </div>
     <div class="check">
-    <label for="Categoria">Categoria</label> <br/>
-    {% for datosCat in categoria %}
-    {% for categoria in datosCat %}
-        <label class="checkbox-inline"><input type="checkbox" name="categoria[]" value="{{categoria['id']}}">{{categoria['nombre']}}</label>
-  {% endfor %}
-  {% endfor %}
-  </div>
-  <input type="hidden" name="email" value="{{usuario['email']}}">
-  <!--  no se bien como hacer lo de la sesion asique mando el email y lo busco desde ahi -->
-  <input type="submit"  value="Agregar">
-</form>
+      <label for="Categoria">Categoria</label> <br/>
+      {% for datosCat in categoria %}
+       {% for categoria in datosCat %}
+          <label class="checkbox-inline"><input type="checkbox" name="categoria[]" value="{{categoria['id']}}">{{categoria['nombre']}}</label>
+      {% endfor %}  
+      {% endfor %}
     </div>
+
+      <div class="form-group">
+            <label>Elige una imagen</label><br>
+            <input type="file" name="imagen" accept="image/*" />
+            <br>
+            <br>
+    </div>
+    <input type="hidden" name="email" value="{{usuario['email']}}">
+    <!--  no se bien como hacer lo de la sesion asique mando el email y lo busco desde ahi -->
+    <p class="lead">
+     <input type="submit" class="btn btn-primary btn-lg"  value="Agregar">
+            <a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Cancelar</a>
+          </p>
+
+  </form>
+</div>
 </div>

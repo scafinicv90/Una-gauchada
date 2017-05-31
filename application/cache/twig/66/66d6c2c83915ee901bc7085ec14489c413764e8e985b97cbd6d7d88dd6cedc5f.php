@@ -18,7 +18,6 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
         // line 1
         echo "
     <meta charset=\"utf-8\">
-    <meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\">
     <meta content=\"width=device-width, initial-scale=1\" name=\"viewport\">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>
@@ -26,26 +25,23 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
     </title>
     <!-- Bootstrap -->
     <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">
-    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>
-    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>
+    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\" ></script>
+    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" ></script>
     <!--  -->
 
+    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.9.0/validator.min.js\" ></script>
 
 
+    <link href=\"https://fonts.googleapis.com/css?family=Roboto\" rel=\"stylesheet\">
     <!--  -->
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        // line 18
-        echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
-        echo "assets/styles/css/layout.css\">
     <link rel=\"stylesheet\" type=\"text/css\" href=\"";
         // line 19
         echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
-        echo "assets/styles/css/btnHeader.css\">
+        echo "assets/styles/css/layout.css\">
     <link rel=\"stylesheet\" type=\"text/css\" href=\"";
         // line 20
         echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
-        echo "assets/styles/css/registrar.css\">
-
+        echo "assets/styles/css/btnHeader.css\">
 
 
 <script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>";
@@ -63,7 +59,7 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
 
     public function getDebugInfo()
     {
-        return array (  46 => 20,  42 => 19,  38 => 18,  19 => 1,);
+        return array (  43 => 20,  39 => 19,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -78,7 +74,6 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
     {
         return new Twig_Source("
     <meta charset=\"utf-8\">
-    <meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\">
     <meta content=\"width=device-width, initial-scale=1\" name=\"viewport\">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>
@@ -86,17 +81,17 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
     </title>
     <!-- Bootstrap -->
     <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">
-    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>
-    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>
+    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\" ></script>
+    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" ></script>
     <!--  -->
 
+    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.9.0/validator.min.js\" ></script>
 
 
+    <link href=\"https://fonts.googleapis.com/css?family=Roboto\" rel=\"stylesheet\">
     <!--  -->
     <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}assets/styles/css/layout.css\">
     <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}assets/styles/css/btnHeader.css\">
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}assets/styles/css/registrar.css\">
-
 
 
 <script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>", "head.twig", "C:\\xampp\\htdocs\\Una-gauchada\\application\\views\\head.twig");

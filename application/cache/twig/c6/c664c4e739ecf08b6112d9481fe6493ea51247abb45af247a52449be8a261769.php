@@ -1,6 +1,6 @@
 <?php
 
-/* indexLog.twig */
+/* backend.twig */
 class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2b2f6f extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
@@ -8,7 +8,7 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("layout.twig", "indexLog.twig", 1);
+        $this->parent = $this->loadTemplate("layout.twig", "backend.twig", 1);
         $this->blocks = array(
             'header' => array($this, 'block_header'),
             'content' => array($this, 'block_content'),
@@ -60,7 +60,7 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
         echo "
 \t";
         // line 26
-        $this->loadTemplate("sectionPrincipal.twig", "indexLog.twig", 26)->display($context);
+        $this->loadTemplate("sectionPrincipal.twig", "backend.twig", 26)->display($context);
         // line 27
         echo "
 
@@ -69,7 +69,7 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 
     public function getTemplateName()
     {
-        return "indexLog.twig";
+        return "backend.twig";
     }
 
     public function isTraitable()
@@ -120,6 +120,6 @@ class __TwigTemplate_d6225da58ed21a543d8b3f3628d43670aa20302b9966dd79f86185d8ab2
 \t{% include 'sectionPrincipal.twig' %}
 
 
-{% endblock %}", "indexLog.twig", "C:\\xampp\\htdocs\\Una-gauchada\\application\\views\\indexLog.twig");
+{% endblock %}", "backend.twig", "C:\\xampp\\htdocs\\Una-gauchada\\application\\views\\backend.twig");
     }
 }

@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class LoginModel extends CI_Model
+class FavorModel extends CI_Model
 {
 
     public function __construct()
@@ -11,22 +11,6 @@ class LoginModel extends CI_Model
         $this->load->database();
     }
 
-    public function buscarUsuario($emailUser)
-    {
-        $this->db->where('email', $emailUser);
-        $query = $this->db->get('usuario');
-        if ($query->num_rows() > 0) {
-            return ($query);
-        } else {
-            return (false);
-        }
-
-    }
-    public function agregarUsuario($emailUser)
-    {
-        $this->db->insert('usuario', $emailUser);
-
-    }
     public function buscarCategoria()
     {
         $query = $this->db->get('categoria');
@@ -35,6 +19,13 @@ class LoginModel extends CI_Model
     public function agregarFavor($gauchada)
     {
         $this->db->insert('favor', $gauchada);
+
+    }
+    public function restarCredito($email)
+    {
+        $this->db->set('credito', 'credito-1', false);
+        $this->db->where('email', $email);
+        $this->db->update('usuario');
 
     }
     public function agregarFC($categoria)
@@ -55,4 +46,5 @@ class LoginModel extends CI_Model
         $this->db->order_by('name', 'ASC');*/
         return ($query);
     }
+
 }

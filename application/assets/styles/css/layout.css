@@ -61,6 +61,10 @@ a,a:hover{
      /* color del aside */
 }
 
+.busqueda > .display{
+    display: none;
+}
+
 
 /*  POST */
 section{

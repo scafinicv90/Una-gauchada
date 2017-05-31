@@ -12,7 +12,8 @@ class Registrar extends CI_Controller
         $this->load->helper('html');
         $this->load->helper('url');
         $this->load->library('session');
-        $this->load->model('loginModel');
+        $this->load->model('usuarioModel');
+        $this->load->model('favorModel');
     }
     public function paso()
     {
@@ -23,7 +24,6 @@ class Registrar extends CI_Controller
     {
         $this->twig->display('registrar');
     }
-
     public function registra()
     {
         $nombre   = $this->input->post('nombre');
@@ -46,6 +46,7 @@ class Registrar extends CI_Controller
                 'tel'      => $tel,
                 'fec_nac'  => $fec_nac,
                 'apellido' => $apellido,
+                'credito'  => 2,
                 'tipo'     => 0);
             $this->loginModel->agregarUsuario($reg);
             $this->twig->display('indexLog');
