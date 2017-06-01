@@ -46,16 +46,16 @@
 			<section class="posts col-md-9">
 			{% for favor in favores %}
 				<article class="post clearfix">
-	             	<a href="{{ dirpath }}favor/ver/{{favor['id']}}" class="thumb pull-left"><img class="img-thumbnail" src="{{ path }}assets/images/logo.png" alt="favor"></a>
-	             	<h2 class="post-title"><a href="#">{{favor['titulo']}}</a></h2>
-	             	<p>Fecha limite: <span class="post-fecha">{{favor['fec_lim']}}</span>
-	             	Publicado por: <span  class="post-autor"><a href="#">{{ usuarios[favor['id_usuario']]['nombre'] }}</a></span></p>
+	             	<a href="{{ dirpath }}favor/ver/{{favor.id}}" class="thumb pull-left"><img class="img-thumbnail" src="{{ path }}assets/images/logo.png" alt="favor"></a>
+	             	<h2 class="post-title"><a href="#">{{favor.titulo}}</a></h2>
+	             	<p>Fecha limite: <span class="post-fecha">{{favor.fec_lim}}</span>
+	             	Publicado por: <span  class="post-autor"><a href="#">{{ favor.nombre}}</a></span></p>
 	             	<p class="post-contenido text-justify">
-	                          {{favor['descripcion']}}
+	                          {{favor.descripcion}}
 	             	</p>
 	             	<div class="contenedor-botones">
 	             		<a href="#" class="btn btn-primary ">Leer mas </a>
-	             		<a href="#" class="btn btn-success">Comentarios <span class="badge">20</span></a>
+	             		{# <a href="#" class="btn btn-success">Comentarios <span class="badge">20</span></a> #}
 	             	</div>
 	            </article>
 	        {% endfor %}

@@ -17,23 +17,23 @@ class Home extends CI_Controller
 
     public function index()
     {
+
         if ($this->session->userdata('login')) {
             /*  $this->session->userdata()); tiene la sesion y se la mando a la vista*/
 
             $cons         = $this->favorModel->buscarFavores();
-            $favoresBD    = $cons->result();
-            $favores      = json_decode(json_encode($favoresBD), true);
-            $query        = $this->favorModel->buscarCategoria();
-            $categoriasBD = $query->result();
-            $categorias   = json_decode(json_encode($categoriasBD), true);
+            $favores    = $cons->result();
+            // var_dump('favores',$favoresBD);die();
+            // $favores      = json_decode(json_encode($favoresBD), true); no por que se pierde la imagen
+            // $query        = $this->favorModel->buscarCategoria();
+            // $categoriasBD = $query->result();
+            // $categorias   = json_decode(json_encode($categoriasBD), true);
 
-            $query    = $this->usuarioModel->obtenerUsuarios();
-            $usuarios = json_decode(json_encode($query->result()), true);
+            // $query    = $this->usuarioModel->obtenerUsuarios();
+            // $usuarios = json_decode(json_encode($query->result()), true);
 
             $data = array(
-                'usuarios'   => $usuarios,
                 'favores'    => $favores,
-                'categorias' => $categorias,
                 'usuario'    => $this->session->userdata());
             $this->twig->display('backend', $data);
             return 0;
