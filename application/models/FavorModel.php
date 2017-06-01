@@ -26,7 +26,7 @@ class FavorModel extends CI_Model
         foreach ($id_comentarios as $key => $value) {
             $query=$this->db->where('id_comentario', $value['comentario_id']);
             $query = $this->db->get('comentario');
-            var_dump($query->result());
+            //var_dump($query->result());
         };
         die();
         $query=$this->db->where('favor_id', $id_favor);

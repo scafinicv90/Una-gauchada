@@ -27,6 +27,9 @@ class Registrar extends CI_Controller
 
 function registra()
 {
+    var_dump($_POST);
+    die();
+
     $nombre   = $this->input->post('nombre');
     $email    = $this->input->post('email');
     $password = $this->input->post('password');
