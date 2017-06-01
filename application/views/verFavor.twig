@@ -5,25 +5,24 @@
 {% endblock %}
 
 {% block content %}
-
+{# {{ dump() }} #}
 	<div class="row main">
 		<div class="col-md-4">
-			
 		</div>
 		<div class="col-md-8 borde-favor">
 			<div class="favor">
 				<div>
-					<img src="{{ path }}assets/images/logo.png" class="foto-favor" alt="foto">
+					<img src = '{{pathimg}}{{ favor[0].img }}' style="width:128px;height:128px" />
 					{# Despues hay que relacionar el link de la imagen con la base de datos #}
 				</div>
-				<p class="idFavor">{{favor[0]['id']}}</p>
-				<p class="tituloFavor">{{favor[0]['titulo'] }}</p>
+				<p class="idFavor">{{favor[0].id}}</p>
+				<p class="tituloFavor">{{favor[0].titulo }}</p>
 				<br><br><br><br>
-				<p class="ubicacionFavor">Ubicación: {{favor[0]['ciudad']}}, {{favor[0]['provincia']}}</p>
-				<p class="fec_limFavor">Fecha límite: {{favor[0]['fec_lim']}}</p>
-				<p class="descripcionFavor">Descripción: {{favor[0]['descripcion']}}</p>
-				<p class="id_usuarioFavor">ID usuario: {{favor[0]['id_usuario']}}</p>
-				<img src = '{{pathimg}}{{ favor[0].img }}' style="width:128px;height:128px" />
+				<p class="ubicacionFavor">Ubicación: {{favor[0].ciudad}}, {{favor[0].provincia}}</p>
+				<p class="fec_limFavor">Fecha límite: {{favor[0].fec_lim}}</p>
+				<p class="descripcionFavor">Descripción: {{favor[0].descripcion}}</p>
+				<p class="id_usuarioFavor">ID usuario: {{favor[0].id_usuario}}</p>
+
 
 				<div class="coment">
 					<form>
