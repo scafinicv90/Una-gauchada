@@ -21,19 +21,9 @@ class Login extends CI_Controller
         if ($this->logueado()) {
 
             $cons         = $this->favorModel->buscarFavores();
-            $favoresBD    = $cons->result();
-            $favores      = json_decode(json_encode($favoresBD), true);
-            $query        = $this->favorModel->buscarCategoria();
-            $categoriasBD = $query->result();
-            $categorias   = json_decode(json_encode($categoriasBD), true);
-
-            $query    = $this->usuarioModel->obtenerUsuarios();
-            $usuarios = json_decode(json_encode($query->result()), true);
-
+            $favores    = $cons->result();
             $data = array(
-                'usuarios'   => $usuarios,
                 'favores'    => $favores,
-                'categorias' => $categorias,
                 'usuario'    => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
@@ -88,20 +78,10 @@ class Login extends CI_Controller
                         $this->session->set_userdata($user);
                         // traer favores de bd
                         $cons         = $this->favorModel->buscarFavores();
-                        $favoresBD    = $cons->result();
-                        $favores      = json_decode(json_encode($favoresBD), true);
-                        $query        = $this->favorModel->buscarCategoria();
-                        $categoriasBD = $query->result();
-                        $categorias   = json_decode(json_encode($categoriasBD), true);
-
-                        $query    = $this->usuarioModel->obtenerUsuarios();
-                        $usuarios = json_decode(json_encode($query->result()), true);
-
+                        $favores    = $cons->result();
                         $data = array(
-                            'usuarios'   => $usuarios,
-                            'favores'    => $favores,
-                            'categorias' => $categorias,
-                            'usuario'    => $this->session->userdata());
+                                'favores'    => $favores,
+                                'usuario'    => $this->session->userdata());
                         $this->twig->display('backend', $data);
                         return 0;
                     } else {

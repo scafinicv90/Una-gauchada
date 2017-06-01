@@ -24,19 +24,17 @@ class Favor extends CI_Controller
 
 	public function ver($id)
 	{
-			$cons         = $this->favorModel->buscarFavores();
-            $favoresBD    = $cons->result();
-            $favores      = json_decode(json_encode($favoresBD), true);
-
-            $query        = $this->favorModel->buscarCategoria();
-            $categoriasBD = $query->result();
-            $categorias   = json_decode(json_encode($categoriasBD), true);
-
+         if ($this->session->userdata('login')) {
             $query		  = $this->favorModel->obtenerFavor($id);
             $favor   	  = json_decode(json_encode($query->result()), true);
 
-            $query		  = $this->favorModel->preObtenerComentarios($id,$favor[0]['id_usuario']);
-            $query =$query->result();
+            $query        = $this->favorModel->obtenerFavorC($id);
+            $favorC       = $query->result();
+
+            $query		  = $this->favorModel->obtenerComentarios($id);
+            if ($query!=false) {
+                $query =$query->result();
+            }
             // $id_comentarios   = json_decode(json_encode($query->result()), true);
             // var_dump($id_comentarios);die();
             // $query		  = $this->favorModel->obtenerComentarios($id_comentarios);
@@ -48,9 +46,14 @@ class Favor extends CI_Controller
 
             $data         = array(
                 
-                'favor'     => $favor,
+                'favor'     => $favorC,
                 'comentarios' => $query,
             	'usuario'    => $this->session->userdata());
 		$this->twig->display('verFavor', $data);
-	}
+	}else
+    {
+        $this->twig->display('index');
+    }
+
+    }
 }

@@ -14,21 +14,10 @@ class CrearFavor extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('login')) {
-            // traer favores de bd
-            $cons         = $this->favorModel->buscarFavores();
-            $favoresBD    = $cons->result();
-            $favores      = json_decode(json_encode($favoresBD), true);
-            $query        = $this->favorModel->buscarCategoria();
-            $categoriasBD = $query->result();
-            $categorias   = json_decode(json_encode($categoriasBD), true);
-
-            $query    = $this->usuarioModel->obtenerUsuarios();
-            $usuarios = json_decode(json_encode($query->result()), true);
-
+            $cons       = $this->favorModel->buscarFavores();
+            $favores    = $cons->result();
             $data = array(
-                'usuarios'   => $usuarios,
                 'favores'    => $favores,
-                'categorias' => $categorias,
                 'usuario'    => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
@@ -88,44 +77,14 @@ class CrearFavor extends CI_Controller
         $fecha       = $this->input->post('fecha');
         $categoria   = $this->input->post('categoria');
         $user        = $this->input->post('email');
-
-        var_dump($this->input->get());die();
+        $img         = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
 
         $query   = $this->usuarioModel->buscarUsuario($user);
         $usuario = $query->result();
-        if ($usuario[0]->credito == 0) {
+        if (false) {
             $error['creditos'] = 'Cantidad de creditos insuficiente';
             $this->errores($error);
         } else {
-
-            /*  if (isset($_FILES['imagen']['tmp_name'])) {
-            $config['upload_path']   = './images/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size']      = '1000000';
-            $config['overwrite']     = true;
-            $config['remove_spaces'] = true;
-            $config['encrypt_name']  = false;
-
-            $this->load->library('upload', $config);
-            $field_name = "imagen";
-
-            if (!$this->upload->do_upload($field_name)) {
-            $error = array('error' => $this->upload->display_errors());
-
-            $this->index();
-            } else {
-            $image_path = $this->upload->data();
-            $mandar     = array('titulo' => $titulo,
-            'ciudad'                     => $ciudad,
-            'provincia'                  => $provincia,
-            'fec_lim'                    => $fecha,
-            'descripcion'                => $descripcion,
-            'id_usuario'                 => $usuario[0]->id_usuario,
-            'contenido_imagen'           => $image_path[full_path],
-            );
-            }
-
-            } else {*/
             $mandar = array('titulo' => $titulo,
                 'ciudad'                 => $ciudad,
                 'provincia'              => $provincia,
@@ -133,9 +92,13 @@ class CrearFavor extends CI_Controller
                 'descripcion'            => $descripcion,
                 'id_usuario'             => $usuario[0]->id_usuario);
 
+
+            $key=$this->favorModel->obtenerKeyFavor();
+            $key=json_decode(json_encode($key->result()), true);
+            $KEY=$key[0]['AUTO_INCREMENT'];
+
             $this->favorModel->agregarFavor($mandar);
-/*
-}*/
+            $this->favorModel->agregarImagen($img,$usuario[0]->id_usuario,$KEY);
 
             if ($categoria != '') {
                 $this->favorModel->agregarFC($categoria);
