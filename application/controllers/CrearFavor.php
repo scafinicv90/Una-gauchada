@@ -89,6 +89,8 @@ class CrearFavor extends CI_Controller
         $categoria   = $this->input->post('categoria');
         $user        = $this->input->post('email');
 
+        var_dump($this->input->get());die();
+
         $query   = $this->usuarioModel->buscarUsuario($user);
         $usuario = $query->result();
         if ($usuario[0]->credito == 0) {

@@ -49,7 +49,8 @@ class Favor extends CI_Controller
             $data         = array(
                 
                 'favor'     => $favor,
-                'comentarios' => $query);
+                'comentarios' => $query,
+            	'usuario'    => $this->session->userdata());
 		$this->twig->display('verFavor', $data);
 	}
 }
