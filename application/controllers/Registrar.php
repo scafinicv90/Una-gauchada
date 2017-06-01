@@ -19,7 +19,7 @@ class Registrar extends CI_Controller
     {
         $data = array(
                 'usuario'    => $this->session->userdata());
-        $this->twig->display('formRegistrarse');
+        $this->twig->display('registrar');
     }
 
     public function registrar()
