@@ -22,14 +22,14 @@ class CrearFavor extends CI_Controller
             $categoriasBD = $query->result();
             $categorias   = json_decode(json_encode($categoriasBD), true);
 
-            $query        = $this->usuarioModel->obtenerUsuarios();
-            $usuarios   = json_decode(json_encode($query->result()), true);
+            $query    = $this->usuarioModel->obtenerUsuarios();
+            $usuarios = json_decode(json_encode($query->result()), true);
 
-            $data         = array(
-                'usuarios' => $usuarios,
-                'favores'     => $favores,
+            $data = array(
+                'usuarios'   => $usuarios,
+                'favores'    => $favores,
                 'categorias' => $categorias,
-                'usuario'   => $this->session->userdata());
+                'usuario'    => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
             $this->twig->display('index');
@@ -50,10 +50,35 @@ class CrearFavor extends CI_Controller
             $this->twig->display('formfavor', $todo);
 
         } else {
+
             $this->index();
         }
     }
+    public function errores($error)
+    {
+        if ($this->session->userdata('login')) {
+            // traer favores de bd
+            $cons         = $this->favorModel->buscarFavores();
+            $favoresBD    = $cons->result();
+            $favores      = json_decode(json_encode($favoresBD), true);
+            $query        = $this->favorModel->buscarCategoria();
+            $categoriasBD = $query->result();
+            $categorias   = json_decode(json_encode($categoriasBD), true);
 
+            $query    = $this->usuarioModel->obtenerUsuarios();
+            $usuarios = json_decode(json_encode($query->result()), true);
+
+            $data = array(
+                'usuarios'   => $usuarios,
+                'favores'    => $favores,
+                'categorias' => $categorias,
+                'errores'    => $error,
+                'usuario'    => $this->session->userdata());
+            $this->twig->display('formfavor', $data);
+        } else {
+            $this->twig->display('index');
+        }
+    }
     public function agregar()
     {
         $titulo      = $this->input->post('titulo');
@@ -64,19 +89,61 @@ class CrearFavor extends CI_Controller
         $categoria   = $this->input->post('categoria');
         $user        = $this->input->post('email');
 
+        var_dump($this->input->get());die();
+
         $query   = $this->usuarioModel->buscarUsuario($user);
         $usuario = $query->result();
+        if ($usuario[0]->credito == 0) {
+            $error['creditos'] = 'Cantidad de creditos insuficiente';
+            $this->errores($error);
+        } else {
 
-        $mandar = array('titulo' => $titulo,
-            'ciudad'                 => $ciudad,
-            'provincia'              => $provincia,
-            'fec_lim'                => $fecha,
-            'descripcion'            => $descripcion,
-            'id_usuario'             => $usuario[0]->id_usuario);
-        $this->usuarioModel->agregarFavor($mandar);
+            /*  if (isset($_FILES['imagen']['tmp_name'])) {
+            $config['upload_path']   = './images/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']      = '1000000';
+            $config['overwrite']     = true;
+            $config['remove_spaces'] = true;
+            $config['encrypt_name']  = false;
 
-        $this->usuarioModel->agregarFC($categoria);
+            $this->load->library('upload', $config);
+            $field_name = "imagen";
 
-        $this->twig->display('favorAgregado');
+            if (!$this->upload->do_upload($field_name)) {
+            $error = array('error' => $this->upload->display_errors());
+
+            $this->index();
+            } else {
+            $image_path = $this->upload->data();
+            $mandar     = array('titulo' => $titulo,
+            'ciudad'                     => $ciudad,
+            'provincia'                  => $provincia,
+            'fec_lim'                    => $fecha,
+            'descripcion'                => $descripcion,
+            'id_usuario'                 => $usuario[0]->id_usuario,
+            'contenido_imagen'           => $image_path[full_path],
+            );
+            }
+
+            } else {*/
+            $mandar = array('titulo' => $titulo,
+                'ciudad'                 => $ciudad,
+                'provincia'              => $provincia,
+                'fec_lim'                => $fecha,
+                'descripcion'            => $descripcion,
+                'id_usuario'             => $usuario[0]->id_usuario);
+
+            $this->favorModel->agregarFavor($mandar);
+/*
+}*/
+
+            if ($categoria != '') {
+                $this->favorModel->agregarFC($categoria);
+            }
+            $this->favorModel->restarCredito($usuario[0]->email);
+
+            $this->twig->display('favorAgregado');
+        }
+
     }
 }
