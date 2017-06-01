@@ -61,20 +61,23 @@ class FavorModel extends CI_Model
         }
     }
 
-    public function obtenerFavorC($id)
+
+    public function obtenerComentarios($id_comentarios)
     {
-        $this->db->select('*');
-        $this->db->from('favor');
-        $this->db->join('imagenes', 'imagenes.id_favor=favor.id','left');
-        $this->db->where('id', $id);
-        $query= $this->db->get();
+        foreach ($id_comentarios as $key => $value) {
+            $query=$this->db->where('id_comentario', $value['comentario_id']);
+            $query = $this->db->get('comentario');
+            //var_dump($query->result());
+        };
+        die();
+        $query=$this->db->where('favor_id', $id_favor);
+        $query = $this->db->get('favor_comentario');
         if ($query->num_rows() > 0) {
             return ($query);
         } else {
             return (false);
         }
     }
-
 
     public function obtenerComentarios($id_favor)
     {
