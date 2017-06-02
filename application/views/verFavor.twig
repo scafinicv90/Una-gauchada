@@ -10,12 +10,13 @@
 		<div class="col-md-4">
 		</div>
 		<div class="col-md-8 borde-favor">
+			<article class=" clearfix">
 			<div class="favor">
 				<div>
-					<img src = '{{pathimg}}{{ favor[0].img }}' style="width:128px;height:128px" />
+					<img src = '{{pathimg}}{{ favor[0].img }}' class="foto-favor"  />
 					{# Despues hay que relacionar el link de la imagen con la base de datos #}
-				</div><!-- 
-				<p class="idFavor">{{favor[0].id}}</p> -->
+				</div>
+				<p class="idFavor">{{favor[0].id}}</p>
 				<p class="tituloFavor">{{favor[0].titulo }}</p>
 				<br><br>
 
@@ -23,7 +24,10 @@
 				<p class="ubicacionFavor">Ubicación: {{favor[0].ciudad}}, {{favor[0].provincia}}</p>
 				<p class="fec_limFavor">Fecha límite: {{favor[0].fec_lim}}</p>
 				<p class="descripcionFavor">Descripción: {{favor[0].descripcion}}</p>
-				<p class="id_usuarioFavor">ID usuario: {{favor[0].id_usuario}}</p>
+				<p class="id_usuarioFavor">ID usuario: {{favor[0].nombre}}</p>
+			</div>
+	        </article>
+
 
 
 				<div class="coment">
