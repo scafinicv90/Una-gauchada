@@ -73,57 +73,70 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t\t\t\t</div>
 \t\t\t</div>
 \t\t\t<!-- begin post -->
+\t\t\t
+
 \t\t\t<section class=\"posts col-md-9\">
 \t\t\t";
-        // line 47
+        // line 49
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["favores"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["favor"]) {
-            // line 48
+            // line 50
             echo "\t\t\t\t<article class=\"post clearfix\">
 \t             \t<a href=\"";
-            // line 49
+            // line 51
             echo twig_escape_filter($this->env, ($context["dirpath"] ?? null), "html", null, true);
             echo "favor/ver/";
             echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "id", array()), "html", null, true);
-            echo "\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"";
-            echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
-            echo "assets/images/logo.png\" alt=\"favor\"></a>
+            echo "\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src = '";
+            echo twig_escape_filter($this->env, ($context["pathimg"] ?? null), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "img", array()), "html", null, true);
+            echo "'  /></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">";
-            // line 50
+            // line 52
             echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "titulo", array()), "html", null, true);
             echo "</a></h2>
 \t             \t<p>Fecha limite: <span class=\"post-fecha\">";
-            // line 51
+            // line 53
             echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "fec_lim", array()), "html", null, true);
             echo "</span>
 \t             \tPublicado por: <span  class=\"post-autor\"><a href=\"#\">";
-            // line 52
+            // line 54
             echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "nombre", array()), "html", null, true);
             echo "</a></span></p>
 \t             \t<p class=\"post-contenido text-justify\">
 \t                          ";
-            // line 54
+            // line 56
             echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "descripcion", array()), "html", null, true);
             echo "
 \t             \t</p>
 \t             \t<div class=\"contenedor-botones\">
 \t             \t\t<a href=\"";
-            // line 57
+            // line 59
             echo twig_escape_filter($this->env, ($context["dirpath"] ?? null), "html", null, true);
             echo "favor/ver/";
             echo twig_escape_filter($this->env, $this->getAttribute($context["favor"], "id", array()), "html", null, true);
             echo "\" class=\"btn btn-primary \">Leer mas </a>
 \t             \t\t";
-            // line 59
+            // line 60
+            if (($this->getAttribute($context["favor"], "email", array()) == $this->getAttribute(($context["usuario"] ?? null), "email", array(), "array"))) {
+                // line 61
+                echo "\t             \t\t<a href=\"";
+                echo twig_escape_filter($this->env, ($context["dirpath"] ?? null), "html", null, true);
+                echo "favor/verMisGauchadas/\" class=\"btn btn-success\">Ver mis favores</a> 
+\t             \t\t ";
+            }
+            // line 63
             echo "\t             \t</div>
+\t             \t
+
 \t            </article>
 \t        ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['favor'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 62
+        // line 68
         echo "\t        </section>
 \t</div>";
     }
@@ -140,7 +153,7 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 
     public function getDebugInfo()
     {
-        return array (  127 => 62,  119 => 59,  113 => 57,  107 => 54,  102 => 52,  98 => 51,  94 => 50,  86 => 49,  83 => 48,  79 => 47,  59 => 29,  50 => 27,  46 => 26,  19 => 1,);
+        return array (  140 => 68,  130 => 63,  124 => 61,  122 => 60,  116 => 59,  110 => 56,  105 => 54,  101 => 53,  97 => 52,  88 => 51,  85 => 50,  81 => 49,  59 => 29,  50 => 27,  46 => 26,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -198,10 +211,12 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t\t\t\t</div>
 \t\t\t</div>
 \t\t\t<!-- begin post -->
+\t\t\t
+
 \t\t\t<section class=\"posts col-md-9\">
 \t\t\t{% for favor in favores %}
 \t\t\t\t<article class=\"post clearfix\">
-\t             \t<a href=\"{{ dirpath }}favor/ver/{{favor.id}}\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src=\"{{ path }}assets/images/logo.png\" alt=\"favor\"></a>
+\t             \t<a href=\"{{ dirpath }}favor/ver/{{favor.id}}\" class=\"thumb pull-left\"><img class=\"img-thumbnail\" src = '{{pathimg}}{{ favor.img }}'  /></a>
 \t             \t<h2 class=\"post-title\"><a href=\"#\">{{favor.titulo}}</a></h2>
 \t             \t<p>Fecha limite: <span class=\"post-fecha\">{{favor.fec_lim}}</span>
 \t             \tPublicado por: <span  class=\"post-autor\"><a href=\"#\">{{ favor.nombre}}</a></span></p>
@@ -210,8 +225,12 @@ class __TwigTemplate_20ee85f4da0aeeb96b36e01554d58b600c23ead5fb013661c5e9f1af79e
 \t             \t</p>
 \t             \t<div class=\"contenedor-botones\">
 \t             \t\t<a href=\"{{ dirpath }}favor/ver/{{favor.id}}\" class=\"btn btn-primary \">Leer mas </a>
-\t             \t\t{# <a href=\"#\" class=\"btn btn-success\">Comentarios <span class=\"badge\">20</span></a> #}
+\t             \t\t{% if (favor.email == usuario['email']) %}
+\t             \t\t<a href=\"{{ dirpath }}favor/verMisGauchadas/\" class=\"btn btn-success\">Ver mis favores</a> 
+\t             \t\t {% endif %}
 \t             \t</div>
+\t             \t
+
 \t            </article>
 \t        {% endfor %}
 \t        </section>
