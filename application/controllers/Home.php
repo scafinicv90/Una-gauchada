@@ -21,8 +21,28 @@ class Home extends CI_Controller
         if ($this->session->userdata('login')) {
             /*  $this->session->userdata()); tiene la sesion y se la mando a la vista*/
 
-            $cons         = $this->favorModel->buscarFavores();
-            $favores    = $cons->result();
+            $cons    = $this->favorModel->buscarFavores();
+            $fav     = $cons->result();
+            $favores = json_decode(json_encode($fav), true);
+            /* $favor   = array(
+            'id',
+            'titulo',
+            'ciudad',
+            'provincia',
+            'fec_lim',
+            'descripcion',
+            'id_usuario',
+            'id_imagen',
+            'img',
+            'id_favor',
+            );
+            $i = 0;*/
+            foreach ($favores as $fav) {
+                $query = $this->favorModel->obtenerFavorC($fav['id']);
+                /*$favor[$i] = $query->result();
+            $i++;*/
+
+            }
             // var_dump('favores',$favoresBD);die();
             // $favores      = json_decode(json_encode($favoresBD), true); no por que se pierde la imagen
             // $query        = $this->favorModel->buscarCategoria();
@@ -33,8 +53,8 @@ class Home extends CI_Controller
             // $usuarios = json_decode(json_encode($query->result()), true);
 
             $data = array(
-                'favores'    => $favores,
-                'usuario'    => $this->session->userdata());
+                'favores' => $favores,
+                'usuario' => $this->session->userdata());
             $this->twig->display('backend', $data);
             return 0;
         } else {

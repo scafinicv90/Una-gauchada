@@ -10,11 +10,9 @@
 			
 				<article class="post clearfix">
 	             	<a href="{{ dirpath }}favor/ver/{{favor.id}}" class="thumb pull-left">
-	             	{% if favor.img != "uploads/imgFavores/" %}
+	             	
 	             	<img class="img-thumbnail" src = '{{pathimg}}{{ favor.img }}'  />
-					{% else %}
-					<img src = '{{path}}assets/images/logo.png' style="width:128px;height:128px" />
-					{% endif %}
+					
 	             	</a>
 	             	<h2 class="post-title"><a href="#">{{favor.titulo}}</a></h2>
 	             	<p>Fecha limite: <span class="post-fecha">{{favor.fec_lim}}</span>
