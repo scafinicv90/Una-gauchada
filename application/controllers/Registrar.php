@@ -18,7 +18,7 @@ class Registrar extends CI_Controller
     public function register()
     {
         $data = array(
-                'usuario'    => $this->session->userdata());
+            'usuario' => $this->session->userdata());
         $this->twig->display('registrar');
     }
 
@@ -27,7 +27,7 @@ class Registrar extends CI_Controller
         $nombre   = $this->input->post('nombre');
         $email    = $this->input->post('email');
         $password = $this->input->post('password');
-        $tel      = $this->input->post('tel');
+        $tel      = $this->input->post('telefono');
         $apellido = $this->input->post('apellido');
         $fec_nac  = $this->input->post('fecha');
 
@@ -47,7 +47,7 @@ class Registrar extends CI_Controller
                 'credito'  => 2,
                 'tipo'     => 0);
             $this->usuarioModel->agregarUsuario($reg);
-            $this->twig->display('indexLog');
+            $this->twig->display('envioMail');
         }
     }
 
