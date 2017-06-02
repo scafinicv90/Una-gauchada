@@ -15,6 +15,13 @@
   <div class="panel-body">
     
  {{errores['creditos']}}
+<br/>
+<br/>
+<p class="lead">
+      <a class="btn btn-primary btn-lg" href="{{dirpath}}comprarCredito/mostrarFormulario/" role="button">Comprar creditos</a>
+      <a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Ver Inicio</a>
+    </p>
+
   </div>
 </div>
 {% endif %}
@@ -33,13 +40,13 @@
       <div class="form-group">
         <label for="inputCiudad" class="col-2 col-form-label">Ciudad</label>
         <div class="col-10">
-          <input class="form-control" type="text" id="inputCiudad" pattern="[A-Za-z]" name="ciudad" required>
+          <input class="form-control" type="text" id="inputCiudad" name="ciudad" required>
         </div>
       </div>
       <div class="form-group">
         <label for="inputProv" class="col-2 col-form-label">Provincia</label>
         <div class="col-10">
-          <input class="form-control" type="text" id="inputProv" pattern="[A-Za-z]" name="provincia" required>
+          <input class="form-control" type="text" id="inputProv"  name="provincia" required>
         </div>
       </div>
       <div class="form-group">

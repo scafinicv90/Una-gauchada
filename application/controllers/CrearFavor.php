@@ -14,11 +14,11 @@ class CrearFavor extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('login')) {
-            $cons       = $this->favorModel->buscarFavores();
-            $favores    = $cons->result();
-            $data = array(
-                'favores'    => $favores,
-                'usuario'    => $this->session->userdata());
+            $cons    = $this->favorModel->buscarFavores();
+            $favores = $cons->result();
+            $data    = array(
+                'favores' => $favores,
+                'usuario' => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
             $this->twig->display('index');
@@ -71,15 +71,15 @@ class CrearFavor extends CI_Controller
 
     public function procesarImagen()
     {
-        $target_dir = "uploads/imgFavores/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        $target_dir    = "uploads/imgFavores/";
+        $target_file   = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        $uploadOk      = 1;
+        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         // Check if image file is a actual image or fake image
         var_dump($target_file);
-        if(isset($_POST["submit"])) {
+        if (isset($_POST["submit"])) {
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-            if($check !== false) {
+            if ($check !== false) {
                 echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
             } else {
@@ -106,11 +106,14 @@ class CrearFavor extends CI_Controller
         // }
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
+            /*
+            $target_file = $target_dir . (logo . png);*/
             echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
+            // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 // echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+
             } else {
                 // echo "Sorry, there was an error uploading your file.";
             }
@@ -127,11 +130,12 @@ class CrearFavor extends CI_Controller
         $fecha       = $this->input->post('fecha');
         $categoria   = $this->input->post('categoria');
         $user        = $this->input->post('email');
-        $dirName        =$this->procesarImagen();
+        $dirName     = $this->procesarImagen();
 
         $query   = $this->usuarioModel->buscarUsuario($user);
         $usuario = $query->result();
-        if (false) {
+
+        if ($usuario[0]->credito == 0) {
             $error['creditos'] = 'Cantidad de creditos insuficiente';
             $this->errores($error);
         } else {
@@ -142,16 +146,16 @@ class CrearFavor extends CI_Controller
                 'descripcion'            => $descripcion,
                 'id_usuario'             => $usuario[0]->id_usuario);
 
+/*
+$key=$this->favorModel->obtenerKeyFavor();
+$key=json_decode(json_encode($key->result()), true);
+$KEY=$key[0]['AUTO_INCREMENT'];*/
 
-            $key=$this->favorModel->obtenerKeyFavor();
-            $key=json_decode(json_encode($key->result()), true);
-            $KEY=$key[0]['AUTO_INCREMENT'];
-
-            $this->favorModel->agregarFavor($mandar);
-            $this->favorModel->agregarImagen($dirName,$usuario[0]->id_usuario,$KEY);
+            $id_favor = $this->favorModel->agregarFavor($mandar);
+            $this->favorModel->agregarImagen($dirName, $usuario[0]->id_usuario, $id_favor);
 
             if ($categoria != '') {
-                $this->favorModel->agregarFC($categoria);
+                $this->favorModel->agregarFC($categoria, $id_favor);
             }
             $this->favorModel->restarCredito($usuario[0]->email);
 
