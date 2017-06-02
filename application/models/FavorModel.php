@@ -52,7 +52,7 @@ class FavorModel extends CI_Model
         $this->db->insert('favor_comentario',$query);
 
     }
-    public function agregarFC($categoria)
+    // public function agregarFC($categoria)
 
     public function agregarFC($categoria, $id_favor)
     {

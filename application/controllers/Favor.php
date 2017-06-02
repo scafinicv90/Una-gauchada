@@ -110,7 +110,7 @@ class Favor extends CI_Controller
 //         }
 
 // >>>>>>> 95dd9cedcd683d2f3b147ff0e22ca19416fceb57
-    }
+    }}
     public function verMisGauchadas()
     {
 

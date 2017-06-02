@@ -76,7 +76,7 @@ class CrearFavor extends CI_Controller
         $uploadOk      = 1;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         // Check if image file is a actual image or fake image
-        var_dump($target_file);
+        // var_dump($target_file);
         if (isset($_POST["submit"])) {
             $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
             if ($check !== false) {
@@ -159,7 +159,9 @@ $KEY=$key[0]['AUTO_INCREMENT'];*/
             }
             $this->favorModel->restarCredito($usuario[0]->email);
 
-            $this->twig->display('favorAgregado');
+            $data = array(
+                'usuario'    => $this->session->userdata());
+            $this->twig->display('favorAgregado',$data);
         }
 
     }

@@ -90,13 +90,7 @@ class Login extends CI_Controller
                         return 0;
 
                     }
-                } else {
-                    $data['passwordIncorrecta'] = 'La contraseña es incorrecta';
-                    // var_dump($data);
-                    $this->twig->display('login', $data);
-                    return 0;
-
-                }
+               
             } else {
                 $data['noExiste'] = 'El usuario no existe';
                 $this->twig->display('login', $data);
@@ -107,7 +101,7 @@ class Login extends CI_Controller
             /* aca entro cuando no cumple los requisitos o me quieren poner basura */
             $this->twig->display('login', $data);
         }
-    }
+    }}
 
     public function logout()
     {
