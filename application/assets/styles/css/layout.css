@@ -20,7 +20,7 @@ textarea{
     background-color: #F4912F;
     /* color del nav header */
 }
-
+.collapse > .dropdown > li >  a { color: #332020; }
 .menuLog {
     padding-top: 1em;
     height: 500px;
@@ -82,21 +82,25 @@ section{
 }
 
 .post {
-    /* background-color: #9A9A9A; */
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding-bottom: 20px;
-    margin-bottom: 20px;
     border-bottom: 1px solid #999;
 }
 
-.post .post-title a {
+.post > .post-title > a,a:hover {
     color: #333;
+    text-decoration: none;
 }
 
 .post .thumb {
+    /* margin-top: 20px; */
     margin-right: 15px;
     width: 20%;
+    height: 100px;
 }
 
 .post .thumb img {
     width: 100%;
+    height: 100%;
 }

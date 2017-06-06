@@ -8,8 +8,8 @@
 			</div>
 			<!-- end breadcrum -->
 			<!--  aside de busqueda -->
-			<div class="busqueda col-md-3">
-				<div class="display">
+			<div class=" col-md-4">
+				{# <div class="display">
 					<h2>Busqueda</h2>
 			    <form class="navbar-form navbar-left" role="search">
 			  		<div class="form-group">
@@ -40,21 +40,23 @@
 						<a href="#"><p class="list-group-item-text">Villa elisa</p></a>
 					</a>
 				</div>
-				</div>
+				</div> #}
 			</div>
 			<!-- begin post -->
 			
 
-			<section class="posts col-md-9">
+			<section class="posts col-md-8">
 			{% for favor in favores %}
 				<article class="post clearfix">
-	             	<a href="{{ dirpath }}favor/ver/{{favor.id}}" class="thumb pull-left"><img class="img-thumbnail" src = '{{pathimg}}{{ favor.img }}'  /></a>
-	             	<h2 class="post-title"><a href="#">{{favor.titulo}}</a></h2>
+	             	<div class="box">
+	             		<a href="{{ dirpath }}favor/ver/{{favor.id}}" class="thumb pull-left"><img class="img-thumbnail" src = '{{pathimg}}{{ favor.img }}'  /></a>
+	             	<h2 class="post-title">{{favor.titulo}}</h2>
 	             	<p>Fecha limite: <span class="post-fecha">{{favor.fec_lim}}</span>
 	             	Publicado por: <span  class="post-autor"><a href="#">{{ favor.nombre}}</a></span></p>
 	             	<p class="post-contenido text-justify">
 	                          {{favor.descripcion}}
 	             	</p>
+	             	</div>
 	             	<div class="contenedor-botones">
 	             		<a href="{{ dirpath }}favor/ver/{{favor.id}}" class="btn btn-primary ">Leer mas </a>
 	             		{% if (favor.email == usuario['email']) %}

@@ -2,9 +2,19 @@
 
 
 {% block content %}
-
-<p>Favor agregado correctamente</p>
-<a href="{{dirpath}}crearFavor/crear" class="btn btn-info" role="button">Agregar otro favor</a>
-<a href="{{dirpath}}home/" class="btn btn-info" role="button">Ir a incio</a>
-<a href="{{ dirpath }}favor/verMisGauchadas/" class="btn btn-info" role="button">Ver mis favores</a>
+<div class="row main ">
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Favor agregado</li>
+		</ol>
+	</div>
+	<!-- end breadcrum -->
+	<div class="col-md-8">
+		<p>Favor agregado correctamente</p>
+		<a href="{{dirpath}}favor/crear" class="btn btn-info" role="button">Agregar otro favor</a>
+		<a href="{{dirpath}}home/" class="btn btn-info" role="button">Ir a incio</a>
+		<a href="{{ dirpath }}favor/verMisGauchadas/" class="btn btn-info" role="button">Ver mis favores</a>
+	</div>
+</div>
 {% endblock %}

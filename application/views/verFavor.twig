@@ -5,8 +5,14 @@
 {% endblock %}
 
 {% block content %}
-{{ dump() }}
 	<div class="row main">
+		<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Ver Favor</li>
+		</ol>
+		</div>
+		<!-- end breadcrum -->
 		<div class="col-md-4">
 		</div>
 		<div class="col-md-8 borde-favor">
@@ -28,53 +34,47 @@
 			</div>
 	        </article>
 
-
-
-				<div class="coment">
+	        {# empieza los comentarios #}
+			<div class="comentarios">
+				<h3 class="text-center" >Preguntas</h3>
 					<form method="POST" action="{{dirpath}}favor/comentar/">
-						<div class="panel panel-default">
+						<div class="comentar">
 						  <div class="panel-heading">
-						    <h3 class="panel-title">Deja un comentario</h3>
 						  </div>
 						  <div class="panel-body">
 						  	<input type="text" hidden="true" name="usuario" value="{{usuario.email}}">
 						  	<input type="text" hidden="true" name="favor_id" value="{{favor[0].id}}">
-						    <textarea class="form-control" name="comentario" rows="3"></textarea>
+						    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+						    <textarea class="form-control" placeholder="Escribe una pregunta" name="comentario" rows="3"></textarea>
 						  </div>
 						<p class="lead">
 							<button type="submit" class="btn btn-lg">Enviar comentario</button>
 						</p>
 						</div>
 					</form>
-				</div>
 					{% for comentario in comentarios %}
-						<div class="panel panel-default">
-						  <div class="panel-heading">
-						    <h3 class="panel-title">comentario de {{comentario.nombre}}</h3>
-						  </div>
-						  <div class="panel-body">
-						    {{ comentario.descripcion}}
-						  </div>
+						<div class="panel borde-comentario panel-default">
+						<div class="panel-heading">
+						<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+						{{ comentario.descripcion}} . Comentario de {{comentario.nombre}}
+						</div>
 						  	{# {% if favor[0].nombre == usuario.nombre %} #}
 								{% if comentario.id_respuesta is not empty %}
 										{% for respuesta in respuestas %}
-
 											{% if respuesta.id_comentario == comentario.id_comentario %}
-											<div class="panel panel-default">
-											  <div class="panel-heading">
-											    <h3 class="panel-title">Respuesta</h3>
-											  </div>
-											  <div class="panel-body">
-											    {{ respuesta.respuesta}}
-											  </div>
+												<div class="panel   respuesta">
+												  <div class="panel-heading">
+												  	<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+												  	{{ respuesta.respuesta}}
+												  </div>
+												</div>
 											</div>
 											{% endif %}
 										{% endfor %}
-								{% else %}
-									{% if favor[0].nombre == usuario.nombre %}
+								{% elseif favor[0].nombre == usuario.nombre %}
 											<div class="coment">
 												<form method="POST" action="{{dirpath}}favor/responder/">
-													<div class="panel panel-default">
+													<div class="panel panel-info">
 													  <div class="panel-heading">
 													    <h3 class="panel-title">Responder Pregunta</h3>
 													  </div>
@@ -89,12 +89,8 @@
 													</div>
 												</form>
 											</div>
-											{% endif %}
 								{% endif %}
-							{# {% else %} #}
 							{# {% endif %} #}
-
-						</div>
 					{% endfor %}
 			</div>
 		</div>

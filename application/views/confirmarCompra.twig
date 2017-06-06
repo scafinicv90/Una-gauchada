@@ -5,17 +5,16 @@
 {% endblock %}
 
 {% block content %}
-	{# {{ dump() }} #}
+<div class="row main ">
 	<div class="migas-de-pan">
 		<ol class="breadcrumb">
-				<li><a href="{{ dirpath }}home/">inicio</a></li>
-				<li>Compra Credito</li>
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li><a href="{{dirpath}}comprarCredito/mostrarFormulario/" >Compra credito</a></li>
+			<li>Confirmar Compra</li>
 		</ol>
 	</div>
 	<!-- end breadcrum -->
-	<div class="row">
-		<div class="container menuLog">
-			<div class="col-md-8">
+	<div class="col-md-8">
 				<h3 class="h3-formulario">Formulario de compra</h3>
 				<hr>
 				<form method="POST" action="{{dirpath}}comprarCredito/comprar/">
@@ -30,8 +29,6 @@
 					<a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Cancelar</a>
 				</p>
 				</form>
-			</div>
-		</div>
-		
 	</div>
+</div>
 {% endblock %}

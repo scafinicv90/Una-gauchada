@@ -2,7 +2,21 @@
 
 
 {% block content %}
+	<div class="row main ">
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Cuenta creada exitosamente</li>
+		</ol>
+	</div>
+	<!-- end breadcrum -->
+	<div class="col-md-8">
+			<h3 class="">Cuenta creada exitosamente. </h3>
+			<hr>
+			<p>Se ha enviado un correo a su mail.</p>
+			<a href="{{dirpath}}home/" class="btn btn-info" role="button">Aceptar</a>
 
-<p>Cuenta creada exitosamente. Se ha enviado un correo a su mail.</p>
-<a href="{{dirpath}}home/" class="btn btn-info" role="button">Aceptar</a>
+	</div>
+	</div>
+
 {% endblock %}

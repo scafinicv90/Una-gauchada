@@ -49,7 +49,8 @@ class ComprarCredito extends CI_Controller
         $this->comprasModel->sumarCreditos($this->input->post('usuario'),$creditos);
         $this->index();
     }
-    public function mostrarFormulario() {
+    public function mostrarFormulario()
+    {
         $data=array('usuario' => $this->session->userdata());
     	$this->twig->display('formularioCompra',$data);
     }

@@ -37,3 +37,25 @@
 	font-size: 15px;
 	margin-top: -9px;
 }
+/* form de comentar */
+.comentar{
+	background-color: #FB326;
+	padding-bottom: 1px;
+
+}
+/* cajita de todos los comentarios */
+.comentarios {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+/* cada comentario */
+.borde-comentario{
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+
+}
+/* respuesta cajita dentro del panel */
+.respuesta {
+	/* background-color: #91B2DB; */
+	margin-left: 2em;
+}
