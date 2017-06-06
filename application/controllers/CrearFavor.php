@@ -115,8 +115,6 @@ class CrearFavor extends CI_Controller
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
 
-            $target_file = $target_dir . "logo.png";
-
             echo "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
         } else {
@@ -169,8 +167,8 @@ $KEY=$key[0]['AUTO_INCREMENT'];*/
             $this->favorModel->restarCredito($usuario[0]->email);
 
             $data = array(
-                'usuario'    => $this->session->userdata());
-            $this->twig->display('favorAgregado',$data);
+                'usuario' => $this->session->userdata());
+            $this->twig->display('favorAgregado', $data);
         }
 
     }
