@@ -5,17 +5,28 @@
 {% endblock %}
 
 {% block content %}
-{# {{ dump() }} #}
 	<div class="row main">
+		<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Ver Favor</li>
+		</ol>
+		</div>
+		<!-- end breadcrum -->
 		<div class="col-md-4">
 		</div>
 		<div class="col-md-8 borde-favor">
+			<article class=" clearfix">
 			<div class="favor">
 				<div>
+<<<<<<< HEAD
 					<img src='{{pathimg}}{{ favor[0].img }}' class="foto-favor" />
+=======
+					<img src = '{{pathimg}}{{ favor[0].img }}' class="foto-favor"  />
+>>>>>>> 1f748ee0d97428ef929e0b70465dee30bad2df4f
 					{# Despues hay que relacionar el link de la imagen con la base de datos #}
-				</div><!-- 
-				<p class="idFavor">{{favor[0].id}}</p> -->
+				</div>
+				<p class="idFavor">{{favor[0].id}}</p>
 				<p class="tituloFavor">{{favor[0].titulo }}</p>
 				<br><br>
 
@@ -23,30 +34,67 @@
 				<p class="ubicacionFavor">Ubicación: {{favor[0].ciudad}}, {{favor[0].provincia}}</p>
 				<p class="fec_limFavor">Fecha límite: {{favor[0].fec_lim}}</p>
 				<p class="descripcionFavor">Descripción: {{favor[0].descripcion}}</p>
-				<p class="id_usuarioFavor">ID usuario: {{favor[0].id_usuario}}</p>
+				<p class="id_usuarioFavor">ID usuario: {{favor[0].nombre}}</p>
+			</div>
+	        </article>
 
-
-				<div class="coment">
-					<form>
-						<div class="panel panel-default">
+	        {# empieza los comentarios #}
+			<div class="comentarios">
+				<h3 class="text-center" >Preguntas</h3>
+					<form method="POST" action="{{dirpath}}favor/comentar/">
+						<div class="comentar">
 						  <div class="panel-heading">
-						    <h3 class="panel-title">Panel title</h3>
 						  </div>
 						  <div class="panel-body">
-						    <textarea class="form-control" rows="3"></textarea>
+						  	<input type="text" hidden="true" name="usuario" value="{{usuario.email}}">
+						  	<input type="text" hidden="true" name="favor_id" value="{{favor[0].id}}">
+						    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+						    <textarea class="form-control" placeholder="Escribe una pregunta" name="comentario" rows="3"></textarea>
 						  </div>
+						<p class="lead">
+							<button type="submit" class="btn btn-lg">Enviar comentario</button>
+						</p>
 						</div>
 					</form>
-				</div>
-					{% for f in comentarios %}
-						<div class="panel panel-default">
-						  <div class="panel-heading">
-						    <h3 class="panel-title">Panel title</h3>
-						  </div>
-						  <div class="panel-body">
-						    {{ f.descripcion}}
-						  </div>
+					{% for comentario in comentarios %}
+						<div class="panel borde-comentario panel-default">
+						<div class="panel-heading">
+						<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+						{{ comentario.descripcion}} . Comentario de {{comentario.nombre}}
 						</div>
+						  	{# {% if favor[0].nombre == usuario.nombre %} #}
+								{% if comentario.id_respuesta is not empty %}
+										{% for respuesta in respuestas %}
+											{% if respuesta.id_comentario == comentario.id_comentario %}
+												<div class="panel   respuesta">
+												  <div class="panel-heading">
+												  	<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+												  	{{ respuesta.respuesta}}
+												  </div>
+												</div>
+											</div>
+											{% endif %}
+										{% endfor %}
+								{% elseif favor[0].nombre == usuario.nombre %}
+											<div class="coment">
+												<form method="POST" action="{{dirpath}}favor/responder/">
+													<div class="panel panel-info">
+													  <div class="panel-heading">
+													    <h3 class="panel-title">Responder Pregunta</h3>
+													  </div>
+													  <div class="panel-body">
+													  	<input type="text" hidden="true" name="usuario" value="{{usuario.email}}">
+													  	<input type="text" hidden="true" name="comentario_id" value="{{comentario.id_comentario}}">
+													    <textarea class="form-control" name="respuesta" rows="3"></textarea>
+													  </div>
+													<p class="lead">
+														<button type="submit" class="btn btn-lg">Responder</button>
+													</p>
+													</div>
+												</form>
+											</div>
+								{% endif %}
+							{# {% endif %} #}
 					{% endfor %}
 			</div>
 		</div>

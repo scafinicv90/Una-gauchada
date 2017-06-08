@@ -56,7 +56,8 @@ class Login extends CI_Controller
             $data = $this->validar($entry);
             /**/
 
-            if ($data['limpio'] == true) {
+            if ($data['limpio'] == true)
+            {
                 /* Se realiza un llamado a una funcion del model para obtener la consulta,
                 solo con el email es suficiente para conseguir los datos del usuario ya que
                 este campo es unico y no puede repetirse */
@@ -88,24 +89,17 @@ class Login extends CI_Controller
                         $data['passwordIncorrecta'] = 'La contraseña es incorrecta';
                         $this->twig->display('login', $data);
                         return 0;
-
                     }
-                } else {
-                    $data['passwordIncorrecta'] = 'La contraseña es incorrecta';
-                    // var_dump($data);
-                    $this->twig->display('login', $data);
-                    return 0;
-
                 }
-            } else {
+                else {
                 $data['noExiste'] = 'El usuario no existe';
                 $this->twig->display('login', $data);
                 return 0;
-            }
-
-            // var_dump($data);
+                }
+            }else{
             /* aca entro cuando no cumple los requisitos o me quieren poner basura */
             $this->twig->display('login', $data);
+            }
         }
     }
 

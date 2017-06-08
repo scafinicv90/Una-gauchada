@@ -31,6 +31,17 @@ class UsuarioModel extends CI_Model
         }
 
     }
+    public function obtenerCreditos($email)
+    {   
+        $query = $this->db->select('credito');
+        $query = $this->db->where('email', $email);
+        $query = $this->db->get('usuario');
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
     public function agregarUsuario($emailUser)
     {
         $this->db->insert('usuario', $emailUser);

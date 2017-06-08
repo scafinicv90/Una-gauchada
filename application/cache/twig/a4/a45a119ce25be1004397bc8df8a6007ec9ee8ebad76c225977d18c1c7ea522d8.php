@@ -25,9 +25,11 @@ class __TwigTemplate_699bf86d9c333d940c5d5c78a8c7f5412bbbaa8790c89d234ee640a8b89
         // line 6
         echo twig_escape_filter($this->env, ($context["dirpath"] ?? null), "html", null, true);
         echo "home/\" title=\"\">Inicio</a></li>
-\t\t<li><a href=\"\" title=\"\">Ventas</a></li>
-\t\t<li><a href=\"\" title=\"contacto\">Contacto</a></li>
-\t\t</ul>
+\t\t";
+        // line 8
+        echo "\t\t";
+        // line 9
+        echo "\t\t</ul>
   \t</div>
 
 </div>
@@ -46,7 +48,7 @@ class __TwigTemplate_699bf86d9c333d940c5d5c78a8c7f5412bbbaa8790c89d234ee640a8b89
 
     public function getDebugInfo()
     {
-        return array (  26 => 6,  19 => 1,);
+        return array (  32 => 9,  30 => 8,  26 => 6,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -65,8 +67,8 @@ class __TwigTemplate_699bf86d9c333d940c5d5c78a8c7f5412bbbaa8790c89d234ee640a8b89
 \t</div>
 \t<div class=\"col-xs-6\"><ul class=\"list-inline text-right\">
 \t\t<li><a href=\"{{ dirpath }}home/\" title=\"\">Inicio</a></li>
-\t\t<li><a href=\"\" title=\"\">Ventas</a></li>
-\t\t<li><a href=\"\" title=\"contacto\">Contacto</a></li>
+\t\t{# <li><a href=\"\" title=\"\">Ventas</a></li> #}
+\t\t{# <li><a href=\"\" title=\"contacto\">Contacto</a></li> #}
 \t\t</ul>
   \t</div>
 
