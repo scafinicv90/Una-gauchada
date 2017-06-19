@@ -25,8 +25,14 @@ class Login extends CI_Controller
             if ($cons == false ) {
                                 $favores=false;
                                 $imagenes=false;
+                                 $query        = $this->favorModel->buscarCategorias();
+                                $categoriasBD = $query->result();
+                                $query = $this->favorModel->obtenerCiudades();
+                                $ciudades = $query->result();
                                 $data = array(
                                     'favores' => $favores,
+                                    'categorias' => $categoriasBD,
+                                    'ciudades' => $ciudades,
                                     'imagenes' => $imagenes,
                                     'usuario' => $this->session->userdata());
                                 $this->twig->display('backend', $data);
@@ -37,10 +43,15 @@ class Login extends CI_Controller
                 // $query = $this->favorModel->obtenerFavorC($fav['id']);
                 $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
                 $imagenes[$favor->id_favor]=$resul->result();
-            
             }
+             $query        = $this->favorModel->buscarCategorias();
+            $categoriasBD = $query->result();
+            $query = $this->favorModel->obtenerCiudades();
+            $ciudades = $query->result();
             $data = array(
                 'favores' => $favores,
+                'categorias' => $categoriasBD,
+                'ciudades' => $ciudades,
                 'imagenes' => $imagenes,
                 'usuario' => $this->session->userdata());
             $this->twig->display('backend', $data);
@@ -101,10 +112,16 @@ class Login extends CI_Controller
                             if ($cons == false ) {
                                 $favores=false;
                                 $imagenes=false;
-                                $data = array(
-                                    'favores' => $favores,
-                                    'imagenes' => $imagenes,
-                                    'usuario' => $this->session->userdata());
+                                    $query        = $this->favorModel->buscarCategorias();
+                                    $categoriasBD = $query->result();
+                                    $query = $this->favorModel->obtenerCiudades();
+                                    $ciudades = $query->result();
+                                    $data = array(
+                                        'favores' => $favores,
+                                        'categorias' => $categoriasBD,
+                                        'ciudades' => $ciudades,
+                                        'imagenes' => $imagenes,
+                                        'usuario' => $this->session->userdata());
                                 $this->twig->display('backend', $data);
                                 return 0;
                             }
@@ -115,8 +132,14 @@ class Login extends CI_Controller
                                 $imagenes[$favor->id_favor]=$resul->result();
                             
                             }
+                            $query        = $this->favorModel->buscarCategorias();
+                            $categoriasBD = $query->result();
+                            $query = $this->favorModel->obtenerCiudades();
+                            $ciudades = $query->result();
                             $data = array(
                                 'favores' => $favores,
+                                'categorias' => $categoriasBD,
+                                'ciudades' => $ciudades,
                                 'imagenes' => $imagenes,
                                 'usuario' => $this->session->userdata());
                         $this->twig->display('backend', $data);

@@ -25,9 +25,14 @@ class ComprarCredito extends CI_Controller
                 $imagenes[$favor->id_favor]=$resul->result();
             
             }
+             $query        = $this->favorModel->buscarCategorias();
+            $categoriasBD = $query->result();
+            $query = $this->favorModel->obtenerCiudades();
+            $ciudades = $query->result();
             $data = array(
-                'succes' => 'Compra de creditos confirmada',
                 'favores' => $favores,
+                'categorias' => $categoriasBD,
+                'ciudades' => $ciudades,
                 'imagenes' => $imagenes,
                 'usuario' => $this->session->userdata());
             $this->twig->display('backend', $data);

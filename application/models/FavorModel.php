@@ -74,7 +74,15 @@ class FavorModel extends CI_Model
             return (false);
         }
     }
-
+    public function obtenerCiudades()
+    {
+        $query = $this->db->get('localidades');
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
     public function obtenerFavores()
     {
 
