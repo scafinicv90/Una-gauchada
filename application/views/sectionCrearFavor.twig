@@ -28,7 +28,8 @@
     <div class="col-md-4">
     </div>
     <div class="col-md-8">
-      <form data-toggle="validator" action="{{ dirpath }}favor/agregar/multipart" method="POST" enctype="multipart/form-data">
+
+      <form data-toggle="validator" action="{{ dirpath }}favor/agregar/" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           {% if  errores  is defined %}
           <p class="text-danger">{{errores['titulo']}}</p>
