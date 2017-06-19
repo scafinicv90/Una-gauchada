@@ -4,7 +4,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class FavorModel extends CI_Model
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -12,58 +11,46 @@ class FavorModel extends CI_Model
 
     }
 
-    public function agregarFavor($gauchada)
+    public function agregarFavor($gauchada)/*falta probar*/
     {
         $this->db->insert('favor', $gauchada);
         $query = $this->db->insert_id();
         return $query;
 
     }
-    public function agregarImagen($img, $id_usuario, $id_favor)
+    public function agregarImagen($img,$id_favor)/*falta probar*/
     {
         $insert = array("img" => $img,
-            "id_usuario"          => $id_usuario,
-            "id_favor"            => $id_favor);
+            "favor_id"            => $id_favor);
 
         $this->db->insert("imagenes", $insert);
     }
-    public function agregarComentario($query)
+    public function agregarComentario($query)/*falta probar*/
     {
-        $this->db->insert('comentario',$query);
+        $this->db->insert('comentarios',$query);
     }
-    public function agregarRespuesta($query)
+    public function agregarRespuesta($query)/*falta probar*/
     {
-        $this->db->insert('respuesta',$query);
+        $this->db->insert('respuestas',$query);
     }
-    public function updateComentario($id_comentario)
+    public function updateComentario($id_comentario)/*falta probar*/
     {
         $query = $this->db->insert_id();
-        // $this->db->where('id_comentario',$id_comentario);
-        // $this->db->set('id_respuesta', $query);
-        // $this->db->insert('comentario');
         $update = array("id_respuesta" => $query);
         $this->db->where('id_comentario',$id_comentario);
-        $this->db->update("comentario",$update);
+        $this->db->update("comentarios",$update);
     }
-    public function agregarRelacionComentarioFavor($favor_id)
+
+    public function agregarFC($categoria, $id_favor)/*falta probar*/
     {
-        $query =array('favor_id' => $favor_id,
-                        'comentario_id'=>$this->db->insert_id() );
-        $this->db->insert('favor_comentario',$query);
+        // foreach ($categoria as $cat) {
+            $this->db->set('favor_id_favor', $id_favor);
+            $this->db->set('categorias_id_categoria', $categoria);
+            $this->db->insert('favor_has_categorias');
+        // }
 
     }
-    // public function agregarFC($categoria)
-
-    public function agregarFC($categoria, $id_favor)
-    {
-        foreach ($categoria as $cat) {
-            $this->db->set('id_favor', $id_favor);
-            $this->db->set('id_categoria', $cat);
-            $this->db->insert('favor_categoria');
-        }
-
-    }
-    public function obtenerKeyFavor()
+    public function obtenerKeyFavor()/*falta probar*/
     {
         // SELECT `AUTO_INCREMENT`
         // FROM  INFORMATION_SCHEMA.TABLES
@@ -79,7 +66,7 @@ class FavorModel extends CI_Model
     }
     public function obtenerFavor($id)
     {
-        $query = $this->db->where('id', $id);
+        $query = $this->db->where('id_favor', $id);
         $query = $this->db->get('favor');
         if ($query->num_rows() > 0) {
             return ($query);
@@ -88,37 +75,64 @@ class FavorModel extends CI_Model
         }
     }
 
-    public function obtenerFavorC($id)
+    public function obtenerFavores()
     {
+
         $this->db->select('*');
         $this->db->from('favor');
-        $this->db->join('usuario', 'usuario.id_usuario=favor.id_usuario');
-        $this->db->join('imagenes', 'imagenes.id_favor=favor.id','left');
-        // SELECT * FROM favor JOIN usuario ON usuario.id_usuario = favor.id_usuario LEFT JOIN imagenes ON imagenes.id_favor=favor.id WHERE id=34
-
-// =======
-//         $this->db->join('imagenes', 'imagenes.id_favor=favor.id', 'left');
-// >>>>>>> 95dd9cedcd683d2f3b147ff0e22ca19416fceb57
-        $this->db->where('id', $id);
+        $this->db->join('usuarios', 'favor.id_usuario=usuarios.id_usuario');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return ($query);
         } else {
             return (false);
         }
-        return ($query);
+    }
+    public function obtenerFavorUsuario($id)
+    {
+        $this->db->select('*');
+        $this->db->from('favor');
+        $this->db->join('usuarios', 'usuarios.id_usuario=favor.id_usuario');
+        $this->db->where('id_favor', $id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
+    public function obtenerImagenesId($id_favor)
+    {
+        $this->db->select('*');
+        $this->db->from('imagenes');
+        $this->db->where('favor_id', $id_favor);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
+    public function obtenerImagenes()
+    {
+        $this->db->select('*');
+        $this->db->from('imagenes');
+        $query = $this->db->get();
+        // var_dump($query->result());die();
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
     }
 
     public function obtenerComentarios($id_favor)
     {
-        $this->db->select('comentario.descripcion, comentario.id_respuesta , comentario.id_comentario,usuario.nombre');
-        $this->db->from('favor');
-        $this->db->join('favor_comentario', 'favor.id = favor_comentario.favor_id', 'right');
-        $this->db->join('comentario', 'comentario.id_comentario = favor_comentario.comentario_id', 'right');
-        $this->db->join('usuario', 'usuario.id_usuario=comentario.id_usuario');
-        $this->db->where('id', $id_favor);
+        $this->db->select('comentarios.descripcion, comentarios.id_respuesta , comentarios.id_comentario,usuarios.nombre');
+        $this->db->from('comentarios');
+        $this->db->join('usuarios', 'usuarios.id_usuario = comentarios.usuario_id');
+        $this->db->where('favor_id', $id_favor);
         $query = $this->db->get();
-        // var_dump($query->result());die();
         if ($query->num_rows() > 0) {
             return ($query);
         } else {
@@ -127,59 +141,37 @@ class FavorModel extends CI_Model
     }
     public function obtenerRespuestas($id_favor)
     {
-        $this->db->select('respuesta.respuesta,respuesta.id_usuario,respuesta.id_comentario');
+        $this->db->select('respuestas.respuesta,respuestas.usuarios_id,respuestas.id_comentario');
         $this->db->from('favor');
-        $this->db->join('favor_comentario', 'favor.id = favor_comentario.favor_id' ,'right');
-        $this->db->join('comentario', 'comentario.id_comentario = favor_comentario.comentario_id' ,'right');
-        $this->db->join('usuario','usuario.id_usuario=comentario.id_usuario');
-        $this->db->join('respuesta','respuesta.id_respuesta= comentario.id_respuesta');
-        $this->db->where('id',$id_favor);
+        $this->db->join('comentarios', 'comentarios.favor_id= favor.id_favor');
+        $this->db->join('usuarios','usuarios.id_usuario=comentarios.usuario_id');
+        $this->db->join('respuestas','respuestas.id_comentario=comentarios.id_comentario');
+        $this->db->where('id_favor',$id_favor);
         $query = $this->db->get();
-        // var_dump($query->result());die();
         if ($query->num_rows() > 0) {
             return ($query);
         } else {
             return (false);
         }
     }
-    public function restarCredito($email)
+    public function restarCredito($email)/*falta probar*/
     {
         $this->db->set('credito', 'credito-1', false);
         $this->db->where('email', $email);
-        $this->db->update('usuario');
+        $this->db->update('usuarios');
 
     }
-    public function buscarCategoria()
+    public function buscarCategorias()/*falta probar*/
     {
-        $query = $this->db->get('categoria');
+        $query = $this->db->get('categorias');
         return ($query);
     }
-    public function buscarFavores()
+    public function obtenerMisFavores($email)/*falta probar*/
     {
 
         $this->db->select('*');
         $this->db->from('favor');
-        $this->db->join('usuario', 'favor.id_usuario=usuario.id_usuario');
-        $this->db->join('imagenes', 'imagenes.id_favor=favor.id', 'left');
-        $query = $this->db->get();
-        if ($query->num_rows() > 0) {
-            return ($query);
-        } else {
-            return (false);
-        }
-
-        //$query = $this->db->get('favor');
-        /* para el dia que lo tenga que ordenar, esto es un ejemplo
-        $this->db->order_by('title', 'DESC');
-        $this->db->order_by('name', 'ASC');*/
-        // return ($query);
-    }
-    public function buscarMisFavores($email)
-    {
-
-        $this->db->select('*');
-        $this->db->from('favor');
-        $this->db->join('usuario', 'favor.id_usuario=usuario.id_usuario');
+        $this->db->join('usuarios', 'favor.id_usuario=usuarios.id_usuario');
         $this->db->where('email', $email);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {

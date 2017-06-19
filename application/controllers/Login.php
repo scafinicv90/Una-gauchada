@@ -20,14 +20,33 @@ class Login extends CI_Controller
 
         if ($this->logueado()) {
 
-            $cons         = $this->favorModel->buscarFavores();
-            $favores    = $cons->result();
+            $cons    = $this->favorModel->obtenerFavores();
+            // var_dump($cons);
+            if ($cons == false ) {
+                                $favores=false;
+                                $imagenes=false;
+                                $data = array(
+                                    'favores' => $favores,
+                                    'imagenes' => $imagenes,
+                                    'usuario' => $this->session->userdata());
+                                $this->twig->display('backend', $data);
+                                return 0;
+            }
+            $favores     = $cons->result();
+            foreach ($favores as $favor) {
+                // $query = $this->favorModel->obtenerFavorC($fav['id']);
+                $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
+                $imagenes[$favor->id_favor]=$resul->result();
+            
+            }
             $data = array(
-                'favores'    => $favores,
-                'usuario'    => $this->session->userdata());
+                'favores' => $favores,
+                'imagenes' => $imagenes,
+                'usuario' => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
             $this->twig->display('index');
+            return 0;
         }
     }
     public function logueado()
@@ -71,18 +90,35 @@ class Login extends CI_Controller
                             'nombre'           => $usuario[0]->nombre,
                             'apellido'         => $usuario[0]->apellido,
                             'email'            => $usuario[0]->email,
-                            'telefono'         => $usuario[0]->tel,
-                            'fecha_nacimiento' => $usuario[0]->fec_nac,
+                            'telefono'         => $usuario[0]->telefono,
+                            'fecha_nacimiento' => $usuario[0]->fecha_nacimiento,
                             'tipo'             => $usuario[0]->tipo,
                             'login'            => true,
                         );
                         $this->session->set_userdata($user);
                         // traer favores de bd
-                        $cons         = $this->favorModel->buscarFavores();
-                        $favores    = $cons->result();
-                        $data = array(
-                                'favores'    => $favores,
-                                'usuario'    => $this->session->userdata());
+                            $cons    = $this->favorModel->obtenerFavores();
+                            if ($cons == false ) {
+                                $favores=false;
+                                $imagenes=false;
+                                $data = array(
+                                    'favores' => $favores,
+                                    'imagenes' => $imagenes,
+                                    'usuario' => $this->session->userdata());
+                                $this->twig->display('backend', $data);
+                                return 0;
+                            }
+                            $favores     = $cons->result();
+                            foreach ($favores as $favor) {
+                                // $query = $this->favorModel->obtenerFavorC($fav['id']);
+                                $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
+                                $imagenes[$favor->id_favor]=$resul->result();
+                            
+                            }
+                            $data = array(
+                                'favores' => $favores,
+                                'imagenes' => $imagenes,
+                                'usuario' => $this->session->userdata());
                         $this->twig->display('backend', $data);
                         return 0;
                     } else {

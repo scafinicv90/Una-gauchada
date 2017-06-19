@@ -23,7 +23,7 @@
 	      		{% endif %}
 	      		{% if usuario['login'] == true %}
 				<li>
-					<button class="btn btn-link bdropdown-toggle btn-header" type="button" id="menut" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{ usuario['nombre'] }}<span class="caret"></span></button>
+					<button class="btn btn-link bdropdown-toggle btn-header" type="button" id="menut"  data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{ usuario['nombre'] }}<span class="caret"></span></button>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="menut">
 				      {# <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ver perfil</a></li> #}
 				      <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ dirpath }}favor/crear">Crear gauchada</a></li>
@@ -40,6 +40,7 @@
 	  </div>
 	</nav>
 	
+
 	      		{% else %}
 	      		<li><a href="{{ dirpath }}registrar/register/"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
 				<li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>

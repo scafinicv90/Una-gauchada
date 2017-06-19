@@ -21,14 +21,23 @@ class Home extends CI_Controller
         if ($this->session->userdata('login')) {
             /*  $this->session->userdata()); tiene la sesion y se la mando a la vista*/
 
-            $cons    = $this->favorModel->buscarFavores();
-            $fav     = $cons->result();
-            $favores = json_decode(json_encode($fav), true);
-            foreach ($favores as $fav) {
-                $query = $this->favorModel->obtenerFavorC($fav['id']);
+            $cons    = $this->favorModel->obtenerFavores();
+            if ($cons == false ) {
+                $data = array(
+                'favores' => false,
+                'imagenes' => false,
+                'usuario' => $this->session->userdata());
+                $this->twig->display('backend', $data);
+                return 0;
             }
+            $favores=$cons->result();
+            foreach ($favores as $favor) {
+                $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
+                $imagenes[$favor->id_favor]=$resul->result();
+                }
             $data = array(
                 'favores' => $favores,
+                'imagenes' => $imagenes,
                 'usuario' => $this->session->userdata());
             $this->twig->display('backend', $data);
             return 0;

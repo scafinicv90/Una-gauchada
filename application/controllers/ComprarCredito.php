@@ -17,11 +17,19 @@ class ComprarCredito extends CI_Controller
 
 	public function index() {
         if ($this->session->userdata('login')){
-            $cons         = $this->favorModel->buscarFavores();
-            $favores    = $cons->result();
+            $cons    = $this->favorModel->obtenerFavores();
+            $favores     = $cons->result();
+            foreach ($favores as $favor) {
+                // $query = $this->favorModel->obtenerFavorC($fav['id']);
+                $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
+                $imagenes[$favor->id_favor]=$resul->result();
+            
+            }
             $data = array(
-                'favores'    => $favores,
-                'usuario'    => $this->session->userdata());
+                'succes' => 'Compra de creditos confirmada',
+                'favores' => $favores,
+                'imagenes' => $imagenes,
+                'usuario' => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
             $this->twig->display('index');
@@ -30,7 +38,6 @@ class ComprarCredito extends CI_Controller
     public function validar()
     {
         $cant = 50*(int)($this->input->post('cantidad'));
-        var_dump($cant);
         $data =array( 'usuario' => $this->session->userdata(),
                       'validada' => 'La tarjeta ah sido validad correctamente',
                       'precioFinal' => $cant );

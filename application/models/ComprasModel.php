@@ -17,7 +17,7 @@ class ComprasModel extends CI_Model
 
         $this->db->set('credito',$creditos, false);
         $this->db->where('email', $email);
-        $this->db->update('usuario');
+        $this->db->update('usuarios');
 
     }
 }
