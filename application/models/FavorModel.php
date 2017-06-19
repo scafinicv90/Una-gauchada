@@ -81,6 +81,7 @@ class FavorModel extends CI_Model
         $this->db->select('*');
         $this->db->from('favor');
         $this->db->join('usuarios', 'favor.id_usuario=usuarios.id_usuario');
+        $this->db->where('favor.fecha_limite >=', date("Y-m-d") );
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return ($query);

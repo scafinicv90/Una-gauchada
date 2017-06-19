@@ -1,4 +1,5 @@
 
+	{{ dump() }}
 	<div class="row main">
 			{% if succes is defined %}
 				<div class="alert alert-success alert-dismissible">
@@ -72,7 +73,8 @@
 	            	</article>
 				{% endif %}
 			{% for favor in favores %}
-				<article class="post clearfix">
+				{% if  favor.email != usuario.email %}
+					<article class="post clearfix">
 	             	<div class="box">
 	             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="thumb pull-left"><img class="img-thumbnail" src = '{{pathimg}}{{ imagenes[favor.id_favor][0].img }}'  /></a>
 		             	<h2 class="post-title">{{favor.titulo}}</h2>
@@ -89,7 +91,8 @@
 	             		 {% endif %}
 	             	</div>
 
-	            </article>
+	            	</article>
+				{% endif %}
 	        {% endfor %}
 	    </section>
 	</div>
