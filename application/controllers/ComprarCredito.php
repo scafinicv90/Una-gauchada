@@ -39,7 +39,7 @@ class ComprarCredito extends CI_Controller
     {
         $cant = 50*(int)($this->input->post('cantidad'));
         $data =array( 'usuario' => $this->session->userdata(),
-                      'validada' => 'La tarjeta ah sido validad correctamente',
+                      'validada' => 'La tarjeta ha sido validad correctamente',
                       'precioFinal' => $cant );
         $this->twig->display('confirmarCompra',$data);
     }

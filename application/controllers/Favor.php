@@ -191,6 +191,23 @@ class Favor extends CI_Controller
     public function crear()/*anda*/
     {
         if ($this->session->userdata('login')) {
+            $query=$this->usuarioModel->buscarUsuario($this->session->userdata('email'));
+            $creditos=$query->result();
+            if ($creditos[0]->credito == 0) {
+                $cons    = $this->favorModel->obtenerFavores();
+                $favores     = $cons->result();
+                foreach ($favores as $favor) {
+                    $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
+                    $imagenes[$favor->id_favor]=$resul->result();
+                }
+                $data = array(
+                    'favores' => $favores,
+                    'imagenes' => $imagenes,
+                    'creditoInsuficiente' => "No cuenta con el credito suficienete para crear una gauchada",
+                    'usuario' => $this->session->userdata());
+                $this->twig->display('backend', $data);
+                return 0;
+            }
             $query        = $this->favorModel->buscarCategorias();
             $categoriasBD = $query->result();
             $data         = array(
@@ -198,6 +215,7 @@ class Favor extends CI_Controller
                 'categorias' => $categoriasBD,
             );
             $this->twig->display('formfavor', $data);
+            return 0;
 
         } else {
 

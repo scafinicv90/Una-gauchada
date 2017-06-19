@@ -7,6 +7,18 @@
             		Gracias por confiar en nosotros.
               </div>
 			{% endif %}
+			{% if creditoInsuficiente is defined %}
+				<div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> {{ creditoInsuficiente }}!</h4>
+                <p class="lead">
+		          <a class="btn btn-primary btn-lg" href="{{dirpath}}comprarCredito/mostrarFormulario/" role="button">Comprar creditos</a>
+		          <a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Ver Inicio</a>
+		        </p>
+		        <br>
+            		Gracias por confiar en nosotros.
+              </div>
+			{% endif %}
 
 			<div class="migas-de-pan">
 				<ol class="breadcrumb">
