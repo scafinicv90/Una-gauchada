@@ -19,11 +19,24 @@ class ComprarCredito extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('login')) {
-            $cons    = $this->favorModel->buscarFavores();
+            $cons    = $this->favorModel->obtenerFavores();
             $favores = $cons->result();
-            $data    = array(
-                'favores' => $favores,
-                'usuario' => $this->session->userdata());
+            foreach ($favores as $favor) {
+                // $query = $this->favorModel->obtenerFavorC($fav['id']);
+                $resul                      = $this->favorModel->obtenerImagenesId($favor->id_favor);
+                $imagenes[$favor->id_favor] = $resul->result();
+
+            }
+            $query        = $this->favorModel->buscarCategorias();
+            $categoriasBD = $query->result();
+            $query        = $this->favorModel->obtenerCiudades();
+            $ciudades     = $query->result();
+            $data         = array(
+                'favores'    => $favores,
+                'categorias' => $categoriasBD,
+                'ciudades'   => $ciudades,
+                'imagenes'   => $imagenes,
+                'usuario'    => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
             $this->twig->display('index');
@@ -31,10 +44,10 @@ class ComprarCredito extends CI_Controller
     }
     public function validar()
     {
-        $cant = 50 * (int) ($this->input->post('cantidad'));
 
+        $cant = 50 * (int) ($this->input->post('cantidad'));
         $data = array('usuario' => $this->session->userdata(),
-            'validada'              => 'La tarjeta ah sido validad correctamente',
+            'validada'              => 'La tarjeta ha sido validad correctamente',
             'precioFinal'           => $cant);
         $this->twig->display('confirmarCompra', $data);
     }

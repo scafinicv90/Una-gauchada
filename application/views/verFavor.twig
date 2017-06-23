@@ -24,27 +24,42 @@
 					<img src = '{{pathimg}}{{ imagenes[0].img }}' class="foto-favor"  />
 					{# Despues hay que relacionar el link de la imagen con la base de datos #}
 				</div>
-				<br><br>
-				<p class="idFavor">{{favor[0].titulo }}</p>
-				<br><br><br><br>
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  				
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="{{path}}assets/images/logo.png"  />
-    </div>
-{% for imagen in imagenes %}
+				<br>
+				<p class="idFavor"></p>
+				<p class="tituloFavor idFavor">{{favor[0].titulo }}</p>
+				<br><br><br><br><br><br><br>
+{# begin carrusel #}
+						<div class="box-body">
+		              <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		               {#  <ol class="carousel-indicators">
+		                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+		                  {% for imagen in imagenes %}
+								<li data-target="#carousel-example-generic" data-slide-to="" class=""></li>
+		                  {% endfor %}
+		                </ol> #}
+		                <div class="carousel-inner">
+		                  <div class="item active">
+		                    <img src="{{pathimg}}/uploads/imgFavores/logo.png" alt="First slide">
 
-    <div class="item">
-     <img src = '{{pathimg}}{{ imagen['img'] }}'   />
-    </div>
-
-{% endfor %}
-
-  </div>
+		                    <div class="carousel-caption">
+		                    </div>
+		                  </div>
+		                  {% for imagen in imagenes %}
+								<div class="item">
+		                    		<img src="{{pathimg}}{{imagen.img}}" alt="Second slide">
+		                  		</div>
+		                  {% endfor %}
+		                </div>
+		                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+		                  <span class="fa fa-angle-left"></span>
+		                </a>
+		                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+		                  <span class="fa fa-angle-right"></span>
+		                </a>
+		              </div>
+		            </div>
+		             {# /*end carousel*/ #}
 
   <!-- Left and right controls -->
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -58,22 +73,31 @@
 </div>
 				<br><br>
 				<p class="ubicacionFavor">Ubicación: {{favor[0].ciudad}}, {{favor[0].provincia}}</p>
-				<p class="fec_limFavor">Fecha límite: {{favor[0].fec_lim}}</p>
+				<p class="fec_limFavor">Fecha límite: {{favor[0].fecha_limite}}</p>
 				<p class="descripcionFavor">Descripción: {{favor[0].descripcion}}</p>
-				<p class="id_usuarioFavor">Nombre usuario: {{favor[0].nombre}}</p>
+
+				<p class="id_usuarioFavor">Usuario: {{favor[0].nombre}}</p>
 			</div>
 	        </article>
 
 	        {# empieza los comentarios #}
 			<div class="comentarios">
 				<h3 class="text-center" >Preguntas</h3>
-					<form method="POST" action="{{dirpath}}favor/comentar/">
+				{% if succes is defined %}
+				<div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> {{ succes }}!</h4>
+            		Gracias por confiar en nosotros.
+              </div>
+			{% endif %}
+					{% if favor[0].email != usuario.email  %}
+						<form method="POST" action="{{dirpath}}favor/comentar/">
 						<div class="comentar">
 						  <div class="panel-heading">
 						  </div>
 						  <div class="panel-body">
 						  	<input type="text" hidden="true" name="usuario" value="{{usuario.email}}">
-						  	<input type="text" hidden="true" name="favor_id" value="{{favor[0].id}}">
+						  	<input type="text" hidden="true" name="favor_id" value="{{favor[0].id_favor}}">
 						    <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
 						    <textarea class="form-control" placeholder="Escribe una pregunta" name="comentario" rows="3"></textarea>
 						  </div>
@@ -82,6 +106,7 @@
 						</p>
 						</div>
 					</form>
+					{% endif %}
 					{% for comentario in comentarios %}
 						<div class="panel borde-comentario panel-default">
 						<div class="panel-heading">

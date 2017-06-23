@@ -21,9 +21,9 @@
 					<div class="form-group has-feedback">
 						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 						<div class=" col-sm-10 col-md-4 input-group">
-							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-pattern-error="coloque un email valido" placeholder="Email" data-error="Coloque un email valido" required  >
-						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-    					<div class="help-block with-errors"></div>
+							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email" data-error="Coloque un email valido" required  >
+							<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    						<div class="help-block with-errors"></div>
 						</div>
 					</div>
 					<div class="form-group has-feedback">
@@ -56,7 +56,7 @@
 					<div class="form-group has-feedback">
 						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 						<div class=" col-sm-10 col-md-4 input-group">
-							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-pattern-error="coloque un email valido" placeholder="Email" data-error="coloque un email valido" value="{{ email }}" required >
+							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$"  placeholder="Email" data-error="coloque un email valido" value="{{ email }}" required >
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
     					<div class="help-block with-errors"></div>
 						</div>
@@ -95,12 +95,11 @@
 					<div class="form-group has-feedback">
 						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 						<div class=" col-sm-10 col-md-4 input-group">
-							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-pattern-error="coloque un email valido" placeholder="Email" data-error="coloque un email valido" required >
+							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email" data-error="coloque un email valido" required >
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
     					<div class="help-block with-errors"></div>
 						</div>
 					</div>
-	
 
 					<div class="form-group has-feedback">
 						<label for="inputPassword" class="col-sm-2 control-label">Password</label>
@@ -135,7 +134,7 @@
 					<div class="form-group has-feedback">
 						<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 						<div class=" col-sm-10 col-md-4 input-group">
-							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-pattern-error="coloque un email valido" placeholder="Email" data-error="coloque un email valido" value="{{ email }}" required >
+							<input type="email" class="form-control" id="inputEmail" name="email" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email" data-error="coloque un email valido" value="{{ email }}" required >
 						<span class="glyphicon form-control-feedback" aria-hidden="true"></span>
     					<div class="help-block with-errors"></div>
 						</div>
@@ -170,7 +169,7 @@
 				</form>
 				{% endif %}
 				<p> No tenes cuenta ? <a href="{{ dirpath }}registrar/register/">Registrate</a> es gratis.</p>
-				<p> Olvidaste la contraseña? <a href="#">Recuperar contraseña</a></p>
+				{# <p> Olvidaste la contraseña? <a href="#">Recuperar contraseña</a></p> #}
 
 	</div>
 	</div>

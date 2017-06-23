@@ -1,5 +1,24 @@
 
 	<div class="row main">
+			{% if succes is defined %}
+				<div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> {{ succes }}!</h4>
+            		Gracias por confiar en nosotros.
+              </div>
+			{% endif %}
+			{% if creditoInsuficiente is defined %}
+				<div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> {{ creditoInsuficiente }}!</h4>
+                <p class="lead">
+		          <a class="btn btn-primary btn-lg" href="{{dirpath}}comprarCredito/mostrarFormulario/" role="button">Comprar creditos</a>
+		          <a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Ver Inicio</a>
+		        </p>
+		        <br>
+            		Gracias por confiar en nosotros.
+              </div>
+			{% endif %}
 
 			<div class="migas-de-pan">
 				<ol class="breadcrumb">
@@ -9,63 +28,69 @@
 			<!-- end breadcrum -->
 			<!--  aside de busqueda -->
 			<div class=" col-md-4">
-				{# <div class="display">
+				<div class="aside">
 					<h2>Busqueda</h2>
-			    <form class="navbar-form navbar-left" role="search">
-			  		<div class="form-group">
-			    		<input type="text" class="form-control" placeholder="Search">
-			  		</div>
-			  		<button type="submit" class="btn btn-default">Submit</button>
-				</form>
+				    <form class=" navbar-left" name="buscador" method="POST" action="{{ dirpath }}busqueda/busqueda/" >
+				  		<div class="form-group">
+				    		<input type="text" class="form-control" name="busqueda" placeholder="Buscar">
+				  		<button type="submit" class="btn btn-default">Buscar</button>
+				  		</div>
 
-				<h2>Filtrado por</h2>
-				<div class="list-group">
-					<a href="#" class="list-group-item ">
-					<h4 class="list-group-item-heading">Categoria</h4>
-    				<select class="form-control"  id="Categoria">
-        			{% for categoria in categorias %}
-        			<option>{{categoria['nombre']}}</option>
-  					{% endfor %}
-  					</select>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Tiempo</h4>
-						<a href="#"><p class="list-group-item-text">largo</p></a>
-						<a href="#"><p class="list-group-item-text">medio</p></a>
-						<a href="#"><p class="list-group-item-text">corto</p></a>
-					</a>
-					<a href="#" class="list-group-item">
-						<h4 class="list-group-item-heading">Ubicacion</h4>
-						<a href="#"><p class="list-group-item-text">la plata</p></a>
-						<a href="#"><p class="list-group-item-text">Villa elisa</p></a>
-					</a>
+						{# <h2>Filtrado por</h2> #}
+						<div class="form-group">
+							<h4 class="">Categoria</h4>
+		    				<select class="form-control"  name="categoria" id="Categoria">
+		        			<option>Selecciona</option>
+		        			{% for categoria in categorias %}
+		        			<option>{{categoria.nombre}}</option>
+		  					{% endfor %}
+		  					</select>
+		  				</div> <br>
+						<div class="form-group">
+							<h4 class="">Ciudad</h4>
+		    				<select class="form-control select2" name="ciudad" id="Ciudad">
+		    				<option>Selecciona</option>
+		        			{% for ciudad in ciudades %}
+		        			<option>{{ciudad.localidad}}</option>
+		  					{% endfor %}
+		  					</select>
+		  				</div>
+		  				{# <input type="submit" class="btn btn-primary btn-lg"  value="Buscar"> #}
+		  					{# <button type="submit" class="btn btn-default">Buscar</button> #}
+					</form>
 				</div>
-				</div> #}
 			</div>
 			<!-- begin post -->
-			
-
 			<section class="posts col-md-8">
+				{% if favores == false %}
+					<article class="post clearfix">
+		             	<div class="box">
+		             		<h2 class="post-title">No hay posts </h2>
+		             	</div>
+
+	            	</article>
+				{% endif %}
 			{% for favor in favores %}
-				<article class="post clearfix">
+				{% if  favor.email != usuario.email %}
+					<article class="post clearfix">
 	             	<div class="box">
-	             		<a href="{{ dirpath }}favor/ver/{{favor.id}}" class="thumb pull-left"><img class="img-thumbnail" src = '{{pathimg}}{{ favor.img }}'  /></a>
-	             	<h2 class="post-title">{{favor.titulo}}</h2>
-	             	<p>Fecha limite: <span class="post-fecha">{{favor.fec_lim}}</span>
-	             	Publicado por: <span  class="post-autor"><a href="#">{{ favor.nombre}}</a></span></p>
-	             	<p class="post-contenido text-justify">
-	                          {{favor.descripcion}}
-	             	</p>
+	             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="thumb pull-left"><img class="img-thumbnail" src = '{{pathimg}}{{ imagenes[favor.id_favor][0].img }}'  /></a>
+		             	<h2 class="post-title">{{favor.titulo}}</h2>
+		             	<p>Fecha limite: <span class="post-fecha">{{favor.fecha_limite}}</span>
+		             	Publicado por: <span  class="post-autor"><a href="#">{{ favor.nombre}}</a></span></p>
+		             	<p class="post-contenido text-justify">
+		                          {{favor.descripcion}}
+		             	</p>
 	             	</div>
 	             	<div class="contenedor-botones">
-	             		<a href="{{ dirpath }}favor/ver/{{favor.id}}" class="btn btn-primary ">Leer mas </a>
+	             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="btn btn-primary ">Leer mas </a>
 	             		{% if (favor.email == usuario['email']) %}
 	             		<a href="{{ dirpath }}favor/verMisGauchadas/" class="btn btn-success">Ver mis favores</a> 
 	             		 {% endif %}
 	             	</div>
-	             	
 
-	            </article>
+	            	</article>
+				{% endif %}
 	        {% endfor %}
-	        </section>
+	    </section>
 	</div>

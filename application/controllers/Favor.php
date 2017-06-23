@@ -18,14 +18,26 @@ class Favor extends CI_Controller
         $this->load->model('favorModel');
     }
 
-    public function index()
+    public function index() /*anda*/
     {
         if ($this->session->userdata('login')) {
-            $cons    = $this->favorModel->buscarFavores();
+            $cons    = $this->favorModel->obtenerFavores();
             $favores = $cons->result();
-            $data    = array(
-                'favores' => $favores,
-                'usuario' => $this->session->userdata());
+            foreach ($favores as $favor) {
+                // $query = $this->favorModel->obtenerFavorC($fav['id']);
+                $resul                      = $this->favorModel->obtenerImagenesId($favor->id_favor);
+                $imagenes[$favor->id_favor] = $resul->result();
+            }
+            $query        = $this->favorModel->buscarCategorias();
+            $categoriasBD = $query->result();
+            $query        = $this->favorModel->obtenerCiudades();
+            $ciudades     = $query->result();
+            $data         = array(
+                'favores'    => $favores,
+                'categorias' => $categoriasBD,
+                'ciudades'   => $ciudades,
+                'imagenes'   => $imagenes,
+                'usuario'    => $this->session->userdata());
             $this->twig->display('backend', $data);
         } else {
             $this->twig->display('index');
@@ -34,20 +46,55 @@ class Favor extends CI_Controller
     }
     public function comentar()
     {
+
         $usuario1 = ($this->usuarioModel->buscarUsuario($this->input->post('usuario')));
-        $usuario2 = json_decode(json_encode($usuario1->result(), true));
-        $query    = array('descripcion' => $this->input->post('comentario'),
-            'id_usuario'                    => $usuario2[0]->id_usuario);
-        $this->favorModel->agregarComentario($query);
-        $this->favorModel->agregarRelacionComentarioFavor($this->input->post('favor_id'));
+        if ($usuario1 != false) {
+            $usuario2 = json_decode(json_encode($usuario1->result(), true));
+            $query    = array('descripcion' => $this->input->post('comentario'),
+                'favor_id'                      => $this->input->post('favor_id'),
+                'usuario_id'                    => $usuario2[0]->id_usuario);
+            $this->favorModel->agregarComentario($query);
+        }
 
-        $cons    = $this->favorModel->buscarFavores();
-        $favores = $cons->result();
-        $data    = array(
-            'favores' => $favores,
-            'usuario' => $this->session->userdata());
-        $this->twig->display('backend', $data);
+        // $cons    = $this->favorModel->obtenerFavores();
+        //     $favores     = $cons->result();
+        //     foreach ($favores as $favor) {
+        //         // $query = $this->favorModel->obtenerFavorC($fav['id']);
+        //         $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
+        //         $imagenes[$favor->id_favor]=$resul->result();
 
+        //     }
+        //     $data = array(
+        //         'favores' => $favores,
+        //         'imagenes' => $imagenes,
+        //         'usuario' => $this->session->userdata());
+        // $this->twig->display('backend',$data);
+        $id          = $this->input->post('favor_id');
+        $comentarios = $this->favorModel->obtenerComentarios($id);
+        if ($comentarios != false) {
+            $comentarios = $comentarios->result();
+        }
+        $respuestas = $this->favorModel->obtenerRespuestas($id);
+        if ($respuestas != false) {
+            $respuestas = $respuestas->result();
+        }
+        $cons = $this->favorModel->obtenerFavorUsuario($id);
+        if ($cons == false) {
+            $this->index();
+            return 0;
+        }
+        $favor    = $cons->result();
+        $resul    = $this->favorModel->obtenerImagenesId($id);
+        $imagenes = $resul->result();
+        $data     = array(
+            'favor'       => $favor,
+            'comentarios' => $comentarios,
+            'respuestas'  => $respuestas,
+            'imagenes'    => $imagenes,
+            'succes'      => 'Se comento correctamente',
+            'usuario'     => $this->session->userdata());
+        $this->twig->display('verFavor', $data);
+        return 0;
     }
     public function responder()
     {
@@ -55,51 +102,64 @@ class Favor extends CI_Controller
         $usuario2 = json_decode(json_encode($usuario1->result(), true));
         $query    = array(
             'respuesta'     => $this->input->post('respuesta'),
-            'id_usuario'    => $usuario2[0]->id_usuario,
+            'usuarios_id'   => $usuario2[0]->id_usuario,
             'id_comentario' => $this->input->post('comentario_id'),
         );
         $this->favorModel->agregarRespuesta($query);
         $this->favorModel->updateComentario($this->input->post('comentario_id'));
 
-        $cons    = $this->favorModel->buscarFavores();
+        $cons    = $this->favorModel->obtenerFavores();
         $favores = $cons->result();
-        $data    = array(
-            'favores' => $favores,
-            'usuario' => $this->session->userdata());
+        foreach ($favores as $favor) {
+            // $query = $this->favorModel->obtenerFavorC($fav['id']);
+            $resul                      = $this->favorModel->obtenerImagenesId($favor->id_favor);
+            $imagenes[$favor->id_favor] = $resul->result();
+
+        }
+        $query        = $this->favorModel->buscarCategorias();
+        $categoriasBD = $query->result();
+        $query        = $this->favorModel->obtenerCiudades();
+        $ciudades     = $query->result();
+        $data         = array(
+            'favores'    => $favores,
+            'categorias' => $categoriasBD,
+            'ciudades'   => $ciudades,
+            'imagenes'   => $imagenes,
+            'usuario'    => $this->session->userdata());
         $this->twig->display('backend', $data);
 
     }
 
-    public function ver($id)
+    public function ver($id = null) /*anda*/
     {
-        if ($this->session->userdata('login')) {
-            /*$query = $this->favorModel->obtenerFavor($id);
-            $favor = json_decode(json_encode($query->result()), true);*/
 
-            $query  = $this->favorModel->obtenerFavorC($id);
-            $favorC = $query->result();
+        if (isset($id)) {
+            if ($this->session->userdata('login')) {
 
-            $query    = $this->favorModel->obtenerImagenes($id);
-            $imagenes = json_decode(json_encode($query->result()), true);
-
-            $query = $this->favorModel->obtenerComentarios($id);
-            if ($query != false) {
-                $query = $query->result();
+                $comentarios = $this->favorModel->obtenerComentarios($id);
+                if ($comentarios != false) {
+                    $comentarios = $comentarios->result();
+                }
+                $respuestas = $this->favorModel->obtenerRespuestas($id);
+                if ($respuestas != false) {
+                    $respuestas = $respuestas->result();
+                }
+                $cons     = $this->favorModel->obtenerFavorUsuario($id);
+                $favor    = $cons->result();
+                $resul    = $this->favorModel->obtenerImagenesId($id);
+                $imagenes = $resul->result();
+                $data     = array(
+                    'favor'       => $favor,
+                    'comentarios' => $comentarios,
+                    'respuestas'  => $respuestas,
+                    'imagenes'    => $imagenes,
+                    'usuario'     => $this->session->userdata());
+                $this->twig->display('verFavor', $data);
+            } else {
+                $this->twig->display('index');
             }
-            $query2 = $this->favorModel->obtenerRespuestas($id);
-            if ($query2 != false) {
-                $query2 = $query2->result();
-            }
-            $data = array(
-
-                'favor'       => $favorC,
-                'imagenes'    => $imagenes,
-                'comentarios' => $query,
-                'respuestas'  => $query2,
-                'usuario'     => $this->session->userdata());
-            $this->twig->display('verFavor', $data);
         } else {
-            $this->twig->display('index');
+            $this->index();
         }
     }
     public function verMisGauchadas()
@@ -109,20 +169,24 @@ class Favor extends CI_Controller
 
             $user    = $this->session->userdata();
             $usuario = json_decode(json_encode($user), true);
-            $cons    = $this->favorModel->buscarMisFavores($usuario['email']);
-            $favores = $cons->result();
-            $favor   = json_decode(json_encode($favores), true);
-            $todo    = array();
-            $i       = 0;
-            foreach ($favor as $fav) {
-                $query    = $this->favorModel->obtenerFavorC($fav['id']);
-                $todo[$i] = $query->result();
-                $i++;
+            $cons    = $this->favorModel->obtenerMisFavores($usuario['email']);
+            if ($cons != false) {
+                $favores = $cons->result();
+                foreach ($favores as $favor) {
+                    $resul                      = $this->favorModel->obtenerImagenesId($favor->id_favor);
+                    $imagenes[$favor->id_favor] = $resul->result();
+
+                }
+            } else {
+                $favores  = false;
+                $imagenes = false;
 
             }
+
             $data = array(
-                'favores' => $todo,
-                'usuario' => $this->session->userdata());
+                'favores'  => $favores,
+                'imagenes' => $imagenes,
+                'usuario'  => $this->session->userdata());
             $this->twig->display('verMisFavores', $data);
         } else {
             $this->twig->display('index');
@@ -130,47 +194,44 @@ class Favor extends CI_Controller
 
     }
 
-    public function crear()
+    public function crear() /*anda*/
     {
         if ($this->session->userdata('login')) {
-            $query        = $this->favorModel->buscarCategoria();
+            $query    = $this->usuarioModel->buscarUsuario($this->session->userdata('email'));
+            $creditos = $query->result();
+            if ($creditos[0]->credito == 0) {
+                $cons    = $this->favorModel->obtenerFavores();
+                $favores = $cons->result();
+                foreach ($favores as $favor) {
+                    $resul                      = $this->favorModel->obtenerImagenesId($favor->id_favor);
+                    $imagenes[$favor->id_favor] = $resul->result();
+                }
+                $query        = $this->favorModel->buscarCategorias();
+                $categoriasBD = $query->result();
+                $query        = $this->favorModel->obtenerCiudades();
+                $ciudades     = $query->result();
+                $data         = array(
+                    'favores'             => $favores,
+                    'categorias'          => $categoriasBD,
+                    'ciudades'            => $ciudades,
+                    'imagenes'            => $imagenes,
+                    'creditoInsuficiente' => "No cuenta con el credito suficienete para crear una gauchada",
+                    'usuario'             => $this->session->userdata());
+                $this->twig->display('backend', $data);
+                return 0;
+            }
+            $query        = $this->favorModel->buscarCategorias();
             $categoriasBD = $query->result();
-            $categorias   = json_decode(json_encode($categoriasBD), true);
-            $dataCat      = array('datos' => $categorias);
-            $todo         = array(
-                'usuario'   => $this->session->get_userdata(),
-                'categoria' => $dataCat,
+            $data         = array(
+                'usuario'    => $this->session->get_userdata(),
+                'categorias' => $categoriasBD,
             );
-            $this->twig->display('formfavor', $todo);
+            $this->twig->display('formfavor', $data);
+            return 0;
 
         } else {
 
             $this->index();
-        }
-    }
-    public function errores($error)
-    {
-        if ($this->session->userdata('login')) {
-            // traer favores de bd
-            $cons         = $this->favorModel->buscarFavores();
-            $favoresBD    = $cons->result();
-            $favores      = json_decode(json_encode($favoresBD), true);
-            $query        = $this->favorModel->buscarCategoria();
-            $categoriasBD = $query->result();
-            $categorias   = json_decode(json_encode($categoriasBD), true);
-
-            $query    = $this->usuarioModel->obtenerUsuarios();
-            $usuarios = json_decode(json_encode($query->result()), true);
-
-            $data = array(
-                'usuarios'   => $usuarios,
-                'favores'    => $favores,
-                'categorias' => $categorias,
-                'errores'    => $error,
-                'usuario'    => $this->session->userdata());
-            $this->twig->display('formfavor', $data);
-        } else {
-            $this->twig->display('index');
         }
     }
 
@@ -254,6 +315,40 @@ class Favor extends CI_Controller
     }
     }*/
     }
+    public function validar($post)
+    {
+        $errores['validar'] = true;
+        if ((!isset($post['titulo'])) or ($post['titulo']) == null) {
+            $errores['titulo']  = ' Titulo erroneo.';
+            $errores['validar'] = false;
+        } else { $errores['titulo2'] = $post['titulo'];}
+        if ((!isset($post['ciudad'])) or ($post['ciudad']) == null) {
+            $errores['ciudad']  = ' Ciudad erronea.';
+            $errores['validar'] = false;
+        } else { $errores['ciudad2'] = $post['ciudad'];}
+        if ((!isset($post['provincia'])) or ($post['provincia']) == null) {
+            $errores['provincia'] = ' Provincia erronea.';
+            $errores['validar']   = false;
+        } else { $errores['provincia2'] = $post['provincia'];}
+        if ((!isset($post['descripcion'])) or ($post['descripcion']) == null) {
+            $errores['descripcion'] = ' Descripcion con formato erroneo.';
+            $errores['validar']     = false;
+        } else { $errores['descripcion2'] = $post['descripcion'];}
+        if (!isset($post['categorias'])) {
+            $errores['categorias'] = ' Seleccione al menos una categoria';
+            $errores['validar']    = false;
+        }
+        if ((!isset($post['fecha'])) or ($post['fecha']) == null) {
+            $errores['fecha']   = ' Seleccione una fecha';
+            $errores['validar'] = false;
+        }
+
+        if ($post['fecha'] <= date("Y-m-d")) {
+            $errores['fecha']   = 'Por favor indique una fecha mayor a la del dia actual.';
+            $errores['validar'] = false;
+        }
+        return $errores;
+    }
 
     public function agregar()
     {
@@ -262,41 +357,58 @@ class Favor extends CI_Controller
         $provincia   = $this->input->post('provincia');
         $descripcion = $this->input->post('descripcion');
         $fecha       = $this->input->post('fecha');
-        $categoria   = $this->input->post('categoria');
+        $categorias  = $this->input->post('categorias');
         $user        = $this->input->post('email');
         $dirName     = $this->procesarImagen();
 
-        $query   = $this->usuarioModel->buscarUsuario($user);
+        $query = $this->usuarioModel->buscarUsuario($user);
+        // var_dump($query);die();
         $usuario = $query->result();
+        $validar = $this->validar($this->input->post());
+        if ($validar['validar'] == false) {
 
+            $query        = $this->favorModel->buscarCategorias();
+            $categoriasBD = $query->result();
+            $data         = array(
+                'errores'    => $validar,
+                'usuario'    => $this->session->get_userdata(),
+                'categorias' => $categoriasBD,
+            );
+            $this->twig->display('formfavor', $data);
+            return 0;
+        }
         if ($usuario[0]->credito == 0) {
-            $error['creditos'] = 'Cantidad de creditos insuficiente';
-            $this->errores($error);
+            $error        = 'Cantidad de creditos insuficiente';
+            $query        = $this->favorModel->buscarCategorias();
+            $categoriasBD = $query->result();
+            $data         = array(
+                'errores2'   => $error,
+                'usuario'    => $this->session->get_userdata(),
+                'categorias' => $categoriasBD,
+            );
+            $this->twig->display('formfavor', $data);
         } else {
+
             $mandar = array('titulo' => $titulo,
                 'ciudad'                 => $ciudad,
                 'provincia'              => $provincia,
-                'fec_lim'                => $fecha,
+                'fecha_limite'           => $fecha,
                 'descripcion'            => $descripcion,
                 'id_usuario'             => $usuario[0]->id_usuario);
 
-/*
-$key=$this->favorModel->obtenerKeyFavor();
-$key=json_decode(json_encode($key->result()), true);
-$KEY=$key[0]['AUTO_INCREMENT'];*/
-
             $id_favor = $this->favorModel->agregarFavor($mandar);
-            $this->procesarImagen($usuario[0]->id_usuario, $id_favor);
-            /*$this->favorModel->agregarImagen($dirName, $usuario[0]->id_usuario, $id_favor);*/
-
-            if ($categoria != '') {
-                $this->favorModel->agregarFC($categoria, $id_favor);
+            $this->favorModel->agregarImagen($dirName, $id_favor);
+            if ($categorias != '') {
+                foreach ($categorias as $categoria) {
+                    $this->favorModel->agregarFC($categoria, $id_favor);
+                }
             }
-            $this->favorModel->restarCredito($usuario[0]->email);
+            $this->favorModel->restarCredito($user);
 
             $data = array(
                 'usuario' => $this->session->userdata());
             $this->twig->display('favorAgregado', $data);
+            return 0;
         }
 
     }

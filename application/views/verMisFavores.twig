@@ -1,7 +1,6 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
- {# {{dump()}} #}
  <div class="row main">
 	 <div class="migas-de-pan">
 		<ol class="breadcrumb">
@@ -16,27 +15,33 @@
 	</div>
 	<div class="">
 		<section class="posts col-md-9">
+			{% if favores == false %}
+					<article class="post clearfix">
+		             	<div class="box">
+		             		<h2 class="post-title">No tienes gauchadas </h2>
+		             		<h3>Crea una gauchada desde este <a role="menuitem" tabindex="-1" href="{{ dirpath }}favor/crear">link</a></h3>
+		             	</div>
 
- 		{% for favores in favores %}
+	            	</article>
+				{% endif %}
  			{% for favor in favores %}
 
  				<article class="post clearfix">
- 					<a href="{{ dirpath }}favor/ver/{{favor.id}}" class="thumb pull-left">
+ 					<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="thumb pull-left">
 
- 						<img class="img-thumbnail" src = '{{pathimg}}{{ favor.img }}'  />
+ 						<img class="img-thumbnail" src = '{{pathimg}}{{ imagenes[favor.id_favor][0].img }}'  />
 
  					</a>
  					<h2 class="post-title">{{favor.titulo}}</h2>
- 					<p>Fecha limite: <span class="post-fecha">{{favor.fec_lim}}</span>
+ 					<p>Fecha limite: <span class="post-fecha">{{favor.fecha_limite}}</span>
  						<p class="post-contenido text-justify">
  							{{favor.descripcion}}
  						</p>
  						<div class="contenedor-botones">
- 							<a href="{{ dirpath }}favor/ver/{{favor.id}}" class="btn btn-primary ">Leer mas </a>
+ 							<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="btn btn-primary ">Leer mas </a>
  						</div>
  				</article>
  			{% endfor %}
- 		{% endfor %}
  		</section>
 	</div>
 

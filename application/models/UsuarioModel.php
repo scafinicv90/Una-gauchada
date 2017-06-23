@@ -13,7 +13,7 @@ class UsuarioModel extends CI_Model
 
     public function obtenerUsuarios()
     {
-        $query = $this->db->get('usuario');
+        $query = $this->db->get('usuarios');
         if ($query->num_rows() > 0) {
             return ($query);
         } else {
@@ -23,7 +23,7 @@ class UsuarioModel extends CI_Model
     public function buscarUsuario($emailUser)
     {
         $this->db->where('email', $emailUser);
-        $query = $this->db->get('usuario');
+        $query = $this->db->get('usuarios');
         if ($query->num_rows() > 0) {
             return ($query);
         } else {
@@ -35,7 +35,7 @@ class UsuarioModel extends CI_Model
     {   
         $query = $this->db->select('credito');
         $query = $this->db->where('email', $email);
-        $query = $this->db->get('usuario');
+        $query = $this->db->get('usuarios');
         if ($query->num_rows() > 0) {
             return ($query);
         } else {
@@ -44,7 +44,7 @@ class UsuarioModel extends CI_Model
     }
     public function agregarUsuario($emailUser)
     {
-        $this->db->insert('usuario', $emailUser);
+        $this->db->insert('usuarios', $emailUser);
 
     }
 

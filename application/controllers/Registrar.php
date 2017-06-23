@@ -25,24 +25,24 @@ class Registrar extends CI_Controller
     public function registrar()
     {
         $nombre   = $this->input->post('nombre');
+        $apellido = $this->input->post('apellido');
+        $fecha_nacimiento  = $this->input->post('fecha');
+        $telefono = $this->input->post('telefono');
         $email    = $this->input->post('email');
         $password = $this->input->post('password');
-        $tel      = $this->input->post('telefono');
-        $apellido = $this->input->post('apellido');
-        $fec_nac  = $this->input->post('fecha');
 
         $query = $this->usuarioModel->buscarUsuario($email);
-
         if ($query) {
-            $error['existe'] = 'Ya existe un usuario con ese mail';
-            $this->twig->display('formRegistrarse', $error);
+            $data['existe'] = 'Ya existe un usuario con ese email. Pruebe ingresando otro';
+            $data['registrar'] = $this->input->post();
+            $this->twig->display('registrar', $data);
         } else {
             $reg = array(
                 'nombre'   => $nombre,
                 'email'    => $email,
                 'password' => $password,
-                'tel'      => $tel,
-                'fec_nac'  => $fec_nac,
+                'telefono'      => $telefono,
+                'fecha_nacimiento'  => $fecha_nacimiento,
                 'apellido' => $apellido,
                 'credito'  => 2,
                 'tipo'     => 0);
