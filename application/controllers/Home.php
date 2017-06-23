@@ -29,15 +29,6 @@ class Home extends CI_Controller
                 $query = $this->favorModel->obtenerFavorC($fav['id']);
 
             }
-            // var_dump('favores',$favoresBD);die();
-            // $favores      = json_decode(json_encode($favoresBD), true); no por que se pierde la imagen
-            // $query        = $this->favorModel->buscarCategoria();
-            // $categoriasBD = $query->result();
-            // $categorias   = json_decode(json_encode($categoriasBD), true);
-
-            // $query    = $this->usuarioModel->obtenerUsuarios();
-            // $usuarios = json_decode(json_encode($query->result()), true);
-
             $data = array(
                 'favores' => $favores,
                 'usuario' => $this->session->userdata());

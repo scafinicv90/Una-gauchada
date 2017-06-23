@@ -42,6 +42,10 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
         // line 20
         echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
         echo "assets/styles/css/btnHeader.css\">
+    <script defer type=\"text/javascript\" src=\"";
+        // line 21
+        echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
+        echo "assets/styles/js/date.js\"></script>
 
 
 <script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>";
@@ -59,7 +63,7 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
 
     public function getDebugInfo()
     {
-        return array (  43 => 20,  39 => 19,  19 => 1,);
+        return array (  47 => 21,  43 => 20,  39 => 19,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -92,6 +96,7 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
     <!--  -->
     <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}assets/styles/css/layout.css\">
     <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}assets/styles/css/btnHeader.css\">
+    <script defer type=\"text/javascript\" src=\"{{ path }}assets/styles/js/date.js\"></script>
 
 
 <script>document.write('<script src=\"http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1\"></' + 'script>')</script>", "head.twig", "C:\\xampp\\htdocs\\Una-gauchada\\application\\views\\head.twig");

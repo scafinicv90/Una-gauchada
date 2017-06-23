@@ -1,85 +1,89 @@
-<div class="migas-de-pan">
-  <ol class="breadcrumb">
-    <li><a href="{{ dirpath }}home/">Inicio</a></li>
-    <li>Crear Gauchada</li>
-  </ol>
-</div>
-<!-- end breadcrum -->
-
-
-      {% if  errores  is defined %}
-      <div class="panel panel-danger">
-  <div class="panel-heading">
-    <h3 class="panel-title">Error en la publicacion del favor</h3>
+<div class="row main">
+  <div class="migas-de-pan">
+    <ol class="breadcrumb">
+      <li><a href="{{ dirpath }}home/">Inicio</a></li>
+      <li>Crear Gauchada</li>
+    </ol>
   </div>
-  <div class="panel-body">
-    
- {{errores['creditos']}}
-<br/>
-<br/>
-<p class="lead">
-      <a class="btn btn-primary btn-lg" href="{{dirpath}}comprarCredito/mostrarFormulario/" role="button">Comprar creditos</a>
-      <a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Ver Inicio</a>
-    </p>
+  <!-- end breadcrum -->
 
+  {% if  errores  is defined %}
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title">Error en la publicacion del favor</h3>
+    </div>
+    <div class="panel-body">
+      {{errores['creditos']}}
+      {# <br/> #}
+      {# <br/> #}
+      <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{{dirpath}}comprarCredito/mostrarFormulario/" role="button">Comprar creditos</a>
+        <a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Ver Inicio</a>
+      </p>
+    </div>
   </div>
-</div>
-{% endif %}
-<div class="row">
-  <div class="col-md-8">
+  {% endif %}
+  <div class="col-md-2"></div>
+  <div class="col-md-10">
+    <div class="col-md-8">
+      <form action="{{ dirpath }}favor/agregar/" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="inputTitulo" class="col-2 col-form-label">Titulo</label>
+          <div class="col-10">
+            <input class="form-control" type="text"  id="inputTitulo" name="titulo" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputCiudad" class="col-2 col-form-label">Ciudad</label>
+          <div class="col-10">
+            <input class="form-control" type="text" id="inputCiudad" name="ciudad" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputProv" class="col-2 col-form-label">Provincia</label>
+          <div class="col-10">
+            <input class="form-control" type="text" id="inputProv"  name="provincia" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputDesc">Descripcion</label>
+          <textarea class="form-control" id="inputDesc" rows="10" name="descripcion" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="inputFecha" class="col-2 col-form-label">Fecha limite</label>
+          <div class="col-10">
+            <input class="form-control" type="date" id="inputFecha" name="fecha" required>
+          </div>
+        </div>
+      <div class="check">
+        <label for="Categoria">Categoria</label> <br/>
+        {% for datosCat in categoria %}
+         {% for categoria in datosCat %}
+            <label class="checkbox-inline"><input type="checkbox" name="categoria[]" value="{{categoria['id']}}">{{categoria['nombre']}}</label>
+        {% endfor %}
+        {% endfor %}
+      </div>
+      <br/>
 
-    <form action="{{ dirpath }}CrearFavor/agregar/" method="POST" enctype="multipart/form-data">
-
-
       <div class="form-group">
-        <label for="inputTitulo" class="col-2 col-form-label">Titulo</label>
-        <div class="col-10">
-          <input class="form-control" type="text"  id="inputTitulo" name="titulo" required>
-        </div>
+        Cargar imagenes:
+        <input type="file" name="fileToUpload[]" id="fileToUpload">
+        <input type="file" name="fileToUpload[]" id="fileToUpload">
+        <input type="file" name="fileToUpload[]" id="fileToUpload">
+        <input type="file" name="fileToUpload[]" id="fileToUpload">
+        <input type="file" name="fileToUpload[]" id="fileToUpload">
+        {# <input type="submit" value="Upload Image" name="submit"> #}
       </div>
-      <div class="form-group">
-        <label for="inputCiudad" class="col-2 col-form-label">Ciudad</label>
-        <div class="col-10">
-          <input class="form-control" type="text" id="inputCiudad" name="ciudad" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputProv" class="col-2 col-form-label">Provincia</label>
-        <div class="col-10">
-          <input class="form-control" type="text" id="inputProv"  name="provincia" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputDesc">Descripcion</label>
-        <textarea class="form-control" id="inputDesc" rows="10" name="descripcion" required></textarea>
-      </div>
-      <div class="form-group">
-        <label for="inputFecha" class="col-2 col-form-label">Fecha limite</label>
-        <div class="col-10">
-          <input class="form-control" type="date" id="inputFecha" name="fecha" required>
-        </div>
-      </div>
-    <div class="check">
-      <label for="Categoria">Categoria</label> <br/>
-      {% for datosCat in categoria %}
-       {% for categoria in datosCat %}
-          <label class="checkbox-inline"><input type="checkbox" name="categoria[]" value="{{categoria['id']}}">{{categoria['nombre']}}</label>
-      {% endfor %}
-      {% endfor %}
+      <input type="hidden" name="email" value="{{usuario['email']}}">
+      <!--  no se bien como hacer lo de la sesion asique mando el email y lo busco desde ahi -->
+      <p class="lead">
+       <input type="submit" class="btn btn-primary btn-lg"  value="Agregar">
+       <a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Cancelar</a>
+      </p>
+      </form>
+    </div>
+    <div class="col-md-2">
     </div>
 
-    <div class="form-group">
-      Select image to upload:
-      <input type="file" name="fileToUpload" id="fileToUpload">
-      {# <input type="submit" value="Upload Image" name="submit"> #}
-    </div>
-    <input type="hidden" name="email" value="{{usuario['email']}}">
-    <!--  no se bien como hacer lo de la sesion asique mando el email y lo busco desde ahi -->
-    <p class="lead">
-     <input type="submit" class="btn btn-primary btn-lg"  value="Agregar">
-            <a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Cancelar</a>
-          </p>
-
-  </form>
-</div>
+  </div>
 </div>
