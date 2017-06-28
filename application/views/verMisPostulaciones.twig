@@ -1,0 +1,60 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+	<script defer type="text/javascript" src="{{ path }}assets/styles/js/datatables.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/datatables.css">
+
+{% endblock %}
+{% block content %}
+	<div class="row main">
+		<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Mis Postulaciones</li>
+		</ol>
+		</div>
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-8">
+			{% if favores != false %}
+			<div class="table-responsive">
+				<table id="principal" class="display table" cellspacing="0" width="100%">
+	            	<thead>
+				        <tr>
+				            <th>Titulo</th>
+				            <th>Ciudad</th>
+				            <th>Fecha Limite</th>
+				            <th>Estado</th>
+				            <th>Ver Favor</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				        {% for favor in favores %}
+							{% if  favor.email != usuario.email %}
+				        	<tr>
+				                <td>{{favor.titulo}}</td>
+					           	<td>{{favor.ciudad}}</td>
+					           	<td>{{favor.fecha_limite}}</td>
+					           	{% if favor.estado == 1 %}<td>Pendiente</td>{% elseif favor.estado == 2 %} <td>Aceptado</td>{% elseif favor.estado == 3 %} <td>Rechazado</td>{% endif %}
+					           	<td><a href="{{ dirpath}}favor/Ver/{{favor.id_favor}}"><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
+				            </tr>
+							{% endif %}
+	        			{% endfor %}
+				    </tbody>
+				    <tfoot>
+				        <tr>
+				            <th>Titulo</th>
+				            <th>Ciudad</th>
+				            <th>Fecha Limite</th>
+				            <th>Estado</th>
+				            <th>Ver Favor</th>
+				        </tr>
+				    </tfoot>
+				</table>
+			</div>
+			{% else %}
+			<h3>Disculpa no te postulaste a ninguna Gauchada.</h3>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

@@ -1,4 +1,11 @@
+{% extends 'layout.twig' %}
+{% block head %}
+	<script defer type="text/javascript" src="{{ path }}assets/styles/js/datatables.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/datatables.css">
 
+{% endblock %}
+
+{% block content %}
 	<div class="row main">
 			{% if succes is defined %}
 				<div class="alert alert-success alert-dismissible">
@@ -22,7 +29,8 @@
 
 			<div class="migas-de-pan">
 				<ol class="breadcrumb">
-					<li>Inicio</li>
+					<li><a href="{{ dirpath }}home/">Inicio</a></li>
+					<li>Busqueda</li>
 				</ol>
 			</div>
 			<!-- end breadcrum -->
@@ -35,6 +43,9 @@
 				    		<input type="text" class="form-control" name="busqueda" placeholder="Buscar" >
 				  		<button type="submit" class="btn btn-default">Buscar</button>
 				  		</div>
+				  		{% if busqueda == false  %}
+							<p class="text-danger"> Por favor seleccione un metodo de busqueda.</p>
+				  		{% endif %}
 
 						{# <h2>Filtrado por</h2> #}
 						<div class="form-group">
@@ -61,16 +72,29 @@
 				</div>
 			</div>
 			<!-- begin post -->
+			{% if busqueda != false  %}
+			<h4>Busqueda por :
+			{% endif %}
+			{% if tituloB != null %}
+				{{ tituloB}}.
+			{% endif %}
+			{% if categoriaB != null %}
+				{{ categoriaB}}.
+			{% endif %}
+			{% if ciudadB != null %}
+				{{ ciudadB }}.
+			{% endif %}
+			</h4>
 			<section class="posts col-md-8">
 				{% if favores == false %}
 					<article class="post clearfix">
 		             	<div class="box">
-		             		<h2 class="post-title">No hay posts </h2>
+		             		<h2 class="post-title">Su busqueda no produjo resultados vuelva a intentar con otra combinacion. </h2>
 		             	</div>
 
 	            	</article>
 				{% endif %}
-				<div class="table-responsive">
+			<div class="table-responsive">
 				<table id="principal" class="display table" cellspacing="0" width="100%">
 	            		<thead>
 				            <tr>
@@ -123,7 +147,9 @@
 						             	</p>
 					             	</div>
 					             	<div class="contenedor-botones">
-					             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="btn btn-primary ">Leer mas </a>
+					             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="pull-left  btn btn-primary">Leer más</a>
+					             		<li class=" pull-right col-md-3 list-group-item list-group-item-info">
+					             			Postulaciones <span class="badge">{{favor.postulantes}}</span></li>
 					             		{% if (favor.email == usuario['email']) %}
 					             		<a href="{{ dirpath }}favor/verMisGauchadas/" class="btn btn-success">Ver mis favores</a> 
 					             		 {% endif %}
@@ -142,6 +168,8 @@
 				        </tfoot>
 				    </table>
 				</div>
-
 	    </section>
 	</div>
+	
+
+{% endblock %}

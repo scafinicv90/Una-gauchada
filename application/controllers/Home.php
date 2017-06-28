@@ -31,9 +31,12 @@ class Home extends CI_Controller
                 return 0;
             }
             $favores=$cons->result();
-            foreach ($favores as $favor) {
+            foreach ($favores as &$favor) {
                 $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
                 $imagenes[$favor->id_favor]=$resul->result();
+                $res =get_object_vars($favor);
+                $res["postulantes"] = $this->favorModel->obtenerPostulantes($favor->id_favor);
+                $favor=$res;
                 }
             $query        = $this->favorModel->buscarCategorias();
             $categoriasBD = $query->result();

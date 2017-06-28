@@ -16,6 +16,7 @@ class Favor extends CI_Controller
         $this->load->library('session');
         $this->load->model('usuarioModel');
         $this->load->model('favorModel');
+        $this->load->model('postulacionModel');
     }
 
     public function index()/*anda*/
@@ -86,11 +87,21 @@ class Favor extends CI_Controller
             $favor     = $cons->result();
             $resul=$this->favorModel->obtenerImagenesId($id);
             $imagenes=$resul->result();
+            //usuario para el favor postulado
+            $idU=$this->usuarioModel->buscarUsuario($this->session->userdata('email'));
+            $idU=$idU->result();
+            $idU=$idU[0]->id_usuario;
+            //  obtengo el usuario
+            $postulado=$this->postulacionModel->obtenerPostulacion($idU,$id);
+            if ($postulado != false) {
+                $postulado=$postulado->result();
+            }
             $data = array(
                 'favor' => $favor,
                 'comentarios' => $comentarios,
                 'respuestas' => $respuestas,
                 'imagenes' => $imagenes,
+                'postulado' => $postulado,
                 'succes' => 'Se comento correctamente',
                 'usuario' => $this->session->userdata());
         $this->twig->display('verFavor', $data);
@@ -149,11 +160,21 @@ class Favor extends CI_Controller
             $favor     = $cons->result();
             $resul=$this->favorModel->obtenerImagenesId($id);
             $imagenes=$resul->result();
+            //usuario para el favor postulado
+            $idU=$this->usuarioModel->buscarUsuario($this->session->userdata('email'));
+            $idU=$idU->result();
+            $idU=$idU[0]->id_usuario;
+            //  obtengo el usuario
+            $postulado=$this->postulacionModel->obtenerPostulacion($idU,$id);
+            if ($postulado != false) {
+                $postulado=$postulado->result();
+            }
             $data = array(
                 'favor' => $favor,
                 'comentarios' => $comentarios,
                 'respuestas' => $respuestas,
                 'imagenes' => $imagenes,
+                'postulado' => $postulado,
                 'usuario' => $this->session->userdata());
         $this->twig->display('verFavor', $data);
         }else
@@ -186,10 +207,11 @@ class Favor extends CI_Controller
                 $imagenes=false;
 
             }
+            $id=$this->usuarioModel->buscarUsuario($this->session->userdata('email'));
+            $usuario=$id->result();
+            var_dump($usuario[0]->reputacion);
 
-
-
-            $data = array(
+            $data = array('reputacion' => $usuario[0]->reputacion,
                 'favores' => $favores,
                 'imagenes' =>$imagenes,
                 'usuario' => $this->session->userdata());
@@ -332,7 +354,7 @@ class Favor extends CI_Controller
         if ($post['fecha'] <= date("Y-m-d") ) {
             $errores['fecha'] ='Por favor indique una fecha mayor a la del dia actual.';
             $errores['validar']=false;
-        }
+        }else{$errores['fecha2'] = $post['fecha'];}
         return $errores;
     }
 

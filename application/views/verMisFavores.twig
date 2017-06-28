@@ -1,6 +1,7 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
+	{{ dump() }}
  <div class="row main">
 	 <div class="migas-de-pan">
 		<ol class="breadcrumb">
@@ -11,7 +12,23 @@
 
 
 	<div class="col-md-3">
-		{# futuro aside #}
+		{% if reputacion < 0 %}
+			Irresponsable
+		{% elseif reputacion > 50 %} 
+			Dios
+		{% elseif reputacion > 20 %}
+			Nobleza Gaucha
+		{% elseif reputacion > 10 %}
+			Heroe
+		{% elseif reputacion > 5 %} 
+			Tipazo
+		{% elseif reputacion > 1 %} 
+			Gran tipo
+		{% elseif reputacion == 1 %}
+		 Buen tipo
+		{% elseif reputacion == 0 %} 
+			Observador
+		{% endif %}
 	</div>
 	<div class="">
 		<section class="posts col-md-9">

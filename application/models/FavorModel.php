@@ -97,6 +97,20 @@ class FavorModel extends CI_Model
             return (false);
         }
     }
+    public function obtenerPostulantes($id_favor)
+    {
+        $this->db->from('favor');
+        $this->db->join('usuarios_has_favor_postulacion', 'usuarios_has_favor_postulacion.favor_id_favor=favor.id_favor');
+        $this->db->where('favor.fecha_limite >=', date("Y-m-d") );
+        $this->db->where('favor.id_favor=',$id_favor);
+
+        $query=$this->db->count_all_results();
+        if ($query > 0) {
+            return ($query);
+        } else {
+            return (0);
+        }
+    }
     public function obtenerFavorUsuario($id)
     {
         $this->db->select('*');
@@ -172,6 +186,12 @@ class FavorModel extends CI_Model
     }
     public function buscarCategorias()/*falta probar*/
     {
+        $query = $this->db->get('categorias');
+        return ($query);
+    }
+    public function obtenerCategoria($nombre)
+    {
+        $this->db->where('nombre',$nombre);
         $query = $this->db->get('categorias');
         return ($query);
     }
