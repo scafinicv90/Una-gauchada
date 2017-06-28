@@ -1,0 +1,36 @@
+{% extends 'layout.twig' %}
+
+
+{% block content %}
+	<div class="row main">
+		<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li><a href="{{ dirpath }}favor/ver/{{favor[0].id_favor}}">Ver Favor</a></li>
+			<li>Postularte</li>
+		</ol>
+		</div>
+		<div class="col-md-6">
+			<h2>Estas por postularte a la siguiente gauchada:</h2>
+			<div class="favor">
+				<h3>{{ favor[0].titulo}}</h3>
+				<p>en la ciudad de {{favor[0].ciudad }}</p>
+				<p>con fecha limite el {{ favor[0].fecha_limite}}.</p>
+			</div>
+			<form action="{{dirpath}}postular/agregar" method="post">
+				<input type="text" hidden value="{{favor[0].id_favor}}" name="id_favor">
+				<input type="text" hidden value="{{usuario.email}}" name="id_usuario">
+				<div class="form-group">
+		          <label for="descripcion">Indique una pequeña descripción</label>
+		          <textarea class="form-control" id="descripcion" pattern="[a-zA-Z0-9]{1,30}$" data-error="La descripción maximo 200 caracteres" rows="5" name="descripcion" required></textarea>
+		            <div class="help-block with-errors "></div>
+		        </div>
+				<button class="submit btn-success btn btn-flat">confirmar postulacion</button>
+				<a class="btn-danger btn btn-flat" href="{{ dirpath }}favor/ver/{{favor[0].id_favor}}">Cancelar</a>
+			</form>
+		</div>
+		<div class="col-md-6">
+			
+		</div>
+	</div>
+{% endblock %}
