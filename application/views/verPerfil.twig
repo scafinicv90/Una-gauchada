@@ -1,0 +1,40 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/verPerfil.css">
+{% endblock %}
+
+{% block content %}
+	{{ dump() }}
+	<div class="row main">
+		<div class="migas-de-pan">
+			<ol class="breadcrumb">
+				<li><a href="{{ dirpath }}home/">inicio</a></li>
+				<li>Ver perfil</li>
+			</ol>
+		</div>
+		<div class="col-md-8 breadcrumb borde-perfil">
+			<div class="perfil">
+				<div>
+					<img src="#" class="foto-perfil">
+				</div>
+				<p class="datos-perfil"></span>{{usuarioPerfil[0].nombre}}</span></p>
+				<p class="datos-perfil"></span>{{usuarioPerfil[0].apellido}}</span></p>
+				<p class="datos-perfil"></span>{{usuarioPerfil[0].fecha_nacimiento}}</span></p>
+				<p class="datos-perfil"></span>{{usuarioPerfil[0].telefono}}</span></p>
+				<p class="datos-perfil"></span>{{usuarioPerfil[0].email}}</span></p>
+				<p class="datos-perfil"></span>{{usuarioPerfil[0].credito}}</span></p>
+				<p class="btn btn-primary btn-lg btn-perfil"><a href="#" role="button">Ver mis gauchadas</a></p>
+				<br>
+				<br>
+				<p class="btn btn-primary btn-lg btn-perfil"><a href="#">Ver mis comentarios de gauchadas pedidas</a></p>
+				<br>
+				<br>
+				<p class="btn btn-primary btn-lg btn-perfil"><a href="#">Ver comentarios que hice sobre gauchadas que hice</a></p>
+				<br>
+				<br>
+				<p class="btn btn-primary btn-lg btn-perfil"><a href="#">Ver estado de mis postulaciones como candidato</a></p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

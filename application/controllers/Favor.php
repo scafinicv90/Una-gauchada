@@ -21,14 +21,14 @@ class Favor extends CI_Controller
     public function index()/*anda*/
     {
         if ($this->session->userdata('login')) {
-            $cons    = $this->favorModel->obtenerFavores();
+             $cons    = $this->favorModel->obtenerFavores();
             $favores     = $cons->result();
             foreach ($favores as $favor) {
                 // $query = $this->favorModel->obtenerFavorC($fav['id']);
                 $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
                 $imagenes[$favor->id_favor]=$resul->result();
             }
-             $query        = $this->favorModel->buscarCategorias();
+            $query        = $this->favorModel->buscarCategorias();
             $categoriasBD = $query->result();
             $query = $this->favorModel->obtenerCiudades();
             $ciudades = $query->result();
@@ -42,7 +42,6 @@ class Favor extends CI_Controller
         } else {
             $this->twig->display('index');
         }
-
 	}
     public function comentar()
     {
