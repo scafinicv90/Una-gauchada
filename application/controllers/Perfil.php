@@ -24,4 +24,14 @@ class Perfil extends CI_Controller {
                         'usuario' => $this->session->userdata());
 		$this->twig->display('verPerfil', $data);
 	}
+
+        public function verPerfilAjeno($id) {
+                $usuario=$this->usuarioModel->buscarUsuarioId($id);
+                var_dump($usuario->result());
+                $data=array(
+                        'usuarioPerfil' => $usuario->result(),
+                        'usuario' => $this->session->userdata());
+                $this->twig->display('verPerfilAjeno', $data);
+
+        }
 }

@@ -117,7 +117,7 @@
 					             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="thumb pull-left"><img class="img-thumbnail" src = '{{pathimg}}{{ imagenes[favor.id_favor][0].img }}'  /></a>
 						             	<h2 class="post-title">{{favor.titulo}}</h2>
 						             	<p>Fecha limite: <span class="post-fecha">{{favor.fecha_limite}}</span>
-						             	Publicado por: <span  class="post-autor"><a href="#">{{ favor.nombre}}</a></span></p>
+						             	Publicado por: <span  class="post-autor"><a href="{{ dirpath }}perfil/verPerfilAjeno/{{favor.id_usuario}}">{{favor.nombre}}</a></span></p>
 						             	<p class="post-contenido text-justify">
 						                          {{favor.descripcion}}
 						             	</p>
@@ -128,7 +128,6 @@
 					             		<a href="{{ dirpath }}favor/verMisGauchadas/" class="btn btn-success">Ver mis favores</a> 
 					             		 {% endif %}
 					             	</div>
-
 					            	</article>
 					           	</td>
 				            </tr>

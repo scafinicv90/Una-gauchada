@@ -87,18 +87,26 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
         echo "assets/theme/dist/css/skins/_all-skins.min.css\">
 
 ";
-        // line 47
-        echo "
-<link rel=\"stylesheet\" type=\"text/css\" href=\"";
         // line 48
+        echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"";
+        echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
+        echo "assets/media/css/jquery.dataTables.css\">
+ 
+<script type=\"text/javascript\" charset=\"utf8\" src=\"";
+        // line 50
+        echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
+        echo "assets/media/js/jquery.dataTables.js\"></script>
+";
+        // line 52
+        echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"";
         echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
         echo "assets/styles/css/layout.css\">
     <link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        // line 49
+        // line 53
         echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
         echo "assets/styles/css/btnHeader.css\">
     <script defer type=\"text/javascript\" src=\"";
-        // line 50
+        // line 54
         echo twig_escape_filter($this->env, ($context["path"] ?? null), "html", null, true);
         echo "assets/styles/js/date.js\"></script>
 
@@ -120,7 +128,7 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
 
     public function getDebugInfo()
     {
-        return array (  102 => 50,  98 => 49,  94 => 48,  91 => 47,  86 => 44,  80 => 41,  75 => 39,  70 => 37,  65 => 35,  60 => 33,  55 => 31,  50 => 29,  42 => 23,  19 => 1,);
+        return array (  110 => 54,  106 => 53,  101 => 52,  97 => 50,  91 => 48,  86 => 44,  80 => 41,  75 => 39,  70 => 37,  65 => 35,  60 => 33,  55 => 31,  50 => 29,  42 => 23,  19 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -179,7 +187,11 @@ class __TwigTemplate_bbebb055796f5b6d94e484a3b3056dba8fa3cb4ade3ca98b84240130757
   <link rel=\"stylesheet\" href=\"{{ path }}assets/theme/dist/css/skins/_all-skins.min.css\">
 
 {# end #}
-
+{# datatables #}
+<link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}assets/media/css/jquery.dataTables.css\">
+ 
+<script type=\"text/javascript\" charset=\"utf8\" src=\"{{ path }}assets/media/js/jquery.dataTables.js\"></script>
+{# end datatables #}
 <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}assets/styles/css/layout.css\">
     <link rel=\"stylesheet\" type=\"text/css\" href=\"{{ path }}assets/styles/css/btnHeader.css\">
     <script defer type=\"text/javascript\" src=\"{{ path }}assets/styles/js/date.js\"></script>

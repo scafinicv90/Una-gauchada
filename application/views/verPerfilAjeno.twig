@@ -20,10 +20,8 @@
 				<div class="bloque-datos-perfil">
 					<p class="datos-perfil"></span>Nombre: {{usuarioPerfil[0].nombre}}</span></p>
 					<p class="datos-perfil"></span>Apellido: {{usuarioPerfil[0].apellido}}</span></p>
-					<p class="datos-perfil"></span>Fecha de nacimiento: {{usuarioPerfil[0].fecha_nacimiento}}</span></p>
 					<p class="datos-perfil"></span>Teléfono: {{usuarioPerfil[0].telefono}}</span></p>
 					<p class="datos-perfil"></span>Email: {{usuarioPerfil[0].email}}</span></p>
-					<p class="datos-perfil"></span>Créditos: {{usuarioPerfil[0].credito}}</span></p>
 				</div>
 				{% if reputacion < 0 %}
 					<p class="reputacion-perfil">Irresponsable</p>
@@ -42,16 +40,6 @@
 				{% elseif reputacion == 0 %} 
 					<p class="reputacion-perfil">Observador</p>
 				{% endif %}
-				<p class="btn btn-primary btn-lg btn-perfil"><a href="{{ dirpath }}favor/verMisGauchadas/" role="button">Ver mis gauchadas</a></p>
-				<br>
-				<br>
-				<p class="btn btn-primary btn-lg btn-perfil"><a href="#">Ver mis comentarios de gauchadas pedidas</a></p>
-				<br>
-				<br>
-				<p class="btn btn-primary btn-lg btn-perfil"><a href="#">Ver comentarios que hice sobre gauchadas realizadas</a></p>
-				<br>
-				<br>
-				<p class="btn btn-primary btn-lg btn-perfil"><a href="{{ dirpath }}postular/verPostulaciones/">Ver estado de mis postulaciones como candidato</a></p>
 			</div>
 		</div>
 	</div>
