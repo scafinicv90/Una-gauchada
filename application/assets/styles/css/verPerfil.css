@@ -1,0 +1,24 @@
+.borde-perfil {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+.perfil {
+	margin: 10px;
+}
+
+.foto-perfil {
+	width: 150px;
+	height: 150px;
+	float: left;
+}
+
+.btn-perfil a {
+	color: #fff;
+}
+
+.datos-perfil {
+	font-size: 20px;
+	margin-left: 200px;
+}
