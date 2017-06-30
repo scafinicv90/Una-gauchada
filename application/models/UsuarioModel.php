@@ -20,6 +20,7 @@ class UsuarioModel extends CI_Model
             return (false);
         }
     }
+
     public function buscarUsuario($emailUser)
     {
         $this->db->where('email', $emailUser);
@@ -29,8 +30,19 @@ class UsuarioModel extends CI_Model
         } else {
             return (false);
         }
-
     }
+
+    public function buscarUsuarioId($idUser)
+    {
+        $this->db->where('id_usuario', $idUser);
+        $query = $this->db->get('usuarios');
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
+
     public function obtenerCreditos($email)
     {   
         $query = $this->db->select('credito');
@@ -42,6 +54,7 @@ class UsuarioModel extends CI_Model
             return (false);
         }
     }
+
     public function agregarUsuario($emailUser)
     {
         $this->db->insert('usuarios', $emailUser);

@@ -1,0 +1,46 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/verPerfil.css">
+{% endblock %}
+
+{% block content %}
+	<div class="row main">
+		<div class="migas-de-pan">
+			<ol class="breadcrumb">
+				<li><a href="{{ dirpath }}home/">inicio</a></li>
+				<li>Ver perfil</li>
+			</ol>
+		</div>
+		<div class="col-md-8 breadcrumb borde-perfil">
+			<div class="perfil">
+				<div class="bloque-foto-perfil">
+					<img src="{{pathimg}}/uploads/imgFavores/logo.png" class="foto-perfil">
+				</div>
+				<div class="bloque-datos-perfil">
+					<p class="datos-perfil"></span>Nombre: {{usuarioPerfil[0].nombre}}</span></p>
+					<p class="datos-perfil"></span>Apellido: {{usuarioPerfil[0].apellido}}</span></p>
+					<p class="datos-perfil"></span>Teléfono: {{usuarioPerfil[0].telefono}}</span></p>
+					<p class="datos-perfil"></span>Email: {{usuarioPerfil[0].email}}</span></p>
+				</div>
+				{% if reputacion < 0 %}
+					<p class="reputacion-perfil">Irresponsable</p>
+				{% elseif reputacion > 50 %} 
+					<p class="reputacion-perfil">Dios</p>
+				{% elseif reputacion > 20 %}
+					<p class="reputacion-perfil">Nobleza Gaucha</p>
+				{% elseif reputacion > 10 %}
+					<p class="reputacion-perfil">Heroe</p>
+				{% elseif reputacion > 5 %} 
+					<p class="reputacion-perfil">Tipazo</p>
+				{% elseif reputacion > 1 %} 
+					<p class="reputacion-perfil">Gran tipo</p>
+				{% elseif reputacion == 1 %}
+				 	<p class="reputacion-perfil">Buen tipo</p>
+				{% elseif reputacion == 0 %} 
+					<p class="reputacion-perfil">Observador</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

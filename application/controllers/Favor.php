@@ -16,11 +16,13 @@ class Favor extends CI_Controller
         $this->load->library('session');
         $this->load->model('usuarioModel');
         $this->load->model('favorModel');
+        $this->load->model('postulacionModel');
     }
 
     public function index() /*anda*/
     {
         if ($this->session->userdata('login')) {
+
             $cons    = $this->favorModel->obtenerFavores();
             $favores = $cons->result();
             foreach ($favores as $favor) {
@@ -71,6 +73,7 @@ class Favor extends CI_Controller
         // $this->twig->display('backend',$data);
         $id          = $this->input->post('favor_id');
         $comentarios = $this->favorModel->obtenerComentarios($id);
+
         if ($comentarios != false) {
             $comentarios = $comentarios->result();
         }
@@ -86,11 +89,21 @@ class Favor extends CI_Controller
         $favor    = $cons->result();
         $resul    = $this->favorModel->obtenerImagenesId($id);
         $imagenes = $resul->result();
-        $data     = array(
+        //usuario para el favor postulado
+        $idU = $this->usuarioModel->buscarUsuario($this->session->userdata('email'));
+        $idU = $idU->result();
+        $idU = $idU[0]->id_usuario;
+        //  obtengo el usuario
+        $postulado = $this->postulacionModel->obtenerPostulacion($idU, $id);
+        if ($postulado != false) {
+            $postulado = $postulado->result();
+        }
+        $data = array(
             'favor'       => $favor,
             'comentarios' => $comentarios,
             'respuestas'  => $respuestas,
             'imagenes'    => $imagenes,
+            'postulado'   => $postulado,
             'succes'      => 'Se comento correctamente',
             'usuario'     => $this->session->userdata());
         $this->twig->display('verFavor', $data);
@@ -158,8 +171,30 @@ class Favor extends CI_Controller
             } else {
                 $this->twig->display('index');
             }
+
+            $cons     = $this->favorModel->obtenerFavorUsuario($id);
+            $favor    = $cons->result();
+            $resul    = $this->favorModel->obtenerImagenesId($id);
+            $imagenes = $resul->result();
+            //usuario para el favor postulado
+            $idU = $this->usuarioModel->buscarUsuario($this->session->userdata('email'));
+            $idU = $idU->result();
+            $idU = $idU[0]->id_usuario;
+            //  obtengo el usuario
+            $postulado = $this->postulacionModel->obtenerPostulacion($idU, $id);
+            if ($postulado != false) {
+                $postulado = $postulado->result();
+            }
+            $data = array(
+                'favor'       => $favor,
+                'comentarios' => $comentarios,
+                'respuestas'  => $respuestas,
+                'imagenes'    => $imagenes,
+                'postulado'   => $postulado,
+                'usuario'     => $this->session->userdata());
+            $this->twig->display('verFavor', $data);
         } else {
-            $this->index();
+            $this->twig->display('index');
         }
     }
     public function verMiFavor($id = null) /*anda*/
@@ -204,6 +239,7 @@ class Favor extends CI_Controller
             $cons    = $this->favorModel->obtenerMisFavores($usuario['email']);
             if ($cons != false) {
                 $favores = $cons->result();
+
                 foreach ($favores as $favor) {
                     $resul                      = $this->favorModel->obtenerImagenesId($favor->id_favor);
                     $imagenes[$favor->id_favor] = $resul->result();
@@ -214,11 +250,14 @@ class Favor extends CI_Controller
                 $imagenes = false;
 
             }
+            $id      = $this->usuarioModel->buscarUsuario($this->session->userdata('email'));
+            $usuario = $id->result();
+            var_dump($usuario[0]->reputacion);
 
-            $data = array(
-                'favores'  => $favores,
-                'imagenes' => $imagenes,
-                'usuario'  => $this->session->userdata());
+            $data = array('reputacion' => $usuario[0]->reputacion,
+                'favores'                  => $favores,
+                'imagenes'                 => $imagenes,
+                'usuario'                  => $this->session->userdata());
             $this->twig->display('verMisFavores', $data);
         } else {
             $this->twig->display('index');
@@ -379,7 +418,7 @@ class Favor extends CI_Controller
         if ($post['fecha'] <= date("Y-m-d")) {
             $errores['fecha']   = 'Por favor indique una fecha mayor a la del dia actual.';
             $errores['validar'] = false;
-        }
+        } else { $errores['fecha2'] = $post['fecha'];}
         return $errores;
     }
 

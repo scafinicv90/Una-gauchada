@@ -1,5 +1,9 @@
 {% extends 'layout.twig' %}
+{% block head %}
+	<script defer type="text/javascript" src="{{ path }}assets/styles/js/datatables.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/datatables.css">
 
+{% endblock %}
 {% block content %}
 	{% include 'sectionPrincipal.twig' %}
 	

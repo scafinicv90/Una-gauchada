@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-06-2017 a las 17:45:09
+-- Tiempo de generación: 28-06-2017 a las 17:00:30
 -- Versión del servidor: 5.7.18-0ubuntu0.16.04.1
 -- Versión de PHP: 5.6.27-1+deb.sury.org~xenial+1
 
@@ -64,7 +64,11 @@ CREATE TABLE `comentarios` (
 INSERT INTO `comentarios` (`id_comentario`, `descripcion`, `favor_id`, `id_respuesta`, `usuario_id`) VALUES
 (4, 'Que lindo perrito!!!que dias y a que hora seria el paseo?', 3, 2, 10),
 (5, 'Yo puedo en el horario de las 14hs.', 5, NULL, 2),
-(6, 'Este es un comentario', 3, 3, 2);
+(6, 'Este es un comentario', 3, 3, 2),
+(7, 'hola gatito\r\n', 4, NULL, 1),
+(8, 'holi', 4, NULL, 1),
+(9, 'que buen comentario', 4, NULL, 9),
+(10, 'jvhjjbjnbn', 6, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -87,14 +91,19 @@ CREATE TABLE `favor` (
 --
 
 INSERT INTO `favor` (`id_favor`, `titulo`, `ciudad`, `provincia`, `fecha_limite`, `descripcion`, `id_usuario`) VALUES
-(3, 'Pasear al perro', 'La plata', 'Buenos Aires', '2017-06-17', 'Tengo un perrito, al cual no puedo pasear muy seguido. Necesito alguien que pueda llevarlo al parque por las tardes', 2),
+(3, 'Pasear al perro', 'La plata', 'Buenos Aires', '2017-06-29', 'Tengo un perrito, al cual no puedo pasear muy seguido. Necesito alguien que pueda llevarlo al parque por las tardes', 2),
 (4, 'Cuidado de mascota', 'Avellaneda', 'Buenos Aires', '2017-06-30', 'Tengo un gato de 1 año que necesito que cuiden por las tardes. Es muy amigable, se lleva bien con otros animales y tienen todos las vacunas al dia', 2),
 (5, 'Viaje a Ezeiza', 'La plata', 'Buenos Aires', '2017-06-30', 'Tengo que realizar un viaje y necesito que alguien me lleve a Ezeiza un lunes por la tarde', 10),
-(6, 'Cuidado de anciana', 'La Plata', 'Buenos Aires', '2017-06-23', 'Buenas tardes!', 2),
-(7, 'Traslado', 'Quilmes', 'Buenos Aires', '2017-06-06', 'Necesito traslado a Ezeiza.', 11),
-(8, 'Necesito creditos', 'La plata', 'Buenos Aires', '2017-06-16', 'Necesito creditos.', 2),
-(9, 'Ayudante de cocina', 'la plata', 'bsas', '2017-06-08', 'fwehfbugjhdbfljskkjdnjdsnknvdvdknv', 1),
-(10, 'sdsadsa', 'safsafsafa', 'fsafsafaf', '2017-06-16', 'safsafsafsafasfsaf', 1);
+(6, 'Cuidado de anciana', 'La Plata', 'Buenos Aires', '2017-06-28', 'Buenas tardes!', 2),
+(7, 'Traslado', 'Quilmes', 'Buenos Aires', '2017-06-30', 'Necesito traslado a Ezeiza.', 11),
+(8, 'Necesito creditos', 'La plata', 'Buenos Aires', '2017-06-27', 'Necesito creditos.', 2),
+(9, 'Ayudante de cocina', 'la plata', 'bsas', '2017-06-27', 'fwehfbugjhdbfljskkjdnjdsnknvdvdknv', 1),
+(10, 'sdsadsa', 'safsafsafa', 'fsafsafaf', '2017-06-16', 'safsafsafsafasfsaf', 1),
+(11, 'qeqweqwewqe', 'wqewqewqewqewqe', 'qewqewqewqew', '2017-06-30', 'wqewqewqewqewqe', 9),
+(12, 'gato ', 'mendoza', 'mendoza', '2017-06-30', 'u n lindo gato toara para mendoza', 9),
+(13, 'camion', 'cordoba', 'cordoba', '2017-06-30', 'quiero vender un camion.etc.', 1),
+(14, 'seniora mayor', 'quilmes', 'Buenos Aires', '2017-07-02', 'necesito que cuiden a una señora de  avanzada edad', 1),
+(15, 'ayudante de ingenieria 1', 'La plata', 'Buenos Aires', '2017-06-30', 'busco alguein que pueda ayudarme ,para rendir el final de ingenieria 1 de la facultad de informatica. este fin de semana.', 1);
 
 -- --------------------------------------------------------
 
@@ -114,12 +123,18 @@ CREATE TABLE `favor_has_categorias` (
 INSERT INTO `favor_has_categorias` (`favor_id_favor`, `categorias_id_categoria`) VALUES
 (5, 1),
 (7, 1),
+(11, 1),
+(12, 1),
 (8, 2),
 (9, 2),
 (10, 2),
+(12, 2),
+(13, 2),
 (3, 6),
 (4, 6),
-(6, 6);
+(6, 6),
+(14, 6),
+(15, 6);
 
 -- --------------------------------------------------------
 
@@ -145,7 +160,12 @@ INSERT INTO `imagenes` (`id_imagen`, `img`, `favor_id`) VALUES
 (7, 'uploads/imgFavores/zaask-jardineros.jpg', 7),
 (8, 'uploads/imgFavores/logo.png', 8),
 (9, 'uploads/imgFavores/logo.png', 9),
-(10, 'uploads/imgFavores/logo.png', 10);
+(10, 'uploads/imgFavores/logo.png', 10),
+(11, 'uploads/imgFavores/logo.png', 11),
+(12, 'uploads/imgFavores/logo.png', 12),
+(13, 'uploads/imgFavores/logo.png', 13),
+(14, 'uploads/imgFavores/logo.png', 14),
+(15, 'uploads/imgFavores/logo.png', 15);
 
 -- --------------------------------------------------------
 
@@ -2626,19 +2646,49 @@ CREATE TABLE `usuarios` (
   `apellido` varchar(15) NOT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
   `tipo` int(2) NOT NULL,
-  `credito` int(11) NOT NULL
+  `credito` int(11) NOT NULL,
+  `reputacion` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `password`, `telefono`, `apellido`, `fecha_nacimiento`, `tipo`, `credito`) VALUES
-(1, 'admin', 'admin@gmail.com', '123456', 5484541, 'admin', '2017-05-05', 1, 0),
-(2, 'pilar', 'pilar@gmail.com', '123456', 548745854, 'cercato', '2017-05-05', 0, 0),
-(9, 'alex', 'alex@gmail.com', '123456', 123213214, 'velazquez', '1995-02-09', 0, 2),
-(10, 'Juan', 'juanperez@hotmail.com', '123456', 2147483647, 'Perez', '1990-06-10', 0, 1),
-(11, 'Carlos', 'carlos@hotmail.com', '123456', 2147483647, 'Scafini', '2017-06-11', 0, 1);
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `password`, `telefono`, `apellido`, `fecha_nacimiento`, `tipo`, `credito`, `reputacion`) VALUES
+(1, 'admin', 'admin@gmail.com', '123456', 5484541, 'admin', '2017-05-05', 1, 0, 4),
+(2, 'pilar', 'pilar@gmail.com', '123456', 548745854, 'cercato', '2017-05-05', 0, 0, 0),
+(9, 'alex', 'alex@gmail.com', '123456', 123213214, 'velazquez', '1995-02-09', 0, 0, 0),
+(10, 'Juan', 'juanperez@hotmail.com', '123456', 2147483647, 'Perez', '1990-06-10', 0, 1, 0),
+(11, 'Carlos', 'carlos@hotmail.com', '123456', 2147483647, 'Scafini', '2017-06-11', 0, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios_has_favor_postulacion`
+--
+
+CREATE TABLE `usuarios_has_favor_postulacion` (
+  `usuarios_id_usuario` int(11) NOT NULL,
+  `favor_id_favor` int(11) NOT NULL,
+  `descripcion` varchar(200) NOT NULL,
+  `estado` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuarios_has_favor_postulacion`
+--
+
+INSERT INTO `usuarios_has_favor_postulacion` (`usuarios_id_usuario`, `favor_id_favor`, `descripcion`, `estado`) VALUES
+(1, 4, 'vamo lo pibe 3', 3),
+(1, 6, 'dsdadsdsadsad', 1),
+(1, 7, 'de neuvo\r\n', 1),
+(1, 8, 'vamo lo pibe 4', 2),
+(1, 11, 'vamo lo pobe 5\r\n', 3),
+(1, 12, 'vamo lo pibe', 2),
+(2, 5, 'pilar postulado sdededede', 1),
+(11, 3, 'voy a postularme', 1),
+(11, 9, 'me voy a postular gato.', 1),
+(11, 15, 'fdsdfsfdsfdfdfdsdfsfsdfsf', 1);
 
 --
 -- Índices para tablas volcadas
@@ -2707,6 +2757,14 @@ ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
+-- Indices de la tabla `usuarios_has_favor_postulacion`
+--
+ALTER TABLE `usuarios_has_favor_postulacion`
+  ADD PRIMARY KEY (`usuarios_id_usuario`,`favor_id_favor`),
+  ADD KEY `fk_usuarios_has_favor_favor1_idx` (`favor_id_favor`),
+  ADD KEY `fk_usuarios_has_favor_usuarios1_idx` (`usuarios_id_usuario`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -2719,17 +2777,17 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `favor`
 --
 ALTER TABLE `favor`
-  MODIFY `id_favor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_favor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `localidades`
 --
@@ -2749,7 +2807,7 @@ ALTER TABLE `respuestas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Restricciones para tablas volcadas
 --
@@ -2785,6 +2843,13 @@ ALTER TABLE `imagenes`
 ALTER TABLE `respuestas`
   ADD CONSTRAINT `fk_respuestas_usuarios1` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `id_comentario` FOREIGN KEY (`id_comentario`) REFERENCES `comentarios` (`id_comentario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `usuarios_has_favor_postulacion`
+--
+ALTER TABLE `usuarios_has_favor_postulacion`
+  ADD CONSTRAINT `fk_usuarios_has_favor_favor1` FOREIGN KEY (`favor_id_favor`) REFERENCES `favor` (`id_favor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_usuarios_has_favor_usuarios1` FOREIGN KEY (`usuarios_id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

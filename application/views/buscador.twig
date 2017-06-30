@@ -1,11 +1,18 @@
+{% extends 'layout.twig' %}
+{% block head %}
+	<script defer type="text/javascript" src="{{ path }}assets/styles/js/datatables.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/datatables.css">
 
+{% endblock %}
+
+{% block content %}
 	<div class="row main">
 			{% if succes is defined %}
 				<div class="alert alert-success alert-dismissible">
-                	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                	<h4><i class="icon fa fa-check"></i> {{ succes }}!</h4>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> {{ succes }}!</h4>
             		Gracias por confiar en nosotros.
-              	</div>
+              </div>
 			{% endif %}
 			{% if creditoInsuficiente is defined %}
 				<div class="alert alert-success alert-dismissible">
@@ -17,28 +24,32 @@
 		        </p>
 		        <br>
             		Gracias por confiar en nosotros.
-              	</div>
+              </div>
 			{% endif %}
 
 			<div class="migas-de-pan">
 				<ol class="breadcrumb">
-					<li>Inicio</li>
+					<li><a href="{{ dirpath }}home/">Inicio</a></li>
+					<li>Busqueda</li>
 				</ol>
 			</div>
 			<!-- end breadcrum -->
 			<!--  aside de busqueda -->
 			<div class=" col-md-4">
 				<div class="aside">
-					<h2>Búsqueda</h2>
-				    <form class=" navbar-left" name="buscador" method="POST" action="{{ dirpath }}busqueda/busqueda/" >
+					<h2>Busqueda</h2>
+				    <form class=" navbar-left" name="buscador" method="POST" action="{{ dirpath }}buscador/busqueda/" >
 				  		<div class="form-group">
 				    		<input type="text" class="form-control" name="busqueda" placeholder="Buscar" >
 				  		<button type="submit" class="btn btn-default">Buscar</button>
 				  		</div>
+				  		{% if busqueda == false  %}
+							<p class="text-danger"> Por favor seleccione un metodo de busqueda.</p>
+				  		{% endif %}
 
 						{# <h2>Filtrado por</h2> #}
 						<div class="form-group">
-							<h4 class="">Categoría</h4>
+							<h4 class="">Categoria</h4>
 		    				<select class="form-control"  name="categoria" id="Categoria">
 		        			<option>Selecciona</option>
 		        			{% for categoria in categorias %}
@@ -61,16 +72,29 @@
 				</div>
 			</div>
 			<!-- begin post -->
+			{% if busqueda != false  %}
+			<h4>Busqueda por :
+			{% endif %}
+			{% if tituloB != null %}
+				{{ tituloB}}.
+			{% endif %}
+			{% if categoriaB != null %}
+				{{ categoriaB}}.
+			{% endif %}
+			{% if ciudadB != null %}
+				{{ ciudadB }}.
+			{% endif %}
+			</h4>
 			<section class="posts col-md-8">
 				{% if favores == false %}
 					<article class="post clearfix">
 		             	<div class="box">
-		             		<h2 class="post-title">No hay posts </h2>
+		             		<h2 class="post-title">Su busqueda no produjo resultados vuelva a intentar con otra combinacion. </h2>
 		             	</div>
 
 	            	</article>
 				{% endif %}
-				<div class="table-responsive">
+			<div class="table-responsive">
 				<table id="principal" class="display table" cellspacing="0" width="100%">
 	            		<thead>
 				            <tr>
@@ -91,7 +115,7 @@
 		             	</p>
 	             	</div>
 	             	<div class="contenedor-botones">
-	             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="btn btn-primary ">Leer más </a>
+	             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="btn btn-primary ">Leer mas </a>
 	             		{% if (favor.email == usuario['email']) %}
 	             		<a href="{{ dirpath }}favor/verMisGauchadas/" class="btn btn-success">Ver mis favores</a> 
 	             		 {% endif %}
@@ -117,17 +141,20 @@
 					             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="thumb pull-left"><img class="img-thumbnail" src = '{{pathimg}}{{ imagenes[favor.id_favor][0].img }}'  /></a>
 						             	<h2 class="post-title">{{favor.titulo}}</h2>
 						             	<p>Fecha limite: <span class="post-fecha">{{favor.fecha_limite}}</span>
-						             	Publicado por: <span  class="post-autor"><a href="{{ dirpath }}perfil/verPerfilAjeno/{{favor.id_usuario}}">{{favor.nombre}}</a></span></p>
+						             	Publicado por: <span  class="post-autor"><a href="#">{{ favor.nombre}}</a></span></p>
 						             	<p class="post-contenido text-justify">
 						                          {{favor.descripcion}}
 						             	</p>
 					             	</div>
 					             	<div class="contenedor-botones">
-					             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="btn btn-primary ">Leer mas </a>
+					             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="pull-left  btn btn-primary">Leer más</a>
+					             		<li class=" pull-right col-md-3 list-group-item list-group-item-info">
+					             			Postulaciones <span class="badge">{{favor.postulantes}}</span></li>
 					             		{% if (favor.email == usuario['email']) %}
 					             		<a href="{{ dirpath }}favor/verMisGauchadas/" class="btn btn-success">Ver mis favores</a> 
 					             		 {% endif %}
 					             	</div>
+
 					            	</article>
 					           	</td>
 				            </tr>
@@ -141,6 +168,8 @@
 				        </tfoot>
 				    </table>
 				</div>
-
 	    </section>
 	</div>
+	
+
+{% endblock %}

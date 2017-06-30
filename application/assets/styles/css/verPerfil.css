@@ -1,0 +1,39 @@
+.borde-perfil {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+.perfil {
+	margin: 10px;
+}
+
+.bloque-foto-perfil {
+	display: inline-block;
+	float: left;
+}
+
+.foto-perfil {
+	width: 150px;
+	height: 150px;
+	border: 1px solid #000;
+}
+
+.btn-perfil a {
+	color: #fff;
+}
+
+.bloque-datos-perfil {
+	height: 150px;
+}
+
+.datos-perfil {
+	font-size: 18px;
+	padding: 0;
+	margin: 0;
+	margin-left: 155px;
+}
+
+.reputacion-perfil {
+	font-weight: bold;
+}

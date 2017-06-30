@@ -75,7 +75,7 @@
           <p class="text-danger">{{errores['fecha']}}</p>
           {% endif %}
           <div class="col-10">
-            <input class="form-control" pattern="[0-9]" data-error="Ingresar una fecha de límite válida." type="date" id="inputFecha" name="fecha" required>
+            <input class="form-control" pattern="[0-9]" data-error="Ingresar una fecha de límite válida." value="{{errores['fecha2']}}" type="date" id="inputFecha" name="fecha" required>
             <div class="help-block with-errors "></div>
           </div>
         </div>
