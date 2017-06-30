@@ -26,6 +26,7 @@ class Home extends CI_Controller
                 $data = array(
                 'favores' => false,
                 'imagenes' => false,
+                'buscador' => true,
                 'usuario' => $this->session->userdata());
                 $this->twig->display('backend', $data);
                 return 0;
@@ -46,6 +47,7 @@ class Home extends CI_Controller
                 'favores' => $favores,
                 'categorias' => $categoriasBD,
                 'ciudades' => $ciudades,
+                'buscador' => true,
                 'imagenes' => $imagenes,
                 'usuario' => $this->session->userdata());
             $this->twig->display('backend', $data);
