@@ -55,7 +55,10 @@
  							{{favor.descripcion}}
  						</p>
  						<div class="contenedor-botones">
- 							<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="btn btn-primary ">Leer más </a>
+ 							<a href="{{ dirpath }}favor/verMiFavor/{{favor.id_favor}}" class="btn btn-primary ">Leer mas </a>
+					<a href="{{ dirpath }}favor/modificarFavor/{{favor.id_favor}}" class="btn btn-success">Modificar favor</a> 
+				<a class="btn btn-danger btn-lg" href="{{ dirpath }}favor/eliminarFavor/{{favor.id_favor}}" role="button">Eliminar</a>
+
  						</div>
  				</article>
  			{% endfor %}

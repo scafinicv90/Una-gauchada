@@ -1,0 +1,50 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/verPostulantes.css">
+{% endblock %}
+
+{% block content %}
+	<div class="row main">
+		<div class="migas-de-pan">
+			<ol class="breadcrumb">
+				<li><a href="{{ dirpath }}home/">Inicio</a></li>
+				<li>Ver Postulantes</li>
+			</ol>
+		</div>
+		<div class="col-md-8">
+			<table cellpadding="10" width="100%" class="tabla">
+				<tr>
+					<th class="columna-th">Usuario</th>
+					<th class="columna-th">Reputación</th>
+					<th class="columna-th">Selección</th>
+				</tr>
+				{# begin postulantes #}
+				{% for postulante in postulantes %}
+					<tr>
+						<td><span class="post-autor"><a href="{{ dirpath }}perfil/verPerfilAjeno/{{postulante.id_usuario}}">{{postulante.nombre}}</a></span></td>
+						{% if postulante.reputacion < 0 %}
+							<td>Irresponsable</td>
+						{% elseif postulante.reputacion > 50 %} 
+							<td>Dios</td>
+						{% elseif postulante.reputacion > 20 %}
+							<td>Nobleza Gaucha</td>
+						{% elseif postulante.reputacion > 10 %}
+							<td>Heroe</td>
+						{% elseif postulante.reputacion > 5 %} 
+							<td>Tipazo</td>
+						{% elseif postulante.reputacion > 1 %} 
+							<td>Gran tipo</td>
+						{% elseif postulante.reputacion == 1 %}
+						 	<td>Buen tipo</td>
+						{% elseif postulante.reputacion == 0 %} 
+							<td>Observador</td>
+						{% endif %}
+						<td>Hola1</td>
+					</tr>
+				{% endfor %}
+				{# fin postulantes #}
+			</table>
+		</div>
+	</div>
+{% endblock %}

@@ -129,6 +129,6 @@ class Postular extends CI_Controller
         $data = array(
             'postulantes' => $query,
             'usuario' => $this->session->userdata());
-        $this->twig->display('verFavor', $data);
+        $this->twig->display('verPostulantes', $data);
     }
 }
