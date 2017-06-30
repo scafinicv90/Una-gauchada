@@ -1,0 +1,18 @@
+table {
+	font-family: "arial";
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #000;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #DFD7D7;
+}
+
+.tabla {
+	background: #fff;
+}
