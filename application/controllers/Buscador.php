@@ -18,11 +18,39 @@ class Buscador extends CI_Controller
     public function index($datos=null)
     {
         if ($this->session->userdata('login')) {
-            /*  $this->session->userdata()); tiene la sesion y se la mando a la vista*/
-
             if ($datos == null ) {
                 $busqueda=false;
-                $cons    = $this->favorModel->obtenerFavores();
+                    $cons    = $this->favorModel->obtenerFavores();
+                if ($cons == false ) {
+                    $data = array(
+                    'favores' => false,
+                    'imagenes' => false,
+                    'buscador' => true,
+                    'usuario' => $this->session->userdata());
+                    $this->twig->display('backend', $data);
+                    return 0;
+                }
+                $favores=$cons->result();
+                foreach ($favores as &$favor) {
+                    $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
+                    $imagenes[$favor->id_favor]=$resul->result();
+                    $res =get_object_vars($favor);
+                    $res["postulantes"] = $this->favorModel->obtenerPostulantes($favor->id_favor);
+                    $favor=$res;
+                    }
+                $query        = $this->favorModel->buscarCategorias();
+                $categoriasBD = $query->result();
+                $query = $this->favorModel->obtenerCiudades();
+                $ciudades = $query->result();
+                $data = array(
+                    'favores' => $favores,
+                    'categorias' => $categoriasBD,
+                    'buscador' => $busqueda,
+                    'ciudades' => $ciudades,
+                    'imagenes' => $imagenes,
+                    'usuario' => $this->session->userdata());
+                $this->twig->display('backend', $data);
+                return 0;
             }else
              {
                 $busqueda=true;
@@ -41,9 +69,13 @@ class Buscador extends CI_Controller
                 'tituloB' => $datos['titulo'],
                 'categoriaB' => $datos['categoria'],
                 'ciudadB' => $datos['ciudad'],
-                'busqueda' => $busqueda,
+                'buscador' => $busqueda,
                 'usuario' => $this->session->userdata());
-                $this->twig->display('buscador', $data);
+                if ($busqueda == true ) {
+                    $this->twig->display('buscador', $data);
+                    return 0;
+                }
+                $this->twig->display('backend', $data);
                 return 0;
             }
             $favores=$cons->result();
@@ -63,12 +95,13 @@ class Buscador extends CI_Controller
                 'categorias' => $categoriasBD,
                 'ciudades' => $ciudades,
                 'imagenes' => $imagenes,
-                'busqueda' => $busqueda,
+                'buscador' => $busqueda,
                 'tituloB' => $datos['titulo'],
                 'categoriaB' => $datos['categoria'],
                 'ciudadB' => $datos['ciudad'],
                 'usuario' => $this->session->userdata());
-            $this->twig->display('buscador', $data);
+            var_dump("$busqueda");
+                $this->twig->display('buscador', $data);
             return 0;
         } else {
 

@@ -29,16 +29,19 @@
 			<!--  aside de busqueda -->
 			<div class=" col-md-4">
 				<div class="aside">
-					<h2>Búsqueda</h2>
-				    <form class=" navbar-left" name="buscador" method="POST" action="{{ dirpath }}busqueda/busqueda/" >
+					<h2>Busqueda</h2>
+				    <form class=" navbar-left" name="buscador" method="POST" action="{{ dirpath }}buscador/busqueda/" >
 				  		<div class="form-group">
+				  			<h4 class="">Titulo</h4>
 				    		<input type="text" class="form-control" name="busqueda" placeholder="Buscar" >
-				  		<button type="submit" class="btn btn-default">Buscar</button>
 				  		</div>
+				  		{% if buscador == false  %}
+							<p class="text-danger"> Por favor seleccione un metodo de busqueda.</p>
+				  		{% endif %}
 
 						{# <h2>Filtrado por</h2> #}
 						<div class="form-group">
-							<h4 class="">Categoría</h4>
+							<h4 class="">Categoria</h4>
 		    				<select class="form-control"  name="categoria" id="Categoria">
 		        			<option>Selecciona</option>
 		        			{% for categoria in categorias %}
@@ -54,6 +57,7 @@
 		        			<option>{{ciudad.localidad}}</option>
 		  					{% endfor %}
 		  					</select>
+				  		<button type="submit" class="btn btn-default">Buscar</button>
 		  				</div>
 		  				{# <input type="submit" class="btn btn-primary btn-lg"  value="Buscar"> #}
 		  					{# <button type="submit" class="btn btn-default">Buscar</button> #}
@@ -70,14 +74,6 @@
 
 	            	</article>
 				{% endif %}
-				<div class="table-responsive">
-				<table id="principal" class="display table" cellspacing="0" width="100%">
-	            		<thead>
-				            <tr>
-				                <th>Postulaciones</th>
-				            </tr>
-				        </thead>
-				        <tbody>
 			{% for favor in favores %}
 				{% if  favor.email != usuario.email %}
 					{# <article class="post clearfix">
@@ -110,8 +106,7 @@
 				            </tr>
 				        </thead>
 				        <tbody> #}
-				        	<tr id="oculto ">
-				                <td class="" ><p hidden>{{favor.postulantes}}</p>
+				        	    <p hidden>{{favor.postulantes}}</p>
 				                	<article class="post clearfix">
 					             	<div class="box">
 					             		<a href="{{ dirpath }}favor/ver/{{favor.id_favor}}" class="thumb pull-left"><img class="img-thumbnail" src = '{{pathimg}}{{ imagenes[favor.id_favor][0].img }}'  /></a>
@@ -129,18 +124,9 @@
 					             		 {% endif %}
 					             	</div>
 					            	</article>
-					           	</td>
-				            </tr>
-				{% endif %}
+
+				    {% endif %}
 	        {% endfor %}
-				        </tbody>
-				        <tfoot>
-				            <tr>
-				                <th>Postulaciones</th>
-				            </tr>
-				        </tfoot>
-				    </table>
-				</div>
 
 	    </section>
 	</div>
