@@ -1,7 +1,7 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-	{{ dump() }}
+	
  <div class="row main">
 	 <div class="migas-de-pan">
 		<ol class="breadcrumb">
@@ -10,7 +10,30 @@
 		</ol>
 	</div>
 
-
+<!-- begin modal eliminar favor-->
+        <div class="modal modal-warning" id="myModalEliminar">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Eliminar la Gauchada: {{favor[0].titulo }} </h4>
+              </div>
+              <div class="modal-body">
+              {{dump()}}
+                <p>Esta a punto de eliminar esta gauchada, si esta seguro presione el boton <h5>Eliminar gauchada</h5> caso contrario presione <h5>Cerrar</h5> </p>
+                <a href="{{ dirpath }}favor/eliminarFavor/{{favor[0].id_favor}}"><button class="btn btn-danger btn-flat">Eliminar gauchada</button></a>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+      <!-- fin modal eliminar favor-->
 	<div class="col-md-3">
 		{% if reputacion < 0 %}
 			Irresponsable
@@ -57,7 +80,7 @@
  						<div class="contenedor-botones">
  							<a href="{{ dirpath }}favor/verMiFavor/{{favor.id_favor}}" class="btn btn-primary ">Leer mas </a>
 					<a href="{{ dirpath }}favor/modificarFavor/{{favor.id_favor}}" class="btn btn-success">Modificar favor</a> 
-				<a class="btn btn-danger btn-lg" href="{{ dirpath }}favor/eliminarFavor/{{favor.id_favor}}" role="button">Eliminar</a>
+				<a href="{{ dirpath }}favor/eliminarFavor/{{favor.id_favor}}" class="btn btn-danger">Eliminar</a>
 
  						</div>
  				</article>

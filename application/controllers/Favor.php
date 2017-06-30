@@ -252,7 +252,6 @@ class Favor extends CI_Controller
             }
             $id      = $this->usuarioModel->buscarUsuario($this->session->userdata('email'));
             $usuario = $id->result();
-            var_dump($usuario[0]->reputacion);
 
             $data = array('reputacion' => $usuario[0]->reputacion,
                 'favores'                  => $favores,
@@ -307,53 +306,31 @@ class Favor extends CI_Controller
         }
     }
 
-    public function procesarImagen($user, $favor)
+    public function procesarImagen()
     {
 
-        $archivo    = $HTTP_POST_FILES['fileToUpload'];
-        $count      = count($archivo);
         $target_dir = "uploads/imgFavores/";
-
-        if ($count == 0) {
-            $target_file = $target_dir . "logo.png";
-            move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-
-        } else {
-            for ($i = 0; $i < $count; $i++) {
-                $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"][$i]);
-
-                if ($_FILES['fileToUpload']['type'][$i] == 'image/png' || $_FILES['imagen']['type'][$i] == 'image/jpeg') {
-
-                    //Subimos el fichero al servidor
-
-                    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"][$i], $target_file);
-                    $this->favorModel->agregarImagen($terget_file, $user, $favor);
-
-                }
-            }
-        }
-        /*$target_dir = "uploads/imgFavores/";
         if (empty($_FILES["fileToUpload"]["name"])) {
 
-        $target_file = $target_dir . "logo.png";
+            $target_file = $target_dir . "logo.png";
 
         } else {
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         }
         $uploadOk      = 1;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         // Check if image file is a actual image or fake image
         // var_dump($target_file);
         if (isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if ($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-        } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if ($check !== false) {
+                echo "File is an image - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                echo "File is not an image.";
+                $uploadOk = 0;
+            }
         }
-        }*/
 
         // // Check if file already exists
         // if (file_exists($target_file)) {
@@ -372,20 +349,21 @@ class Favor extends CI_Controller
         //     $uploadOk = 0;
         // }
         // Check if $uploadOk is set to 0 by an error
-        /*if ($uploadOk == 0) {
+        if ($uploadOk == 0) {
 
-    $target_file = $target_dir . "logo.png";
+            $target_file = $target_dir . "logo.png";
 
-    echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    // echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+            echo "Sorry, your file was not uploaded.";
+            // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                // echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 
-    } else {
-    // echo "Sorry, there was an error uploading your file.";
-    }
-    }*/
+            } else {
+                // echo "Sorry, there was an error uploading your file.";
+            }
+        }
+        return $target_file;
     }
     public function validar($post)
     {
@@ -567,6 +545,32 @@ class Favor extends CI_Controller
         $this->twig->display('favorModificado', $data);
         return 0;
 
+    }
+
+    public function eliminarFavor($id = null) /*anda*/
+    {
+
+        if (isset($id)) {
+            if ($this->session->userdata('login')) {
+
+                $this->favorModel->eliminarImagen($id);
+
+                $this->favorModel->eliminarFC($id);
+
+                $this->favorModel->eliminarPostulaciones($id);
+
+                $this->favorModel->eliminarFavor($id);
+
+                $data = array(
+                    'usuario' => $this->session->userdata());
+
+                $this->twig->display('favorEliminado', $data);
+            } else {
+                $this->twig->display('index');
+            }
+        } else {
+            $this->index();
+        }
     }
 
 }

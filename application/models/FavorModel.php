@@ -244,5 +244,23 @@ class FavorModel extends CI_Model
         $this->db->delete('favor_has_categorias');
 
     }
+    public function eliminarFavor($id_favor) /*falta probar*/
+    {
+        $this->db->where('id_favor', $id_favor);
+        $this->db->delete('favor');
+
+    }
+    public function eliminarImagen($id_favor) /*falta probar*/
+    {
+        $this->db->where('favor_id', $id_favor);
+        $this->db->delete('imagenes');
+
+    }
+    public function eliminarPostulaciones($id_favor) /*falta probar*/
+    {
+        $this->db->where('favor_id_favor', $id_favor);
+        $this->db->delete('usuarios_has_favor_postulacion');
+
+    }
 
 }
