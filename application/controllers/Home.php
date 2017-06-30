@@ -21,33 +21,34 @@ class Home extends CI_Controller
         if ($this->session->userdata('login')) {
             /*  $this->session->userdata()); tiene la sesion y se la mando a la vista*/
 
-            $cons    = $this->favorModel->obtenerFavores();
-            if ($cons == false ) {
+            $cons = $this->favorModel->obtenerFavores();
+            if ($cons == false) {
                 $data = array(
-                'favores' => false,
-                'imagenes' => false,
-                'usuario' => $this->session->userdata());
+                    'favores'  => false,
+                    'imagenes' => false,
+                    'usuario'  => $this->session->userdata());
                 $this->twig->display('backend', $data);
                 return 0;
             }
-            $favores=$cons->result();
+
+            $favores = $cons->result();
             foreach ($favores as &$favor) {
-                $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
-                $imagenes[$favor->id_favor]=$resul->result();
-                $res =get_object_vars($favor);
-                $res["postulantes"] = $this->favorModel->obtenerPostulantes($favor->id_favor);
-                $favor=$res;
-                }
+                $resul                      = $this->favorModel->obtenerImagenesId($favor->id_favor);
+                $imagenes[$favor->id_favor] = $resul->result();
+                $res                        = get_object_vars($favor);
+                $res["postulantes"]         = $this->favorModel->obtenerPostulantes($favor->id_favor);
+                $favor                      = $res;
+            }
             $query        = $this->favorModel->buscarCategorias();
             $categoriasBD = $query->result();
-            $query = $this->favorModel->obtenerCiudades();
-            $ciudades = $query->result();
-            $data = array(
-                'favores' => $favores,
+            $query        = $this->favorModel->obtenerCiudades();
+            $ciudades     = $query->result();
+            $data         = array(
+                'favores'    => $favores,
                 'categorias' => $categoriasBD,
-                'ciudades' => $ciudades,
-                'imagenes' => $imagenes,
-                'usuario' => $this->session->userdata());
+                'ciudades'   => $ciudades,
+                'imagenes'   => $imagenes,
+                'usuario'    => $this->session->userdata());
             $this->twig->display('backend', $data);
             return 0;
         } else {
