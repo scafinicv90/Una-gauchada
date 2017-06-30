@@ -1,0 +1,93 @@
+{% extends 'layout.twig' %}
+
+
+
+{% block content %}
+<div class="row main">
+  <div class="migas-de-pan">
+    <ol class="breadcrumb">
+      <li><a href="{{ dirpath }}home/">Inicio</a></li>
+      <li>Modificar Gauchada</li>
+    </ol>
+  </div>
+  
+  <div class="col-md-8">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-8">
+      <form data-toggle="validator" action="{{ dirpath }}favor/modificar/" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <!-- lo de los errores para cada uno -->
+          <label for="inputTitulo" class="col-2 col-form-label">Titulo</label>
+          <div class="col-10 ">
+            <input class="form-control" pattern="[a-zA-Z0-9 ]{1,50}$" data-error="El título debe contener entre 1 y 50 caracteres." type="text"  value="{{favor[0].titulo}}" id="inputTitulo" name="titulo" required>
+            <div class="help-block with-errors "></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputCiudad" class="col-2 col-form-label">Ciudad</label>
+          <div class="col-10">
+            <input class="form-control" pattern="[a-zA-Z0-9 ]{1,30}$" data-error="La ciudad debe contener entre 1 y 30 caracteres." type="text" value="{{favor[0].ciudad}}" id="inputCiudad" name="ciudad" required>
+            <div class="help-block with-errors "></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputProv" class="col-2 col-form-label">Provincia</label>
+          <div class="col-10">
+            <input class="form-control"  pattern="[a-zA-Z0-9 ]{1,30}$" data-error="La provincia debe contener entre 1 y 30 caracteres."type="text" value="{{favor[0].provincia}}"id="inputProv"  name="provincia" required>
+            <div class="help-block with-errors "></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputDesc">Descripcion</label>
+          
+          <textarea class="form-control" id="inputDesc" pattern="[a-zA-Z0-9]{1,30}$" data-error="La descripción maximo 400 caracteres" rows="10" name="descripcion" required>{{favor[0].descripcion}}</textarea>
+            <div class="help-block with-errors "></div>
+        </div>
+        <div class="form-group">
+          <label for="inputFecha" class="col-2 col-form-label">Fecha limite</label>
+          
+          <div class="col-10">
+            <input class="form-control" pattern="[0-9]" data-error="Ingresar una fecha de límite válida." type="date" id="inputFecha" name="fecha" value="{{favor[0].fecha_limite}}" required>
+            <div class="help-block with-errors "></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Categoria</label>
+          
+          <select class="form-control select2" multiple="multiple" name="categorias[]" data-placeholder="selecciona una categoria" >
+            {% for categoria in categorias %}
+              <option value="{{categoria.id_categoria }}">{{categoria.nombre}}
+              </option>
+              {% for cat in miscategorias %}
+              {% if categoria.id_categoria == cat.categorias_id_categoria %}
+           <option value="{{categoria.id_categoria }}" selected>{{categoria.nombre}}
+           </option>
+          {% endif %}
+
+            {% endfor %}
+            {% endfor %}
+          </select>
+        </div>
+
+
+        <div class="form-group">
+          Select image to upload:
+          <input type="file" name="fileToUpload" id="fileToUpload">
+          {# <input type="submit" value="Upload Image" name="submit"> #}
+        </div>
+        <input type="hidden" name="email" value="{{usuario['email']}}">
+        <input type="hidden" name="id_favor" value="{{favor[0].id_favor}}">
+
+        <!--  no se bien como hacer lo de la sesion asique mando el email y lo busco desde ahi -->
+        <p class="lead">
+         <input type="submit" class="btn btn-primary btn-lg"  value="Modificar">
+         <a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Cancelar</a>
+       </p>
+     </form>
+   </div>
+
+ </div>
+</div>
+{% endblock %}

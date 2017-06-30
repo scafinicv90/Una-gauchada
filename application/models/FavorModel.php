@@ -104,10 +104,26 @@ class FavorModel extends CI_Model
     }
     public function obtenerFavorUsuario($id)
     {
+
+        $this->db->select('*');
+        $this->db->from('favor');
+        $this->db->join('usuarios', 'favor.id_usuario=usuarios.id_usuario');
+        $this->db->where('favor.fecha_limite >=', date("Y-m-d"));
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
+
+    public function obtenerMiFavor($id)
+    {
         $this->db->select('*');
         $this->db->from('favor');
         $this->db->join('usuarios', 'usuarios.id_usuario=favor.id_usuario');
         $this->db->where('id_favor', $id);
+
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return ($query);
@@ -121,6 +137,7 @@ class FavorModel extends CI_Model
         $this->db->select('*');
         $this->db->from('imagenes');
         $this->db->where('favor_id', $id_favor);
+
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return ($query);
@@ -156,12 +173,14 @@ class FavorModel extends CI_Model
     }
     public function obtenerRespuestas($id_favor)
     {
+
         $this->db->select('respuestas.respuesta,respuestas.usuarios_id,respuestas.id_comentario');
         $this->db->from('favor');
         $this->db->join('comentarios', 'comentarios.favor_id= favor.id_favor');
         $this->db->join('usuarios', 'usuarios.id_usuario=comentarios.usuario_id');
         $this->db->join('respuestas', 'respuestas.id_comentario=comentarios.id_comentario');
         $this->db->where('id_favor', $id_favor);
+
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return ($query);
@@ -181,6 +200,14 @@ class FavorModel extends CI_Model
         $query = $this->db->get('categorias');
         return ($query);
     }
+    public function buscarMisCategorias($idfavor) /*falta probar*/
+    {
+        $this->db->select('categorias_id_categoria');
+        $this->db->from('favor_has_categorias');
+        $this->db->where('favor_id_favor', $idfavor);
+        $query = $this->db->get();
+        return ($query);
+    }
     public function obtenerMisFavores($email) /*falta probar*/
     {
 
@@ -189,16 +216,19 @@ class FavorModel extends CI_Model
         $this->db->join('usuarios', 'favor.id_usuario=usuarios.id_usuario');
         $this->db->where('email', $email);
         $query = $this->db->get();
-        if ($query->num_rows() > 0) {
-            return ($query);
-        } else {
-            return (false);
-        }
-
-        //$query = $this->db->get('favor');
-        /* para el dia que lo tenga que ordenar, esto es un ejemplo
-        $this->db->order_by('title', 'DESC');
-        $this->db->order_by('name', 'ASC');*/
-        // return ($query);
+        return ($query);
     }
+    public function modificarFavor($gauchada, $id) /*falta probar*/
+    {
+        $this->db->where('id_favor', $id);
+        $this->db->update('favor', $gauchada);
+
+    }
+    public function eliminarFC($id_favor) /*falta probar*/
+    {
+        $this->db->where('favor_id_favor', $id_favor);
+        $this->db->delete('favor_has_categorias');
+
+    }
+
 }
