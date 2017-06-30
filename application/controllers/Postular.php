@@ -126,7 +126,6 @@ class Postular extends CI_Controller
         if($query != false) {
             $query = $query->result();
         }
-        var_dump($query->result());
         $data = array(
             'postulantes' => $query,
             'usuario' => $this->session->userdata());
