@@ -51,6 +51,8 @@ class PostulacionModel extends CI_Model
         $this->db->from('usuarios');
         $this->db->join('usuarios_has_favor_postulacion', 'usuarios_has_favor_postulacion.usuarios_id_usuario = usuarios.id_usuario');
         $this->db->where('usuarios_has_favor_postulacion.favor_id_favor=', $id_favor);
+        $this->db->where('usuario_has_favor_postulacion.estado <>', 3);
+        
         $query = $this->db->get();
         if($query->num_rows() > 0) {
             return($query);

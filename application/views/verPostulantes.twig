@@ -39,8 +39,9 @@
 						 	<td>Buen tipo</td>
 						{% elseif postulante.reputacion == 0 %} 
 							<td>Observador</td>
-						{% endif %}
-						<td>Hola1</td>
+						{% endif %}<td>
+						<a href="{{ dirpath }}postular/verPostulantes/{{favor[0].id_favor}}"><button class="btn btn-success">Aceptar</button></a>
+						<a href="{{ dirpath }}postular/verPostulantes/{{favor[0].id_favor}}"><button class="btn btn-danger">Rechazar</button></a></td>
 					</tr>
 				{% endfor %}
 				{# fin postulantes #}
