@@ -46,4 +46,15 @@ class PostulacionModel extends CI_Model
             return (false);
         }
     }
+
+    public function obtenerPostulantes($id_favor) {
+        $this->db->from('usuarios');
+        $this->db->join('usuarios_has_favor_postulacion', 'usuarios_has_favor_postulacion.usuarios_id_usuario = usuarios.id_usuario');
+        $query = $this->db->get();
+        if($query->num_rows() > 0) {
+            return($query);
+        } else {
+            return(false);
+        }
+    }
 }

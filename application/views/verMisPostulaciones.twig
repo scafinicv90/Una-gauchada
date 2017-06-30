@@ -35,7 +35,13 @@
 				                <td>{{favor.titulo}}</td>
 					           	<td>{{favor.ciudad}}</td>
 					           	<td>{{favor.fecha_limite}}</td>
-					           	{% if favor.estado == 1 %}<td>Pendiente</td>{% elseif favor.estado == 2 %} <td>Aceptado</td>{% elseif favor.estado == 3 %} <td>Rechazado</td>{% endif %}
+					           	{% if favor.estado == 1 %}
+					           		<td>Pendiente</td>
+					           	{% elseif favor.estado == 2 %}
+					           		<td>Aceptado</td>
+					           	{% elseif favor.estado == 3 %}
+					           		<td>Rechazado</td>
+					           	{% endif %}
 					           	<td><a href="{{ dirpath}}favor/Ver/{{favor.id_favor}}"><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
 				            </tr>
 							{% endif %}

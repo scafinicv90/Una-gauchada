@@ -118,6 +118,18 @@ class Postular extends CI_Controller
         $data = array(
                 'favores' => $query,
                 'usuario' => $this->session->userdata());
-            $this->twig->display('verMisPostulaciones', $data);
+        $this->twig->display('verMisPostulaciones', $data);
+    }
+
+    public function verPostulantes($id_favor) {
+        $query = $this->postulacionModel->obtenerPostulantes($id_favor);
+        if($query != false) {
+            $query = $query->result();
+        }
+        var_dump($query->result());
+        $data = array(
+            'postulantes' => $query,
+            'usuario' => $this->session->userdata());
+        $this->twig->display('verFavor', $data);
     }
 }
