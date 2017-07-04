@@ -39,6 +39,7 @@ class PostulacionModel extends CI_Model
         $this->db->from('favor');
         $this->db->join('usuarios_has_favor_postulacion','usuarios_has_favor_postulacion.favor_id_favor=favor.id_favor');
         $this->db->where('usuarios_has_favor_postulacion.usuarios_id_usuario=',$id_usuario);
+        $this->db->where('favor.fecha_limite >=', date("Y-m-d"));
         $query=$this->db->get();
         if ($query->num_rows() > 0) {
             return ($query);

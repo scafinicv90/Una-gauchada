@@ -100,7 +100,6 @@ class Buscador extends CI_Controller
                 'categoriaB' => $datos['categoria'],
                 'ciudadB' => $datos['ciudad'],
                 'usuario' => $this->session->userdata());
-            var_dump("$busqueda");
                 $this->twig->display('buscador', $data);
             return 0;
         } else {
@@ -190,7 +189,6 @@ class Buscador extends CI_Controller
             return 0;
         }
 
-        var_dump("entre a buscar algo");
     }
 
 }

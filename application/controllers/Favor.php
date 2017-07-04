@@ -547,7 +547,7 @@ class Favor extends CI_Controller
 
     }
 
-    public function eliminarFavor($id = null) /*anda*/
+       public function eliminarFavor($id = null) /*anda*/
     {
 
         if (isset($id)) {
@@ -557,7 +557,20 @@ class Favor extends CI_Controller
 
                 $this->favorModel->eliminarFC($id);
 
-                $this->favorModel->eliminarPostulaciones($id);
+                $bool = $this->postulacionModel->obtenerPostulantes($id);
+
+                if ($bool) {
+
+                    $this->favorModel->eliminarPostulaciones($id);
+
+                } else {
+
+                    $user = $this->session->userdata('email');
+                    $this->favorModel->sumaCredito($user);
+
+                }
+
+                $this->favorModel->eliminarComentarios($id);
 
                 $this->favorModel->eliminarFavor($id);
 
@@ -572,5 +585,6 @@ class Favor extends CI_Controller
             $this->index();
         }
     }
+
 
 }

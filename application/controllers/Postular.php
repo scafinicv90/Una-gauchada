@@ -18,7 +18,6 @@ class Postular extends CI_Controller
     public function index($id_favor=null)/*anda*/
     {
         if ($this->session->userdata('login')) {
-            var_dump($id_favor);
             $cons    = $this->favorModel->obtenerFavor($id_favor);
             $favor     = $cons->result();
             $data = array(
@@ -74,7 +73,6 @@ class Postular extends CI_Controller
         $id=$id->result();
         $id=$id[0]->id_usuario;
         //  obtengo el usuario
-        var_dump($idF,$id);
         $this->postulacionModel->eliminarPostulacion($idF,$id);
         //refactoring esto
         $comentarios = $this->favorModel->obtenerComentarios($idF);
@@ -114,7 +112,6 @@ class Postular extends CI_Controller
         if ($query != false) {
             $query=$query->result();
         }
-        var_dump($query);
         $data = array(
                 'favores' => $query,
                 'usuario' => $this->session->userdata());

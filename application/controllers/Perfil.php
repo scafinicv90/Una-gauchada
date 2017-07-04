@@ -18,7 +18,6 @@ class Perfil extends CI_Controller {
         {
                 $email=$this->session->userdata('email');
                 $usuario=$this->usuarioModel->buscarUsuario($email);
-                var_dump($usuario->result());
                 $data=array(
                         'usuarioPerfil' => $usuario->result(),
                         'usuario' => $this->session->userdata());
@@ -27,7 +26,6 @@ class Perfil extends CI_Controller {
 
         public function verPerfilAjeno($id_usuario) {
                 $usuario=$this->usuarioModel->buscarUsuarioId($id_usuario);
-                var_dump($usuario->result());
                 $data=array(
                         'usuarioPerfil' => $usuario->result(),
                         'usuario' => $this->session->userdata());
