@@ -1,7 +1,6 @@
 <?php
 class Buscador extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -51,63 +50,42 @@ class Buscador extends CI_Controller
                     'usuario' => $this->session->userdata());
                 $this->twig->display('backend', $data);
                 return 0;
-            }else
-             {
-                $busqueda=true;
-                $cons = $datos['datos'];
             }
-            if ($cons == false ) {
-                $query        = $this->favorModel->buscarCategorias();
-                $categoriasBD = $query->result();
-                $query = $this->favorModel->obtenerCiudades();
-                $ciudades = $query->result();
-                $data = array(
-                'favores' => false,
-                'imagenes' => false,
-                'categorias' => $categoriasBD,
-                'ciudades' => $ciudades,
-                'tituloB' => $datos['titulo'],
-                'categoriaB' => $datos['categoria'],
-                'ciudadB' => $datos['ciudad'],
-                'buscador' => $busqueda,
-                'usuario' => $this->session->userdata());
-                if ($busqueda == true ) {
-                    $this->twig->display('buscador', $data);
-                    return 0;
-                }
-                $this->twig->display('backend', $data);
-                return 0;
-            }
-            $favores=$cons->result();
-            foreach ($favores as &$favor) {
-                $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
-                $imagenes[$favor->id_favor]=$resul->result();
-                $res =get_object_vars($favor);
-                $res["postulantes"] = $this->favorModel->obtenerPostulantes($favor->id_favor);
-                $favor=$res;
-                }
-            $query        = $this->favorModel->buscarCategorias();
-            $categoriasBD = $query->result();
-            $query = $this->favorModel->obtenerCiudades();
-            $ciudades = $query->result();
-            $data = array(
-                'favores' => $favores,
-                'categorias' => $categoriasBD,
-                'ciudades' => $ciudades,
-                'imagenes' => $imagenes,
-                'buscador' => $busqueda,
-                'tituloB' => $datos['titulo'],
-                'categoriaB' => $datos['categoria'],
-                'ciudadB' => $datos['ciudad'],
-                'usuario' => $this->session->userdata());
-                $this->twig->display('buscador', $data);
-            return 0;
         } else {
 
             $this->twig->display('index');
             return 0;
         }
+    }
+    public function magia($data)
+    {
+        if ($data['datos'] != false) {
+                $favores=$data['datos']->result();
+                foreach ($favores as &$favor) {
+                    $resul=$this->favorModel->obtenerImagenesId($favor->id_favor);
+                    $imagenes[$favor->id_favor]=$resul->result();
+                    $res =get_object_vars($favor);
+                    $res["postulantes"] = $this->favorModel->obtenerPostulantes($favor->id_favor);
+                    $favor=$res;
+                    }
+            }else {$favores=false;$imagenes=false;}
 
+            $query        = $this->favorModel->buscarCategorias();
+            $categoriasBD = $query->result();
+            $query = $this->favorModel->obtenerCiudades();
+            $ciudades = $query->result();
+            $data = array(
+            'favores' => $favores,
+            'categorias' => $categoriasBD,
+            'ciudades' => $ciudades,
+            'imagenes' => $imagenes,
+            'buscador' => true,
+            'tituloB' => $data['titulo'],
+            'categoriaB' => $data['categoria'],
+            'ciudadB' => $data['ciudad'],
+            'usuario' => $this->session->userdata());
+            $this->twig->display('buscador', $data);
+            return 0;
     }
     public function busqueda()
     {
@@ -124,51 +102,47 @@ class Buscador extends CI_Controller
             $this->index();
             return 0;
         }elseif ($titulo !=='' && $categoria!=='Selecciona' && $ciudad!=='Selecciona') {
-            echo "buscar por tres campos";
             $data['datos']=$this->buscadorModel->obtenerPorTres($ciudad,$categoria,$titulo,$id_usuario);
 
             $data['ciudad'] =$ciudad;
             $data['categoria'] =$categoria;
             $data['titulo'] =$titulo;
-
-            $this->index($data);
+            $this->magia($data);
             return 0;
+
         }elseif ($titulo !=='' && $categoria!=='Selecciona') {
-            echo "buscar por titulo y categoria";
             $data['datos']=$this->buscadorModel->obtenerPorTyCategoria($titulo,$categoria,$id_usuario);
 
             $data['ciudad'] =null;
             $data['categoria'] =$categoria;
             $data['titulo'] =$titulo;
-
-            $this->index($data);
+            $this->magia($data);
             return 0;
-        }elseif ($titulo !=='' && $ciudad!=='Selecciona') {
-            echo "buscar por titulo y ciudad";
-            $data['datos']=$this->buscadorModel->obtenerPorTyC($ciudad,$titulo,$id_usuario);
 
+        }elseif ($titulo !=='' && $ciudad!=='Selecciona') {
+            $data['datos']=$this->buscadorModel->obtenerPorTyC($ciudad,$titulo,$id_usuario);
             $data['ciudad'] =$ciudad;
             $data['categoria'] =null;
             $data['titulo'] =$titulo;
 
-            $this->index($data);
-            return 0;
+             $this->magia($data);
+             return 0;
+
         }elseif ($categoria!=='Selecciona' && $ciudad!=='Selecciona') {
-            echo "buscar por categoria y ciudad";
             $data['datos']=$this->buscadorModel->obtenerPorCyC($categoria,$ciudad,$id_usuario);
 
             $data['ciudad'] =$ciudad;
             $data['categoria'] =$categoria;
             $data['titulo'] =null;
-
-            $this->index($data);
+            $this->magia($data);
             return 0;
+
         }elseif ($titulo !=='') {
             $data['datos']=$this->buscadorModel->obtenerPorTitulo($titulo,$id_usuario);
             $data['titulo'] =$titulo;
             $data['categoria'] =null;
             $data['ciudad'] =null;
-            $this->index($data);
+            $this->magia($data);
             return 0;
         }elseif ($categoria!=='Selecciona') {
             $categ=$this->favorModel->obtenerCategoria($categoria);
@@ -177,7 +151,7 @@ class Buscador extends CI_Controller
             $data['categoria'] =$categoria;
             $data['titulo'] =null;
             $data['ciudad'] =null;
-            $this->index($data);
+            $this->magia($data);
             return 0;
         }elseif ($ciudad!=='Selecciona') {
             $data['datos']=$this->buscadorModel->obtenerPorCiudad($ciudad,$id_usuario);
@@ -185,10 +159,9 @@ class Buscador extends CI_Controller
             $data['categoria'] =null;
             $data['titulo'] =null;
 
-            $this->index($data);
+            $this->magia($data);
             return 0;
         }
 
     }
-
 }

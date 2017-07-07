@@ -143,10 +143,8 @@ class Favor extends CI_Controller
 
     }
 
-    public function ver($id = null) /*anda*/
+    public function ver($id) /*anda*/
     {
-
-        if (isset($id)) {
             if ($this->session->userdata('login')) {
 
                 $comentarios = $this->favorModel->obtenerComentarios($id);
@@ -161,41 +159,54 @@ class Favor extends CI_Controller
                 $favor    = $cons->result();
                 $resul    = $this->favorModel->obtenerImagenesId($id);
                 $imagenes = $resul->result();
+                    // usuario para el favor postulado
+                    $idU = $this->usuarioModel->buscarUsuario($this->session->userdata('email'));
+                    $idU = $idU->result();
+                    $idU = $idU[0]->id_usuario;
+                    //  obtengo el usuario
+                    $postulado = $this->postulacionModel->obtenerPostulacion($idU, $id);
+                    if ($postulado != false) {
+                        $postulado = $postulado->result();
+                    }
                 $data     = array(
                     'favor'       => $favor,
                     'comentarios' => $comentarios,
                     'respuestas'  => $respuestas,
+                    'postulado'   => $postulado,
                     'imagenes'    => $imagenes,
                     'usuario'     => $this->session->userdata());
                 $this->twig->display('verFavor', $data);
-            } else {
+                return 0;
+            } else
+            {
                 $this->twig->display('index');
+                return 0;
             }
 
-            $cons     = $this->favorModel->obtenerFavorUsuario($id);
-            $favor    = $cons->result();
-            $resul    = $this->favorModel->obtenerImagenesId($id);
-            $imagenes = $resul->result();
-            //usuario para el favor postulado
-            $idU = $this->usuarioModel->buscarUsuario($this->session->userdata('email'));
-            $idU = $idU->result();
-            $idU = $idU[0]->id_usuario;
-            //  obtengo el usuario
-            $postulado = $this->postulacionModel->obtenerPostulacion($idU, $id);
-            if ($postulado != false) {
-                $postulado = $postulado->result();
-            }
-            $data = array(
-                'favor'       => $favor,
-                'comentarios' => $comentarios,
-                'respuestas'  => $respuestas,
-                'imagenes'    => $imagenes,
-                'postulado'   => $postulado,
-                'usuario'     => $this->session->userdata());
-            $this->twig->display('verFavor', $data);
-        } else {
-            $this->twig->display('index');
-        }
+        //     $cons     = $this->favorModel->obtenerFavorUsuario($id);
+        //     $favor    = $cons->result();
+        //     $resul    = $this->favorModel->obtenerImagenesId($id);
+        //     $imagenes = $resul->result();
+        //     //usuario para el favor postulado
+        //     $idU = $this->usuarioModel->buscarUsuario($this->session->userdata('email'));
+        //     $idU = $idU->result();
+        //     $idU = $idU[0]->id_usuario;
+        //     //  obtengo el usuario
+        //     $postulado = $this->postulacionModel->obtenerPostulacion($idU, $id);
+        //     if ($postulado != false) {
+        //         $postulado = $postulado->result();
+        //     }
+        //     $data = array(
+        //         'favor'       => $favor,
+        //         'comentarios' => $comentarios,
+        //         'respuestas'  => $respuestas,
+        //         'imagenes'    => $imagenes,
+        //         'postulado'   => $postulado,
+        //         'usuario'     => $this->session->userdata());
+        //     $this->twig->display('verFavor', $data);
+        // } else {
+        //     $this->twig->display('index');
+        // }
     }
     public function verMiFavor($id = null) /*anda*/
     {
@@ -305,24 +316,54 @@ class Favor extends CI_Controller
             $this->index();
         }
     }
-
-    public function procesarImagen()
+    public function procesarImagenes($id_Favor)
     {
-
+        $i=1;
+        foreach ($_FILES as $key => $imagen) {
+            $dirName     = $this->procesarImagen2($imagen,$i);
+            $i++;
+            $this->favorModel->agregarImagen($dirName, $id_Favor);
+        }
+    }
+    public function procesarImagen2($imagen,$i)/* la i no se utiliza.*/
+    {
         $target_dir = "uploads/imgFavores/";
-        if (empty($_FILES["fileToUpload"]["name"])) {
+        if (empty($imagen["name"])) {
 
             $target_file = $target_dir . "logo.png";
 
         } else {
-            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $target_file = $target_dir . basename($imagen["name"]);
+        }
+        $uploadOk      = 1;
+        if ($uploadOk == 0) {
+
+            $target_file = $target_dir . "logo.png";
+        } else {
+            if (move_uploaded_file($imagen["tmp_name"], $target_file)) {
+            } else {
+            }
+        }
+        return $target_file;
+    }
+
+    public function procesarImagen($imagen,$i)/* no utilizar */
+    {
+
+        $target_dir = "uploads/imgFavores/";
+        if (empty($imagen["name"])) {
+
+            $target_file = $target_dir . "logo.png";
+
+        } else {
+            $target_file = $target_dir . basename($imagen["fileToUpload".$i]["name"]);
         }
         $uploadOk      = 1;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         // Check if image file is a actual image or fake image
         // var_dump($target_file);
         if (isset($_POST["submit"])) {
-            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            $check = getimagesize($imagen["fileToUpload".$i]["tmp_name"]);
             if ($check !== false) {
                 echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
@@ -353,10 +394,10 @@ class Favor extends CI_Controller
 
             $target_file = $target_dir . "logo.png";
 
-            echo "Sorry, your file was not uploaded.";
+            //echo "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
         } else {
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            if (move_uploaded_file($imagen["fileToUpload".$i]["tmp_name"], $target_file)) {
                 // echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 
             } else {
@@ -409,7 +450,6 @@ class Favor extends CI_Controller
         $fecha       = $this->input->post('fecha');
         $categorias  = $this->input->post('categorias');
         $user        = $this->input->post('email');
-        $dirName     = $this->procesarImagen();
 
         $query = $this->usuarioModel->buscarUsuario($user);
         // var_dump($query);die();
@@ -447,7 +487,7 @@ class Favor extends CI_Controller
                 'id_usuario'             => $usuario[0]->id_usuario);
 
             $id_favor = $this->favorModel->agregarFavor($mandar);
-            $this->favorModel->agregarImagen($dirName, $id_favor);
+            $this->procesarImagenes($id_favor);
             if ($categorias != '') {
                 foreach ($categorias as $categoria) {
                     $this->favorModel->agregarFC($categoria, $id_favor);
