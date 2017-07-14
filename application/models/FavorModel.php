@@ -209,6 +209,13 @@ class FavorModel extends CI_Model
         $this->db->update('usuarios');
 
     }
+    public function sumaCredito($email) /*falta probar*/
+    {
+        $this->db->set('credito', 'credito+1', false);
+        $this->db->where('email', $email);
+        $this->db->update('usuarios');
+
+    }
     public function buscarCategorias() /*falta probar*/
     {
         $query = $this->db->get('categorias');
@@ -260,6 +267,13 @@ class FavorModel extends CI_Model
     {
         $this->db->where('favor_id_favor', $id_favor);
         $this->db->delete('usuarios_has_favor_postulacion');
+
+    }
+    public function eliminarComentarios($id_favor)
+    {
+
+        $this->db->where('favor_id', $id_favor);
+        $this->db->delete('comentarios');
 
     }
 
