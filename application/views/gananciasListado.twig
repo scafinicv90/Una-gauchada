@@ -1,0 +1,67 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+	<script defer type="text/javascript" src="{{ path }}assets/styles/js/datatables.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/datatables.css">
+
+{% endblock %}
+{% block content %}
+<div class="row main ">
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Ganancias</li>
+		</ol>
+	</div>
+	<!-- end breadcrum -->
+	<div class="col-md-8">
+				<h4 class="h3-formulario">Ganancias entre dos fechas:</h4>
+			{% if ganancias != false %}
+			<div class="table-responsive">
+				<table id="principal" class="display table" cellspacing="0" width="100%">
+	            	<thead>
+				        <tr>
+				            <th>Usuario</th>
+				            <th>Fecha</th>
+				            <th>Cantidad</th>
+				            <th>precio</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				        {% for ganancia in ganancias %}
+				        	<tr>
+				                <td>{{ganancia.nombre}} {{ ganancia.apellido}}</td>
+					           	<td>{{ganancia.fecha}}</td>
+					           	<td>{{ganancia.cantidad}}</td>
+					           	<td>{{ganancia.monto}}</td>
+				            </tr>
+	        			{% endfor %}
+				    </tbody>
+				    <tfoot>
+				        <tr>
+				            <th>Usuario</th>
+				            <th>Fecha</th>
+				            <th>Cantidad</th>
+				            <th>precio</th>
+				        </tr>
+				    </tfoot>
+				</table>
+			</div>
+			{% else %}
+				<h3>Disculpa no se encuentra registrado ningua venta de creditos entre esas fechas.</h3>
+			{% endif %}
+
+	</div>
+</div>
+{% endblock %}
+{% block endBody %}
+<!-- InputMask -->
+<script src="{{ path }}assets/theme/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="{{ path }}assets/theme/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="{{ path }}assets/theme/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="{{ path }}assets/theme/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="{{ path }}assets/theme/plugins/datepicker/bootstrap-datepicker.js"></script>
+{% endblock %}
