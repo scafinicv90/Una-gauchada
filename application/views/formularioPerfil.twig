@@ -1,0 +1,42 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+<div class="row main">
+	<div class="migas-de-pan">
+    	<ol class="breadcrumb">
+     		<li><a href="{{ dirpath }}home/">Inicio</a></li>
+      		<li>Modificar perfil</li>
+    	</ol>
+  	</div>
+  	<div class="col-md-8">
+		<div class="col-md-4">
+    	</div>
+		<div class="col-md-8">
+			<form data-toggle="validator" action="{{ dirpath }}perfil/modificarPerfil/" method="POST" enctype="multipart/form-data">
+		        <div class="form-group">
+					<label for="telefono" class="col-2 col-form-label">Teléfono</label>
+					<div class="col-10">
+						<input type="tel" class="form-control texto" pattern="[0-9]{9,11}$" data-error="Ingresar teléfono valido." maxlength="11" name="telefono" id="telefono" value="{{usuarioPerfil[0].telefono}}" required>
+						<div class="help-block with-errors "></div>
+					</div>
+		        </div>
+		        <div class="form-group">
+		        	{% if  existe  is defined %}
+          				<p class="text-danger">{{ existe }}</p>
+          			{% endif %}
+					<label for="email" class="col-2 col-form-label">Email</label>
+					<div class="col-10">
+						<input type="email" class="form-control texto" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-error="Ingrese un email válido." value="{{usuarioPerfil[0].email}}" maxlength="25" name="email" id="email" required>
+						<div class="help-block with-errors "></div>
+					</div>
+		        </div>
+		        <br>
+		        <p class="lead">
+		        	<input type="submit" class="btn btn-primary btn-lg"  value="Modificar">
+         			<a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Cancelar</a>
+		        </p>
+			</form>
+		</div>
+  	</div>
+</div>
+{% endblock %}

@@ -122,7 +122,9 @@ class FavorModel extends CI_Model
         $this->db->select('*');
         $this->db->from('favor');
         $this->db->join('usuarios', 'favor.id_usuario=usuarios.id_usuario');
+        $this->db->where('favor.id_favor =', $id);
         $this->db->where('favor.fecha_limite >=', date("Y-m-d"));
+
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return ($query);
@@ -212,17 +214,39 @@ class FavorModel extends CI_Model
     public function buscarCategorias() /*falta probar*/
     {
         $query = $this->db->get('categorias');
-        return ($query);
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
     }
+
+    public function obtenerCategoria($nombre)
+    {
+        $this->db->where('nombre',$nombre);
+        $query = $this->db->get('categorias');
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
+
+
+
     public function buscarMisCategorias($idfavor) /*falta probar*/
     {
         $this->db->select('categorias_id_categoria');
         $this->db->from('favor_has_categorias');
         $this->db->where('favor_id_favor', $idfavor);
         $query = $this->db->get();
-        return ($query);
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
     }
-    public function obtenerMisFavores($email) /*falta probar*/
+    public function obtenerMisFavores($email) /*andando*/
     {
 
         $this->db->select('*');
@@ -230,7 +254,11 @@ class FavorModel extends CI_Model
         $this->db->join('usuarios', 'favor.id_usuario=usuarios.id_usuario');
         $this->db->where('email', $email);
         $query = $this->db->get();
-        return ($query);
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
     }
     public function modificarFavor($gauchada, $id) /*falta probar*/
     {
@@ -238,10 +266,42 @@ class FavorModel extends CI_Model
         $this->db->update('favor', $gauchada);
 
     }
-    public function eliminarFC($id_favor) /*falta probar*/
+     public function eliminarFC($id_favor) /*falta probar*/
     {
         $this->db->where('favor_id_favor', $id_favor);
         $this->db->delete('favor_has_categorias');
+
+    }
+    public function eliminarFavor($id_favor) /*falta probar*/
+    {
+        $this->db->where('id_favor', $id_favor);
+        $this->db->delete('favor');
+
+    }
+    public function eliminarImagen($id_favor) /*falta probar*/
+    {
+        $this->db->where('favor_id', $id_favor);
+        $this->db->delete('imagenes');
+
+    }
+    public function eliminarPostulaciones($id_favor) /*falta probar*/
+    {
+        $this->db->where('favor_id_favor', $id_favor);
+        $this->db->delete('usuarios_has_favor_postulacion');
+
+    }
+    public function eliminarComentarios($id_favor)
+    {
+
+        $this->db->where('favor_id', $id_favor);
+        $this->db->delete('comentarios');
+
+    }
+    public function sumaCredito($email) /*falta probar*/
+    {
+        $this->db->set('credito', 'credito+1', false);
+        $this->db->where('email', $email);
+        $this->db->update('usuarios');
 
     }
 

@@ -61,4 +61,9 @@ class UsuarioModel extends CI_Model
 
     }
 
+    public function modificarUsuario($id_usuario, $data) {
+        $this->db->update('usuarios', $data);
+        $this->db->where('id_usuario', $id_usuario);
+    }
+
 }

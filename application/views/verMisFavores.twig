@@ -1,7 +1,7 @@
 {% extends 'layout.twig' %}
 
 {% block content %}
-	{{ dump() }}
+	
  <div class="row main">
 	 <div class="migas-de-pan">
 		<ol class="breadcrumb">
@@ -9,10 +9,8 @@
 			<li>Mis Gauchadas</li>
 		</ol>
 	</div>
-
-
 	<div class="col-md-3">
-		{% if reputacion < 0 %}
+		{# {% if reputacion < 0 %}
 			Irresponsable
 		{% elseif reputacion > 50 %} 
 			Dios
@@ -28,7 +26,7 @@
 		 Buen tipo
 		{% elseif reputacion == 0 %} 
 			Observador
-		{% endif %}
+		{% endif %} #}
 	</div>
 	<div class="">
 		<section class="posts col-md-9">
@@ -57,7 +55,7 @@
  						<div class="contenedor-botones">
  							<a href="{{ dirpath }}favor/verMiFavor/{{favor.id_favor}}" class="btn btn-primary ">Leer mas </a>
 					<a href="{{ dirpath }}favor/modificarFavor/{{favor.id_favor}}" class="btn btn-success">Modificar favor</a> 
-				<a class="btn btn-danger btn-lg" href="{{ dirpath }}favor/eliminarFavor/{{favor.id_favor}}" role="button">Eliminar</a>
+					<a href="{{ dirpath }}favor/eliminarFavor/{{favor.id_favor}}" class="btn btn-danger">Eliminar</a>
 
  						</div>
  				</article>
