@@ -12,6 +12,10 @@
 				<li>Ver Postulantes</li>
 			</ol>
 		</div>
+		{% if postulante|length == 0 %}
+		<h3><b>Aún no hay postulantes</b></h3>
+		{% else %}
+		
 		<div class="col-md-8">
 			<table cellpadding="10" width="100%" class="tabla">
 				<tr>
@@ -39,12 +43,16 @@
 						 	<td>Buen tipo</td>
 						{% elseif postulante.reputacion == 0 %} 
 							<td>Observador</td>
-						{% endif %}
-						<td>Hola1</td>
+						{% endif %}<td>
+						<a href="{{ dirpath }}postular/verPostulantes/{{favor[0].id_favor}}"><button class="btn btn-success">Aceptar</button></a>
+						<a href="{{ dirpath }}postular/rechazarPostulante?id={{postulante.id_usuario}}&idFavor={{postulante.favor_id_favor}}"><button class="btn btn-danger">Rechazar</button></a></td>
 					</tr>
 				{% endfor %}
 				{# fin postulantes #}
 			</table>
 		</div>
+
+		{% endif %}
+
 	</div>
 {% endblock %}

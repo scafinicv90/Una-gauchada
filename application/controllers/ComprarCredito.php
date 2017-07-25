@@ -62,6 +62,7 @@ class ComprarCredito extends CI_Controller
         $this->twig->display('gananciasListado',$data);
         return 0;
     }
+    
     public function validar()
     {
 
@@ -72,6 +73,7 @@ class ComprarCredito extends CI_Controller
         $this->twig->display('confirmarCompra', $data);
         return 0;
     }
+
     public function comprar()
     {
         // var_dump((int)($this->input->post('cantidad'))/50);
@@ -97,9 +99,11 @@ class ComprarCredito extends CI_Controller
 
         $this->index();
     }
+
     public function mostrarFormulario()
     {
         $data = array('usuario' => $this->session->userdata());
         $this->twig->display('formularioCompra', $data);
     }
+    
 }

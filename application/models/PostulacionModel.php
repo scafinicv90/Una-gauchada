@@ -30,9 +30,13 @@ class PostulacionModel extends CI_Model
     }
     public function eliminarPostulacion($id_favor,$id_usuario)
     {
-        $this->db->where('usuarios_id_usuario',$id_usuario);
+ /*       $this->db->where('usuarios_id_usuario',$id_usuario);
         $this->db->where('favor_id_favor',$id_favor);
-        $this->db->delete('usuarios_has_favor_postulacion');
+        $this->db->delete('usuarios_has_favor_postulacion');*/
+        $data = array('usuarios_id_usuario' => $id_usuario,
+         'favor_id_favor' => $id_favor,
+         'estado', 3 );
+        $this->db->update('usuarios_has_favor_postulacion', $data );
     }
     public function obtenerPostulaciones($id_usuario)
     {
@@ -52,6 +56,7 @@ class PostulacionModel extends CI_Model
         $this->db->from('usuarios');
         $this->db->join('usuarios_has_favor_postulacion', 'usuarios_has_favor_postulacion.usuarios_id_usuario = usuarios.id_usuario');
         $this->db->where('usuarios_has_favor_postulacion.favor_id_favor=', $id_favor);
+        $this->db->where('usuarios_has_favor_postulacion.estado <>', 3);
         $query = $this->db->get();
         if($query->num_rows() > 0) {
             return($query);

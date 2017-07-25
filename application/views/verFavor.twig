@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block content %}
+	{{ dump() }}
+	{# modal para ver el estado #}
 	<div class="row main">
 		<div class="example-modal " >
         <div class="modal modal-info" id="myModal2">
@@ -59,18 +61,19 @@
 		</ol>
 		</div>
 		<!-- end breadcrum -->
+<<<<<<< HEAD
+=======
 
+>>>>>>> 5833d77c5056007dfe297493b157a5dcc53e3527
 		<div class="col-md-4">
 		</div>
 		<div class="col-md-8 borde-favor">
 			<article class=" clearfix">
 			<div class="favor">
-
 				<div>
 					<img src = '{{pathimg}}{{ imagenes[0].img }}' class="foto-favor"  />
 					{# Despues hay que relacionar el link de la imagen con la base de datos #}
 				</div>
-
 				<br>
 				<p class="idFavor"></p>
 				<p class="tituloFavor idFavor">{{favor[0].titulo }}</p>
@@ -107,48 +110,50 @@
 		              </div>
 		            </div>
 		             {# /*end carousel*/ #}
+<<<<<<< HEAD
+
+=======
 			</div>
 			<div>
+>>>>>>> 5833d77c5056007dfe297493b157a5dcc53e3527
 				<br><br>
 				<p class="ubicacionFavor">Ubicación: {{favor[0].ciudad}}, {{favor[0].provincia}}</p>
 				<p class="fec_limFavor">Fecha límite: {{favor[0].fecha_limite}}</p>
 				<p class="descripcionFavor">Descripción: {{favor[0].descripcion}}</p>
-
 				<p class="id_usuarioFavor">Usuario: {{favor[0].nombre}}</p>
-				{% if favor[0].email != usuario.email %}
-					{% if postulado == true %}
-						{% if postulacion is defined %}
-							<div class="alert alert-success alert-dismissible">
-				            	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-				                <h4><i class="icon fa fa-check"></i> {{ postulacion }}!</h4>
-				            		Gracias por confiar en nosotros.
-				            </div>
-						{% endif %}
-						<div >
-							{% if postulado[0].estado == 1 %}
-								<a href="#"data-toggle="modal" data-target="#myModalCancelar">
-								<button class="btn btn-danger btn-flat">Cancelar postulación.</button></a>
-							{% else %}
-								<a href="#"data-toggle="modal" data-target="#myModalCancelar" class="btn btn-danger btn-flat disabled">
-								Cancelar postulación.</a>
-							{% endif %}
-							<a href="#"data-toggle="modal" data-target="#myModal2"><button class="btn btn-success btn-flat">Ver estado de postulación.</button></a>
-						</div>
-					{% else %}
-						{% if cancelado is defined %}
-							<div class="alert alert-success alert-dismissible">
-			                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			</div>
+			{% if favor[0].email != usuario.email %}
+				{% if postulado == true %}
+					{% if postulacion is defined %}
+						<div class="alert alert-success alert-dismissible">
+			            	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 			                <h4><i class="icon fa fa-check"></i> {{ postulacion }}!</h4>
 			            		Gracias por confiar en nosotros.
-			              	</div>
-						{% endif %}
-						<div class=""><a href="{{ dirpath }}postular/index/{{favor[0].id_favor}}"><button class="btn btn-success btn-flat"> Postular.</button></a></div>
+			            </div>
 					{% endif %}
-		        {% else %}
-					<a class="postulantes" href="{{ dirpath }}postular/verPostulantes/{{favor[0].id_favor}}"><button class="btn btn-success btn-flat">Ver postulantes</button></a>
+					<div >
+						{% if postulado[0].estado == 1 %}
+							<a href="#"data-toggle="modal" data-target="#myModalCancelar">
+							<button class="btn btn-danger btn-flat">Cancelar postulación.</button></a>
+						{% else %}
+							<a href="#"data-toggle="modal" data-target="#myModalCancelar" class="btn btn-danger btn-flat disabled">
+							Cancelar postulación.</a>
+						{% endif %}
+						<a href="#"data-toggle="modal" data-target="#myModal2"><button class="btn btn-success btn-flat">Ver estado de postulación.</button></a>
+					</div>
+				{% else %}
+					{% if cancelado is defined %}
+						<div class="alert alert-success alert-dismissible">
+		                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		                <h4><i class="icon fa fa-check"></i> {{ postulacion }}!</h4>
+		            		Gracias por confiar en nosotros.
+		              	</div>
+					{% endif %}
+					<div class=""><a href="{{ dirpath }}postular/index/{{favor[0].id_favor}}"><button class="btn btn-success btn-flat"> Postular.</button></a></div>
 				{% endif %}
-			</div>
-
+	        {% else %}
+			        	<a href="{{ dirpath }}postular/verPostulantes/{{favor[0].id_favor}}"><button class="btn btn-success">Ver postulantes</button></a>
+			{% endif %}
 
 	        </article>
 
