@@ -49,12 +49,12 @@ class Perfil extends CI_Controller {
                 var_dump($this->input->post());die();
                 $telefono = $this->input->post('telefono');
                 $email = $this->input->post('email');
-                $nombre = $this->session->userdata('nombre');
-                $apellido = $this->session->userdata('apellido');
-                $fecha_nacimiento  = $this->session->userdata('fecha');
-                $password = $this->session->userdata('password');
-                $credito = $this->session->userdata('credito');
-                $tipo = $this->session->userdata('tipo');
+                $nombre = $this->input->post('nombre');
+                $apellido = $this->input->post('apellido');
+                $fecha_nacimiento  = $this->input->post('fecha');
+                $password = $this->input->post('password');
+                $credito = $this->input->post('credito');
+                $tipo = $this->input->post('tipo');
                 $id_usuario = $this->session->userdata('id_usuario');
                 $usuario = $this->usuarioModel->buscarUsuario($email);
                 if($usuario) {
@@ -72,10 +72,11 @@ class Perfil extends CI_Controller {
                                 'credito' => $credito,
                                 'tipo' => $tipo);
                         $this->usuarioModel->modificarUsuario($id_usuario, $data);
+                        $user = $this->usuarioModel->buscarUsuario($email);
                         $datos = array(
-                                'usuarioPerfil' => $usuario->result(),
+                                'usuarioPerfil' => $user->result(),
                                 'usuario' => $this->session->userdata());
-                        $this->twig->display('verPerfil', $datos);
+                        $this->twig->display('perfilModificado', $datos);
                 }
         }
 

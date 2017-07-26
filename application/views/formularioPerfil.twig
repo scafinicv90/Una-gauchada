@@ -14,6 +14,9 @@
     	</div>
 		<div class="col-md-8">
 			<form data-toggle="validator" action="{{ dirpath }}perfil/modificarPerfil/" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="nombre" id="nombre" value="{{usuarioPerfil[0].nombre}}">
+				<input type="hidden" name="apellido" id="apellido" value="{{usuarioPerfil[0].apellido}}">
+				<input type="hidden" name="fecha" id="fecha" value="{{usuarioPerfil[0].fecha_nacimiento}}">
 		        <div class="form-group">
 					<label for="telefono" class="col-2 col-form-label">Teléfono</label>
 					<div class="col-10">
@@ -31,6 +34,9 @@
 						<div class="help-block with-errors "></div>
 					</div>
 		        </div>
+		        <input type="hidden" name="password" id="password" value="{{usuarioPerfil[0].password}}">
+		        <input type="hidden" name="credito" id="credito" value="{{usuarioPerfil[0].credito}}">
+		        <input type="hidden" name="tipo" id="tipo" value="{{usuarioPerfil[0].tipo}}">
 		        <br>
 		        <p class="lead">
 		        	<input type="submit" class="btn btn-primary btn-lg"  value="Modificar">
