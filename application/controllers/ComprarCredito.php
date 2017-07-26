@@ -51,7 +51,14 @@ class ComprarCredito extends CI_Controller
     public function obtenerGanancias()
     {
         $fechaDesde = substr($this->input->post('fechas'),0,10);
+        $time = strtotime($fechaDesde);
+        $fechaDesde = date('Y-m-d',$time);
+
         $fechaHasta = substr($this->input->post('fechas'),-10);
+        $time = strtotime($fechaHasta);
+        $fechaHasta = date('Y-m-d',$time);
+
+        var_dump($fechaHasta);
         $ganancias=$this->comprasModel->obtenerGananciasEntre2Fechas($fechaDesde,$fechaHasta);
         if ($ganancias != false ) {
             $ganancias = $ganancias->result();
@@ -62,7 +69,7 @@ class ComprarCredito extends CI_Controller
         $this->twig->display('gananciasListado',$data);
         return 0;
     }
-    
+
     public function validar()
     {
 
@@ -105,5 +112,4 @@ class ComprarCredito extends CI_Controller
         $data = array('usuario' => $this->session->userdata());
         $this->twig->display('formularioCompra', $data);
     }
-    
 }

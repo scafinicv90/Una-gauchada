@@ -37,6 +37,7 @@ class Perfil extends CI_Controller {
         {
                 $email = $this->session->userdata('email');
                 $usuario = $this->usuarioModel->buscarUsuario($email);
+                var_dump($usuario->result());
                 $data = array(
                         'usuarioPerfil' => $usuario->result(),
                         'usuario' => $this->session->userdata());
@@ -44,7 +45,8 @@ class Perfil extends CI_Controller {
         }
 
         public function modificarPerfil()
-        {
+        { 
+                var_dump($this->input->post());die();
                 $telefono = $this->input->post('telefono');
                 $email = $this->input->post('email');
                 $nombre = $this->session->userdata('nombre');
