@@ -38,18 +38,19 @@
 									Reputación:<p class="reputacion-perfil">Nobleza Gaucha</p>
 								{% elseif usuarioPerfil[0].reputacion > 10 %}
 									Reputación:<p class="reputacion-perfil">Héroe</p>
-								{% elseif usuarioPerfil[0].reputacion > 5 %} 
+								{% elseif usuarioPerfil[0].reputacion > 5 %}
 									Reputación:<p class="reputacion-perfil">Tipazo</p>
-								{% elseif usuarioPerfil[0].reputacion > 1 %} 
+								{% elseif usuarioPerfil[0].reputacion > 1 %}
 									Reputación:<p class="reputacion-perfil">Gran tipo</p>
 								{% elseif usuarioPerfil[0].reputacion == 1 %}
 									Reputación:<p class="reputacion-perfil">Buen tipo</p>
-								{% elseif usuarioPerfil[0].reputacion == 0 %} 
+								{% elseif usuarioPerfil[0].reputacion == 0 %}
 									Reputación:<p class="reputacion-perfil">Observador</p></span>
 								{% endif %}
 								</h5>
 				              	<h5 class="widget-user-desc">Créditos: <p class="reputacion-perfil" >{{usuarioPerfil[0].credito}}</p></h5>
-				              	<a href="{{ dirpath }}perfil/mostrarFormulario/{{usuarios.id_usuario}}" class="btn btn-primary btn-lg">Modificar</a>
+				            	<a href="{{ dirpath }}perfil/mostrarFormulario/{{usuarios.id_usuario}}" class="btn btn-app ">
+				                	<i class="fa fa-edit"></i> Modificar </a>
 				            </div>
 
 				            <div class="box-footer no-padding">

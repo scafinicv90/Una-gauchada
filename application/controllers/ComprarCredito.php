@@ -58,7 +58,6 @@ class ComprarCredito extends CI_Controller
         $time = strtotime($fechaHasta);
         $fechaHasta = date('Y-m-d',$time);
 
-        var_dump($fechaHasta);
         $ganancias=$this->comprasModel->obtenerGananciasEntre2Fechas($fechaDesde,$fechaHasta);
         if ($ganancias != false ) {
             $ganancias = $ganancias->result();

@@ -30,14 +30,23 @@ class Perfil extends CI_Controller {
                 $data=array(
                         'usuarioPerfil' => $usuario->result(),
                         'usuario' => $this->session->userdata());
-                $this->twig->display('verPerfilAjeno', $data);
+                $this->twig->display('verRanking', $data);
+        }
+        public function obtenerRanking()
+        {
+                $ranking=$this->usuarioModel->obtenerRanking();
+                $ranking=$ranking->result();
+
+                $data=array(
+                        'usuarios' => $ranking,
+                        'usuario' => $this->session->userdata());
+                $this->twig->display('verRanking', $data);
         }
 
         public function mostrarFormulario()
         {
                 $email = $this->session->userdata('email');
                 $usuario = $this->usuarioModel->buscarUsuario($email);
-                var_dump($usuario->result());
                 $data = array(
                         'usuarioPerfil' => $usuario->result(),
                         'usuario' => $this->session->userdata());

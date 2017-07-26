@@ -1,0 +1,62 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/ranking.css">
+
+{% endblock %}
+{% block content %}
+<div class="row main ">
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Ranking</li>
+		</ol>
+	</div>
+	<!-- end breadcrum -->
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+			<h4 >Ranking de usuarios con mayor reputacion:</h4>
+			<div class="table-responsive">
+				<table id="" class="ranking" cellspacing="" width="100%">
+	            	<thead>
+				        <tr>
+				        	<th>Posición</th>
+				            <th>Usuario</th>
+				            <th>Nivel</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    	{% set i = 1 %}
+				        {% for usuario in usuarios %}
+				        	<tr>
+				        		<td>{{ i }}</td>
+				        		{% set i = i + 1 %}
+				                <td>{{usuario.nombre}} {{ usuario.apellido}}</td>
+				                <td>{% if usuario.reputacion < 0 %}
+									<p class="reputacion-perfil">Irresponsable</p>
+								{% elseif usuario.reputacion > 50 %}
+									<p class="reputacion-perfil">Dios</p>
+								{% elseif usuario.reputacion > 20 %}
+									<p class="reputacion-perfil">Nobleza Gaucha</p>
+								{% elseif usuario.reputacion > 10 %}
+									<p class="reputacion-perfil">Héroe</p>
+								{% elseif usuario.reputacion > 5 %} 
+									<p class="reputacion-perfil">Tipazo</p>
+								{% elseif usuario.reputacion > 1 %} 
+									<p class="reputacion-perfil">Gran tipo</p>
+								{% elseif usuario.reputacion == 1 %}
+									<p class="reputacion-perfil">Buen tipo</p>
+								{% elseif usuario.reputacion == 0 %} 
+									<p class="reputacion-perfil">Observador</p></span>
+								{% endif %}</td>
+				            </tr>
+	        			{% endfor %}
+				    </tbody>
+				</table>
+			</div>
+
+	</div>
+</div>
+{% endblock %}
+{% block endBody %}
+{% endblock %}

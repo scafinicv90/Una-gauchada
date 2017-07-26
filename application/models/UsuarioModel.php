@@ -20,6 +20,17 @@ class UsuarioModel extends CI_Model
             return (false);
         }
     }
+    public function obtenerRanking()
+    {
+        $this->db->order_by('reputacion', 'DESC');
+        $this->db->limit(4);
+        $query = $this->db->get('usuarios');
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
 
     public function buscarUsuario($emailUser)
     {
