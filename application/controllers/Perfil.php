@@ -54,8 +54,7 @@ class Perfil extends CI_Controller {
         }
 
         public function modificarPerfil()
-        { 
-                var_dump($this->input->post());die();
+        {
                 $telefono = $this->input->post('telefono');
                 $email = $this->input->post('email');
                 $nombre = $this->input->post('nombre');
@@ -64,11 +63,13 @@ class Perfil extends CI_Controller {
                 $password = $this->input->post('password');
                 $credito = $this->input->post('credito');
                 $tipo = $this->input->post('tipo');
-                $id_usuario = $this->session->userdata('id_usuario');
+                $reputacion = $this->input->post('reputacion');
                 $usuario = $this->usuarioModel->buscarUsuario($email);
                 if($usuario) {
-                        $data['existe'] = 'Ya existe un usuario con ese email.';
-                        $data['registrar'] = $this->input->post();
+                        $data = array (
+                                'existe' => 'Ya existe un usuario con ese email.',
+                                'usuarioPerfil' => $usuario->result(),
+                                'usuario' => $this->session->userdata());
                         $this->twig->display('formularioPerfil', $data);
                 } else {
                         $data = array(
@@ -79,9 +80,13 @@ class Perfil extends CI_Controller {
                                 'fecha_nacimiento'  => $fecha_nacimiento,
                                 'apellido' => $apellido,
                                 'credito' => $credito,
-                                'tipo' => $tipo);
+                                'tipo' => $tipo,
+                                'reputacion' => $reputacion);
+                        $id_usuario = $this->session->userdata('id_usuario');
                         $this->usuarioModel->modificarUsuario($id_usuario, $data);
-                        $user = $this->usuarioModel->buscarUsuario($email);
+                        $user = $this->usuarioModel->buscarUsuarioId($id_usuario);
+                        var_dump($user);
+                        die();
                         $datos = array(
                                 'usuarioPerfil' => $user->result(),
                                 'usuario' => $this->session->userdata());
