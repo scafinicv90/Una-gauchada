@@ -53,7 +53,7 @@ class Perfil extends CI_Controller {
                 $this->twig->display('formularioPerfil', $data);
         }
 
-        public function modificarPerfil()
+        public function modificarPerfil($id_usuario)
         {
                 $telefono = $this->input->post('telefono');
                 $email = $this->input->post('email');
@@ -82,11 +82,8 @@ class Perfil extends CI_Controller {
                                 'credito' => $credito,
                                 'tipo' => $tipo,
                                 'reputacion' => $reputacion);
-                        $id_usuario = $this->session->userdata('id_usuario');
                         $this->usuarioModel->modificarUsuario($id_usuario, $data);
                         $user = $this->usuarioModel->buscarUsuarioId($id_usuario);
-                        var_dump($user);
-                        die();
                         $datos = array(
                                 'usuarioPerfil' => $user->result(),
                                 'usuario' => $this->session->userdata());
