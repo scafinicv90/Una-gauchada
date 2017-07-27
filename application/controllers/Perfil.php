@@ -55,7 +55,7 @@ class Perfil extends CI_Controller {
 
         public function modificarPerfil()
         { 
-                var_dump($this->input->post());die();
+                var_dump($this->input->post());
                 $telefono = $this->input->post('telefono');
                 $email = $this->input->post('email');
                 $nombre = $this->input->post('nombre');
@@ -66,6 +66,8 @@ class Perfil extends CI_Controller {
                 $tipo = $this->input->post('tipo');
                 $id_usuario = $this->session->userdata('id_usuario');
                 $usuario = $this->usuarioModel->buscarUsuario($email);
+                var_dump($usuario->result());
+                die();
                 if($usuario) {
                         $data['existe'] = 'Ya existe un usuario con ese email.';
                         $data['registrar'] = $this->input->post();
