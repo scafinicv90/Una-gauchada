@@ -53,7 +53,7 @@ class Perfil extends CI_Controller {
                 $this->twig->display('formularioPerfil', $data);
         }
 
-        public function modificarPerfil()
+        public function modificarPerfil($id_usuario)
         {
                 var_dump($this->input->post());
 
@@ -68,8 +68,7 @@ class Perfil extends CI_Controller {
                 $reputacion = $this->input->post('reputacion');
                 $usuario = $this->usuarioModel->buscarUsuario($email);
                 var_dump($usuario->result());
-                die();
-                if($usuario) {
+                if(false) {
                         $data = array (
                                 'existe' => 'Ya existe un usuario con ese email.',
                                 'usuarioPerfil' => $usuario->result(),
