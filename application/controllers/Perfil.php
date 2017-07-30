@@ -16,7 +16,7 @@ class Perfil extends CI_Controller {
 
 	public function verPerfil()
         {
-                $email=$this->session->userdata('email');
+                $email=$this->session->userdata();
                 $usuario=$this->usuarioModel->buscarUsuario($email);
                 $data=array(
                         'usuarioPerfil' => $usuario->result(),
