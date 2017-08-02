@@ -68,12 +68,26 @@ class Perfil extends CI_Controller {
                 $tipo = $this->input->post('tipo');
                 $reputacion = $this->input->post('reputacion');
                 $user2 = $this->usuarioModel->buscarUsuario($email_actual);
-
                 $usuario = $user2->result();
+                var_dump($telefono);
                 if($email == $email_actual) {
+                        $datos = array(
+                                'nombre' => $nombre,
+                                'email' => $email,
+                                'password' => $password,
+                                'telefono' => $telefono,
+                                'apellido' => $apellido,
+                                'fecha_nacimiento'  => $fecha_nacimiento,
+                                'tipo' => $tipo,
+                                'credito' => $credito,
+                                'reputacion' => $reputacion);
+                        $this->usuarioModel->modificarUsuario($id_usuario, $datos);
+                        $user = $this->usuarioModel->buscarUsuarioId($id_usuario);
+                        $user = $user->result();
+                        var_dump($user);die();
                         $data = array (
                                 'existe' => 'Ya existe un usuario con ese email.',
-                                'usuarioPerfil' => $usuario,
+                                'usuarioPerfil' => $user,
                                 'usuario' => $this->session->userdata());
                         $this->twig->display('formularioPerfil', $data);
                 } else {
@@ -82,12 +96,11 @@ class Perfil extends CI_Controller {
                                 'email' => $email,
                                 'password' => $password,
                                 'telefono' => $telefono,
-                                'fecha_nacimiento'  => $fecha_nacimiento,
                                 'apellido' => $apellido,
-                                'credito' => $credito,
+                                'fecha_nacimiento'  => $fecha_nacimiento,
                                 'tipo' => $tipo,
+                                'credito' => $credito,
                                 'reputacion' => $reputacion);
-                        
                         $this->usuarioModel->modificarUsuario($id_usuario, $data);
                         $user = $this->usuarioModel->buscarUsuarioId($id_usuario);
                         $user = $user->result();
