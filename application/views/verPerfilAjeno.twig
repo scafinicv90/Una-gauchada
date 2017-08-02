@@ -12,34 +12,43 @@
 				<li>Ver perfil</li>
 			</ol>
 		</div>
+		<div class="col-md-2"></div>
 		<div class="col-md-8 breadcrumb borde-perfil">
 			<div class="perfil">
-				<div class="bloque-foto-perfil">
-					<img src="{{pathimg}}/uploads/imgFavores/logo.png" class="foto-perfil">
+				<div>
+					<div class="col-md-12">
+			          <!-- Widget: user widget style 1 -->
+			          <div class="box box-widget widget-user-2">
+			            <!-- Add the bg color to the header using any of the bg-* classes -->
+			            <div class="widget-user-header bg-yellow">
+			              <div class="widget-user-image">
+			                <img class="img-circle" src="{{pathimg}}/uploads/imgFavores/logo.png" alt="User Avatar">
+			              </div>
+			              <!-- /.widget-user-image -->
+			              <h3 class="widget-user-username">{{usuarioPerfil[0].nombre}} {{usuarioPerfil[0].apellido}} </h3>
+			              <h5 class="widget-user-desc">
+										    {% if usuarioPerfil[0].reputacion < 0 %}
+												Reputación:<p class="reputacion-perfil">Irresponsable</p>
+											{% elseif usuarioPerfil[0].reputacion > 50 %}
+												Reputación:<p class="reputacion-perfil">Dios</p>
+											{% elseif usuarioPerfil[0].reputacion > 20 %}
+												Reputación:<p class="reputacion-perfil">Nobleza Gaucha</p>
+											{% elseif usuarioPerfil[0].reputacion > 10 %}
+												Reputación:<p class="reputacion-perfil">Héroe</p>
+											{% elseif usuarioPerfil[0].reputacion > 5 %} 
+												Reputación:<p class="reputacion-perfil">Tipazo</p>
+											{% elseif usuarioPerfil[0].reputacion > 1 %} 
+												Reputación:<p class="reputacion-perfil">Gran tipo</p>
+											{% elseif usuarioPerfil[0].reputacion == 1 %}
+											 	Reputación:<p class="reputacion-perfil">Buen tipo</p>
+											{% elseif usuarioPerfil[0].reputacion == 0 %} 
+												Reputación:<p class="reputacion-perfil">Observador</p></span>
+											{% endif %}</h5>
+			            </div>
+			          </div>
+			          <!-- /.widget-user -->
+			        </div>
 				</div>
-				<div class="bloque-datos-perfil">
-					<p class="datos-perfil"></span>Nombre: {{usuarioPerfil[0].nombre}}</span></p>
-					<p class="datos-perfil"></span>Apellido: {{usuarioPerfil[0].apellido}}</span></p>
-					<p class="datos-perfil"></span>Teléfono: {{usuarioPerfil[0].telefono}}</span></p>
-					<p class="datos-perfil"></span>Email: {{usuarioPerfil[0].email}}</span></p>
-				</div>
-				{% if reputacion < 0 %}
-					<p class="reputacion-perfil">Irresponsable</p>
-				{% elseif reputacion > 50 %} 
-					<p class="reputacion-perfil">Dios</p>
-				{% elseif reputacion > 20 %}
-					<p class="reputacion-perfil">Nobleza Gaucha</p>
-				{% elseif reputacion > 10 %}
-					<p class="reputacion-perfil">Heroe</p>
-				{% elseif reputacion > 5 %} 
-					<p class="reputacion-perfil">Tipazo</p>
-				{% elseif reputacion > 1 %} 
-					<p class="reputacion-perfil">Gran tipo</p>
-				{% elseif reputacion == 1 %}
-				 	<p class="reputacion-perfil">Buen tipo</p>
-				{% elseif reputacion == 0 %} 
-					<p class="reputacion-perfil">Observador</p>
-				{% endif %}
 			</div>
 		</div>
 	</div>

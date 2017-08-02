@@ -1,0 +1,31 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/registrar.css">
+{% endblock %}
+
+{% block content %}
+<div class="row main ">
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Eliminar Favor</li>
+		</ol>
+	</div>
+	<div class="col-md-8">
+		<h3 class="h3-formulario">Favor a eliminar: {{favor[0].titulo}}</h3>
+		<hr>
+		
+		<p class="lead">
+		{% if  errores is defined %}
+        		<p class="text-danger">{{ errores['existe'] }}</p>
+        		<a class="postulantes" href="{{ dirpath }}postular/verPostulantes/{{favor[0].id_favor}}"><button class="btn btn-success btn-lg">Ver postulantes</button></a>
+        		
+   		{% endif %}
+			<a class="btn btn-primary btn-lg" href="{{dirpath}}favor/eliminarFavor/{{favor[0].id_favor}}" role="button">Eliminar</a>
+			<a href="{{ dirpath }}favor/verMisGauchadas/" class="btn btn-danger btn-lg" role="button">Cancelar</a>
+			</p>
+		
+	</div>
+</div>
+{% endblock %}

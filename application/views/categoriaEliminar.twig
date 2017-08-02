@@ -1,0 +1,33 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/registrar.css">
+{% endblock %}
+
+{% block content %}
+<div class="row main ">
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Eliminar Categoria</li>
+		</ol>
+	</div>
+	<div class="col-md-8">
+		<h3 class="h3-formulario">Categoria a eliminar: {{categorias[0].nombre}}</h3>
+		<hr>
+		
+			
+			
+			<p class="lead">
+				{% if  errores is defined %}
+          					<p class="text-danger">{{ errores['existe'] }}</p>
+          					<a href="{{ dirpath }}administrador/verCategorias/" class="btn btn-info" role="button">Volver</a>
+          					<a href="{{ dirpath }}administrador/ir/" class="btn btn-info" role="button">Crear categoria</a>
+   			 {% else %}
+			<a class="btn btn-primary btn-lg" href="{{dirpath}}administrador/deleteCategoria/{{categorias[0].id_categoria}}" role="button">Confirmar</a>
+			<a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Cancelar</a>
+			</p>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

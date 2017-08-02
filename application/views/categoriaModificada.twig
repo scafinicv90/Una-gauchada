@@ -1,0 +1,19 @@
+{% extends 'layout.twig' %}
+
+
+{% block content %}
+<div class="row main ">
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Categoria modificada</li>
+		</ol>
+	</div>
+	<!-- end breadcrum -->
+	<div class="col-md-8">
+		<p>Categoria modificada correctamente</p>
+		<a href="{{dirpath}}home/" class="btn btn-info" role="button">Ir a incio</a>
+		<a href="{{ dirpath }}administrador/verCategorias/" class="btn btn-info" role="button">Ver categorias</a>
+	</div>
+</div>
+{% endblock %}
