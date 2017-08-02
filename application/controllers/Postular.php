@@ -132,7 +132,7 @@ class Postular extends CI_Controller
     public function rechazarPostulante() {
         $id_usuario = $this->input->get('id');
         $id_favor = $this->input->get('idFavor');
-        $this->postulacionModel->eliminarPostulacion($id_favor, $id_usuario);
+        $this->postulacionModel->cancelarPostulacion($id_favor, $id_usuario);
         $query = $this->postulacionModel->obtenerPostulantes($id_favor);
         if($query != false) {
             $query = $query->result();

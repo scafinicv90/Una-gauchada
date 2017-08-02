@@ -28,14 +28,14 @@ class PostulacionModel extends CI_Model
             return (false);
         }
     }
-    public function eliminarPostulacion($id_favor,$id_usuario)
+    public function cancelarPostulacion($id_favor, $id_usuario)
     {
- /*       $this->db->where('usuarios_id_usuario',$id_usuario);
-        $this->db->where('favor_id_favor',$id_favor);
-        $this->db->delete('usuarios_has_favor_postulacion');*/
-        $data = array('usuarios_id_usuario' => $id_usuario,
-         'favor_id_favor' => $id_favor,
-         'estado', 3 );
+        $data = array(
+            'usuarios_id_usuario' => $id_usuario,
+            'favor_id_favor' => $id_favor,
+            'estado' => 3);
+        $this->db->where('usuarios_id_usuario', $id_usuario);
+        $this->db->where('favor_id_favor', $id_favor);
         $this->db->update('usuarios_has_favor_postulacion', $data );
     }
     public function obtenerPostulaciones($id_usuario)
