@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-06-2017 a las 17:00:30
+-- Tiempo de generación: 26-07-2017 a las 13:28:45
 -- Versión del servidor: 5.7.18-0ubuntu0.16.04.1
 -- Versión de PHP: 5.6.27-1+deb.sury.org~xenial+1
 
@@ -63,12 +63,39 @@ CREATE TABLE `comentarios` (
 
 INSERT INTO `comentarios` (`id_comentario`, `descripcion`, `favor_id`, `id_respuesta`, `usuario_id`) VALUES
 (4, 'Que lindo perrito!!!que dias y a que hora seria el paseo?', 3, 2, 10),
-(5, 'Yo puedo en el horario de las 14hs.', 5, NULL, 2),
+(5, 'Yo puedo en el horario de las 14hs.', 5, 4, 2),
 (6, 'Este es un comentario', 3, 3, 2),
 (7, 'hola gatito\r\n', 4, NULL, 1),
 (8, 'holi', 4, NULL, 1),
 (9, 'que buen comentario', 4, NULL, 9),
-(10, 'jvhjjbjnbn', 6, NULL, 1);
+(10, 'jvhjjbjnbn', 6, NULL, 1),
+(11, 'hola\r\n', 4, NULL, 1),
+(12, 'hola', 4, NULL, 1),
+(24, '', 24, NULL, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `compra_creditos`
+--
+
+CREATE TABLE `compra_creditos` (
+  `id_compra` int(11) NOT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `monto` double DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `usuarios_id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `compra_creditos`
+--
+
+INSERT INTO `compra_creditos` (`id_compra`, `cantidad`, `monto`, `fecha`, `usuarios_id_usuario`) VALUES
+(1, 2, 100, '2017-07-24', 1),
+(2, 5, 250, '2017-06-08', 9),
+(3, 4, 200, '2017-07-12', 2),
+(4, 4, 200, '2017-08-17', 11);
 
 -- --------------------------------------------------------
 
@@ -91,19 +118,26 @@ CREATE TABLE `favor` (
 --
 
 INSERT INTO `favor` (`id_favor`, `titulo`, `ciudad`, `provincia`, `fecha_limite`, `descripcion`, `id_usuario`) VALUES
-(3, 'Pasear al perro', 'La plata', 'Buenos Aires', '2017-06-29', 'Tengo un perrito, al cual no puedo pasear muy seguido. Necesito alguien que pueda llevarlo al parque por las tardes', 2),
-(4, 'Cuidado de mascota', 'Avellaneda', 'Buenos Aires', '2017-06-30', 'Tengo un gato de 1 año que necesito que cuiden por las tardes. Es muy amigable, se lleva bien con otros animales y tienen todos las vacunas al dia', 2),
-(5, 'Viaje a Ezeiza', 'La plata', 'Buenos Aires', '2017-06-30', 'Tengo que realizar un viaje y necesito que alguien me lleve a Ezeiza un lunes por la tarde', 10),
-(6, 'Cuidado de anciana', 'La Plata', 'Buenos Aires', '2017-06-28', 'Buenas tardes!', 2),
-(7, 'Traslado', 'Quilmes', 'Buenos Aires', '2017-06-30', 'Necesito traslado a Ezeiza.', 11),
-(8, 'Necesito creditos', 'La plata', 'Buenos Aires', '2017-06-27', 'Necesito creditos.', 2),
-(9, 'Ayudante de cocina', 'la plata', 'bsas', '2017-06-27', 'fwehfbugjhdbfljskkjdnjdsnknvdvdknv', 1),
-(10, 'sdsadsa', 'safsafsafa', 'fsafsafaf', '2017-06-16', 'safsafsafsafasfsaf', 1),
-(11, 'qeqweqwewqe', 'wqewqewqewqewqe', 'qewqewqewqew', '2017-06-30', 'wqewqewqewqewqe', 9),
-(12, 'gato ', 'mendoza', 'mendoza', '2017-06-30', 'u n lindo gato toara para mendoza', 9),
-(13, 'camion', 'cordoba', 'cordoba', '2017-06-30', 'quiero vender un camion.etc.', 1),
-(14, 'seniora mayor', 'quilmes', 'Buenos Aires', '2017-07-02', 'necesito que cuiden a una señora de  avanzada edad', 1),
-(15, 'ayudante de ingenieria 1', 'La plata', 'Buenos Aires', '2017-06-30', 'busco alguein que pueda ayudarme ,para rendir el final de ingenieria 1 de la facultad de informatica. este fin de semana.', 1);
+(3, 'Pasear al perro', 'La plata', 'Buenos Aires', '2017-07-28', 'Tengo un perrito, al cual no puedo pasear muy seguido. Necesito alguien que pueda llevarlo al parque por las tardesLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 2),
+(4, 'Cuidado de mascota', 'Avellaneda', 'Buenos Aires', '2017-07-25', 'Tengo un gato de 1 año que necesito que cuiden por las tardes. Es muy amigable, se lleva bien con otros animales y tienen Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.todos las vacunas al dia', 2),
+(5, 'Viaje a Ezeiza', 'La plata', 'Buenos Aires', '2017-07-24', 'Tengo que realizar un viaje y necesito que alguien me lleve a Ezeiza un lunes por la tarde Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 10),
+(6, 'Cuidado de anciana', 'La Plata', 'Buenos Aires', '2017-07-17', 'Buenas tardes!Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 2),
+(7, 'Traslado', 'Quilmes', 'Buenos Aires', '2017-07-21', 'Necesito traslado a Ezeiza.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 11),
+(8, 'Necesito creditos', 'La plata', 'Buenos Aires', '2017-08-31', 'Necesito creditos.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 2),
+(11, 'Pasear a dogo', 'quilmes', 'Buenos Aires', '2017-07-25', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 9),
+(12, 'Gato mayor', 'avellaneda', 'Buenos Aires', '2017-07-31', 'u n lindo gato toara para mendoza Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 9),
+(13, 'camion', 'cordoba', 'cordoba', '2017-07-19', 'quiero vender un camion.etc.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
+(18, 'Prueba 2', 'la plata', 'Buenos Aires', '2017-06-22', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 2),
+(19, 'viaje a salta', 'La plata', 'Buenos Aires', '2017-07-28', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
+(20, 'viaje a la plata para comprar departamen', 'necochea', 'Buenos Aires', '2017-07-30', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
+(21, 'viaje de turismo', 'salta', 'Salta', '2017-07-23', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
+(22, 'compra de entrada', 'san pedro', 'Salta', '2017-07-26', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
+(23, 'Ayudante de cocina', 'Avellaneda', 'Buenos Aires', '2017-07-21', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
+(24, 'Mesera', 'necochea', 'Buenos Aires', '2017-08-04', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
+(25, 'Busco ayudante para taller mecanico', 'Rosario', 'Santa Fe', '2017-07-14', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
+(26, 'Se busca jardinero', 'necochea', 'Buenos Aires', '2017-07-29', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
+(27, 'Repartidor de pizza', 'toledo', 'Cordoba', '2017-07-29', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
+(28, 'Repartidor de terrabusi', 'villa gesel', 'Buenos Aires', '2017-08-05', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1);
 
 -- --------------------------------------------------------
 
@@ -121,20 +155,33 @@ CREATE TABLE `favor_has_categorias` (
 --
 
 INSERT INTO `favor_has_categorias` (`favor_id_favor`, `categorias_id_categoria`) VALUES
+(3, 1),
 (5, 1),
 (7, 1),
 (11, 1),
 (12, 1),
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(28, 1),
 (8, 2),
-(9, 2),
-(10, 2),
 (12, 2),
 (13, 2),
-(3, 6),
+(18, 2),
+(20, 2),
+(22, 2),
+(18, 3),
+(26, 3),
+(25, 4),
+(23, 5),
 (4, 6),
 (6, 6),
-(14, 6),
-(15, 6);
+(24, 6),
+(25, 6),
+(26, 6),
+(27, 6),
+(28, 6);
 
 -- --------------------------------------------------------
 
@@ -159,13 +206,20 @@ INSERT INTO `imagenes` (`id_imagen`, `img`, `favor_id`) VALUES
 (6, 'uploads/imgFavores/logo.png', 6),
 (7, 'uploads/imgFavores/zaask-jardineros.jpg', 7),
 (8, 'uploads/imgFavores/logo.png', 8),
-(9, 'uploads/imgFavores/logo.png', 9),
-(10, 'uploads/imgFavores/logo.png', 10),
 (11, 'uploads/imgFavores/logo.png', 11),
 (12, 'uploads/imgFavores/logo.png', 12),
 (13, 'uploads/imgFavores/logo.png', 13),
-(14, 'uploads/imgFavores/logo.png', 14),
-(15, 'uploads/imgFavores/logo.png', 15);
+(18, 'uploads/imgFavores/logo.png', 18),
+(19, 'uploads/imgFavores/logo.png', 19),
+(20, 'uploads/imgFavores/logo.png', 20),
+(21, 'uploads/imgFavores/logo.png', 21),
+(22, 'uploads/imgFavores/logo.png', 22),
+(23, 'uploads/imgFavores/logo.png', 23),
+(24, 'uploads/imgFavores/logo.png', 24),
+(25, 'uploads/imgFavores/logo.png', 25),
+(26, 'uploads/imgFavores/logo.png', 26),
+(27, 'uploads/imgFavores/logo.png', 27),
+(28, 'uploads/imgFavores/logo.png', 28);
 
 -- --------------------------------------------------------
 
@@ -2629,7 +2683,8 @@ CREATE TABLE `respuestas` (
 
 INSERT INTO `respuestas` (`id_respuesta`, `respuesta`, `id_comentario`, `usuarios_id`) VALUES
 (2, 'de lunes a jueves a partir de las 4 seria', 4, 2),
-(3, 'Esta es la respuesta', 6, 2);
+(3, 'Esta es la respuesta', 6, 2),
+(4, 'quiero', 5, 2);
 
 -- --------------------------------------------------------
 
@@ -2655,11 +2710,12 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `password`, `telefono`, `apellido`, `fecha_nacimiento`, `tipo`, `credito`, `reputacion`) VALUES
-(1, 'admin', 'admin@gmail.com', '123456', 5484541, 'admin', '2017-05-05', 1, 0, 4),
-(2, 'pilar', 'pilar@gmail.com', '123456', 548745854, 'cercato', '2017-05-05', 0, 0, 0),
-(9, 'alex', 'alex@gmail.com', '123456', 123213214, 'velazquez', '1995-02-09', 0, 0, 0),
-(10, 'Juan', 'juanperez@hotmail.com', '123456', 2147483647, 'Perez', '1990-06-10', 0, 1, 0),
-(11, 'Carlos', 'carlos@hotmail.com', '123456', 2147483647, 'Scafini', '2017-06-11', 0, 1, 0);
+(1, 'Admin', 'admin@gmail.com', '123456', 5484541, 'admin', '1993-05-26', 1, 4, 4),
+(2, 'pilar', 'pilar@gmail.com', '123456', 25684575, 'cercato', '2001-07-12', 0, 0, 0),
+(9, 'alex', 'alex@gmail.com', '123456', 25685485, 'velasquez', '1999-07-20', 0, 6, 1),
+(10, 'juan', 'juan@gmail.com', '123456', 56985452, 'none', '2005-07-12', 0, 8, 7),
+(11, 'carlos', 'carlos@gmail.com', '123456', 1115353845, 'none', '1996-07-18', 0, 2, 15),
+(12, 'facundo', 'facundo@gmail.com', '123456', 58585825, 'none', '1998-07-06', 0, 1, 52);
 
 -- --------------------------------------------------------
 
@@ -2686,9 +2742,15 @@ INSERT INTO `usuarios_has_favor_postulacion` (`usuarios_id_usuario`, `favor_id_f
 (1, 11, 'vamo lo pobe 5\r\n', 3),
 (1, 12, 'vamo lo pibe', 2),
 (2, 5, 'pilar postulado sdededede', 1),
-(11, 3, 'voy a postularme', 1),
-(11, 9, 'me voy a postular gato.', 1),
-(11, 15, 'fdsdfsfdsfdfdfdsdfsfsdfsf', 1);
+(2, 11, 'asdsadsasadsa', 1),
+(11, 3, 'yo te ayudo compañero.', 1),
+(11, 4, 'postularse', 1),
+(11, 27, 'yo te ayudo.', 1),
+(12, 3, 'me voy a postular por que me gustan los animales', 1),
+(12, 4, 'me quiero postular por que me gustan los animales.', 1),
+(12, 25, 'necesito el empleo.', 1),
+(12, 26, 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 1),
+(12, 27, 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 1);
 
 --
 -- Índices para tablas volcadas
@@ -2707,6 +2769,13 @@ ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
   ADD KEY `id_favor_idx` (`favor_id`),
   ADD KEY `usuario_id` (`usuario_id`);
+
+--
+-- Indices de la tabla `compra_creditos`
+--
+ALTER TABLE `compra_creditos`
+  ADD PRIMARY KEY (`id_compra`),
+  ADD KEY `fk_compra_creditos_usuarios1_idx` (`usuarios_id_usuario`);
 
 --
 -- Indices de la tabla `favor`
@@ -2777,17 +2846,22 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT de la tabla `compra_creditos`
+--
+ALTER TABLE `compra_creditos`
+  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `favor`
 --
 ALTER TABLE `favor`
-  MODIFY `id_favor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_favor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT de la tabla `localidades`
 --
@@ -2802,12 +2876,12 @@ ALTER TABLE `provincias`
 -- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  MODIFY `id_respuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_respuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Restricciones para tablas volcadas
 --
@@ -2817,6 +2891,12 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `id_favor` FOREIGN KEY (`favor_id`) REFERENCES `favor` (`id_favor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `compra_creditos`
+--
+ALTER TABLE `compra_creditos`
+  ADD CONSTRAINT `fk_compra_creditos_usuarios1` FOREIGN KEY (`usuarios_id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `favor`

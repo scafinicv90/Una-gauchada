@@ -24,12 +24,74 @@ class Perfil extends CI_Controller {
 		$this->twig->display('verPerfil', $data);
 	}
 
-        public function verPerfilAjeno($id_usuario) {
+        public function verPerfilAjeno($id_usuario)
+        {
                 $usuario=$this->usuarioModel->buscarUsuarioId($id_usuario);
                 $data=array(
                         'usuarioPerfil' => $usuario->result(),
                         'usuario' => $this->session->userdata());
-                $this->twig->display('verPerfilAjeno', $data);
-
+                $this->twig->display('verRanking', $data);
         }
+        public function obtenerRanking()
+        {
+                $ranking=$this->usuarioModel->obtenerRanking();
+                $ranking=$ranking->result();
+
+                $data=array(
+                        'usuarios' => $ranking,
+                        'usuario' => $this->session->userdata());
+                $this->twig->display('verRanking', $data);
+        }
+
+        public function mostrarFormulario()
+        {
+                $email = $this->session->userdata('email');
+                $usuario = $this->usuarioModel->buscarUsuario($email);
+                $data = array(
+                        'usuarioPerfil' => $usuario->result(),
+                        'usuario' => $this->session->userdata());
+                $this->twig->display('formularioPerfil', $data);
+        }
+
+        public function modificarPerfil($id_usuario)
+        {
+                var_dump($this->input->post());
+
+                $telefono = $this->input->post('telefono');
+                $email = $this->input->post('email');
+                $nombre = $this->input->post('nombre');
+                $apellido = $this->input->post('apellido');
+                $fecha_nacimiento  = $this->input->post('fecha');
+                $password = $this->input->post('password');
+                $credito = $this->input->post('credito');
+                $tipo = $this->input->post('tipo');
+                $reputacion = $this->input->post('reputacion');
+                $usuario = $this->usuarioModel->buscarUsuario($email);
+                var_dump($usuario->result());
+                if(false) {
+                        $data = array (
+                                'existe' => 'Ya existe un usuario con ese email.',
+                                'usuarioPerfil' => $usuario->result(),
+                                'usuario' => $this->session->userdata());
+                        $this->twig->display('formularioPerfil', $data);
+                } else {
+                        $data = array(
+                                'nombre' => $nombre,
+                                'email' => $email,
+                                'password' => $password,
+                                'telefono' => $telefono,
+                                'fecha_nacimiento'  => $fecha_nacimiento,
+                                'apellido' => $apellido,
+                                'credito' => $credito,
+                                'tipo' => $tipo,
+                                'reputacion' => $reputacion);
+                        $this->usuarioModel->modificarUsuario($id_usuario, $data);
+                        $user = $this->usuarioModel->buscarUsuarioId($id_usuario);
+                        $datos = array(
+                                'usuarioPerfil' => $user->result(),
+                                'usuario' => $this->session->userdata());
+                        $this->twig->display('perfilModificado', $datos);
+                }
+        }
+
 }

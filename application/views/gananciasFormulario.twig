@@ -1,0 +1,48 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+<div class="row main ">
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Ganancias</li>
+		</ol>
+	</div>
+	<!-- end breadcrum -->
+	<div class="col-md-8">
+				<h4 class="h3-formulario">Ver ganancias entre dos fechas:</h4>
+				<form method="POST" action="{{dirpath}}comprarCredito/obtenerGanancias/">
+					<div class="form-group">
+	                <label>Seleccione dos fechas:</label>
+	                <p>*Recuerde que la segunda fecha tiene que ser mayor a la primera.</p>
+
+	                <div class="input-group">
+	                  <div class="input-group-addon">
+	                    <i class="fa fa-calendar"></i>
+	                  </div>
+	                  <input type="text" class="form-control pull-right" name="fechas" id="reservation">
+	                </div>
+	                <!-- /.input group -->
+	              	</div>
+	              		<p class="lead">
+							<button type="submit" class="btn btn-primary btn-lg">Confirmar</button>
+							<a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Cancelar</a>
+						</p>
+				</form>
+	</div>
+</div>
+{% endblock %}
+{% block endBody %}
+<!-- InputMask -->
+<script src="{{ path }}assets/theme/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="{{ path }}assets/theme/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="{{ path }}assets/theme/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="{{ path }}assets/theme/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="{{ path }}assets/theme/plugins/datepicker/bootstrap-datepicker.js"></script>
+{% endblock %}

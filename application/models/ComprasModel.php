@@ -11,6 +11,24 @@ class ComprasModel extends CI_Model
         $this->load->database();
 
     }
+    public function crearCompra($compra)
+    {
+        $this->db->insert('compra_creditos', $compra);
+    }
+
+    public function obtenerGananciasEntre2Fechas($fechaDesde,$fechaHasta)
+    {
+        $this->db->from('compra_creditos');
+        $this->db->join('usuarios','usuarios.id_usuario= compra_creditos.usuarios_id_usuario');
+        $this->db->where('compra_creditos.fecha <=',$fechaHasta);
+        $this->db->where('compra_creditos.fecha >=',$fechaDesde);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
 
      public function sumarCreditos($email,$creditos)
     {

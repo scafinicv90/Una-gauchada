@@ -20,6 +20,17 @@ class UsuarioModel extends CI_Model
             return (false);
         }
     }
+    public function obtenerRanking()
+    {
+        $this->db->order_by('reputacion', 'DESC');
+        $this->db->limit(4);
+        $query = $this->db->get('usuarios');
+        if ($query->num_rows() > 0) {
+            return ($query);
+        } else {
+            return (false);
+        }
+    }
 
     public function buscarUsuario($emailUser)
     {
@@ -59,6 +70,11 @@ class UsuarioModel extends CI_Model
     {
         $this->db->insert('usuarios', $emailUser);
 
+    }
+
+    public function modificarUsuario($id_usuario, $data) {
+        $this->db->where('id_usuario', $id_usuario);
+        $this->db->update('usuarios', $data);
     }
 
 }

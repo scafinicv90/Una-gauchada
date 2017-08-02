@@ -45,7 +45,8 @@ class Registrar extends CI_Controller
                 'fecha_nacimiento'  => $fecha_nacimiento,
                 'apellido' => $apellido,
                 'credito'  => 2,
-                'tipo'     => 0);
+                'tipo'     => 0,
+                'reputacion' => 0);
             $this->usuarioModel->agregarUsuario($reg);
             $this->twig->display('envioMail');
         }

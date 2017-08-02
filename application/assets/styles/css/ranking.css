@@ -1,0 +1,12 @@
+.ranking{
+	background-color: #DF7F00;
+	padding: 1em;
+}
+thead , tbody {
+	padding: 2px;
+}
+
+th,td {
+	padding: 1em;
+	border-bottom: solid 1px;
+}
