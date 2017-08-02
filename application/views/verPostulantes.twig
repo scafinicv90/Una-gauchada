@@ -12,7 +12,7 @@
 				<li>Ver Postulantes</li>
 			</ol>
 		</div>
-		{% if postulante|length == 0 %}
+		{% if postulantes|length == 0 %}
 		<h3><b>Aún no hay postulantes</b></h3>
 		{% else %}
 		
@@ -21,7 +21,7 @@
 				<tr>
 					<th class="columna-th">Usuario</th>
 					<th class="columna-th">Reputación</th>
-					<th class="columna-th">Selección</th>
+					<th class="columna-th">Operación</th>
 				</tr>
 				{# begin postulantes #}
 				{% for postulante in postulantes %}
