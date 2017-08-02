@@ -17,6 +17,7 @@ class Perfil extends CI_Controller {
 	public function verPerfil()
         {
                 $email=$this->session->userdata('email');
+                var_dump($email);
                 $usuario=$this->usuarioModel->buscarUsuario($email);
                 $data=array(
                         'usuarioPerfil' => $usuario->result(),
@@ -55,10 +56,10 @@ class Perfil extends CI_Controller {
 
         public function modificarPerfil($id_usuario)
         {
-                var_dump($this->input->post());
 
                 $telefono = $this->input->post('telefono');
                 $email = $this->input->post('email');
+                $email_actual = $this->input->post('email_actual');
                 $nombre = $this->input->post('nombre');
                 $apellido = $this->input->post('apellido');
                 $fecha_nacimiento  = $this->input->post('fecha');
@@ -66,12 +67,13 @@ class Perfil extends CI_Controller {
                 $credito = $this->input->post('credito');
                 $tipo = $this->input->post('tipo');
                 $reputacion = $this->input->post('reputacion');
-                $usuario = $this->usuarioModel->buscarUsuario($email);
-                var_dump($usuario->result());
-                if(false) {
+                $user2 = $this->usuarioModel->buscarUsuario($email_actual);
+
+                $usuario = $user2->result();
+                if($email == $email_actual) {
                         $data = array (
                                 'existe' => 'Ya existe un usuario con ese email.',
-                                'usuarioPerfil' => $usuario->result(),
+                                'usuarioPerfil' => $usuario,
                                 'usuario' => $this->session->userdata());
                         $this->twig->display('formularioPerfil', $data);
                 } else {
@@ -85,10 +87,21 @@ class Perfil extends CI_Controller {
                                 'credito' => $credito,
                                 'tipo' => $tipo,
                                 'reputacion' => $reputacion);
+                        
                         $this->usuarioModel->modificarUsuario($id_usuario, $data);
                         $user = $this->usuarioModel->buscarUsuarioId($id_usuario);
+                        $user = $user->result();
+                        $datos2 = array(
+                                'nombre'           => $user[0]->nombre,
+                                'apellido'         => $user[0]->apellido,
+                                'email'            => $user[0]->email,
+                                'telefono'         => $user[0]->telefono,
+                                'fecha_nacimiento' => $user[0]->fecha_nacimiento,
+                                'tipo'             => $user[0]->tipo,
+                                'login'            => true);
+                        $this->session->set_userdata($datos2);
                         $datos = array(
-                                'usuarioPerfil' => $user->result(),
+                                'usuarioPerfil' => $user,
                                 'usuario' => $this->session->userdata());
                         $this->twig->display('perfilModificado', $datos);
                 }
