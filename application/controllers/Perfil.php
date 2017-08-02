@@ -17,7 +17,6 @@ class Perfil extends CI_Controller {
 	public function verPerfil()
         {
                 $email=$this->session->userdata('email');
-                var_dump($email);
                 $usuario=$this->usuarioModel->buscarUsuario($email);
                 $data=array(
                         'usuarioPerfil' => $usuario->result(),
@@ -57,7 +56,7 @@ class Perfil extends CI_Controller {
         public function modificarPerfil($id_usuario)
         {
 
-                $telefono = $this->input->post('telefono');
+                $telefono = (int)$this->input->post('telefono');
                 $email = $this->input->post('email');
                 $email_actual = $this->input->post('email_actual');
                 $nombre = $this->input->post('nombre');
@@ -69,7 +68,6 @@ class Perfil extends CI_Controller {
                 $reputacion = $this->input->post('reputacion');
                 $user2 = $this->usuarioModel->buscarUsuario($email_actual);
                 $usuario = $user2->result();
-                var_dump($telefono);
                 if($email == $email_actual) {
                         $datos = array(
                                 'nombre' => $nombre,
@@ -84,7 +82,6 @@ class Perfil extends CI_Controller {
                         $this->usuarioModel->modificarUsuario($id_usuario, $datos);
                         $user = $this->usuarioModel->buscarUsuarioId($id_usuario);
                         $user = $user->result();
-                        var_dump($user);die();
                         $data = array (
                                 'existe' => 'Ya existe un usuario con ese email.',
                                 'usuarioPerfil' => $user,
