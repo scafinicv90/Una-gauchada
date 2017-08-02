@@ -211,8 +211,27 @@ class FavorModel extends CI_Model
         $this->db->update('usuarios');
 
     }
+    public function sumCredito($email) /*falta probar*/
+    {
+
+        $this->db->where('email', $email);
+        $this->db->set('credito', 'credito+1', false);
+        $this->db->update('usuarios');
+
+/*        $this->db->select('credito');
+$this->db->where('email', $email);
+$this->db->from('usuarios');
+$dat = $this->db->get();
+$dat = $dat->result();
+var_dump($dat[0]);
+
+return $dat;*/
+    }
+
     public function buscarCategorias() /*falta probar*/
     {
+
+        $this->db->order_by('nombre', 'asc');
         $query = $this->db->get('categorias');
         if ($query->num_rows() > 0) {
             return ($query);
@@ -223,7 +242,7 @@ class FavorModel extends CI_Model
 
     public function obtenerCategoria($nombre)
     {
-        $this->db->where('nombre',$nombre);
+        $this->db->where('nombre', $nombre);
         $query = $this->db->get('categorias');
         if ($query->num_rows() > 0) {
             return ($query);
@@ -231,8 +250,6 @@ class FavorModel extends CI_Model
             return (false);
         }
     }
-
-
 
     public function buscarMisCategorias($idfavor) /*falta probar*/
     {
@@ -266,7 +283,7 @@ class FavorModel extends CI_Model
         $this->db->update('favor', $gauchada);
 
     }
-     public function eliminarFC($id_favor) /*falta probar*/
+    public function eliminarFC($id_favor) /*falta probar*/
     {
         $this->db->where('favor_id_favor', $id_favor);
         $this->db->delete('favor_has_categorias');
@@ -295,13 +312,6 @@ class FavorModel extends CI_Model
 
         $this->db->where('favor_id', $id_favor);
         $this->db->delete('comentarios');
-
-    }
-    public function sumaCredito($email) /*falta probar*/
-    {
-        $this->db->set('credito', 'credito+1', false);
-        $this->db->where('email', $email);
-        $this->db->update('usuarios');
 
     }
 

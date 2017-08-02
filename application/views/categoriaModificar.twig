@@ -1,0 +1,36 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ path }}assets/styles/css/registrar.css">
+{% endblock %}
+
+{% block content %}
+<div class="row main ">
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Modificar Categoria</li>
+		</ol>
+	</div>
+	<!-- end breadcrum -->
+	{% if  errores is defined %}
+          					<p class="text-danger">{{ errores['existe'] }}</p>
+    {% endif %}
+	<div class="col-md-8">
+		<h3 class="h3-formulario">Formulario de categoria</h3>
+		<hr>
+		<form data-toggle="validator" method="POST" action="{{dirpath}}administrador/updateCategoria/">
+			
+			<div class="form-group has-feedback">
+			<label for="inputNombre">Categoria</label>
+            <input class="form-control" pattern="[a-zA-Z0-9 ]{1,30}$" data-error="La categoria debe contener entre 1 y 30 caracteres." type="text"  value="{{categorias[0].nombre}}" id="inputNombre" name="nombre" required>
+            <div class="help-block with-errors "></div>
+			<input type="hidden" name="idcat" value="{{categorias[0].id_categoria}}">	
+			<p class="lead">
+			<button type="submit" class="btn btn-primary btn-lg">Confirmar</button>
+			<a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Cancelar</a>
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

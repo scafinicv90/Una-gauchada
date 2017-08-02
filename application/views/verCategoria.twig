@@ -1,0 +1,32 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+	
+ <div class="row main">
+	 <div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{dirpath}}home/">Inicio</a></li>
+			<li>Categorias</li>
+		</ol>
+	</div>
+	<div class="">
+		<section class="posts col-md-9">
+			
+ 			{% for categoria in categorias %}
+
+ 				<article class="post clearfix">
+ 					<p> <span class="post-fecha">{{categoria.nombre}}</span>
+ 						
+ 						<div class="contenedor-botones">
+					<a href="{{ dirpath }}administrador/modificarCategoria/{{categoria.id_categoria}}" class="btn btn-success">Modificar categoria</a> 
+
+					<a href="{{ dirpath }}administrador/eliminarCategoria/{{categoria.id_categoria}}" class="btn btn-danger">Eliminar</a>
+
+ 						</div>
+ 				</article>
+ 			{% endfor %}
+ 		</section>
+	</div>
+
+</div>
+{% endblock %}
