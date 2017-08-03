@@ -609,6 +609,8 @@ class Favor extends CI_Controller
                     $this->favorModel->eliminarPostulaciones($id);
 
                 } else {
+                     $this->favorModel->eliminarPostulaciones($id);
+
                     $this->favorModel->sumCredito($user);
 
                 }
