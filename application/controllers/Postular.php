@@ -142,4 +142,17 @@ class Postular extends CI_Controller
             'usuario' => $this->session->userdata());
         $this->twig->display('verPostulantes', $data);
     }
+
+    public function calificar()
+    {
+        if ($this->session->userdata('login')) {
+            var_dump($this->input->post());die();
+            $data = array(
+                'usuario' => $this->session->userdata());
+            $this->twig->display('calificarFormulario', $data);
+            return 0;
+        } else {
+            $this->twig->display('index');
+        }
+    }
 }

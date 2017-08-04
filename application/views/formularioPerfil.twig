@@ -29,23 +29,28 @@
 					<input type="hidden" name="fecha" id="fecha" value="{{usuarioPerfil[0].fecha_nacimiento}}">
 		        </div>
 		        <div class="form-group">
-					<label for="telefono" class="col-2 col-form-label">Teléfono</label>
+					<label for="telefono" class="col-2 col-form-label">Teléfono: </label>
+					<label class="col-2 col-form-label">{{usuarioPerfil[0].telefono }}</label>
+					<p>* se puede modificar</p>
 					<div class="col-10">
-						<input type="tel" class="form-control texto" pattern="[0-9]{9,11}$" data-error="Ingresar teléfono valido." maxlength="11" name="telefono" id="telefono" value="{{usuarioPerfil[0].telefono}}" required>
+						<input type="tel" class="form-control texto" pattern="[0-9]{9,11}$" data-error="Ingresar teléfono valido." maxlength="11" name="telefono" id="telefono" placeholder="{{usuarioPerfil[0].telefono }}" value="" >
 						<div class="help-block with-errors "></div>
 					</div>
 		        </div>
 		        <div class="form-group">
-					<label for="email" class="col-2 col-form-label">Email</label>
+					<label for="email" class="col-2 col-form-label">Email: </label>
+		        	<input type="hidden" name="email_actual" id="email_actual" value="{{usuarioPerfil[0].email}}">
+		        	<label class="col-2 col-form-label">{{usuarioPerfil[0].email}}</label>
+		        	<p>* se puede modificar</p>
 					<div class="col-10">
-						<input type="email" class="form-control texto" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-error="Ingrese un email válido." value="{{usuarioPerfil[0].email}}" maxlength="25" name="email" id="email" required>
+						<input type="email" class="form-control texto" pattern="[a-z0-9A-Z]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-error="Ingrese un email válido." value="" maxlength="25" placeholder="{{usuarioPerfil[0].email}}" name="email" id="email" >
 						<div class="help-block with-errors "></div>
 					</div>
 					{% if  existe  is defined %}
           				<p class="text-danger">{{ existe }}</p>
           			{% endif %}
 		        </div>
-		        <input type="hidden" name="email_actual" id="email_actual" value="{{usuarioPerfil[0].email}}">
+		        <input type="hidden" name="telefono_actual" id="telefono_actual" value="{{usuarioPerfil[0].telefono }}" >
 		        <input type="hidden" name="password" id="password" value="{{usuarioPerfil[0].password}}">
 		        <input type="hidden" name="credito" id="credito" value="{{usuarioPerfil[0].credito}}">
 		        <input type="hidden" name="tipo" id="tipo" value="{{usuarioPerfil[0].tipo}}">

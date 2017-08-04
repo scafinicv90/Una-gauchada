@@ -1,0 +1,24 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+
+{% endblock %}
+{% block content %}
+	{{ dump() }}
+<div class="row main ">
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Calificar</li>
+		</ol>
+	</div>
+	<!-- end breadcrum -->
+	<div class="col-md-8">
+			<h4 >Calificar usuario</h4>
+			<a href="{{ dirpath }}postular/verPostulantes/{{favor[0].id_favor}}"><button class="btn btn-success">Atras</button></a>
+
+	</div>
+</div>
+{% endblock %}
+{% block endBody %}
+{% endblock %}
