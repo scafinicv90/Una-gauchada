@@ -13,14 +13,15 @@
 			</ol>
 		</div>
 		{% if postulantes|length == 0 %}
-		<h3><b>Aún no hay postulantes</b></h3>
+			<h3><b>Aún no hay postulantes</b></h3>
 		{% else %}
 		
-		<div class="col-md-8">
+		<div class="col-md-9">
 			<table cellpadding="10" width="100%" class="tabla">
 				<tr>
 					<th class="columna-th">Usuario</th>
 					<th class="columna-th">Reputación</th>
+					<th class="columna-th">Comentario </th>
 					<th class="columna-th">Operación</th>
 				</tr>
 				{# begin postulantes #}
@@ -43,9 +44,24 @@
 						 	<td>Buen tipo</td>
 						{% elseif postulante.reputacion == 0 %} 
 							<td>Observador</td>
-						{% endif %}<td>
-						<a href="{{ dirpath }}postular/verPostulantes/{{favor[0].id_favor}}"><button class="btn btn-success">Aceptar</button></a>
-						<a href="{{ dirpath }}postular/rechazarPostulante?id={{postulante.id_usuario}}&idFavor={{postulante.favor_id_favor}}"><button class="btn btn-danger">Rechazar</button></a></td>
+
+						{% endif %}
+						<td>{{ postulante.descripcion }}</td>
+						<td>
+						{% if postulante.estado == 1 %}
+						<a href="{{ dirpath }}postular/aceptarPostulante?id_usuario={{postulante.id_usuario}}&id_favor={{postulante.favor_id_favor}}"><button class="btn btn-success">Aceptar</button></a>
+						<a href="{{ dirpath }}postular/rechazarPostulante?id={{postulante.id_usuario}}&idFavor={{postulante.favor_id_favor}}"><button class="btn btn-danger">Rechazar</button></a>
+						{% elseif postulante.estadoU == 1 %}
+							<p>Ya califico</p>
+						{% else %}
+						<form method="post" action="{{ dirpath }}postular/calificarU/">
+							<input type="hidden" name="id_usuario" value="{{postulante.id_usuario}}">
+							<input type="hidden" name="favor_id" value="{{postulante.favor_id_favor}}">
+							<button class="btn btn-success">Calificar</button>
+						</form>
+						{% endif %}
+
+						</td>
 					</tr>
 				{% endfor %}
 				{# fin postulantes #}

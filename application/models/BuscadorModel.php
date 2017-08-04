@@ -34,7 +34,6 @@ class BuscadorModel extends CI_Model
         $this->db->where('usuarios.id_usuario !=', $id_usuario);
         $this->db->like('favor.ciudad', $ciudad);
         $query = $this->db->get();
-
         if ($query->num_rows() > 0) {
             return ($query);
         } else {

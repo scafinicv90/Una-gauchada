@@ -229,6 +229,7 @@ class Favor extends CI_Controller
                 if ($respuestas != false) {
                     $respuestas = $respuestas->result();
                 }
+
                 $cons         = $this->favorModel->obtenerMiFavor($id);
                 $favor        = $cons->result();
                 $resul        = $this->favorModel->obtenerImagenesId($id);
@@ -237,7 +238,9 @@ class Favor extends CI_Controller
                 $cat          = $query->result();
                 $query        = $this->favorModel->buscarCategorias();
                 $categoriasBD = $query->result();
-                $data         = array(
+                // var_dump(date("Y-m-d"));
+                $data = array(
+                    'fecha_hoy'     => date("Y-m-d"),
                     'favor'         => $favor,
                     'comentarios'   => $comentarios,
                     'respuestas'    => $respuestas,

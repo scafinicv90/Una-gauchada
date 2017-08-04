@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-08-2017 a las 14:31:22
+-- Tiempo de generación: 04-08-2017 a las 15:00:56
 -- Versión del servidor: 5.7.18-0ubuntu0.16.04.1
 -- Versión de PHP: 5.6.27-1+deb.sury.org~xenial+1
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `gauchada2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `calificacion`
+--
+
+CREATE TABLE `calificacion` (
+  `id_calificacion` int(11) NOT NULL,
+  `comentario` varchar(45) NOT NULL,
+  `puntuacion` varchar(45) NOT NULL,
+  `usuarios_id_usuario` int(11) NOT NULL,
+  `calificacion_hacia_usuario` varchar(20) NOT NULL,
+  `id_favor` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -128,16 +143,16 @@ INSERT INTO `favor` (`id_favor`, `titulo`, `ciudad`, `provincia`, `fecha_limite`
 (12, 'Gato mayor', 'avellaneda', 'Buenos Aires', '2017-10-31', 'u n lindo gato toara para mendoza Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 9),
 (13, 'camion', 'cordoba', 'cordoba', '2017-10-19', 'quiero vender un camion.etc.\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
 (18, 'Prueba 2', 'la plata', 'Buenos Aires', '2017-06-22', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 2),
-(19, 'viaje a salta', 'La plata', 'Buenos Aires', '2017-11-28', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
-(20, 'viaje a la plata para comprar departamen', 'necochea', 'Buenos Aires', '2017-08-30', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
-(21, 'viaje de turismo', 'salta', 'Salta', '2017-09-23', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
-(22, 'compra de entrada', 'san pedro', 'Salta', '2017-10-26', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
-(23, 'Ayudante de cocina', 'Avellaneda', 'Buenos Aires', '2017-07-21', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
-(24, 'Mesera', 'necochea', 'Buenos Aires', '2017-08-04', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
-(25, 'Busco ayudante para taller mecanico', 'Rosario', 'Santa Fe', '2017-12-14', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
+(19, 'viaje a salta', 'La plata', 'Buenos Aires', '2017-11-28', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 9),
+(20, 'viaje a la plata para comprar departamen', 'necochea', 'Buenos Aires', '2017-08-30', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 10),
+(21, 'viaje de turismo', 'salta', 'Salta', '2017-09-23', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 11),
+(22, 'compra de entrada', 'san pedro', 'Salta', '2017-10-26', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 11),
+(23, 'Ayudante de cocina', 'Avellaneda', 'Buenos Aires', '2017-07-21', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 12),
+(24, 'Mesera', 'necochea', 'Buenos Aires', '2017-08-04', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 2),
+(25, 'Busco ayudante para taller mecanico', 'Rosario', 'Santa Fe', '2017-12-14', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 12),
 (26, 'Se busca jardinero', 'necochea', 'Buenos Aires', '2017-08-29', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
-(27, 'Repartidor de pizza', 'toledo', 'Cordoba', '2017-10-29', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1),
-(28, 'Repartidor de terrabusi', 'villa gesel', 'Buenos Aires', '2017-08-05', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1);
+(27, 'Repartidor de pizza', 'toledo', 'Cordoba', '2017-10-29', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 9),
+(28, 'Repartidor de terrabusi', 'Villa Gesell', 'Buenos Aires', '2017-08-05', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 10);
 
 -- --------------------------------------------------------
 
@@ -2711,16 +2726,11 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre`, `email`, `password`, `telefono`, `apellido`, `fecha_nacimiento`, `tipo`, `credito`, `reputacion`) VALUES
 (1, 'Admin', 'admin@gmail.com', '123456', '1111111133', 'admin', '1993-05-26', 1, 4, 5),
-(2, 'pilar', 'pilar@gmail.com', '123456', '2147483646', 'cercato', '2001-07-12', 0, 0, 0),
-(9, 'alex', 'alex@gmail.com', '123456', '25685485', 'velasquez', '1999-07-20', 0, 6, 1),
-(10, 'juan', 'juan@gmail.com', '123456', '56985452', 'none', '2005-07-12', 0, 8, 7),
-(11, 'carlos', 'carlos@gmail.com', '123456', '1115353845', 'none', '1996-07-18', 0, 2, 15),
-(12, 'facundo', 'facundo@gmail.com', '123456', '58585825', 'none', '1998-07-06', 0, 1, 52),
-(13, 'pilar', 'pilar@gmail.com', '123456', '2147483647', 'cercato', '2001-07-12', 0, 0, 0),
-(14, 'pilar', 'pilar@gmail.com', '123456', '2147483647', 'cercato', '2001-07-12', 0, 0, 0),
-(15, 'pilar', 'pilar@gmail.com', '123456', '2147483647', 'cercato', '2001-07-12', 0, 0, 0),
-(16, 'pilar', 'pilar@gmail.com', '123456', '2147483647', 'cercato', '2001-07-12', 0, 0, 0),
-(17, 'pilar', 'pilar@gmail.comm', '123456', '2147483647', 'cercato', '2001-07-12', 0, 0, 0);
+(2, 'pilar', 'pilar@gmail.com', '123456', '2147483646', 'cercato', '2001-07-12', 0, 0, 1),
+(9, 'alex', 'alex@gmail.com', '123456', '25685485', 'velasquez', '1999-07-20', 0, 6, 3),
+(10, 'juan', 'juan@gmail.com', '123456', '56985452', 'none', '2005-07-12', 0, 8, 2),
+(11, 'carlos', 'carlos@gmail.com', '123456', '1111111111', 'none', '1996-07-18', 0, 2, 16),
+(12, 'facundo', 'facundo@gmail.com', '123456', '58585825', 'none', '1998-07-06', 0, 1, 52);
 
 -- --------------------------------------------------------
 
@@ -2732,37 +2742,51 @@ CREATE TABLE `usuarios_has_favor_postulacion` (
   `usuarios_id_usuario` int(11) NOT NULL,
   `favor_id_favor` int(11) NOT NULL,
   `descripcion` varchar(200) NOT NULL,
-  `estado` int(11) NOT NULL DEFAULT '1'
+  `estado` int(11) NOT NULL DEFAULT '1',
+  `estadoU` int(11) NOT NULL,
+  `estadoD` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios_has_favor_postulacion`
 --
 
-INSERT INTO `usuarios_has_favor_postulacion` (`usuarios_id_usuario`, `favor_id_favor`, `descripcion`, `estado`) VALUES
-(1, 4, 'vamo lo pibe 3', 3),
-(1, 6, 'dsdadsdsadsad', 1),
-(1, 7, 'de neuvo\r\n', 1),
-(1, 8, 'vamo lo pibe 4', 2),
-(1, 11, 'vamo lo pobe 5\r\n', 3),
-(1, 12, 'vamo lo pibe', 2),
-(2, 5, 'pilar postulado sdededede', 1),
-(2, 11, 'asdsadsasadsa', 1),
-(2, 13, 'safsafsjaksfahfksahfsakjnfsjakbfsjakfksanfksaljfsan fjsaknfskaljfksnaflnsakjfnjasflajshflaksnfjksanfklasjflk\r\nasjfkljsakljfklsajfklsajfklsajfklsajfklasjfklsafsafsafasfas', 1),
-(2, 24, 'Morbi eleifend lorem magna, nec ultrices risus pretium at. Nunc dictum malesuada est, in tempor ligula faucibus id. Aenean accumsan eros mi, eget bibendum nunc sagittis ac. ', 1),
-(2, 28, 'Morbi eleifend lorem magna, nec ultrices risus pretium at. Nunc dictum malesuada est, in tempor ligula faucibus id. Aenean accumsan eros mi, eget bibendum nunc sagittis ac. ', 1),
-(11, 3, 'yo te ayudo compañero.', 1),
-(11, 4, 'postularse', 1),
-(11, 27, 'yo te ayudo.', 1),
-(12, 3, 'me voy a postular por que me gustan los animales', 1),
-(12, 4, 'me quiero postular por que me gustan los animales.', 1),
-(12, 25, 'necesito el empleo.', 1),
-(12, 26, 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 1),
-(12, 27, 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 1);
+INSERT INTO `usuarios_has_favor_postulacion` (`usuarios_id_usuario`, `favor_id_favor`, `descripcion`, `estado`, `estadoU`, `estadoD`) VALUES
+(1, 4, 'vamo lo pibe 3', 3, 0, 0),
+(1, 6, 'dsdadsdsadsad', 1, 0, 0),
+(1, 7, 'de neuvo\r\n', 1, 0, 0),
+(1, 8, 'vamo lo pibe 4', 2, 0, 0),
+(1, 11, 'vamo lo pobe 5\r\n', 3, 0, 0),
+(1, 12, 'vamo lo pibe', 2, 0, 0),
+(2, 5, 'pilar postulado sdededede', 2, 0, 0),
+(2, 11, 'asdsadsasadsa', 1, 0, 0),
+(2, 13, 'safsafsjaksfahfksahfsakjnfsjakbfsjakfksanfksaljfsan fjsaknfskaljfksnaflnsakjfnjasflajshflaksnfjksanfklasjflk\r\nasjfkljsakljfklsajfklsajfklsajfklsajfklasjfklsafsafsafasfas', 1, 0, 0),
+(2, 24, 'Morbi eleifend lorem magna, nec ultrices risus pretium at. Nunc dictum malesuada est, in tempor ligula faucibus id. Aenean accumsan eros mi, eget bibendum nunc sagittis ac. ', 1, 0, 0),
+(2, 28, 'Morbi eleifend lorem magna, nec ultrices risus pretium at. Nunc dictum malesuada est, in tempor ligula faucibus id. Aenean accumsan eros mi, eget bibendum nunc sagittis ac. ', 1, 0, 0),
+(9, 20, 'ean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium ', 2, 0, 0),
+(9, 21, 'ean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium ', 1, 0, 0),
+(9, 22, 'ean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium ', 2, 0, 0),
+(11, 3, 'yo te ayudo compañero.', 1, 0, 0),
+(11, 4, 'postularse', 1, 0, 0),
+(11, 6, 'postulacionn2', 1, 0, 0),
+(11, 8, 't amet, consectetur adipisicing elit, sed do eiusmod\r\n	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\n	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea co', 1, 0, 0),
+(11, 27, 'yo te ayudo.', 1, 0, 0),
+(12, 3, 'me voy a postular por que me gustan los animales', 1, 0, 0),
+(12, 4, 'me quiero postular por que me gustan los animales.', 1, 0, 0),
+(12, 25, 'necesito el empleo.', 1, 0, 0),
+(12, 26, 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 1, 0, 0),
+(12, 27, 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 1, 0, 0);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `calificacion`
+--
+ALTER TABLE `calificacion`
+  ADD PRIMARY KEY (`id_calificacion`),
+  ADD KEY `fk_calificacion_usuarios1_idx` (`usuarios_id_usuario`);
 
 --
 -- Indices de la tabla `categorias`
@@ -2846,6 +2870,11 @@ ALTER TABLE `usuarios_has_favor_postulacion`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `calificacion`
+--
+ALTER TABLE `calificacion`
+  MODIFY `id_calificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
@@ -2889,10 +2918,16 @@ ALTER TABLE `respuestas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `calificacion`
+--
+ALTER TABLE `calificacion`
+  ADD CONSTRAINT `fk_calificacion_usuarios1` FOREIGN KEY (`usuarios_id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `comentarios`
