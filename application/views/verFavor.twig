@@ -107,7 +107,16 @@
 				<p class="ubicacionFavor">Ubicación: {{favor[0].ciudad}}, {{favor[0].provincia}}</p>
 				<p class="fec_limFavor">Fecha límite: {{favor[0].fecha_limite}}</p>
 				<p class="descripcionFavor">Descripción: {{favor[0].descripcion}}</p>
+				<p class="id_usuarioFavor">Categorias:
+				{% for categoria in categorias %} 
+				{% for cat in miscategorias %}
+              	{% if categoria.id_categoria == cat.categorias_id_categoria %}
+              	{{categoria.nombre}}.
+          		{% endif %}
+				{% endfor %}
+            	{% endfor %}
 				<p class="id_usuarioFavor">Usuario: {{favor[0].nombre}}</p>
+
 			</div>
 			{% if favor[0].email != usuario.email %}
 				{% if postulado == true %}

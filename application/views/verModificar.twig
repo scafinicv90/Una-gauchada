@@ -10,7 +10,7 @@
       <li>Modificar Gauchada</li>
     </ol>
   </div>
-  
+
   <div class="col-md-8">
     <div class="col-md-4">
     </div>
@@ -46,7 +46,9 @@
         </div>
         <div class="form-group">
           <label for="inputFecha" class="col-2 col-form-label">Fecha limite</label>
-          
+          {% if  errores  is defined %}
+          <p class="text-danger">{{errores['fecha']}}</p>
+          {% endif %}
           <div class="col-10">
             <input class="form-control" pattern="[0-9]" data-error="Ingresar una fecha de límite válida." type="date" id="inputFecha" name="fecha" value="{{favor[0].fecha_limite}}" required>
             <div class="help-block with-errors "></div>
@@ -83,7 +85,7 @@
         <!--  no se bien como hacer lo de la sesion asique mando el email y lo busco desde ahi -->
         <p class="lead">
          <input type="submit" class="btn btn-primary btn-lg"  value="Modificar">
-         <a class="btn btn-danger btn-lg" href="{{ dirpath }}home/" role="button">Cancelar</a>
+         <a class="btn btn-danger btn-lg" href="{{ dirpath }}favor/verMisGauchadas/" role="button">Cancelar</a>
        </p>
      </form>
    </div>

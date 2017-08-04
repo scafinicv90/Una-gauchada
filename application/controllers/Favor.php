@@ -18,6 +18,7 @@ class Favor extends CI_Controller
         $this->load->model('favorModel');
         $this->load->model('postulacionModel');
         $this->load->model('usuarioModel');
+        $this->load->model('administradorModel');
     }
 
     public function index() /*anda*/
@@ -169,13 +170,19 @@ class Favor extends CI_Controller
             if ($postulado != false) {
                 $postulado = $postulado->result();
             }
-            $data = array(
-                'favor'       => $favor,
-                'comentarios' => $comentarios,
-                'respuestas'  => $respuestas,
-                'postulado'   => $postulado,
-                'imagenes'    => $imagenes,
-                'usuario'     => $this->session->userdata());
+            $query        = $this->favorModel->buscarMisCategorias($id);
+            $cat          = $query->result();
+            $query        = $this->favorModel->buscarCategorias();
+            $categoriasBD = $query->result();
+            $data         = array(
+                'favor'         => $favor,
+                'comentarios'   => $comentarios,
+                'respuestas'    => $respuestas,
+                'postulado'     => $postulado,
+                'imagenes'      => $imagenes,
+                'miscategorias' => $cat,
+                'categorias'    => $categoriasBD,
+                'usuario'       => $this->session->userdata());
             $this->twig->display('verFavor', $data);
             return 0;
         } else {
@@ -222,16 +229,22 @@ class Favor extends CI_Controller
                 if ($respuestas != false) {
                     $respuestas = $respuestas->result();
                 }
-                $cons     = $this->favorModel->obtenerMiFavor($id);
-                $favor    = $cons->result();
-                $resul    = $this->favorModel->obtenerImagenesId($id);
-                $imagenes = $resul->result();
-                $data     = array(
-                    'favor'       => $favor,
-                    'comentarios' => $comentarios,
-                    'respuestas'  => $respuestas,
-                    'imagenes'    => $imagenes,
-                    'usuario'     => $this->session->userdata());
+                $cons         = $this->favorModel->obtenerMiFavor($id);
+                $favor        = $cons->result();
+                $resul        = $this->favorModel->obtenerImagenesId($id);
+                $imagenes     = $resul->result();
+                $query        = $this->favorModel->buscarMisCategorias($id);
+                $cat          = $query->result();
+                $query        = $this->favorModel->buscarCategorias();
+                $categoriasBD = $query->result();
+                $data         = array(
+                    'favor'         => $favor,
+                    'comentarios'   => $comentarios,
+                    'respuestas'    => $respuestas,
+                    'imagenes'      => $imagenes,
+                    'miscategorias' => $cat,
+                    'categorias'    => $categoriasBD,
+                    'usuario'       => $this->session->userdata());
                 $this->twig->display('verFavor', $data);
             } else {
                 $this->twig->display('index');
@@ -550,19 +563,40 @@ class Favor extends CI_Controller
         $query   = $this->usuarioModel->buscarUsuario($user);
         $usuario = $query->result();
         $validar = $this->validar($this->input->post());
-        /* arraeglar esto
         if ($validar['validar'] == false) {
+            if ($categorias != '') {
+                $this->favorModel->eliminarFC($id_favor);
+                foreach ($categorias as $categoria) {
+                    $this->favorModel->agregarFC($categoria, $id_favor);
+                }
+            }
 
-        $query        = $this->favorModel->buscarCategorias();
-        $categoriasBD = $query->result();
-        $data         = array(
-        'errores'    => $validar,
-        'usuario'    => $this->session->get_userdata(),
-        'categorias' => $categoriasBD,
-        );
-        $this->twig->display('formfavor', $data);
-        return 0;
-        }*/
+            $query        = $this->favorModel->buscarCategorias();
+            $categoriasBD = $query->result();
+            /*$cons         = $this->favorModel->obtenerMiFavor($id_favor);
+            $favor        = $cons->result();*/
+            $query = $this->favorModel->buscarMisCategorias($id_favor);
+            $cat   = $query->result();
+            $fav   = array(
+                'titulo'       => $titulo,
+                'ciudad'       => $ciudad,
+                'provincia'    => $provincia,
+                'descripcion'  => $descripcion,
+                'fecha_limite' => $fecha,
+                'id_favor'     => $id_favor);
+            $favor    = array();
+            $favor[0] = $fav;
+
+            $data = array(
+                'favor'         => $favor,
+                'errores'       => $validar,
+                'usuario'       => $this->session->get_userdata(),
+                'miscategorias' => $cat,
+                'categorias'    => $categoriasBD,
+            );
+            $this->twig->display('verModificar', $data);
+            return 0;
+        }
 
         $mandar = array('titulo' => $titulo,
             'ciudad'                 => $ciudad,
@@ -609,6 +643,7 @@ class Favor extends CI_Controller
                     $this->favorModel->eliminarPostulaciones($id);
 
                 } else {
+                    $this->favorModel->eliminarPostulaciones($id);
                     $this->favorModel->sumCredito($user);
 
                 }

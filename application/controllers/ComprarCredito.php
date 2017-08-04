@@ -44,28 +44,28 @@ class ComprarCredito extends CI_Controller
     }
     public function mostrarFormularioGanancias()
     {
-        $data         = array(
-                'usuario'    => $this->session->userdata());
-        $this->twig->display('gananciasFormulario',$data);
+        $data = array(
+            'usuario' => $this->session->userdata());
+        $this->twig->display('gananciasFormulario', $data);
     }
     public function obtenerGanancias()
     {
-        $fechaDesde = substr($this->input->post('fechas'),0,10);
-        $time = strtotime($fechaDesde);
-        $fechaDesde = date('Y-m-d',$time);
+        $fechaDesde = substr($this->input->post('fechas'), 0, 10);
+        $time       = strtotime($fechaDesde);
+        $fechaDesde = date('Y-m-d', $time);
 
-        $fechaHasta = substr($this->input->post('fechas'),-10);
-        $time = strtotime($fechaHasta);
-        $fechaHasta = date('Y-m-d',$time);
+        $fechaHasta = substr($this->input->post('fechas'), -10);
+        $time       = strtotime($fechaHasta);
+        $fechaHasta = date('Y-m-d', $time);
 
-        $ganancias=$this->comprasModel->obtenerGananciasEntre2Fechas($fechaDesde,$fechaHasta);
-        if ($ganancias != false ) {
+        $ganancias = $this->comprasModel->obtenerGananciasEntre2Fechas($fechaDesde, $fechaHasta);
+        if ($ganancias != false) {
             $ganancias = $ganancias->result();
         }
         $data = array(
-                        'ganancias' =>$ganancias,
-                        'usuario' => $this->session->userdata());
-        $this->twig->display('gananciasListado',$data);
+            'ganancias' => $ganancias,
+            'usuario'   => $this->session->userdata());
+        $this->twig->display('gananciasListado', $data);
         return 0;
     }
 
@@ -83,24 +83,22 @@ class ComprarCredito extends CI_Controller
     public function comprar()
     {
         // var_dump((int)($this->input->post('cantidad'))/50);
-        $id_usuario= $this->session->userdata('email');
-        $id_usuario=$this->usuarioModel->buscarUsuario($id_usuario);
-        $id_usuario=$id_usuario->result();
-        $id_usuario=$id_usuario[0]->id_usuario;
-        var_dump($id_usuario);
-        var_dump(date("Y-m-d"));
-        $creditos = $this->usuarioModel->obtenerCreditos($this->input->post('usuario'));
-        $int      = $creditos->result();
-        $int2     = $int;
-        $num      = (int) ($int2[0]->credito);
+        $id_usuario = $this->session->userdata('email');
+        $id_usuario = $this->usuarioModel->buscarUsuario($id_usuario);
+        $id_usuario = $id_usuario->result();
+        $id_usuario = $id_usuario[0]->id_usuario;
+        $creditos   = $this->usuarioModel->obtenerCreditos($this->input->post('usuario'));
+        $int        = $creditos->result();
+        $int2       = $int;
+        $num        = (int) ($int2[0]->credito);
         // var_dump((int)($int2[0]->credito));die();
         $creditos = $num + ((int) ($this->input->post('cantidad')) / 50);
 
         $this->comprasModel->sumarCreditos($this->input->post('usuario'), $creditos);
         $compra = array('cantidad' => ((int) ($this->input->post('cantidad')) / 50),
-                        'monto' => $this->input->post('cantidad'),
-                        'fecha' => date("Y-m-d"),
-                        'usuarios_id_usuario' => $id_usuario );
+            'monto'                    => $this->input->post('cantidad'),
+            'fecha'                    => date("Y-m-d"),
+            'usuarios_id_usuario'      => $id_usuario);
         $this->comprasModel->crearCompra($compra);
 
         $this->index();
