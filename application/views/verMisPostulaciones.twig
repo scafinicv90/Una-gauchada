@@ -42,7 +42,17 @@
 					           	{% elseif favor.estado == 3 %}
 					           		<td>Rechazado</td>
 					           	{% endif %}
-					           	<td><a href="{{ dirpath}}favor/Ver/{{favor.id_favor}}"><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
+					           	<td><a href="{{ dirpath}}favor/Ver/{{favor.id_favor}}"><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+					           	{% if favor.estado == 2 and favor.estadoD != 1 %}
+								<form method="post" action="{{ dirpath }}postular/calificarD/">
+									<input type="hidden" name="id_usuario" value="{{favor.id_usuario}}">
+									<input type="hidden" name="favor_id" value="{{favor.favor_id_favor}}">
+									<button class="btn btn-success">Calificar</button>
+								</form>
+								{% elseif favor.estadoD == 1 %}
+									<p>Ya Calificado</p>
+								{% endif %}
+								</td>
 				            </tr>
 							{% endif %}
 	        			{% endfor %}

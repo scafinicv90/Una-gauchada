@@ -226,7 +226,9 @@ class Favor extends CI_Controller
                 $favor    = $cons->result();
                 $resul    = $this->favorModel->obtenerImagenesId($id);
                 $imagenes = $resul->result();
+                // var_dump(date("Y-m-d"));
                 $data     = array(
+                    'fecha_hoy' => date("Y-m-d"),
                     'favor'       => $favor,
                     'comentarios' => $comentarios,
                     'respuestas'  => $respuestas,

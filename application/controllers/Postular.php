@@ -73,6 +73,7 @@ class Postular extends CI_Controller
         $id=$id->result();
         $id=$id[0]->id_usuario;
         //  obtengo el usuario
+        // var_dump($id);var_dump($idF);
         $this->postulacionModel->eliminarPostulacion($idF,$id);
         //refactoring esto
         $comentarios = $this->favorModel->obtenerComentarios($idF);
@@ -143,16 +144,223 @@ class Postular extends CI_Controller
         $this->twig->display('verPostulantes', $data);
     }
 
-    public function calificar()
+
+    public function calificarU()
     {
         if ($this->session->userdata('login')) {
-            var_dump($this->input->post());die();
+            $favor = $this->favorModel->obtenerFavor($this->input->post('favor_id'));
+            $favor =$favor->result();
             $data = array(
+                'titulo' => $favor[0]->titulo,
+                'favor_id' => $this->input->post('favor_id'),
+                'id_usuario' => $this->input->post('id_usuario'),
                 'usuario' => $this->session->userdata());
-            $this->twig->display('calificarFormulario', $data);
+            $this->twig->display('calificarFormularioU', $data);
             return 0;
         } else {
             $this->twig->display('index');
         }
     }
+
+    public function calificarD()
+    {
+        if ($this->session->userdata('login')) {
+            $favor = $this->favorModel->obtenerFavor($this->input->post('favor_id'));
+            $favor =$favor->result();
+            $data = array(
+                'titulo' => $favor[0]->titulo,
+                'favor_id' => $this->input->post('favor_id'),
+                'id_usuario' => $this->input->post('id_usuario'),
+                'usuario' => $this->session->userdata());
+            $this->twig->display('calificarFormularioD', $data);
+            return 0;
+        } else {
+            $this->twig->display('index');
+        }
+    }
+
+
+    public function calificarUsuario()
+    {
+        if ($this->session->userdata('login')) {
+
+            $puntaje = $this->input->post('puntaje');
+            $descripcion = $this->input->post('descripcion');
+            $favor_id = $this->input->post('favor_id');
+            $id_usuario = $this->input->post('id_usuario');
+            $id_dueño = $this->input->post('dueño');
+
+            $id=$this->usuarioModel->buscarUsuario($id_dueño);
+            $id=$id->result();
+            $id_dueño=$id[0]->id_usuario;
+
+            if ($puntaje == "Selecciona un puntaje" & $descripcion == "") {
+                $favor = $this->favorModel->obtenerFavor($favor_id);
+                $favor =$favor->result();
+                $data = array(
+                    'errorPuntaje' => true,
+                    'errorDescripcion' => true,
+                    'titulo' => $favor[0]->titulo,
+                    'favor_id' =>$favor_id,
+                    'id_usuario' => $id_usuario ,
+                    'usuario' => $this->session->userdata());
+                $this->twig->display('calificarFormularioU', $data);
+                return 0;
+            }elseif ($puntaje == "Selecciona un puntaje" ) {
+                $favor = $this->favorModel->obtenerFavor($favor_id);
+                $favor =$favor->result();
+                $data = array(
+                    'errorPuntaje' => true,
+                    'descripcion' => $descripcion,
+                    'titulo' => $favor[0]->titulo,
+                    'favor_id' =>$favor_id,
+                    'id_usuario' => $id_usuario ,
+                    'usuario' => $this->session->userdata());
+                $this->twig->display('calificarFormularioU', $data);
+                return 0;
+            }elseif ($descripcion == "") {
+                $favor = $this->favorModel->obtenerFavor($favor_id);
+                $favor =$favor->result();
+                $data = array(
+                    'errorDescripcion' => true,
+                    'puntaje' => $puntaje,
+                    'titulo' => $favor[0]->titulo,
+                    'favor_id' =>$favor_id,
+                    'id_usuario' => $id_usuario ,
+                    'usuario' => $this->session->userdata());
+                $this->twig->display('calificarFormularioU', $data);
+                return 0;
+            }else
+            {
+                $calificacion = array(
+                                'comentario' => $descripcion,
+                                'puntuacion' => $puntaje,
+                                'usuarios_id_usuario' => $id_dueño,
+                                'calificacion_hacia_usuario' => $id_usuario,
+                                'id_favor' => $favor_id
+                                 );
+                $this->postulacionModel->crearCalificacion($calificacion);
+                if ($puntaje == '1' ) {
+                    $this->postulacionModel->actualizarReputacionMas($id_usuario);
+                }elseif ( $puntaje == '-2') {
+                    $this->postulacionModel->actualizarReputacionMenos($id_usuario);
+                }
+
+                $this->postulacionModel->confirmarCalificacionU($favor_id,$id_usuario);
+
+                    $email=$this->session->userdata('email');
+                    $usuario=$this->usuarioModel->buscarUsuario($email);
+                    $data=array(
+                            'calificacion' => true,
+                            'usuarioPerfil' => $usuario->result(),
+                            'usuario' => $this->session->userdata());
+                    $this->twig->display('verPerfil', $data);
+            }
+
+
+
+        }else {
+            $this->twig->display('index');
+        }
+    }
+
+    public function calificarDuenio()
+    {
+        if ($this->session->userdata('login')) {
+
+            $puntaje = $this->input->post('puntaje');
+            $descripcion = $this->input->post('descripcion');
+            $favor_id = $this->input->post('favor_id');
+            $id_usuario = $this->input->post('id_usuario');
+            $id_dueño = $this->obtenerIDUsuario();
+
+            if ($puntaje == "Selecciona un puntaje" & $descripcion == "") {
+                $favor = $this->favorModel->obtenerFavor($favor_id);
+                $favor =$favor->result();
+                $data = array(
+                    'errorPuntaje' => true,
+                    'errorDescripcion' => true,
+                    'titulo' => $favor[0]->titulo,
+                    'favor_id' =>$favor_id,
+                    'id_usuario' => $id_usuario ,
+                    'usuario' => $this->session->userdata());
+                $this->twig->display('calificarFormularioD', $data);
+                return 0;
+            }elseif ($puntaje == "Selecciona un puntaje" ) {
+                $favor = $this->favorModel->obtenerFavor($favor_id);
+                $favor =$favor->result();
+                $data = array(
+                    'errorPuntaje' => true,
+                    'descripcion' => $descripcion,
+                    'titulo' => $favor[0]->titulo,
+                    'favor_id' =>$favor_id,
+                    'id_usuario' => $id_usuario ,
+                    'usuario' => $this->session->userdata());
+                $this->twig->display('calificarFormularioD', $data);
+                return 0;
+            }elseif ($descripcion == "") {
+                $favor = $this->favorModel->obtenerFavor($favor_id);
+                $favor =$favor->result();
+                $data = array(
+                    'errorDescripcion' => true,
+                    'puntaje' => $puntaje,
+                    'titulo' => $favor[0]->titulo,
+                    'favor_id' =>$favor_id,
+                    'id_usuario' => $id_usuario ,
+                    'usuario' => $this->session->userdata());
+                $this->twig->display('calificarFormularioD', $data);
+                return 0;
+            }else
+            {
+                $calificacion = array(
+                                'comentario' => $descripcion,
+                                'puntuacion' => $puntaje,
+                                'usuarios_id_usuario' => $id_dueño,
+                                'calificacion_hacia_usuario' => $id_usuario,
+                                'id_favor' => $favor_id
+                                 );
+                $this->postulacionModel->crearCalificacion($calificacion);
+                if ($puntaje == '1' ) {
+                    $this->postulacionModel->actualizarReputacionMas($id_usuario);
+                }elseif ( $puntaje == '-2') {
+                    $this->postulacionModel->actualizarReputacionMenos($id_usuario);
+                }
+                $this->postulacionModel->confirmarCalificacionD($favor_id,$id_dueño);
+
+                    $email=$this->session->userdata('email');
+                    $usuario=$this->usuarioModel->buscarUsuario($email);
+                    $data=array(
+                            'calificacion' => true,
+                            'usuarioPerfil' => $usuario->result(),
+                            'usuario' => $this->session->userdata());
+                    $this->twig->display('verPerfil', $data);
+            }
+
+
+
+        }else {
+            $this->twig->display('index');
+        }
+    }
+
+    public function aceptarPostulante() {
+        $id_usuario = $this->input->get('id_usuario');
+        $id_favor = $this->input->get('id_favor');
+        $this->postulacionModel->confirmarPostulacion($id_favor, $id_usuario);
+        $postulantes = $this->postulacionModel->obtenerPostulantes($id_favor);
+        if($postulantes != false) {
+            $postulantes = $postulantes->result();
+            for($i = 0; $i < count($postulantes);  $i++) {
+                if($postulantes[$i]->usuarios_id_usuario != $id_usuario) {
+                    $this->postulacionModel->cancelarPostulacion($id_favor, $postulantes[$i]->usuarios_id_usuario);
+                }
+            }
+        }
+        $postulantes = $this->postulacionModel->obtenerPostulantes($id_favor);
+        $data = array(
+            'postulantes' => $postulantes->result(),
+            'usuario' => $this->session->userdata());
+        $this->twig->display('verPostulantes', $data);
+    }
+
 }

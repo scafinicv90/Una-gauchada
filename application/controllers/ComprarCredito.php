@@ -82,18 +82,14 @@ class ComprarCredito extends CI_Controller
 
     public function comprar()
     {
-        // var_dump((int)($this->input->post('cantidad'))/50);
         $id_usuario= $this->session->userdata('email');
         $id_usuario=$this->usuarioModel->buscarUsuario($id_usuario);
         $id_usuario=$id_usuario->result();
         $id_usuario=$id_usuario[0]->id_usuario;
-        var_dump($id_usuario);
-        var_dump(date("Y-m-d"));
         $creditos = $this->usuarioModel->obtenerCreditos($this->input->post('usuario'));
         $int      = $creditos->result();
         $int2     = $int;
         $num      = (int) ($int2[0]->credito);
-        // var_dump((int)($int2[0]->credito));die();
         $creditos = $num + ((int) ($this->input->post('cantidad')) / 50);
 
         $this->comprasModel->sumarCreditos($this->input->post('usuario'), $creditos);

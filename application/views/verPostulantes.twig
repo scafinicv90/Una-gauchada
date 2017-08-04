@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block content %}
-	{{ dump() }}
 	<div class="row main">
 		<div class="migas-de-pan">
 			<ol class="breadcrumb">
@@ -14,7 +13,7 @@
 			</ol>
 		</div>
 		{% if postulantes|length == 0 %}
-		<h3><b>Aún no hay postulantes</b></h3>
+			<h3><b>Aún no hay postulantes</b></h3>
 		{% else %}
 		
 		<div class="col-md-9">
@@ -45,18 +44,22 @@
 						 	<td>Buen tipo</td>
 						{% elseif postulante.reputacion == 0 %} 
 							<td>Observador</td>
+
 						{% endif %}
 						<td>{{ postulante.descripcion }}</td>
 						<td>
-						<a href="{{ dirpath }}postular/verPostulantes/{{favor[0].id_favor}}"><button class="btn btn-success">Aceptar</button></a>
+						{% if postulante.estado == 1 %}
+						<a href="{{ dirpath }}postular/aceptarPostulante?id_usuario={{postulante.id_usuario}}&id_favor={{postulante.favor_id_favor}}"><button class="btn btn-success">Aceptar</button></a>
 						<a href="{{ dirpath }}postular/rechazarPostulante?id={{postulante.id_usuario}}&idFavor={{postulante.favor_id_favor}}"><button class="btn btn-danger">Rechazar</button></a>
-						
-						<form method="post" action="{{ dirpath }}postular/calificar/">
-							<input type="hidden" name="usuarioPostulado" value="{{postulante.id_usuario}}">
-							<input type="hidden" name="postulacion" value="{{postulante.favor_id_favor}}">
-							<input type="hidden" name="usuarioDueño" value="{{ usuario.email }}">
+						{% elseif postulante.estadoU == 1 %}
+							<p>Ya califico</p>
+						{% else %}
+						<form method="post" action="{{ dirpath }}postular/calificarU/">
+							<input type="hidden" name="id_usuario" value="{{postulante.id_usuario}}">
+							<input type="hidden" name="favor_id" value="{{postulante.favor_id_favor}}">
 							<button class="btn btn-success">Calificar</button>
 						</form>
+						{% endif %}
 
 						</td>
 					</tr>

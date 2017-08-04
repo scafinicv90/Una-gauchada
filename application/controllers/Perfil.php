@@ -30,7 +30,7 @@ class Perfil extends CI_Controller {
                 $data=array(
                         'usuarioPerfil' => $usuario->result(),
                         'usuario' => $this->session->userdata());
-                $this->twig->display('verRanking', $data);
+                $this->twig->display('verPerfilAjeno', $data);
         }
         public function obtenerRanking()
         {

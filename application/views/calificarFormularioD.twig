@@ -1,0 +1,52 @@
+{% extends 'layout.twig' %}
+
+{% block head %}
+
+{% endblock %}
+{% block content %}
+<div class="row main ">
+	<div class="migas-de-pan">
+		<ol class="breadcrumb">
+			<li><a href="{{ dirpath }}home/">inicio</a></li>
+			<li>Calificar</li>
+		</ol>
+	</div>
+	<!-- end breadcrum -->
+	<div class="col-md-8">
+			<h3 >Calificar usuario</h3>
+			<form method="post" action="{{ dirpath }}postular/calificarDuenio">
+				<h3> Estas a punto de calificar al Dueño de la Gauchada: {{ titulo }} </h3>
+		        <div class="form-group">
+                <label>Puntaje:</label><p> * Es Obligatorio </p>
+                <select name="puntaje" class="form-control select2" style="width: 100%;" required>
+                  <option selected="selected">Selecciona un puntaje</option>
+                  <option >0</option>
+                  <option>1</option>
+                  <option>-2</option>
+                </select>
+                {% if errorPuntaje is defined %}
+					<p class="text-danger">Seleccione un puntaje valido.</p>
+                {% endif %}
+              </div>
+				<div class="form-group">
+		          <label for="inputDesc">Comentario:</label><p> * Es Obligatorio </p>
+		          <textarea class="form-control" id="inputDesc" pattern="[a-zA-Z0-9]{1,30}$" data-error="La descripción maximo 400 caracteres" rows="10" name="descripcion" required ></textarea>
+		            <div class="help-block with-errors "></div>
+		            {% if errorDescripcion is defined %}
+					<p class="text-danger">Escriba un texto valido.</p>
+                {% endif %}
+		        </div>
+		        <input type="hidden" name="favor_id" value="{{ favor_id }}">
+		        <input type="hidden" name="id_usuario" value="{{ id_usuario }}">
+		        <input type="hidden" name="dueño" value="{{usuario.email}}">
+		        <div class="form-group">
+		        	<button class="btn btn-success">Confirmar</button>
+		        </div>
+			</form>
+			<a href="{{ dirpath }}perfil/verPerfil"><button class="btn btn-danger">Cancelar</button></a>
+
+	</div>
+</div>
+{% endblock %}
+{% block endBody %}
+{% endblock %}

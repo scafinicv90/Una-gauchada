@@ -138,8 +138,10 @@
 					{% endif %}
 					<div class=""><a href="{{ dirpath }}postular/index/{{favor[0].id_favor}}"><button class="btn btn-success btn-flat"> Postular.</button></a></div>
 				{% endif %}
-	        {% else %}
+	        {% else %} {% if fecha_hoy < favor[0].fecha_limite %}
 			        	<a href="{{ dirpath }}postular/verPostulantes/{{favor[0].id_favor}}"><button class="btn btn-success">Ver postulantes</button></a>
+	        			{% else %}
+			        	{% endif %}
 			{% endif %}
 
 	        </article>
