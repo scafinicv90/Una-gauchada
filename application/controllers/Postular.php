@@ -142,4 +142,24 @@ class Postular extends CI_Controller
             'usuario' => $this->session->userdata());
         $this->twig->display('verPostulantes', $data);
     }
+
+    public function aceptarPostulante() {
+        $id_usuario = $this->input->get('id_usuario');
+        $id_favor = $this->input->get('id_favor');
+        $this->postulacionModel->confirmarPostulacion($id_favor, $id_usuario);
+        $postulantes = $this->postulacionModel->obtenerPostulantes($id_favor);
+        if($postulantes != false) {
+            $postulantes = $postulantes->result();
+            for($i = 0; $i < count($postulantes);  $i++) {
+                if($postulantes[$i]->usuarios_id_usuario != $id_usuario) {
+                    $this->postulacionModel->cancelarPostulacion($id_favor, $postulantes[$i]->usuarios_id_usuario);
+                }
+            }
+        }
+        $data = array(
+            'postulantes' => $postulantes,
+            'usuario' => $this->session->userdata());
+        $this->twig->display('verPostulantes', $data);
+    }
+
 }

@@ -28,6 +28,7 @@ class PostulacionModel extends CI_Model
             return (false);
         }
     }
+
     public function cancelarPostulacion($id_favor, $id_usuario)
     {
         $data = array(
@@ -38,6 +39,18 @@ class PostulacionModel extends CI_Model
         $this->db->where('favor_id_favor', $id_favor);
         $this->db->update('usuarios_has_favor_postulacion', $data );
     }
+
+    public function confirmarPostulacion($id_favor, $id_usuario) {
+        $data = array(
+            'usuarios_id_usuario' => $id_usuario,
+            'favor_id_favor' => $id_favor,
+            'estado' => 2);
+        $this->db->where('usuarios_id_usuario', $id_usuario);
+        $this->db->where('favor_id_favor', $id_favor);
+        $this->db->update('usuarios_has_favor_postulacion', $data);
+    }
+
+
     public function obtenerPostulaciones($id_usuario)
     {
         $this->db->from('favor');
@@ -64,4 +77,5 @@ class PostulacionModel extends CI_Model
             return(false);
         }
     }
+
 }

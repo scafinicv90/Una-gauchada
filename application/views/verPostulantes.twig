@@ -13,7 +13,7 @@
 			</ol>
 		</div>
 		{% if postulantes|length == 0 %}
-		<h3><b>Aún no hay postulantes</b></h3>
+			<h3><b>Aún no hay postulantes</b></h3>
 		{% else %}
 		
 		<div class="col-md-8">
@@ -44,7 +44,7 @@
 						{% elseif postulante.reputacion == 0 %} 
 							<td>Observador</td>
 						{% endif %}<td>
-						<a href="{{ dirpath }}postular/verPostulantes/{{favor[0].id_favor}}"><button class="btn btn-success">Aceptar</button></a>
+						<a href="{{ dirpath }}postular/aceptarPostulante?id_usuario={{postulante.id_usuario}}&id_favor={{postulante.favor_id_favor}}"><button class="btn btn-success">Aceptar</button></a>
 						<a href="{{ dirpath }}postular/rechazarPostulante?id={{postulante.id_usuario}}&idFavor={{postulante.favor_id_favor}}"><button class="btn btn-danger">Rechazar</button></a></td>
 					</tr>
 				{% endfor %}
